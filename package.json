@@ -4,7 +4,20 @@
   "description": "Redesign de ticketflow van Rijksmuseum en zorg dat deze eenvoudig en voor iedereen toegankelijk is.",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "predev": "npm run build",
+    "dev": "nodemon server.js",
+    "prestart": "npm run build",
+    "start": "node server.js",
+    "prebuild": "rimraf \"static/\"",
+    "build": "npm-run-all build:*",
+    "build:css": "node scripts/build-css.js",
+    "build:js": "node scripts/build-js.js",
+    "build:assets": "node scripts/build-assets.js",
+    "watch": "run-p watch:*",
+    "watch:css": "chokidar \"src/css/*.css\" --c \"npm run build:css\"",
+    "watch:js": "chokidar \"src/js/*.js\" --c \"npm run build:js\"",
+    "watch:assets": "chokidar \"src/**/*.*\" --c \"npm run build:assets\""
+    
   },
   "repository": {
     "type": "git",
@@ -37,6 +50,7 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "node-fetch": "^2.6.0",
-    "rimraf": "^3.0.2",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
   }
 }
