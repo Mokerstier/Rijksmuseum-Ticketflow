@@ -1,5 +1,5 @@
 {
-  "name": "rijksmuseum-ticketflow",
+  "name": "portfolio-website-2020",
   "version": "1.0.0",
   "description": "Redesign de ticketflow van Rijksmuseum en zorg dat deze eenvoudig en voor iedereen toegankelijk is.",
   "main": "server.js",
@@ -30,7 +30,7 @@
     "toegankelijkheid",
     "accessible"
   ],
-  "author": "Mohamad Al Ghorani, Manouk Kappé, Wouter van der Heijde",
+  "author":  "Mohamad Al Ghorani, Manouk Kappé, Wouter van der Heijde",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Mokerstier/Rijksmuseum-Ticketflow/issues"
