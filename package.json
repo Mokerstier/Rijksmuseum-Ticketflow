@@ -1,7 +1,7 @@
 {
   "name": "portfolio-website-2020",
   "version": "1.0.0",
-  "description": "portfolio website to showcase personal work",
+  "description": "Redesign de ticketflow van Rijksmuseum en zorg dat deze eenvoudig en voor iedereen toegankelijk is.",
   "main": "server.js",
   "scripts": {
     "predev": "npm run build",
@@ -23,16 +23,14 @@
     "url": "git+https://github.com/Mokerstier/Rijksmuseum-Ticketflow.git"
   },
   "keywords": [
-    "portfolio",
-    "wouter",
-    "heijde",
-    "showcase",
-    "personal",
-    "web",
-    "development",
-    "web-dev"
+    "Ticketflow",
+    "rijksmuseum",
+    "ticketstraat",
+    "Q42",
+    "toegankelijkheid",
+    "accessible"
   ],
-  "author": "Wouter van der Heijde",
+  "author":  "Mohamad Al Ghorani, Manouk Kappé, Wouter van der Heijde",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Mokerstier/Rijksmuseum-Ticketflow/issues"
