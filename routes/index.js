@@ -1,5 +1,5 @@
 function routes(){
-    const exRoutes = require("express").Router();
+    const exRoutes = require('express').Router()
     const render = require('../controllers/render')
 
     exRoutes
@@ -9,4 +9,4 @@ function routes(){
     return exRoutes
 }
 
-exports.routes = routes();
+exports.routes = routes()

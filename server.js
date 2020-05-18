@@ -8,9 +8,9 @@ const config = {
 const app = express()
 
 app
-    .use(express.static("static"))
+    .use(express.static('static'))
     .use('/', routes)
 
-    .set("view engine", "ejs")
+    .set('view engine', 'ejs')
 
 app.listen(config.PORT, () => console.log(`http://localhost:${config.PORT}`))
