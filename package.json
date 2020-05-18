@@ -10,13 +10,14 @@
     "start": "node server.js",
     "prebuild": "rimraf \"static/\"",
     "build": "npm-run-all build:*",
+    "build:css": "node scripts/build-css.js",
     "build:js": "node scripts/build-js.js",
     "build:assets": "node scripts/build-assets.js",
-    "build:css": "node scripts/build-css.js",
     "watch": "run-p watch:*",
     "watch:css": "chokidar \"src/css/*.css\" --c \"npm run build:css\"",
-    "watch:assets": "chokidar \"src/**/*.*\" --c \"npm run build:assets\"",
-    "watch:js": "chokidar \"src/js/*.js\" --c \"npm run build:js\""
+    "watch:js": "chokidar \"src/js/*.js\" --c \"npm run build:js\"",
+    "watch:assets": "chokidar \"src/**/*.*\" --c \"npm run build:assets\""
+    
   },
   "repository": {
     "type": "git",
