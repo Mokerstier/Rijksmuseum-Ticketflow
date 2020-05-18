@@ -1,0 +1,42 @@
+{
+  "name": "rijksmuseum-ticketflow",
+  "version": "1.0.0",
+  "description": "Redesign de ticketflow van Rijksmuseum en zorg dat deze eenvoudig en voor iedereen toegankelijk is.",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mokerstier/Rijksmuseum-Ticketflow.git"
+  },
+  "keywords": [
+    "Ticketflow",
+    "rijksmuseum",
+    "ticketstraat",
+    "Q42",
+    "toegankelijkheid",
+    "accessible"
+  ],
+  "author": "Mohamad Al Ghorani, Manouk Kappé, Wouter van der Heijde",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mokerstier/Rijksmuseum-Ticketflow/issues"
+  },
+  "homepage": "https://github.com/Mokerstier/Rijksmuseum-Ticketflow#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "chokidar-cli": "^2.1.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "node-fetch": "^2.6.0",
+    "rimraf": "^3.0.2"
+  }
+}
