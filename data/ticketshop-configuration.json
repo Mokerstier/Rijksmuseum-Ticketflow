@@ -20,7 +20,9 @@
         "backButtonText": "Terug naar tickets",
         "totalArticlesValidationError": "U wilt {{totalArticles}} tickets reserveren. Voor meer dan {{maxAmountOfArticles}} tickets dient u een <a href=\"/nl/groepsbezoek\">groepsboeking</a> te doen.",
         "articleName": "Entree museum",
-        "paragraphContent": "<b>Starttijd reserveren</b><br/><br/>Voor het Rijksmuseum is het noodzakelijk om een starttijd te reserveren. Eenmaal binnen mag je zo lang blijven als je wilt.<br/><br/><ul><li>Vriend van het Rijksmuseum? Dan hoef je geen starttijd te boeken en mag je onbeperkt naar het museum.</li><li>Heb je een Museumkaart, BankGiro Loterij VIP-KAART, Lidmaatschapskaart KOG, VVAK, Vereniging Rembrandt, I Amsterdam City Card of ICOM card? Dan hoef je geen starttijd te boeken</li></ul>"
+        "paragraphContentTitle":"Starttijd reserveren",
+        "paragraphContent": "Voor het Rijksmuseum is het noodzakelijk om een starttijd te reserveren. Eenmaal binnen mag je zo lang blijven als je wilt.",
+        "paragraphContentListItems": ["Vriend van het Rijksmuseum? Dan hoef je geen starttijd te boeken en mag je onbeperkt naar het museum.", "Heb je een Museumkaart, BankGiro Loterij VIP-KAART, Lidmaatschapskaart KOG, VVAK, Vereniging Rembrandt, I Amsterdam City Card of ICOM card? Dan hoef je geen starttijd te boeken"]
       },
       "expositionSelectionContent": {
         "stepTitle": "Extra opties",
