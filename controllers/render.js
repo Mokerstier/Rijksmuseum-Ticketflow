@@ -1,6 +1,11 @@
-function getFirstStep(req, res) {
+const getter = require('./getter.js')
+
+function getFirstStep( req, res) {
+    const articles = getter.getArticles()
+    console.log(articles)
     res.render('pages/firstStep.ejs', {
-        title: 'Tickets'
+        title: 'Tickets',
+        articles: articles
     })
 }
 

@@ -1,0 +1,110 @@
+﻿[
+  {
+    "ExpositionId": "5D63626E-7F05-E711-80CD-5820B1E20440",
+    "ExpositionCode": "E120077_2017",
+    "StartDate": "2017-09-04 00:00:00.0000000",
+    "EndDate": "2021-09-05 00:00:00.0000000",
+    "Language": "NL",
+    "PriceCent": 500,
+    "PriceType": "per ticket"
+  },
+  {
+    "ExpositionId": "87115C7A-9305-E711-80CD-5820B1E20440",
+    "ExpositionCode": "E120078_2017",
+    "StartDate": "2017-07-08 00:00:00.0000000",
+    "EndDate": "2021-07-09 00:00:00.0000000",
+    "Language": "NL",
+    "PriceCent": 8000,
+    "PriceType": "fixed"
+  },
+  {
+    "ExpositionId": "96D63FDB-6647-EA11-A2E0-D9C772E4E9DA",
+    "ExpositionCode": "E120154",
+    "StartDate": "2019-09-26 00:00:00.0000000",
+    "EndDate": "2019-12-31 00:00:00.0000000",
+    "Language": "NL",
+    "PriceCent": 0,
+    "PriceType": "per ticket"
+  },
+  {
+    "ExpositionId": "099CCC29-4B14-EA11-A2E0-D9C772E4E9DA",
+    "ExpositionCode": "E130059",
+    "StartDate": "2020-02-15 00:00:00.0000000",
+    "EndDate": "2020-06-07 00:00:00.0000000",
+    "Language": "NL",
+    "PriceCent": 500,
+    "PriceType": "per ticket"
+  },
+  {
+    "ExpositionId": "81D7C885-8414-E711-80CD-5820B1E20440",
+    "ExpositionCode": "E120076B_2017",
+    "StartDate": "2017-07-08 00:00:00.0000000",
+    "EndDate": "2021-07-09 00:00:00.0000000",
+    "Language": "EN",
+    "PriceCent": 8000,
+    "PriceType": "fixed"
+  },
+  {
+    "ExpositionId": "E49ABBE8-8514-E711-80CD-5820B1E20440",
+    "ExpositionCode": "E120076C_2017",
+    "StartDate": "2017-07-08 00:00:00.0000000",
+    "EndDate": "2021-07-09 00:00:00.0000000",
+    "Language": "EN",
+    "PriceCent": 8000,
+    "PriceType": "fixed"
+  },
+  {
+    "ExpositionId": "301D0CF5-8E05-E711-80CD-5820B1E20440",
+    "ExpositionCode": "E120077A_2017",
+    "StartDate": "2017-09-04 00:00:00.0000000",
+    "EndDate": "2021-09-05 00:00:00.0000000",
+    "Language": "EN",
+    "PriceCent": 500,
+    "PriceType": "per ticket"
+  },
+  {
+    "ExpositionId": "31661D14-9605-E711-80CD-5820B1E20440",
+    "ExpositionCode": "E120078A_2017",
+    "StartDate": "2017-07-08 00:00:00.0000000",
+    "EndDate": "2021-07-09 00:00:00.0000000",
+    "Language": "EN",
+    "PriceCent": 8000,
+    "PriceType": "fixed"
+  },
+  {
+    "ExpositionId": "9EAB0CF1-9705-E711-80CD-5820B1E20440",
+    "ExpositionCode": "E120078B_2017",
+    "StartDate": "2017-07-08 00:00:00.0000000",
+    "EndDate": "2021-07-09 00:00:00.0000000",
+    "Language": "EN",
+    "PriceCent": 8000,
+    "PriceType": "fixed"
+  },
+  {
+    "ExpositionId": "FA3E4450-9A05-E711-80CD-5820B1E20440",
+    "ExpositionCode": "E120078C_2017",
+    "StartDate": "2017-07-08 00:00:00.0000000",
+    "EndDate": "2021-07-09 00:00:00.0000000",
+    "Language": "EN",
+    "PriceCent": 8000,
+    "PriceType": "fixed"
+  },
+  {
+    "ExpositionId": "96D63FDB-6647-EA11-A2E0-D9C772E4E9DA",
+    "ExpositionCode": "E120154",
+    "StartDate": "2019-09-26 00:00:00.0000000",
+    "EndDate": "2019-12-31 00:00:00.0000000",
+    "Language": "EN",
+    "PriceCent": 0,
+    "PriceType": "per ticket"
+  },
+  {
+    "ExpositionId": "0D9CCC29-4B14-EA11-A2E0-D9C772E4E9DA",
+    "ExpositionCode": "E130060",
+    "StartDate": "2020-02-15 00:00:00.0000000",
+    "EndDate": "2020-06-07 00:00:00.0000000",
+    "Language": "EN",
+    "PriceCent": 500,
+    "PriceType": "per ticket"
+  }
+]
