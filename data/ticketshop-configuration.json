@@ -1,0 +1,260 @@
+{
+  "variantContent": [
+    {
+      "language": "NL",
+      "shopHeaderImage": "//lh3.googleusercontent.com/y6cPW12cSjNHreuR-PdOKN06ITniMfR30_LStQvfv0_eujC5gdk3ALIJXC-UD0kaVsNqBP7hCZPZ0RUZyVPdJv8avA=s0",
+      "seoPageTitle": "Tickets Rijksmuseum – Voordeligste tickets – Online korting",
+      "seoPageDescription": "Bestel je tickets online met korting. Sla de kassa over en geniet meteen van de grote meesters zoals Rembrandt, Vermeer en Van Gogh.",
+      "articleSelectionContent": {
+        "stepTitle": "Tickets",
+        "pageTitle": "Koop voordelig je tickets voor het Rijksmuseum",
+        "usps": [
+          "Niet meer langs de kassa",
+          "De voordeligste online tickets",
+          "Je ontvangt de tickets direct per mail",
+          "Direct naar Operatie Nachtwacht met je online ticket"
+        ],
+        "articleSelectionTitle": "Ticket(s) voor het hele museum",
+        "articleTableTitle": "Tickets",
+        "continueButtonText": "Ga verder",
+        "backButtonText": "Terug naar tickets",
+        "totalArticlesValidationError": "U wilt {{totalArticles}} tickets reserveren. Voor meer dan {{maxAmountOfArticles}} tickets dient u een <a href=\"/nl/groepsbezoek\">groepsboeking</a> te doen.",
+        "articleName": "Entree museum",
+        "paragraphContentTitle":"Starttijd reserveren",
+        "paragraphContent": "Voor het Rijksmuseum is het noodzakelijk om een starttijd te reserveren. Eenmaal binnen mag je zo lang blijven als je wilt.",
+        "paragraphContentListItems": ["Vriend van het Rijksmuseum? Dan hoef je geen starttijd te boeken en mag je onbeperkt naar het museum.", "Heb je een Museumkaart, BankGiro Loterij VIP-KAART, Lidmaatschapskaart KOG, VVAK, Vereniging Rembrandt, I Amsterdam City Card of ICOM card? Dan hoef je geen starttijd te boeken"]
+      },
+      "expositionSelectionContent": {
+        "stepTitle": "Extra opties",
+        "pageTitle": "Plan je bezoek. Maak een keuze uit onderstaande opties",
+        "multimediaSelectionTitle": "Multimedia bij je bezoek",
+        "additionalArticleSelectionTitle": "Multimedia bij je bezoek",
+        "continueButtonText": "Ga verder",
+        "backButtonText": "Terug naar extra opties",
+        "expositionWithoutTimeslotTitle": "Entree museum",
+        "expositionWithoutTimeslotDescription": "Dagelijks van 9 tot 17 uur"
+      },
+      "personalDetailsContent": {
+        "privacyPolicyText": "Door verder te gaan, bevestig je het <a href=\"/nl/privacybeleid\" target=\"_blank\">Privacybeleid</a> te hebben gelezen en begrepen.",
+        "acceptTermsAndConditions": "Ik ga akkoord met de <a href=\"https://www.rijksmuseum.nl/nl/organisatie/voorwaarden\" target=\"_blank\">algemene voorwaarden</a>"
+      },
+      "paymentSuccessContent": {
+        "title": "Je bestelling is succesvol afgerond",
+        "introText": "Hartelijk dank voor je boeking bij het Rijksmuseum.",
+        "buttonText": "Download e-ticket(s)",
+        "emailSentText": "Je e-ticket(s) zijn verstuurd naar {0}.",
+        "loggedInEmailSentText": "Je e-ticket(s) zijn verstuurd naar {0} en kun je ook vinden in je <a href=\"/nl/rijksstudio/mijn/tickets\">Rijksstudio instellingen</a>."
+      },
+      "successEmailContent": {
+        "downloadButtonText": "Download E-tickets",
+        "salutationText": "Beste bezoeker",
+        "introText": "Wij hebben je bestelling ontvangen en bevestigen hierbij de volgende boeking:",
+        "articleTableTitle": "Programma en tickets",
+        "downloadLinkText": "Download E-tickets",
+        "outroText": "Indien je vragen hebt over je boeking, kun je contact opnemen met het Rijksmuseum via <a href=\"mailto:groepen@rijksmuseum.nl\">groepen@rijksmuseum.nl</a>. <br /><br /> Wij wensen je een plezierig bezoek!"
+      }
+    },
+    {
+      "language": "EN",
+      "shopHeaderImage": "//lh3.googleusercontent.com/y6cPW12cSjNHreuR-PdOKN06ITniMfR30_LStQvfv0_eujC5gdk3ALIJXC-UD0kaVsNqBP7hCZPZ0RUZyVPdJv8avA=s0",
+      "seoPageTitle": "Tickets Rijksmuseum – Cheapest tickets – Online discount",
+      "seoPageDescription": "Get your discount tickets for the Dutch national museum online. Skip the ticket counter and go straight to the Dutch masters as Rembrandt, Vermeer and Van Gogh.",
+      "articleSelectionContent": {
+        "stepTitle": "Tickets",
+        "pageTitle": "Save time and money: purchase your tickets for the Rijksmuseum online",
+        "usps": [
+          "Cheapest online tickets",
+          "Skip the line at the ticket counter",
+          "Book your multimedia or guided tour in advance",
+          "Straight to Operation Night Watch with your online ticket"
+        ],
+        "articleSelectionTitle": "Select your museum tickets here",
+        "articleTableTitle": "Tickets",
+        "continueButtonText": "Continue",
+        "backButtonText": "Back to tickets",
+        "totalArticlesValidationError": "You wish to order {{totalArticles}} tickets. If you wish to order more than {{maxAmountOfArticles}} tickets, you have to make a <a href=\"/en/families-education-or-groups/group-visits\">group reservation</a>.",
+        "articleName": "Admission to the museum",
+        "paragraphContent": "<b>Book a start time</b><br/><br/>To visit the Rijksmuseum you need to book a start time. Once you have begun your visit, you may stay as long as you wish.<br/><br/><ul><li>If you are a Friend of the Rijksmuseum, it is not necessary to book a start time and you may visit the museum without restriction</li><li>If you have a Museumkaart, I Amsterdam City Card, or ICOM card, it is not necessary to book a start time</li></ul>"
+      },
+      "expositionSelectionContent": {
+        "stepTitle": "Extra options",
+        "pageTitle": "Plan your visit. Select from the options below.",
+        "multimediaSelectionTitle": "Multimedia guide for your visit",
+        "additionalArticleSelectionTitle": "Multimedia guide for your visit",
+        "continueButtonText": "Continue",
+        "backButtonText": "Back to extra options",
+        "expositionWithoutTimeslotTitle": "Museum admission",
+        "expositionWithoutTimeslotDescription": ""
+      },
+      "personalDetailsContent": {
+        "privacyPolicyText": "By clicking Continue, you confirm that you have read and understood the <a href=\"/en/privacy-policy\" target=\"_blank\">Privacy policy</a>",
+        "acceptTermsAndConditions": "I agree to the <a href=\"https://www.rijksmuseum.nl/en/organisation/terms-and-conditions\" target=\"_blank\">terms and conditions</a>"
+      },
+      "paymentSuccessContent": {
+        "title": "Your order has been successfully processed",
+        "introText": "Thank you for your order.",
+        "buttonText": "Download e-ticket(s)",
+        "emailSentText": "Your e-ticket(s) have been sent to {0}.",
+        "loggedInEmailSentText": "Your e-ticket(s) have been sent to {0} and can also be found in your <a href=\"/en/rijksstudio/my/tickets\">Rijksstudio settings</a>."
+      },
+      "successEmailContent": {
+        "downloadButtonText": "Download e-tickets",
+        "salutationText": "Dear visitor",
+        "introText": "We have received your order and confirm the following reservation:",
+        "articleTableTitle": "Programme and tickets",
+        "downloadLinkText": "Download e-tickets",
+        "outroText": "If you have any questions regarding your reservation, please contact the Rijksmuseum via <a href=\"mailto:groepen@rijksmuseum.nl\">groepen@rijksmuseum.nl</a>. <br /><br /> We wish you a great visit!"
+      }
+    }
+  ],
+  "articleConfiguration": [
+    {
+      "language": "NL",
+      "articleWhitelist": [
+        "R1020048",
+        "R2020001",
+        "R10031",
+        "R1020038",
+        "R4020010",
+        "R1020001",
+        "R010000",
+        "R010060"
+      ],
+      "additionalArticlesWhitelist": [
+        "R010060",
+        "R010000"
+      ],
+      "donationArticlesWhitelist": [
+        "ED00001",
+        "ED00002",
+        "ED00003"
+      ],
+      "additionalPickupArticlesWhitelist": [
+        "W16329",
+        "W16328",
+        "W15754",
+        "W14642",
+        "W14490",
+        "W14247",
+        "W14246"
+      ],
+      "maxAmountOfArticles": 15
+    },
+    {
+      "language": "EN",
+      "articleWhitelist": [
+        "R4020020W",
+        "R5020001",
+        "R4020038",
+        "R4020001"
+      ],
+      "additionalArticlesWhitelist": [
+        "R010000",
+        "R010061"
+      ],
+      "donationArticlesWhitelist": [
+        "ED00001",
+        "ED00002",
+        "ED00003"
+      ],
+      "additionalPickupArticlesWhitelist": [
+        "W16329",
+        "W16328",
+        "W15754",
+        "W14642",
+        "W14490",
+        "W14247",
+        "W14246"
+      ],
+      "maxAmountOfArticles": 15
+    }
+  ],
+  "expositionConfiguration": [
+    {
+      "language": "NL",
+      "expositionOrdering": [
+        "E120154",
+        "E130059",
+        "E120077_2017",
+        "E120078_2017"
+      ],
+      "expositionContents": [
+        {
+          "expositionId": "5D63626E-7F05-E711-80CD-5820B1E20440",
+          "language": "NL",
+          "name": "Entree museum + rondleiding Hoogtepunten",
+          "shortDescription": "volwassenen (16+) | 60 min. <br/> dagelijks | + € 5,00 per persoon",
+          "longDescription": "De rondleiding Hoogtepunten van het Rijksmuseum is een verrassingstocht langs bekende hoogtepunten én onverwachte schatten in het Rijksmuseum, van middeleeuwen tot Mondriaan.<br/><br/>Elke dag kun je aansluiten bij rondleidingen op vaste tijdstippen. Kies hieronder een datum en tijdstip.",
+          "summaryName": "met rondleiding"
+        },
+        {
+          "expositionId": "87115c7a-9305-e711-80cd-5820b1e20440",
+          "language": "NL",
+          "name": "Entree museum + privérondleiding Hoogtepunten",
+          "shortDescription": "volwassenen (16+) | 60 min. <br/> dagelijks | + € 80,00 per rondleiding",
+          "longDescription": "De rondleiding Hoogtepunten van het Rijksmuseum is een verrassingstocht langs bekende hoogtepunten én onverwachte schatten in het Rijksmuseum, van middeleeuwen tot Mondriaan.<br/><br/>Kies hieronder een datum en tijdstip.",
+          "summaryName": "met privérondleiding"
+        },
+        {
+          "expositionId": "099ccc29-4b14-ea11-a2e0-d9c772e4e9da",
+          "language": "NL",
+          "name": "Entree museum + rondleiding Caravaggio-Bernini",
+          "shortDescription": "volwassenen (16+) | 60 min. <br/> dagelijks | + € 5,00 per persoon",
+          "longDescription": "De rondleiding neemt je mee naar Rome aan het begin van de 17de eeuw. Je kijkt samen met een rondleider naar de nieuwe kunsttaal die toen werd geïntroduceerd: de barok.<br/><br/>Tijdens de tentoonstelling kun je aansluiten bij rondleidingen op vaste tijdstippen. Kies hieronder een datum en tijdstip.",
+          "summaryName": "met rondleiding"
+        },
+        {
+          "expositionId": "96D63FDB-6647-EA11-A2E0-D9C772E4E9DA",
+          "language": "NL",
+          "name": "Entree museum",
+          "shortDescription": "",
+          "longDescription": "Voor een bezoek aan het museum is het noodzakelijk om een starttijd te reserveren. Het Rijksmuseum is elke dag open van 9 tot 17 uur.<br/><br/><b>Kies hieronder je starttijd voor het Rijksmuseum.</b>",
+          "summaryName": ""
+        }
+      ]
+    },
+    {
+      "language": "EN",
+      "expositionOrdering": [
+        "E120154",
+        "E130060",
+        "E120077A_2017",
+        "E120078A_2017"
+      ],
+      "expositionContents": [
+        {
+          "expositionId": "301D0CF5-8E05-E711-80CD-5820B1E20440",
+          "language": "EN",
+          "name": "Museum admission + Scheduled ‘Highlights’ guided tour",
+          "shortDescription": "adults (16+) | 1 hour <br/> daily | + [[price]] per person",
+          "longDescription": "‘Highlights’ is the Rijksmuseum’s guided tour that takes you on a journey from the Middle Ages to Mondrian to experience delights that include both the museum’s most famous pieces and some of its less familiar treasures.<br/><br/>You can join our guided tours every day. Select a date and time below.",
+          "summaryName": "with guided tour"
+        },
+        {
+          "expositionId": "31661d14-9605-e711-80cd-5820b1e20440",
+          "language": "EN",
+          "name": "Museum admission + Private ‘Highlights’ guided tour",
+          "shortDescription": "adults (16+) | 1 hour <br/> daily | + [[price]] per group",
+          "longDescription": "‘Highlights’ is the Rijksmuseum’s guided tour that takes you on a journey from the Middle Ages to Mondrian to experience delights that include both the museum’s most famous pieces and some of its less familiar treasures.<br/><br/>Select a date and time below.",
+          "summaryName": "with private guided tour"
+        },
+        {
+          "expositionId": "0d9ccc29-4b14-ea11-a2e0-d9c772e4e9da",
+          "language": "EN",
+          "name": "Museum admission + Scheduled ‘Caravaggio-Bernini’ guided tour",
+          "shortDescription": "adults (16+) | 1 hour <br/> daily | + [[price]] per person",
+          "longDescription": "In this tour through the exhibition 'Caravaggio-Bernini. Baroque in Rome' you will become acquainted with the new visual idiom that was introduced at the time: the Baroque.<br/><br/>You can join our guided tours daily during the exhibition. Select a date and time below.",
+          "summaryName": "with guided tour"
+        },
+        {
+          "expositionId": "96D63FDB-6647-EA11-A2E0-D9C772E4E9DA",
+          "language": "EN",
+          "name": "Museum admission",
+          "shortDescription": "",
+          "longDescription": "To visit the museum you need to book a start time. The Rijksmuseum is open daily from 09.00 to 17.00.<br/><br/><b>Select the start time below for your visit to the Rijksmuseum.</b>",
+          "summaryName": ""
+        }
+      ]
+    }
+  ]
+}

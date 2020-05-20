@@ -1,0 +1,314 @@
+﻿[
+  {
+    "Code": "R1030007",
+    "PriceCent": 1900,
+    "Name": "Entree Actie volwassene",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": ""
+  },
+  {
+    "Code": "R1030006",
+    "PriceCent": 0,
+    "Name": "Entree Willem in de Passage",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": ""
+  },
+  {
+    "Code": "R2020002",
+    "PriceCent": 0,
+    "Name": "Entree Actie t/m 18 jaar",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": ""
+  },
+  {
+    "Code": "R1020048",
+    "PriceCent": 1900,
+    "Name": "Entree volwassene",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": ""
+  },
+  {
+    "Code": "R1020048D",
+    "PriceCent": 1900,
+    "Name": "Entree volwassene",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": ""
+  },
+  {
+    "Code": "R2020001D",
+    "PriceCent": 0,
+    "Name": "Entree t/m 18 jaar",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": "NULL"
+  },
+  {
+    "Code": "R2020001",
+    "PriceCent": 0,
+    "Name": "Entree t/m 18 jaar",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": "NULL"
+  },
+  {
+    "Code": "R1020038",
+    "PriceCent": 950,
+    "Name": "Entree CJP pas",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": ""
+  },
+  {
+    "Code": "R1020038D",
+    "PriceCent": 950,
+    "Name": "Entree CJP pas",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": ""
+  },
+  {
+    "Code": "R4020010",
+    "PriceCent": 0,
+    "Name": "Entree BankGiro Loterij VIP-kaart",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": "Met een BankGiro Loterij VIP-kaart  hoef je geen starttijd te boeken voor een onbegeleid bezoek aan het Rijksmuseum.\n\nKies deze optie alleen als je al in het bezit bent van een BankGiro Loterij VIP-kaart en een bezoek met rondleiding wilt boeken.\n\nJe krijgt geen e-ticket dus vergeet je BankGiro Loterij VIP-kaart niet mee te nemen voor bezoek.\nHiermee kan je direct door naar de entree. Je hoeft dus niet langs de kassa."
+  },
+  {
+    "Code": "R10031",
+    "PriceCent": 0,
+    "Name": "Entree Museumkaart",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": "Met een Museumkaart hoef je geen starttijd te boeken voor een onbegeleid bezoek aan het Rijksmuseum.\n\nKies deze optie alleen als je al in het bezit bent van een Museumkaart en een bezoek met rondleiding wilt boeken.\n\nJe krijgt geen e-ticket dus vergeet je Museumkaart niet mee te nemen voor bezoek.\nHiermee kan je direct door naar de entree. Je hoeft dus niet langs de kassa."
+  },
+  {
+    "Code": "R1020001",
+    "PriceCent": 0,
+    "Name": "Ander geldig toegangsbewijs",
+    "Mandatory": 1,
+    "Language": "NL",
+    "Description": "Kies deze optie als je al in het bezit bent van een geldig toegangsbewijs zoals een e-ticket, Lidmaatschapskaart KOG, VVAK, Vereniging Rembrandt, Stadspas, ICOM, I Amsterdam City Card, toegangsticket gekocht in hotels, bij rederijen of via Rijksmuseum wederverkopers.\n\nMet een Stadspas kun je een gratis ticket afhalen bij de kassa.\n\nJe krijgt geen e-ticket dus vergeet je ander geldig toegangsbewijs niet mee te nemen voor bezoek."
+  },
+  {
+    "Code": "R010000",
+    "PriceCent": 500,
+    "Name": "Multimediatour met leentoestel",
+    "Mandatory": 0,
+    "Language": "NL",
+    "Description": "De multimediatour en andere tours zijn af te spelen met een huurtoestel. Deze kun je vast reserveren voor €5.\n\nAlle tours zijn ook gratis beschikbaar in de Rijksmuseum App.\n\nMocht je van je eigen telefoon of tablet gebruik willen maken, zorg dan voor een headset en een opgeladen batterij."
+  },
+  {
+    "Code": "W14246",
+    "PriceCent": 1000,
+    "Name": "Rijksmuseumgids",
+    "Mandatory": 0,
+    "Language": "NL",
+    "Description": "Een uitstekende voorbereiding op uw bezoek, een deskundige metgezel tijdens uw bezoek en een prachtig souvenir voor na uw bezoek.\n\nDe gids haalt u op in de Rijks Shop in het Atrium."
+  },
+  {
+    "Code": "W14642",
+    "PriceCent": 595,
+    "Name": "Playmobil 'De Nachtwacht'",
+    "Mandatory": 0,
+    "Language": "NL",
+    "Description": "Het setje bevat de Playmobil figuren kapitein Frans Banning Cocq en luitenant Willem van Ruytenburgh, een wandelstok, een zwaard en een partisan speer.\n\nU haalt het op in de Rijks Shop in het Atrium."
+  },
+  {
+    "Code": "W14490",
+    "PriceCent": 595,
+    "Name": "Playmobil 'Het Melkmeisje'",
+    "Mandatory": 0,
+    "Language": "NL",
+    "Description": "Het setje bevat het Melkmeisje met schort, een tafel met tafelkleed, broden, een mand en 2 kannen.\n\nU haalt het op in de Rijks Shop in het Atrium."
+  },
+  {
+    "Code": "W15754",
+    "PriceCent": 595,
+    "Name": "Playmobil 'Marten & Oopjen'",
+    "Mandatory": 0,
+    "Language": "NL",
+    "Description": "Het setje bevat 2 Playmobil speelfiguren en een waaier. Playmobil heeft, om de terugkeer van deze beide doeken naar Nederland te vieren, dit Playmobil setje van Marten en Oopjen ontwikkeld.\n\nU haalt het op in de Rijks Shop in het Atrium."
+  },
+  {
+    "Code": "ED00001",
+    "PriceCent": 100,
+    "Name": "Doneer €1,-",
+    "Mandatory": 0,
+    "Language": "NL",
+    "Description": ""
+  },
+  {
+    "Code": "ED00002",
+    "PriceCent": 250,
+    "Name": "Doneer €2,50",
+    "Mandatory": 0,
+    "Language": "NL",
+    "Description": ""
+  },
+  {
+    "Code": "ED00003",
+    "PriceCent": 500,
+    "Name": "Doneer €5,-",
+    "Mandatory": 0,
+    "Language": "NL",
+    "Description": ""
+  },
+  {
+    "Code": "ED00004",
+    "PriceCent": 1000,
+    "Name": "Doneer €10,-",
+    "Mandatory": 0,
+    "Language": "NL",
+    "Description": ""
+  },
+  {
+    "Code": "RV00050E",
+    "PriceCent": 5000,
+    "Name": "Individual Friendship (1 person)",
+    "Mandatory": 1,
+    "Language": "EN",
+    "Description": "You will receive a pick-up voucher to collect your Friendship card in the museum at cash desk number 1 (a priority lane desk).\n\nYour Friendship card gives you all benefits for 1 year and is valid for 1 person."
+  },
+  {
+    "Code": "RV00075E",
+    "PriceCent": 7500,
+    "Name": "Joint Friendship (2 people)",
+    "Mandatory": 1,
+    "Language": "EN",
+    "Description": "You will receive a pick-up voucher to collect 2 Friendship card sin the museum at cash desk number 1 (a priority lane desk).\n\nYour Friendship cards gives you all benefits for 1 year and will be valid for 2 persons."
+  },
+  {
+    "Code": "R4020020W",
+    "PriceCent": 1900,
+    "Name": "Entrance adult",
+    "Mandatory": 1,
+    "Language": "EN",
+    "Description": ""
+  },
+  {
+    "Code": "R4020020WD",
+    "PriceCent": 1900,
+    "Name": "Entrance adult",
+    "Mandatory": 1,
+    "Language": "EN",
+    "Description": ""
+  },
+  {
+    "Code": "R5020001D",
+    "PriceCent": 0,
+    "Name": "Entrance ages 18 and under",
+    "Mandatory": 1,
+    "Language": "EN",
+    "Description": "NULL"
+  },
+  {
+    "Code": "R5020001",
+    "PriceCent": 0,
+    "Name": "Entrance ages 18 and under",
+    "Mandatory": 1,
+    "Language": "EN",
+    "Description": "NULL"
+  },
+  {
+    "Code": "R4020038D",
+    "PriceCent": 950,
+    "Name": "Entrance EYCA card",
+    "Mandatory": 1,
+    "Language": "EN",
+    "Description": ""
+  },
+  {
+    "Code": "R4020038",
+    "PriceCent": 950,
+    "Name": "Entrance EYCA card",
+    "Mandatory": 1,
+    "Language": "EN",
+    "Description": ""
+  },
+  {
+    "Code": "R4020001",
+    "PriceCent": 0,
+    "Name": "I already have a ticket/voucher",
+    "Mandatory": 1,
+    "Language": "EN",
+    "Description": "Select this option if you already have a valid ticket such as an e-ticket, Museum Card, ICOM card, I Amsterdam City Card or an admission ticket purchased from hotels, shipping companies or Rijksmuseum resellers."
+  },
+  {
+    "Code": "R010000",
+    "PriceCent": 500,
+    "Name": "Multimedia tour with a rental device",
+    "Mandatory": 0,
+    "Language": "EN",
+    "Description": "The multimedia tour and other tours run on a handheld device you hire at the museum. You can reserve one in advance for €5.\n\nAll tours are also available for free in the Rijksmuseum App.\n\nIf you want to use your own phone or tablet, make sure you bring your own headset and that your battery is fully charged."
+  },
+  {
+    "Code": "W14247",
+    "PriceCent": 1000,
+    "Name": "Rijksmuseum guide",
+    "Mandatory": 0,
+    "Language": "EN",
+    "Description": "An excellent preparation for your visit, an expert companion during your visit and a wonderful souvenir after your visit.\n\nPlease pickup your guide at the Rijks Shop in the Atrium."
+  },
+  {
+    "Code": "W14642",
+    "PriceCent": 595,
+    "Name": "Playmobil 'The Night Watch'",
+    "Mandatory": 0,
+    "Language": "EN",
+    "Description": "The set contains the Playmobil figures captain Frans Banning Cocq and Lieutenant Willem van Ruytenburgh, a walking stick, a sword and a partisan spear. This set is inspired by 'The Night Watch' by Rembrandt van Rijn.\n\nPickup is at the Rijks Shop in the Atrium."
+  },
+  {
+    "Code": "W14490",
+    "PriceCent": 595,
+    "Name": "Playmobil 'The Milkmaid'",
+    "Mandatory": 0,
+    "Language": "EN",
+    "Description": "The set contains the Milkmaid with apron, a table with tablecloth, loaves, a basket and 2 jugs. The set is inspired by the 'Milk maid', a painting by Johannes Vermeer.\n\nPickup is at the Rijks Shop in the Atrium."
+  },
+  {
+    "Code": "W15754",
+    "PriceCent": 595,
+    "Name": "Playmobil 'Marten & Oopjen'",
+    "Mandatory": 0,
+    "Language": "EN",
+    "Description": "The set contains 2 Playmobil play figures and a range inspired by the wedding portraits of Marten Soolmans and Oopjen Coppit painted by Rembrandt van Rijn.\n\nPickup is at the Rijks Shop in the Atrium."
+  },
+  {
+    "Code": "ED00001",
+    "PriceCent": 100,
+    "Name": "Donate €1,-",
+    "Mandatory": 0,
+    "Language": "EN",
+    "Description": ""
+  },
+  {
+    "Code": "ED00002",
+    "PriceCent": 250,
+    "Name": "Donate €2,50",
+    "Mandatory": 0,
+    "Language": "EN",
+    "Description": ""
+  },
+  {
+    "Code": "ED00003",
+    "PriceCent": 500,
+    "Name": "Donate €5,-",
+    "Mandatory": 0,
+    "Language": "EN",
+    "Description": ""
+  },
+  {
+    "Code": "ED00004",
+    "PriceCent": 1000,
+    "Name": "Donate €10,-",
+    "Mandatory": 0,
+    "Language": "EN",
+    "Description": ""
+  }
+]

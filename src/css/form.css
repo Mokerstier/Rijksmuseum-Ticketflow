@@ -1,0 +1,15 @@
+.full-width {
+  width: 100%;
+}
+.align-middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+td {
+  text-align: left;
+  padding: 12px 0 12px 12px;
+}
+th:first-child,
+td:first-child {
+  padding-left: 0;
+}
