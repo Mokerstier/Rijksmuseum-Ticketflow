@@ -33,7 +33,7 @@ function getDonation() {
     return articleArray
 }
 
-function getAditional() {
+function getAdditional() {
     const articles = ticketShopJSON.articleConfiguration[0].additionalArticlesWhitelist
     const articleArray = []
     articles.map(articleID => {
@@ -53,5 +53,5 @@ function getAditional() {
 module.exports = {
     getArticles,
     getDonation,
-    getAditional
+    getAdditional
 }
