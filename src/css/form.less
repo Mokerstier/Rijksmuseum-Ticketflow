@@ -1,11 +1,13 @@
-form > h1 {
+form>h1 {
     margin: 3em 0em 2em 0em;
+}
 
-.full-width{
+.full-width {
     border-collapse: collapse;
     width: 100%;
 }
-.align-middle{
+
+.align-middle {
     display: table-cell;
     vertical-align: middle
 }
@@ -16,11 +18,12 @@ fieldset:first-of-type {
 
 fieldset {
     border: 0;
+    padding: 0;
 }
 
 legend {
     font-weight: bold;
-    margin: 0em 0em 1em 0em ;
+    margin: 0em 0em 1em 0em;
 }
 
 td {
@@ -28,11 +31,46 @@ td {
     padding: 12px 0 12px 12px;
 }
 
+th:first-child,
+td:first-child {
+    padding-left: 0;
+}
+
+.field-validation-error {
+    display: block;
+    position: relative;
+    margin-top: 17px;
+    padding: 12px;
+    text-align: center;
+    background-color: #d55140;
+    color: white !important;
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        width: 0;
+        height: 0;
+        margin-left: -15px;
+        border-width: 0 15px 15px 15px;
+        border-style: solid;
+        border-color: transparent transparent #d55140 transparent;
+
+    }
+}
+
+.hidden {
+    display: none;
+}
+
 th {
     text-align: left;
 }
 
-th:first-child, td:first-child {
+th:first-child,
+td:first-child {
     padding-left: 0;
 }
 
