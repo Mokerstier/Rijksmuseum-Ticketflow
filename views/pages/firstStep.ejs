@@ -1,193 +1,124 @@
 <%- include ("../partials/head.ejs") %>
 <main>
   <h2>Eerste stap</h2>
-
-
-  
   <form action="" method="post">
     <section>
-        <h2><%= ticketShop.articleSelectionContent.pageTitle %></h2>
-        <ul>
-          <% ticketShop.articleSelectionContent.usps.forEach(usp => { %>
-          <li><%= usp %></li>
-          <% }); %>
-        </ul>
-      </section>
-      <h1><%= ticketShop.articleSelectionContent.articleSelectionTitle %></h1>
-      <h2><%= ticketShop.pageTitle %></h2>
-      <section>
-        <fieldset>
+      <h2><%= variantContent.articleSelectionContent.pageTitle %></h2>
+      <ul>
+        <% variantContent.articleSelectionContent.usps.forEach(usp => { %>
+        <li><%= usp %></li>
+        <% }); %>
+      </ul>
+    </section>
+    <h1><%= variantContent.articleSelectionContent.articleSelectionTitle %></h1>
+    <h2><%= variantContent.pageTitle %></h2>
+    <section>
+      <fieldset>
         <legend>Reguliere tickets</legend>
         <table class="full-width">
-            <thead>
-            <th><%= ticketShop.articleSelectionContent.articleTableTitle %></th>
+          <thead>
+            <th><%= variantContent.articleSelectionContent.articleTableTitle %></th>
             <th>Prijs</th>
             <th>Aantal</th>
             <th>Subtotaal</th>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             <tr>
-                <td><%= articles[0].Name %></td>
-                <td class="align-middle"><%= articles[0].PriceCent %></td>
-                <td><select aria-label="Aantal" name="Articles[0]" id="">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                </select></td>
-                <td></td>
+              <td><%= articles[0].Name %></td>
+              <td class="align-middle"><%= articles[0].PriceCent %></td>
+              <td>
+                <select aria-label="Aantal" name="Articles[0]" id="">
+                    <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+              </td>
+              <td></td>
             </tr>
             <tr>
-                <td><%= articles[1].Name %></td>
-                <td class="align-middle"><%= articles[1].PriceCent %></td>
-                <td><select aria-label="Aantal" name="Articles[1]" id="">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                </select></td>
-                <td></td>
+              <td><%= articles[1].Name %></td>
+              <td class="align-middle"><%= articles[1].PriceCent %></td>
+              <td>
+                <select aria-label="Aantal" name="Articles[1]" id="">
+                    <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+              </td>
+              <td></td>
             </tr>
-            </tbody>
+          </tbody>
         </table>
-        </fieldset>
-        <fieldset>
+      </fieldset>
+      <fieldset>
         <legend>Tickets met korting</legend>
         <table class="full-width">
-            <thead>
-            <th><%= ticketShop.articleSelectionContent.articleTableTitle %></th>
+          <thead>
+            <th><%= variantContent.articleSelectionContent.articleTableTitle %></th>
             <th>Prijs</th>
             <th>Aantal</th>
             <th>Subtotaal</th>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             <tr>
-                <td><%= articles[2].Name %></td>
-                <td class="align-middle"><%= articles[2].PriceCent %></td>
-                <td><select aria-label="Aantal" name="Articles[2]" id="">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                </select></td>
-                <td></td>
+              <td><%= articles[2].Name %></td>
+              <td class="align-middle"><%= articles[2].PriceCent %></td>
+              <td>
+                <select aria-label="Aantal" name="Articles[2]" id="">
+                    <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+              </td>
+              <td></td>
             </tr>
             <tr>
-                <td><%= articles[3].Name %></td>
-                <td class="align-middle"><%= articles[3].PriceCent %></td>
-                <td><select aria-label="Aantal" name="Articles[3]" id="">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                </select></td>
-                <td></td>
+              <td><%= articles[3].Name %></td>
+              <td class="align-middle"><%= articles[3].PriceCent %></td>
+              <td>
+                <select aria-label="Aantal" name="Articles[3]" id="">
+                    <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+              </td>
+              <td></td>
             </tr>
             <tr>
-                <td><%= articles[4].Name %></td>
-                <td class="align-middle"><%= articles[4].PriceCent %></td>
-                <td><select aria-label="Aantal" name="Articles[4]" id="">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                </select></td>
-                <td></td>
+              <td><%= articles[4].Name %></td>
+              <td class="align-middle"><%= articles[4].PriceCent %></td>
+              <td>
+                <select aria-label="Aantal" name="Articles[4]" id="">
+                    <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+              </td>
+              <td></td>
             </tr>
             <tr>
-                <td><%= articles[5].Name %></td>
-                <td class="align-middle"><%= articles[5].PriceCent %></td>
-                <td><select aria-label="Aantal" name="Articles[5]" id="">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                </select></td>
-                <td></td>
+              <td><%= articles[5].Name %></td>
+              <td class="align-middle"><%= articles[5].PriceCent %></td>
+              <td>
+                <select aria-label="Aantal" name="Articles[5]" id="">
+                    <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+              </td>
+              <td></td>
             </tr>
-            </tbody>
+          </tbody>
         </table>
-        </fieldset>
-        <p>
-            <%= ticketShop.articleSelectionContent.paragraphContentTitle %>
-        </p>
-        <ul>
-            <% ticketShop.articleSelectionContent.paragraphContentListItems.map(item => {%>
-                <li><%= item %></li>
-            <% }) %> 
-    </ul>
+      </fieldset>
+      <p>
+        <%= variantContent.articleSelectionContent.paragraphContentTitle %>
+      </p>
+      <ul>
+        <% variantContent.articleSelectionContent.paragraphContentListItems.map(item => {%>
+        <li><%= item %></li>
+        <% }) %>
+      </ul>
     </section>
   </form>
 </main>
