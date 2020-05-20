@@ -2,16 +2,16 @@
 <main>
     <h2>Tweede stap</h2>
     <a href="/"><%= ticketShop.articleSelectionContent.backButtonText %></a>
-    <form action="/derde-stap" method="GET">
-        <section>
+    <form class="step-two" action="/derde-stap" method="GET">
+        <section class="entree-options-container">
             <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2>
                 <% expositionContents.forEach(function(option) { %>
                     <label for="<%= option.expositionId %>"><%= option.name %> <span><%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %></span></label>
                     <input id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
                 <% })%>
-                <% expositionContents.forEach(function(option) { %>
-                    <p><%- option.longDescription %></p>
-                <% })%>
+                <% for( let i = 0; i < expositionContents.length; i++ ){ %>
+                    <p class="expositionContents<%= i %>"><%- expositionContents[i].longDescription %></p>
+                <% }%>
                 <input type="date" name="" id="">
         </section>
         <section>
