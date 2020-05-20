@@ -13,3 +13,28 @@ th:first-child,
 td:first-child {
   padding-left: 0;
 }
+.field-validation-error {
+  display: block;
+  position: relative;
+  margin-top: 17px;
+  padding: 12px;
+  text-align: center;
+  background-color: #d55140;
+  color: white !important;
+}
+.field-validation-error:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -15px;
+  border-width: 0 15px 15px 15px;
+  border-style: solid;
+  border-color: transparent transparent #d55140 transparent;
+}
+.hidden {
+  display: none;
+}

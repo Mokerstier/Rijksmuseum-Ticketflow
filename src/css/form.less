@@ -1,14 +1,46 @@
-.full-width{
+.full-width {
     width: 100%;
 }
-.align-middle{
+
+.align-middle {
     display: table-cell;
     vertical-align: middle
 }
-td{
+
+td {
     text-align: left;
     padding: 12px 0 12px 12px;
 }
-th:first-child, td:first-child {
+
+th:first-child,
+td:first-child {
     padding-left: 0;
+}
+
+.field-validation-error {
+    display: block;
+    position: relative;
+    margin-top: 17px;
+    padding: 12px;
+    text-align: center;
+    background-color: #d55140;
+    color: white !important;
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        width: 0;
+        height: 0;
+        margin-left: -15px;
+        border-width: 0 15px 15px 15px;
+        border-style: solid;
+        border-color: transparent transparent #d55140 transparent;
+
+    }
+}
+.hidden {
+    display: none;
 }

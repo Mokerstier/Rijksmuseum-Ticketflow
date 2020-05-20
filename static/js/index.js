@@ -1,5 +1,6 @@
 (function(){
-    const firstForm = document.querySelector('form')
+    const firstForm = document.querySelector('.form-first-step')
+    const validationError = document.querySelector('.field-validation-error')
 
     firstForm.addEventListener('change', function(e){
         const inputs = firstForm.querySelectorAll('select')
@@ -17,16 +18,15 @@
             return value
         })
         
-        const sumOfOptions = optionValues.reduce((current, all) =>{
+        const totalArticles = optionValues.reduce((current, all) =>{
             all = current + all
             return all
         })
-        console.log(sumOfOptions)
-
-        if(sumOfOptions >= maxAmountOfArticles){
-            console.log('Show link to group tickets')
-            console.log(maxAmountOfArticles+ ' is the maximum amount')
-            
+        console.log(totalArticles)
+        if(totalArticles >= maxAmountOfArticles){    
+            validationError.classList.remove('hidden')
+        } else{
+            validationError.classList.add('hidden')
         }
     })
     

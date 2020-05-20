@@ -1,7 +1,7 @@
 <%- include ("../partials/head.ejs") %>
 <main>
   <h2>Eerste stap</h2>
-  <form action="" method="post">
+  <form class="form-first-step" action="" method="post">
     <section>
       <h2><%= variantContent.articleSelectionContent.pageTitle %></h2>
       <ul>
@@ -108,8 +108,19 @@
               </td>
               <td></td>
             </tr>
+            <tr>
+              <td class="align-middle text-strong">
+              Totaal
+              </td> 
+              <td class="align-middle mobile-sm-hide"></td> 
+              <td class="align-middle"></td> 
+              <td class="align-middle text-strong"><span class="block-right">0</span></td>
+            </tr>
           </tbody>
         </table>
+        <p  class="field-validation-error hidden"><span>
+         <%- variantContent.articleSelectionContent.totalArticlesValidationError %>
+        </span></p>
       </fieldset>
       <p>
         <%= variantContent.articleSelectionContent.paragraphContentTitle %>
