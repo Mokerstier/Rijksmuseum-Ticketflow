@@ -14,10 +14,11 @@ fieldset:first-of-type {
 }
 fieldset {
   border: 0;
+  padding: 0;
 }
 legend {
   font-weight: bold;
-  margin: 0em 0em 1em 0em ;
+  margin: 0em 0em 1em 0em;
 }
 td {
   text-align: left;

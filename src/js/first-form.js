@@ -1,4 +1,4 @@
-(function(){
+(function () {
     const firstForm = document.querySelector('.form-first-step')
     const validationError = document.querySelector('.field-validation-error')
 
@@ -30,6 +30,6 @@
         }
     })
     
-})()
+})();
 
 
