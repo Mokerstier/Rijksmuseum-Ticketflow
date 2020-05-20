@@ -4,11 +4,13 @@ const ticketShopJSON = require('../data/ticketshop-configuration.json')
 function getFirstStep(req, res) {
     const articles = getter.getArticles()
     console.log(articles)
-    const ticketConfiguration = ticketShopJSON.variantContent[0]
+    const variantContent = ticketShopJSON.variantContent[0]
+    const articleConfiguration = ticketShopJSON.articleConfiguration[0]
     res.render('pages/firstStep.ejs', {
         title: 'Tickets',
         articles: articles,
-        ticketShop: ticketConfiguration
+        variantContent: variantContent,
+        articleConfiguration: articleConfiguration
     })
 }
 
