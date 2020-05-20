@@ -1,3 +1,14 @@
 body {
   font-family: RijksText, Arial, sans-serif;
+  background-color: white;
+  color: #343537;
+}
+h1 {
+  font-size: 1.2em;
+}
+h2 {
+  font-size: 1em;
+}
+main {
+  margin: 1em;
 }

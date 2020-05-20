@@ -5,7 +5,7 @@ function routes() {
     exRoutes
         .get('/', render.getFirstStep)
         .get('/tweede-stap', render.getSecondStep)
-        .get('/deerde-stap', render.getThirdStep)
+        .get('/derde-stap', render.getThirdStep)
 
     return exRoutes
 }

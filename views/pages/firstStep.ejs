@@ -1,8 +1,13 @@
 <%- include ("../partials/head.ejs") %>
 <main>
   <h2>Eerste stap</h2>
+<<<<<<< HEAD
   <form class="form-first-step" action="" method="post">
+=======
+  <form action="tweede-stap" method="GET">
+>>>>>>> master
     <section>
+
       <h2><%= variantContent.articleSelectionContent.pageTitle %></h2>
       <ul>
         <% variantContent.articleSelectionContent.usps.forEach(usp => { %>
@@ -14,6 +19,7 @@
     <h2><%= variantContent.pageTitle %></h2>
     <section>
       <fieldset>
+
         <legend>Reguliere tickets</legend>
         <table class="full-width">
           <thead>
@@ -21,6 +27,7 @@
             <th>Prijs</th>
             <th>Aantal</th>
             <th>Subtotaal</th>
+
           </thead>
           <tbody>
             <tr>
@@ -48,6 +55,7 @@
               <td></td>
             </tr>
           </tbody>
+
         </table>
       </fieldset>
       <fieldset>
@@ -58,6 +66,7 @@
             <th>Prijs</th>
             <th>Aantal</th>
             <th>Subtotaal</th>
+
           </thead>
           <tbody>
             <tr>
@@ -130,7 +139,9 @@
         <li><%= item %></li>
         <% }) %>
       </ul>
+
     </section>
+    <input type="submit" value="Ga verder">
   </form>
 </main>
 <script>
