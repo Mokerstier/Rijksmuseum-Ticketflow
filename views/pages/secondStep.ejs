@@ -1,7 +1,8 @@
 <%- include ("../partials/head.ejs") %>
 <main>
     <h2>Tweede stap</h2>
-    <form action="" method="post">
+    <a href="/"><%= ticketShop.articleSelectionContent.backButtonText %></a>
+    <form action="/deerde-stap" method="GET">
         <section>
             <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2>
                 <% expositionContents.forEach(function(option) { %>
@@ -45,6 +46,7 @@
                 <input id="<%= option.expositionId %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
             <% })%>
         </section>
+        <input type="submit" value="Ga verder">
     </form>
 </main>
 <%- include ("../partials/footer.ejs") %>
