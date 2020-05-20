@@ -1,9 +1,34 @@
+section:first-of-type h2 {
+    margin: 0 0 0 1em;
+}
+
 section:first-of-type ul {
     list-style: none;
-    margin: 0 0 0 -1em;
 }
 
 section:first-of-type li {
     margin: 1em 0;
     list-style-image: url(../assets/images/greenCheckmarkSmall.png);
 }
+
+section:last-of-type > p {
+    font-weight: bold;
+    margin: 3em 0 0 1em;
+}
+
+section:last-of-type > ul {
+    list-style: none;
+}
+
+section:last-of-type > ul li {
+    margin: 0em 0em 1em 0em;
+}
+
+section:last-of-type > ul li::before {
+    content: "\2022";
+    color: #d55140;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+  }

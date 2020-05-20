@@ -1,5 +1,5 @@
-.formSellTickets {
-  margin: 3em 0em;
+form > h1 {
+  margin: 3em 0em 2em 0em;
 }
 .full-width {
   border-collapse: collapse;
@@ -9,10 +9,10 @@
   display: table-cell;
   vertical-align: middle;
 }
-.formSellTickets > fieldset:first-of-type {
-  margin: 0em 0em 4em 0em;
+fieldset:first-of-type {
+  margin: 0em 0em 2em 0em;
 }
-.formSellTickets > fieldset {
+fieldset {
   border: 0;
 }
 legend {
