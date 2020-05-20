@@ -1,6 +1,50 @@
 <%- include ("../partials/head.ejs") %>
 <main>
-    <h1>Hello World!</h1>
     <h2>Tweede stap</h2>
+    <form action="" method="post">
+        <section>
+            <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2>
+                <% expositionContents.forEach(function(option) { %>
+                    <label for="<%= option.expositionId %>"><%= option.name %> <span><%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %></span></label>
+                    <input id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
+                <% })%>
+                <% expositionContents.forEach(function(option) { %>
+                    <p><%- option.longDescription %></p>
+                <% })%>
+                <input type="date" name="" id="">
+        </section>
+        <section>
+            <table class="full-width">
+                <thead>
+                    <th><%= ticketShop.expositionSelectionContent.multimediaSelectionTitle %></th>
+                    <th>Prijs</th>
+                    <th>Aantal</th>
+                    <th>Subtotaal</th>
+                </thead>
+                <tbody>
+                    <% articlesAdditional.forEach(function(option) { %>
+                    <tr>
+                        <td><%- option.Name %></td>
+                        <td><%- option.PriceCent %></td>
+                        <td>
+                            <input type="number" name="<%- option.Name %>" id="" max="6" min="0" value="0">
+                        </td>
+                        <td><output>0</output></td>
+                    </tr>
+                    <% })%>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>Doneer</h2>
+            <p>Doneer nu</p>
+            <label for="noDonation">0</label>
+            <input id="noDonation" type="radio" name="Doneer option">
+            <% DonationOptions.forEach(function(option) { %>
+                <label for="<%= option.expositionId %>"><%= option.PriceCent %></label>
+                <input id="<%= option.expositionId %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
+            <% })%>
+        </section>
+    </form>
 </main>
 <%- include ("../partials/footer.ejs") %>
