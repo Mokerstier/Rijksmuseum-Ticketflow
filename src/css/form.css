@@ -1,15 +1,35 @@
+.formSellTickets {
+  margin: 3em 0em;
+}
 .full-width {
+  border-collapse: collapse;
   width: 100%;
 }
 .align-middle {
   display: table-cell;
   vertical-align: middle;
 }
+.formSellTickets > fieldset:first-of-type {
+  margin: 0em 0em 4em 0em;
+}
+.formSellTickets > fieldset {
+  border: 0;
+}
+legend {
+  font-weight: bold;
+  margin: 0em 0em 1em 0em ;
+}
 td {
   text-align: left;
   padding: 12px 0 12px 12px;
 }
+th {
+  text-align: left;
+}
 th:first-child,
 td:first-child {
   padding-left: 0;
+}
+tr {
+  border-bottom: 1px solid #343537;
 }
