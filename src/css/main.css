@@ -9,8 +9,11 @@ h1 {
 h2 {
   font-size: 1em;
 }
+form {
+  position: relative;
+}
 main {
-  margin: 1em auto;
+  margin: 1em auto 3em auto;
   width: 80%;
 }
 main > h2 {
