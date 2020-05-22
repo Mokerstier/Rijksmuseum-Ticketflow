@@ -1,18 +1,27 @@
 <%- include ("../partials/head.ejs") %>
+<%- include ("../partials/header.ejs") %>
 <main>
-    <h2>Tweede stap</h2>
-    <a href="/"><%= ticketShop.articleSelectionContent.backButtonText %></a>
+    <section>
+        <h2>Tweede stap</h2>
+        <a href="/" class="backAndNextButton topButton"><%= ticketShop.articleSelectionContent.backButtonText %></a>
+    </section>  
     <form class="step-two" action="/derde-stap" method="GET">
         <section class="entree-options-container">
             <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2>
+            <fieldset>
                 <% expositionContents.forEach(function(option) { %>
-                    <label for="<%= option.expositionId %>"><%= option.name %> <span><%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %></span></label>
-                    <input id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
+                    <!-- <div> -->
+                        <input id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
+                        <label for="<%= option.expositionId %>"><%= option.name %> 
+                            <span><%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %></span>
+                        </label>
+                    <!-- </div> -->
                 <% })%>
-                <% for( let i = 0; i < expositionContents.length; i++ ){ %>
-                    <p class="expositionContents<%= i %>"><%- expositionContents[i].longDescription %></p>
-                <% }%>
-                <input type="date" name="" id="">
+            </fieldset>
+            <% for( let i = 0; i < expositionContents.length; i++ ){ %>
+                <p class="expositionContents<%= i %>"><%- expositionContents[i].longDescription %></p>
+            <% }%>
+            <input type="date" name="" id="">
         </section>
         <section>
             <table class="full-width">
@@ -36,17 +45,22 @@
                 </tbody>
             </table>
         </section>
-        <section>
-            <h2>Doneer</h2>
+        <section class="donation">
+            <h2>Doneer aan het Rijksmuseum</h2>
             <p>Doneer nu</p>
-            <label for="noDonation">0</label>
-            <input id="noDonation" type="radio" name="Doneer option">
-            <% DonationOptions.forEach(function(option) { %>
-                <label for="<%= option.expositionId %>"><%= option.PriceCent %></label>
-                <input id="<%= option.expositionId %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
-            <% })%>
+            <fieldset>
+                <input id="noDonation" type="radio" name="Doneer option" value="0">
+                <label for="noDonation">0</label>
+                <% DonationOptions.forEach(function(option) { %>
+                        <input id="<%= option.expositionId %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
+                        <label for="<%= option.expositionId %>"><%= option.PriceCent %></label>
+                <% })%>
+            </fieldset>
         </section>
-        <input type="submit" value="Ga verder">
+        <section>
+            <p>bestellingslijst...</p>
+            <input class="backAndNextButton" type="submit" value="Ga verder">
+        </section>
     </form>
 </main>
 <%- include ("../partials/footer.ejs") %>

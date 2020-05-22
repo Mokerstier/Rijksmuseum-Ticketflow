@@ -1,4 +1,4 @@
-.nextPage {
+.backAndNextButton {
   background-color: #d55140;
   padding: 0.5em 1em;
   font-size: 1em;
@@ -9,9 +9,15 @@
   display: block;
   right: 0em;
 }
-.nextPage:hover {
+.backAndNextButton:hover {
   background-color: black;
 }
-.nextPage:focus {
+.backAndNextButton:focus {
   background-color: black;
+}
+.topButton {
+  margin-top: -2em;
+}
+a {
+  text-decoration: none;
 }

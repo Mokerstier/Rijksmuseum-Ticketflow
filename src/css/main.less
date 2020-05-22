@@ -3,9 +3,11 @@ body {
     background-color: white;
     color: #343537;
 }
+
 *{
     box-sizing: border-box;
 }
+
 h1 {
     font-size: 1.2em;
 }
@@ -20,7 +22,8 @@ form {
 
 main {
     margin: 1em auto 3em auto;
-    width: 80%;
+    // width: 80%;
+    position: relative;
 }
 
 main > h2 {
@@ -28,5 +31,21 @@ main > h2 {
 }
 
 section {
-    margin: 0 0 0 -1em;
+    width: 80%;
+    position: relative;
+    margin: 0em auto;
+}
+
+input:focus + label {
+    box-shadow: 0px 0px 0px 5px #d9531e;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 5px #d9531e;
+}
+
+a:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 5px #d9531e;
 }
