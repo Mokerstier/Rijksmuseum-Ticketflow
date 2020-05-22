@@ -49,12 +49,12 @@
             <h2>Doneer aan het Rijksmuseum</h2>
             <p>Doneer nu</p>
             <fieldset>
+                <% DonationOptions.forEach(function(option) { %>
+                        <input id="donation<%- option.Code %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
+                        <label for="donation<%- option.Code %>"><%= option.PriceCent %></label>
+                <% })%>
                 <input id="noDonation" type="radio" name="Doneer option" value="0">
                 <label for="noDonation">0</label>
-                <% DonationOptions.forEach(function(option) { %>
-                        <input id="<%= option.expositionId %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
-                        <label for="<%= option.expositionId %>"><%= option.PriceCent %></label>
-                <% })%>
             </fieldset>
         </section>
         <section>
