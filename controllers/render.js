@@ -19,7 +19,7 @@ function getSecondStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
-    //console.log(articlesDonation)
+    console.log(articlesDonation)
     //console.log(expositionContents)
     //console.log(articlesAdditional)
     res.render('pages/secondStep.ejs', {
