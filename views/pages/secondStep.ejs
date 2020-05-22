@@ -10,12 +10,12 @@
             <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2>
             <fieldset>
                 <% expositionContents.forEach(function(option) { %>
-                    <!-- <div> -->
+                    <div>
                         <input id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
                         <label for="<%= option.expositionId %>"><%= option.name %> 
                             <span><%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %></span>
                         </label>
-                    <!-- </div> -->
+                    </div>
                 <% })%>
             </fieldset>
             <% for( let i = 0; i < expositionContents.length; i++ ){ %>
