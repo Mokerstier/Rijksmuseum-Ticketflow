@@ -1,8 +1,12 @@
 <%- include ("../partials/head.ejs") %>
-<%- include ("../partials/header.ejs") %>
+<nav>
+    <a href="/">1. Tickets ></a>
+    <a href="/tweede-stap">2. Extra opties > </a>
+    <a class="navStepDisabled" tabindex="-1" href="">3. persoonsgegevens ></a>
+    <a class="navStepDisabled" tabindex="-1" href="">4. Overzicht en betaling ></a>
+</nav>
 <main>
     <section>
-        <h2>Tweede stap</h2>
         <a href="/" class="backAndNextButton topButton"><%= ticketShop.articleSelectionContent.backButtonText %></a>
     </section>  
     <form class="step-two" action="/derde-stap" method="GET">
@@ -35,11 +39,11 @@
                     <% articlesAdditional.forEach(function(option) { %>
                     <tr>
                         <td><%- option.Name %></td>
-                        <td><%- option.PriceCent %></td>
+                        <td>€ <%- (option.PriceCent / 100).toFixed(2) %></td>
                         <td>
                             <input type="number" name="<%- option.Name %>" id="" max="6" min="0" value="0">
                         </td>
-                        <td><output>0</output></td>
+                        <td>€ <output>0</output></td>
                     </tr>
                     <% })%>
                 </tbody>
@@ -51,10 +55,10 @@
             <fieldset>
                 <% DonationOptions.forEach(function(option) { %>
                         <input id="donation<%- option.Code %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
-                        <label for="donation<%- option.Code %>"><%= option.PriceCent %></label>
+                        <label for="donation<%- option.Code %>">€ <%= (option.PriceCent/ 100).toFixed(2) %></label>
                 <% })%>
                 <input id="noDonation" type="radio" name="Doneer option" value="0">
-                <label for="noDonation">0</label>
+                <label for="noDonation">€ 0.00</label>
             </fieldset>
         </section>
         <section>

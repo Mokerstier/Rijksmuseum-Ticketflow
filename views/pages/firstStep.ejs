@@ -1,7 +1,11 @@
-<%- include ("../partials/head.ejs") %> <%- include ("../partials/header.ejs")
-%>
+<%- include ("../partials/head.ejs") %> 
+<nav>
+    <a href="/">1. Tickets ></a>
+    <a class="navStepDisabled" tabindex="-1" href="">2. Extra opties > </a>
+    <a class="navStepDisabled" tabindex="-1" href="">3. persoonsgegevens ></a>
+    <a class="navStepDisabled" tabindex="-1" href="">4. Overzicht en betaling ></a>
+</nav>
 <main>
-  <h2>Eerste stap</h2>
   <form class="form-first-step" action="tweede-stap" method="GET">
     <section>
       <h2><%= variantContent.articleSelectionContent.pageTitle %></h2>
@@ -31,7 +35,7 @@
           <tbody>
             <tr>
               <td><%= articles[0].Name %></td>
-              <td class="align-middle"><%= articles[0].PriceCent %></td>
+              <td class="align-middle">€ <%= (articles[0].PriceCent / 100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal" name="Articles[0]" id="">
                   <% for( let i = 0; i <
@@ -40,11 +44,11 @@
                   <% } %>
                 </select>
               </td>
-              <td></td>
+              <td>€ <output>0</output></td>
             </tr>
             <tr>
               <td><%= articles[1].Name %></td>
-              <td class="align-middle"><%= articles[1].PriceCent %></td>
+              <td class="align-middle">€ <%= (articles[1].PriceCent /100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal" name="Articles[1]" id="">
                   <% for( let i = 0; i <
@@ -53,7 +57,7 @@
                   <% } %>
                 </select>
               </td>
-              <td></td>
+              <td>€ <output>0</output></td>
             </tr>
           </tbody>
         </table>
@@ -72,7 +76,7 @@
           <tbody>
             <tr>
               <td><%= articles[2].Name %></td>
-              <td class="align-middle"><%= articles[2].PriceCent %></td>
+              <td class="align-middle">€ <%= (articles[2].PriceCent /100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal" name="Articles[2]" id="">
                   <% for( let i = 0; i <
@@ -81,11 +85,11 @@
                   <% } %>
                 </select>
               </td>
-              <td></td>
+              <td>€ <output>0</output></td>
             </tr>
             <tr>
               <td><%= articles[3].Name %></td>
-              <td class="align-middle"><%= articles[3].PriceCent %></td>
+              <td class="align-middle">€ <%= (articles[3].PriceCent /100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal" name="Articles[3]" id="">
                   <% for( let i = 0; i <
@@ -94,11 +98,11 @@
                   <% } %>
                 </select>
               </td>
-              <td></td>
+              <td>€ <output>0</output></td>
             </tr>
             <tr>
               <td><%= articles[4].Name %></td>
-              <td class="align-middle"><%= articles[4].PriceCent %></td>
+              <td class="align-middle">€ <%= (articles[4].PriceCent / 100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal" name="Articles[4]" id="">
                   <% for( let i = 0; i <
@@ -107,11 +111,11 @@
                   <% } %>
                 </select>
               </td>
-              <td></td>
+              <td>€ <output>0</output></td>
             </tr>
             <tr>
               <td><%= articles[5].Name %></td>
-              <td class="align-middle"><%= articles[5].PriceCent %></td>
+              <td class="align-middle">€ <%= (articles[5].PriceCent / 100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal" name="Articles[5]" id="">
                   <% for( let i = 0; i <
@@ -120,7 +124,7 @@
                   <% } %>
                 </select>
               </td>
-              <td></td>
+              <td>€ <output>0</output></td>
             </tr>
             <tr>
               <td class="align-middle text-strong">
@@ -129,7 +133,7 @@
               <td class="align-middle mobile-sm-hide"></td>
               <td class="align-middle"></td>
               <td class="align-middle text-strong">
-                <span class="block-right">0</span>
+                <span class="block-right">€ <output>0</output></span>
               </td>
             </tr>
           </tbody>
