@@ -154,10 +154,10 @@ tr {
     display: inline-block;
     background-color: white;
     color: #343537;
-    margin: 1em 1em 1em 0em;
+    margin: 1em 0.5em 1em 0em;
     padding: 0.5em 1em; 
     position: relative;
-    width: 4.5em;
+    width: 5em;
     border-radius: 5px;
     text-align: center;
 }
@@ -175,5 +175,99 @@ tr {
 .donation input:checked + label {
     background-color: #343537;
     color: white;
+}
+
+.ticketOrder {
+    border-top: 1px solid #343537;
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 0;
+    overflow-x: hidden;
+    margin: 3em 0em -3em -0.5em;
+    background-color: #eaeaea;
+    // background-color: #40474f;
+    height: 5em;
+    width: 103%;
+}
+
+.ticketOrder > div {
+    position: relative;
+    width: 79%;
+    margin: 0.9em auto;
+}
+
+.ticketOrder div > * {
+    display: inline-block;
+}
+
+.ticketOrder div > input {
+    position: absolute;
+    right: 0em;
+    top: 0.3em;
+}
+
+.ticketOrder div > p {
+    width: 70%;
+}
+
+.timeCountdown {
+    // background-color: gold;
+    background-color: rgba(248, 231, 28, 0.298039);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    margin: 3em auto;
+}
+
+.timeCountdown span {
+    font-weight: bold;
+}
+
+[action="/vierde-stap"] section fieldset {
+    margin: 1em auto;
+}
+
+[action="/vierde-stap"] section fieldset > label {
+    display: inline-block;
+    width: 7em;
+}
+
+[action="/vierde-stap"] section:nth-of-type(2) fieldset:first-of-type > input {
+    display: inline-block;
+    width: 10em;
+}
+
+[action="/vierde-stap"] section fieldset > input {
+    display: inline-block;
+    width: 30.7em;
+    padding: 0.5em 1em;
+    font-size: 0.8em;
+}
+
+[action="/vierde-stap"] select {
+    // -webkit-appearance: none;
+    display: inline-block;
+    width: 30.7em;
+    padding: 0.5em 1em;
+    font-size: 0.8em;
+}
+
+[action="/vierde-stap"] section:nth-last-of-type(3){
+    margin-top: 3em;
+}
+
+[action="/vierde-stap"] section:nth-last-of-type(3) a{
+    // background-color: cadetblue;
+    text-decoration: underline;
+    color: #343537;
+}
+
+[action="/vierde-stap"] section:nth-last-of-type(3) a:hover{
+    text-decoration: underline;
+    color: #d55140;
+}
+
+[action="/vierde-stap"] section:nth-last-of-type(3) a:focus{
+    text-decoration: underline;
+    color: #d55140;
 }
 

@@ -7,12 +7,11 @@
 </nav>
 <main>
 <form action="/vierde-stap" method="GET"> 
+    <section class="timeCountdown">
+        <p>Je hebt nu een tijd gereserveerd. De resterende tijd om je bestelling af te ronden is <span>25:00</span></p>
+    </section>
     <section>
-        <a href="/" class="backAndNextButton topButton"><%= ticketShop.expositionSelectionContent.backButtonText %></a>
-    </section> 
-    <p>Je hebt nu een tijd gereserveerd. De resterende tijd om je bestelling af te ronden is <span>25:00</span></p>
-    <section>
-        <h2>Persoonsgegevens</h2>
+        <h1>Persoonsgegevens</h1>
         <fieldset>
             <label for="firstName">Naam *</label>
             <input name="voornaam" placeholder="Voornaam" id="firstName" type="text">
@@ -285,9 +284,14 @@
         <input name="acceptterms" id="acceptterms" type="checkbox">
         <label for="acceptterms"><%- ticketShop.personalDetailsContent.acceptTermsAndConditions %></label>
     </section>
-    <section>
-        <p>bestellingslijst...</p>
-        <input class="backAndNextButton" type="submit" value="Ga verder">
+    <section class="backButtonContainer">
+        <a href="/tweede-stap" class="backButton"> < <%= ticketShop.articleSelectionContent.backButtonText %></a>
+    </section>  
+    <section class="ticketOrder">
+        <div>
+            <p>Bestellingslijst...</p>
+            <input class="backAndNextButton" type="submit" value="Ga verder">
+        </div>
     </section>
 </form>
 </main>
