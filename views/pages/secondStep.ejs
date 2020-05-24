@@ -6,9 +6,9 @@
     <a class="navStepDisabled" tabindex="-1" href="">4. Overzicht en betaling ></a>
 </nav>
 <main>
-    <section>
+    <!-- <section>
         <a href="/" class="backAndNextButton topButton"><%= ticketShop.articleSelectionContent.backButtonText %></a>
-    </section>  
+    </section>   -->
     <form class="step-two" action="/derde-stap" method="GET">
         <section class="entree-options-container">
             <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2>
@@ -61,9 +61,14 @@
                 <label for="noDonation">€ 0.00</label>
             </fieldset>
         </section>
-        <section>
-            <p>bestellingslijst...</p>
-            <input class="backAndNextButton" type="submit" value="Ga verder">
+        <section class="backButtonContainer">
+            <a href="/" class="backButton"> < <%= ticketShop.articleSelectionContent.backButtonText %></a>
+        </section>  
+        <section class="ticketOrder">
+            <div>
+                <p>Bestellingslijst...</p>
+                <input class="backAndNextButton" type="submit" value="Ga verder">
+            </div>
         </section>
     </form>
 </main>

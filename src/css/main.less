@@ -36,16 +36,32 @@ section {
     margin: 0em auto;
 }
 
-input:focus + label {
-    box-shadow: 0px 0px 0px 5px #d9531e;
-}
+// input:focus + label {
+//     -webkit-appearance: none;
+//     -webkit-box-shadow: 0px 0px 0px 5px #d9531e;
+//     box-shadow: 0px 0px 0px 5px #d9531e;
+// }
 
 input:focus {
     outline: none;
+    -webkit-appearance: none;
+    -webkit-box-shadow: 0px 0px 0px 5px #d9531e;
     box-shadow: 0px 0px 0px 5px #d9531e;
 }
 
-a:focus {
-    outline: none;
-    box-shadow: 0px 0px 0px 5px #d9531e;
+a:hover {
+    color: #d9531e;
+    text-decoration: underline;
 }
+
+a:focus {
+    color: #d9531e;
+    text-decoration: underline;
+}
+
+// a:focus {
+//     outline: none;
+//     -webkit-appearance: none;
+//     -webkit-box-shadow: 0px 0px 0px 5px #d9531e;
+//     box-shadow: 0px 0px 0px 5px #d9531e;
+// }
