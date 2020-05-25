@@ -5,16 +5,33 @@
     function calcSubtotal(articleOption){
         
         const subTotal = Number(articleOption.dataset.price) * Number(articleOption.value)
+        const output = articleOption.parentElement.parentElement.nextElementSibling.firstChild
         const subTotalContainer = articleOption.parentElement.parentElement.nextElementSibling
-        subTotalContainer.innerText = `€${parseFloat(subTotal / 100).toFixed(2)}`
-        console.log(subTotal)
-        totalPriceContainer.push(subTotal)
+        // subTotalContainer.innerText = ""
+        
+        output.innerText = `€${parseFloat(subTotal / 100).toFixed(2)}`
+        output.dataset.value = subTotal
+        // subTotalContainer.appendChild(output)
         
     }
-    function calcTotal(subTotal){
+    function calcTotal(){
+        const outputs = document.querySelectorAll('.output')
+        outputValues = []
+        const value = Array.from(outputs).map(output => {
+            outputValues.push(Number(output.dataset.value))
+            
+        })
 
-        
+        const total = outputValues.reduce((current, all) =>{
+            all = current + all
+            
+            return all
+        })
+        return total
+       
     }
+
+
     firstForm.addEventListener('change', function(e){
         const inputs = firstForm.querySelectorAll('select')
         
@@ -31,12 +48,17 @@
             })
             return value
         })
+       
+        const totalFirstStep = document.querySelector('#total-first-step')
+        totalFirstStep.dataset.value = calcTotal()
+        totalFirstStep.innerText = `€${parseFloat(calcTotal() / 100).toFixed(2)}`
         
         const totalArticles = optionValues.reduce((current, all) =>{
             all = current + all
             return all
         })
-        console.log(totalArticles)
+
+        
         if(totalArticles >= maxAmountOfArticles){    
             validationError.classList.remove('hidden')
         } else{
