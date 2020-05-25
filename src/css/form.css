@@ -82,10 +82,13 @@ tr {
   margin-right: 0.5em;
 }
 .entree-options-container fieldset div > label {
-  margin: 1em 0.5em 0em -6em;
-  width: 90%;
   position: absolute;
   text-align: left;
+  padding: 1em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
 }
 .entree-options-container fieldset div > input {
   opacity: 0;
