@@ -1,5 +1,5 @@
 .form-first-step section:first-of-type {
-  margin-bottom: 3em;
+  margin: 3em auto;
 }
 .form-first-step section:first-of-type ul {
   list-style: none;
@@ -8,21 +8,21 @@
   margin: 1em 0;
   list-style-image: url(../assets/images/greenCheckmarkSmall.png);
 }
-.form-first-step section:last-of-type > p {
+.form-first-step section:nth-of-type(2) > p {
   font-weight: bold;
   margin: 3em 0em 0em 0em;
 }
-.form-first-step section:last-of-type > ul {
+.form-first-step section:nth-of-type(2) > ul {
   list-style: none;
 }
-.form-first-step section:last-of-type > ul li {
+.form-first-step section:nth-of-type(2) > ul li {
   margin: 0em 0em 1em 0em;
 }
-.form-first-step section:last-of-type > ul li::before {
+.form-first-step section:nth-of-type(2) ul li::before {
   content: "\2022";
   color: #d55140;
   font-weight: bold;
   display: inline-block;
   width: 1em;
-  margin-left: -2em;
+  margin-left: -1em;
 }

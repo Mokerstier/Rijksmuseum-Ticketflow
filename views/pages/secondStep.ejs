@@ -1,21 +1,25 @@
 <%- include ("../partials/head.ejs") %>
-<%- include ("../partials/header.ejs") %>
+<nav>
+    <a href="/">1. Tickets ></a>
+    <a href="/tweede-stap">2. Extra opties > </a>
+    <a class="navStepDisabled" tabindex="-1" href="">3. persoonsgegevens ></a>
+    <a class="navStepDisabled" tabindex="-1" href="">4. Overzicht en betaling ></a>
+</nav>
 <main>
-    <section>
-        <h2>Tweede stap</h2>
+    <!-- <section>
         <a href="/" class="backAndNextButton topButton"><%= ticketShop.articleSelectionContent.backButtonText %></a>
-    </section>  
+    </section>   -->
     <form class="step-two" action="/derde-stap" method="GET">
         <section class="entree-options-container">
             <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2>
             <fieldset>
                 <% expositionContents.forEach(function(option) { %>
-                    <!-- <div> -->
+                    <div>
                         <input id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
                         <label for="<%= option.expositionId %>"><%= option.name %> 
                             <span><%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %></span>
                         </label>
-                    <!-- </div> -->
+                    </div>
                 <% })%>
             </fieldset>
             <% for( let i = 0; i < expositionContents.length; i++ ){ %>
@@ -35,11 +39,11 @@
                     <% articlesAdditional.forEach(function(option) { %>
                     <tr>
                         <td><%- option.Name %></td>
-                        <td><%- option.PriceCent %></td>
+                        <td>€ <%- (option.PriceCent / 100).toFixed(2) %></td>
                         <td>
                             <input type="number" name="<%- option.Name %>" id="" max="6" min="0" value="0">
                         </td>
-                        <td><output>0</output></td>
+                        <td>€ <output>0</output></td>
                     </tr>
                     <% })%>
                 </tbody>
@@ -49,17 +53,22 @@
             <h2>Doneer aan het Rijksmuseum</h2>
             <p>Doneer nu</p>
             <fieldset>
-                <input id="noDonation" type="radio" name="Doneer option" value="0">
-                <label for="noDonation">0</label>
                 <% DonationOptions.forEach(function(option) { %>
-                        <input id="<%= option.expositionId %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
-                        <label for="<%= option.expositionId %>"><%= option.PriceCent %></label>
+                        <input id="donation<%- option.Code %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
+                        <label for="donation<%- option.Code %>">€ <%= (option.PriceCent/ 100).toFixed(2) %></label>
                 <% })%>
+                <input id="noDonation" type="radio" name="Doneer option" value="0">
+                <label for="noDonation">€ 0.00</label>
             </fieldset>
         </section>
-        <section>
-            <p>bestellingslijst...</p>
-            <input class="backAndNextButton" type="submit" value="Ga verder">
+        <section class="backButtonContainer">
+            <a href="/" class="backButton"> < <%= ticketShop.articleSelectionContent.backButtonText %></a>
+        </section>  
+        <section class="ticketOrder">
+            <div>
+                <p>Bestellingslijst...</p>
+                <input class="backAndNextButton" type="submit" value="Ga verder">
+            </div>
         </section>
     </form>
 </main>

@@ -5,9 +5,6 @@
   color: white;
   border-radius: 5px;
   border: none;
-  position: absolute;
-  display: block;
-  right: 0em;
 }
 .backAndNextButton:hover {
   background-color: black;
@@ -15,8 +12,19 @@
 .backAndNextButton:focus {
   background-color: black;
 }
-.topButton {
-  margin-top: -2em;
+.backButtonContainer {
+  margin: 3em auto;
+}
+.backButton {
+  color: #343537;
+}
+.backButton:hover {
+  color: #d55140;
+  text-decoration: underline;
+}
+.backButton:focus {
+  color: #d55140;
+  text-decoration: underline;
 }
 a {
   text-decoration: none;
