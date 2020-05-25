@@ -37,27 +37,27 @@
               <td><%= articles[0].Name %></td>
               <td class="align-middle">€ <%= (articles[0].PriceCent / 100).toFixed(2) %></td>
               <td>
-                <select aria-label="Aantal" name="Articles[0]" id="">
+                <select aria-label="Aantal <%= articles[0].Name %>" name="Articles[0]" id="">
                   <% for( let i = 0; i <
                   articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option value="<%= i %>"><%= i %></option>
+                  <option data-price="<%= articles[0].PriceCent %>" value="<%= i %>"><%= i %></option>
                   <% } %>
                 </select>
               </td>
-              <td>€ <output>0</output></td>
+              <td>€0,00</td>
             </tr>
             <tr>
               <td><%= articles[1].Name %></td>
               <td class="align-middle">€ <%= (articles[1].PriceCent /100).toFixed(2) %></td>
               <td>
-                <select aria-label="Aantal" name="Articles[1]" id="">
+                <select aria-label="Aantal ><%= articles[1].Name %>" name="Articles[1]" id="">
                   <% for( let i = 0; i <
                   articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option value="<%= i %>"><%= i %></option>
+                  <option data-price="<%= articles[1].PriceCent %>" value="<%= i %>"><%= i %></option>
                   <% } %>
                 </select>
               </td>
-              <td>€ <output>0</output></td>
+              <td>€0,00</td>
             </tr>
           </tbody>
         </table>
@@ -81,11 +81,11 @@
                 <select aria-label="Aantal" name="Articles[2]" id="">
                   <% for( let i = 0; i <
                   articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option value="<%= i %>"><%= i %></option>
+                  <option data-price="<%= articles[2].PriceCent %>" value="<%= i %>"><%= i %></option>
                   <% } %>
                 </select>
               </td>
-              <td>€ <output>0</output></td>
+              <td>€0.00</td>
             </tr>
             <tr>
               <td><%= articles[3].Name %></td>
@@ -94,11 +94,11 @@
                 <select aria-label="Aantal" name="Articles[3]" id="">
                   <% for( let i = 0; i <
                   articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option value="<%= i %>"><%= i %></option>
+                  <option data-price="<%= articles[3].PriceCent %>" value="<%= i %>"><%= i %></option>
                   <% } %>
                 </select>
               </td>
-              <td>€ <output>0</output></td>
+              <td>€0.00</td>
             </tr>
             <tr>
               <td><%= articles[4].Name %></td>
@@ -107,11 +107,11 @@
                 <select aria-label="Aantal" name="Articles[4]" id="">
                   <% for( let i = 0; i <
                   articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option value="<%= i %>"><%= i %></option>
+                  <option data-price="<%= articles[4].PriceCent %>" value="<%= i %>"><%= i %></option>
                   <% } %>
                 </select>
               </td>
-              <td>€ <output>0</output></td>
+              <td>€0.00</td>
             </tr>
             <tr>
               <td><%= articles[5].Name %></td>
@@ -120,11 +120,11 @@
                 <select aria-label="Aantal" name="Articles[5]" id="">
                   <% for( let i = 0; i <
                   articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option value="<%= i %>"><%= i %></option>
+                  <option name="Articles[5]sub" data-price="<%= articles[5].PriceCent %>" value="<%= i %>"><%= i %></option>
                   <% } %>
                 </select>
               </td>
-              <td>€ <output>0</output></td>
+              <td >€0.00</td>
             </tr>
             <tr>
               <td class="align-middle text-strong">
@@ -133,7 +133,7 @@
               <td class="align-middle mobile-sm-hide"></td>
               <td class="align-middle"></td>
               <td class="align-middle text-strong">
-                <span class="block-right">€ <output>0</output></span>
+                <span class="block-right">€0.00</span>
               </td>
             </tr>
           </tbody>
