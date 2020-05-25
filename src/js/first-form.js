@@ -3,16 +3,18 @@
     const validationError = document.querySelector('.field-validation-error')
     
     function calcSubtotal(articleOption){
-        const totalPriceContainer = [""]
+        
         const subTotal = Number(articleOption.dataset.price) * Number(articleOption.value)
-       
         const subTotalContainer = articleOption.parentElement.parentElement.nextElementSibling
         subTotalContainer.innerText = `€${parseFloat(subTotal / 100).toFixed(2)}`
         console.log(subTotal)
         totalPriceContainer.push(subTotal)
-        console.log(totalPriceContainer)
+        
     }
+    function calcTotal(subTotal){
 
+        
+    }
     firstForm.addEventListener('change', function(e){
         const inputs = firstForm.querySelectorAll('select')
         
