@@ -2,28 +2,30 @@ const getter = require('./getter.js')
 const ticketShopJSON = require('../data/ticketshop-configuration.json')
 
 function getFirstStep(req, res) {
+    res.render('pages/firstStep.ejs', {
+        title: 'Kies je groep',
+    })
+}
+
+function getSecondStep(req, res) {
     const articles = getter.getArticles()
-    console.log(articles)
     const variantContent = ticketShopJSON.variantContent[0]
     const articleConfiguration = ticketShopJSON.articleConfiguration[0]
-    res.render('pages/firstStep.ejs', {
-        title: 'Tickets',
+    res.render('pages/secondStep.ejs', {
+        title: 'Ticket keuze',
         articles: articles,
         variantContent: variantContent,
         articleConfiguration: articleConfiguration
     })
 }
 
-function getSecondStep(req, res) {
+function getThirdStep(req, res) {
     const expositionContents = ticketShopJSON.expositionConfiguration[0].expositionContents
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
-    // console.log(articlesDonation)
-    //console.log(expositionContents)
-    //console.log(articlesAdditional)
-    res.render('pages/secondStep.ejs', {
-        title: 'Extra opties',
+    res.render('pages/thirdStep.ejs', {
+        title: 'Plan je bezoek',
         expositionContents: expositionContents,
         ticketShop: ticketConfiguration,
         DonationOptions: articlesDonation,
@@ -31,23 +33,36 @@ function getSecondStep(req, res) {
     })
 }
 
-function getThirdStep(req, res) {
+function getFourthStep(req, res) {
+    const expositionContents = ticketShopJSON.expositionConfiguration[0].expositionContents
     const ticketConfiguration = ticketShopJSON.variantContent[0]
-    console.log(ticketConfiguration.personalDetailsContent)
-    res.render('pages/thirdStep.ejs', {
-        title: 'Persoonsgegevens',
+    const articlesDonation = getter.getDonation()
+    const articlesAdditional = getter.getAdditional()
+    res.render('pages/fourthStep.ejs', {
+        title: 'Extra opties',
+            expositionContents: expositionContents,
+            ticketShop: ticketConfiguration,
+            DonationOptions: articlesDonation,
+            articlesAdditional: articlesAdditional
+    })
+}
+
+function getFifthStep(req, res) {
+    const ticketConfiguration = ticketShopJSON.variantContent[0]
+    res.render('pages/fifthStep.ejs', {
+        title: 'Persoonlijke gegevens',
         ticketShop: ticketConfiguration
     })
 }
 
-function getFourthStep(req, res) {
+function getSixthStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
-    console.log(ticketConfiguration.personalDetailsContent)
-    res.render('pages/fourthStep.ejs', {
-        title: 'Overzicht en Betalen',
+    res.render('pages/sixthStep.ejs', {
+        title: 'Overzicht en betalen',
         ticketShop: ticketConfiguration
     })
 }
+
 
 
 
@@ -55,5 +70,7 @@ module.exports = {
     getFirstStep,
     getSecondStep,
     getThirdStep,
-    getFourthStep
+    getFourthStep,
+    getFifthStep,
+    getSixthStep
 }
