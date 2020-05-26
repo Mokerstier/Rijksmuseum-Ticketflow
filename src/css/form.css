@@ -178,41 +178,41 @@ tr {
 .timeCountdown span {
   font-weight: bold;
 }
-[action="/vierde-stap"] section fieldset {
+[action="/vijfde-stap"] section fieldset {
   margin: 1em auto;
 }
-[action="/vierde-stap"] section fieldset > label {
+[action="/vijfde-stap"] section fieldset > label {
   display: inline-block;
   width: 7em;
 }
-[action="/vierde-stap"] section:nth-of-type(2) fieldset:first-of-type > input {
+[action="/vijfde-stap"] section:nth-of-type(2) fieldset:first-of-type > input {
   display: inline-block;
   width: 10em;
 }
-[action="/vierde-stap"] section fieldset > input {
+[action="/vijfde-stap"] section fieldset > input {
   display: inline-block;
   width: 30.7em;
   padding: 0.5em 1em;
   font-size: 0.8em;
 }
-[action="/vierde-stap"] select {
+[action="/vijfde-stap"] select {
   display: inline-block;
   width: 30.7em;
   padding: 0.5em 1em;
   font-size: 0.8em;
 }
-[action="/vierde-stap"] section:nth-last-of-type(3) {
+[action="/vijfde-stap"] section:nth-last-of-type(3) {
   margin-top: 3em;
 }
-[action="/vierde-stap"] section:nth-last-of-type(3) a {
+[action="/vijfde-stap"] section:nth-last-of-type(3) a {
   text-decoration: underline;
   color: #343537;
 }
-[action="/vierde-stap"] section:nth-last-of-type(3) a:hover {
+[action="/vijfde-stap"] section:nth-last-of-type(3) a:hover {
   text-decoration: underline;
   color: #d55140;
 }
-[action="/vierde-stap"] section:nth-last-of-type(3) a:focus {
+[action="/vijfde-stap"] section:nth-last-of-type(3) a:focus {
   text-decoration: underline;
   color: #d55140;
 }
