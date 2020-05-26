@@ -1,0 +1,30 @@
+<form action="/tweede-stap">
+    <%- include ("../partials/usps.ejs") %>
+    
+    
+    <% articles.forEach((article) => { %>
+        <input type="radio" name="<%= article.Name %>" id="<%= article.Code %>">
+        <label for="<%= article.Code %>">
+            <div class="ticket-container">
+                <h2><%= article.Name %></h2>
+                <div class="price-container">
+                    <p>€ <%= (article.PriceCent / 100).toFixed(2) %></p>
+                </div>
+            </div>
+        </label>
+    <% }) %>
+    
+
+    <div class="solo-subtotal-container">
+
+    </div>
+
+    <p>
+        <%= variantContent.articleSelectionContent.paragraphContentTitle %>
+      </p>
+      <ul>
+        <% variantContent.articleSelectionContent.paragraphContentListItems.map(item => { %>
+        <li><%= item %></li>
+        <% }) %>
+      </ul>
+</form>

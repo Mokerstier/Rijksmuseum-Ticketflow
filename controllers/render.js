@@ -11,12 +11,19 @@ function getSecondStep(req, res) {
     const articles = getter.getArticles()
     const variantContent = ticketShopJSON.variantContent[0]
     const articleConfiguration = ticketShopJSON.articleConfiguration[0]
-    res.render('pages/secondStep.ejs', {
-        title: 'Ticket keuze',
-        articles: articles,
-        variantContent: variantContent,
-        articleConfiguration: articleConfiguration
-    })
+    const groupChoice = req.query.groupChoice
+    if(groupChoice === "large-group"){
+        res.redirect('https://www.rijksmuseum.nl/nl/groepsbezoek')
+    } else {
+        res.render('pages/secondStep.ejs', {
+            title: 'Ticket keuze',
+            articles: articles,
+            variantContent: variantContent,
+            articleConfiguration: articleConfiguration,
+            groupChoice: groupChoice
+        })
+    }
+
 }
 
 function getThirdStep(req, res) {
