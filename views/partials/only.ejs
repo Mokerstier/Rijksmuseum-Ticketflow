@@ -1,9 +1,9 @@
-<form action="/tweede-stap">
+<form class="form-first-step" action="derde-stap" method="GET" data-formName="fastTicketChoice">
     <%- include ("../partials/usps.ejs") %>
     
     
     <% articles.forEach((article) => { %>
-        <input type="radio" name="<%= article.Name %>" id="<%= article.Code %>">
+        <input type="radio" name="ticketChoice" id="<%= article.Code %>">
         <label for="<%= article.Code %>">
             <div class="ticket-container">
                 <h2><%= article.Name %></h2>
