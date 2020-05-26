@@ -1,12 +1,33 @@
 <%- include ("../partials/head.ejs") %> 
 <nav>
-    <a href="/">1. Tickets ></a>
-    <a class="navStepDisabled" tabindex="-1" href="">2. Extra opties > </a>
-    <a class="navStepDisabled" tabindex="-1" href="">3. persoonsgegevens ></a>
-    <a class="navStepDisabled" tabindex="-1" href="">4. Overzicht en betaling ></a>
+    <a href="/">1. Kies je groep ></a>
+    <a class="navStepDisabled" tabindex="-1" href="/tweede-stap">2. Tickets > </a>
+    <a class="navStepDisabled" tabindex="-1" href="/derde-stap">3. Plan je bezoek ></a>
+    <a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a>
+    <a class="navStepDisabled" tabindex="-1" href="/fijvde-stap">5. Persoonsgegevens ></a>
+    <a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a>
 </nav>
 <main>
-
+    <form action="/tweede-stap" method="GET">
+        <section>
+            <h2>Met wie kom je naar het museum?</h2>
+            <fieldset>
+                <input type="radio" name="group-choise" id="only" value="only">
+                <label for="only">Alleen op je eigen tempo</label>
+                <input type="radio" name="group-choise" id="family" value="family">
+                <label for="family">Samen met je gezin</label>
+                <input type="radio" name="group-choise" id="date" value="date">
+                <label for="date">Gezeilleg op date</label>
+                <input type="radio" name="group-choise" id="group-under-15" value="group-under-15">
+                <label for="group-under-15">Groep van 2 tot en met 15 mensen</label>
+                <input type="radio" name="group-choise" id="group-more-than-15" value="group-more-than-15">
+                <label for="group-more-than-15">Groep meer dan 15 mensen</label>
+            </fieldset>
+        </section>
+        <section>
+            <input type="submit" value="Naar Tickets">
+        </section>
+    </form>
 </main>
 
 <%- include ("../partials/footer.ejs") %>
