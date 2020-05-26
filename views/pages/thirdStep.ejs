@@ -4,15 +4,17 @@
     <a href="/tweede-stap">2. Tickets > </a>
     <a href="/derde-stap">3. Plan je bezoek ></a>
     <a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/fijvde-stap">5. Persoonsgegevens ></a>
+    <a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a>
     <a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a>
 </nav>
 
 <main>
     <form class="step-two" action="/vierde-stap" method="GET">
         <section class="entree-options-container">
-            <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2>
+            <!-- <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2> -->
+            <h2>Plan je bezoek</h2>
             <fieldset>
+                <legend>Plan hier je rondleiding door het Rijksmuseum</legend>
                 <% expositionContents.forEach(function(option) { %>
                     <div>
                         <input id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
@@ -25,41 +27,94 @@
             <% for( let i = 0; i < expositionContents.length; i++ ){ %>
                 <p class="expositionContents<%= i %>"><%- expositionContents[i].longDescription %></p>
             <% }%>
-            <input type="date" name="" id="">
         </section>
-        <!-- <section>
-            <table class="full-width">
-                <thead>
-                    <th><%= ticketShop.expositionSelectionContent.multimediaSelectionTitle %></th>
-                    <th>Prijs</th>
-                    <th>Aantal</th>
-                    <th>Subtotaal</th>
-                </thead>
-                <tbody>
-                    <% articlesAdditional.forEach(function(option) { %>
-                    <tr>
-                        <td><%- option.Name %></td>
-                        <td>€ <%- (option.PriceCent / 100).toFixed(2) %></td>
-                        <td>
-                            <input type="number" name="<%- option.Name %>" id="" max="6" min="0" value="0">
-                        </td>
-                        <td>€ <output>0</output></td>
-                    </tr>
-                    <% })%>
-                </tbody>
-            </table>
-        </section> -->
-        <!-- <section class="donation">
-            <h2>Doneer aan het Rijksmuseum</h2>
-            <p>Doneer nu</p>
+        <section class="datePicker">
             <fieldset>
-                <% DonationOptions.forEach(function(option) { %>
-                        <input id="donation<%- option.Code %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
-                        <label for="donation<%- option.Code %>">€ <%= (option.PriceCent/ 100).toFixed(2) %></label>
-                <% })%>
-                <input id="noDonation" type="radio" name="Doneer option" value="0">
-                <label for="noDonation">€ 0.00</label>
-            </fieldset> -->
+                <legend>Kies hier je datum en tijd</legend>
+                <label>In welke maand wil je gaan?</label>
+                <select name="month">
+                    <option value="januari">Januari</option>
+                    <option value="februari">Februari</option>
+                    <option value="maart">Maart</option>
+                    <option value="april">April</option>
+                    <option value="mei">Mei</option>
+                    <option value="juni">Juni</option>
+                    <option value="juli">Juli</option>
+                    <option value="augustus">Augustus</option>
+                    <option value="september">September</option>
+                    <option value="oktober">Oktober</option>
+                    <option value="novemeber">Novemeber</option>
+                    <option value="december">December</option>
+                </select>
+
+                <p>Wil je doordeweeks of in het weekend?</p>
+                <input type="radio" name="week-choise" id="duringTheWeek" value="duringTheWeek">
+                <label for="duringTheWeek">Doordeweeks</label>
+                <input type="radio" name="week-choise" id="weekend" value="weekend">
+                <label for="weekend">Weekend</label>
+
+                <p>Kies een beschikbare dag</p>
+                <input type="radio" name="day-choise" id="maa1" value="maa1">
+                <label for="maa1">Maandag 1 juni</label>
+                <input type="radio" name="day-choise" id="din2" value="din2">
+                <label for="din2">Dinsdag 2 juni</label>
+                <input type="radio" name="day-choise" id="woe3" value="woe3">
+                <label for="woe3">Woensdag 3 juni</label>
+                <input type="radio" name="day-choise" id="don4" value="don4">
+                <label for="don4">Donderdag 4 juni</label>
+                <input type="radio" name="day-choise" id="vrij5" value="vrij5">
+                <label for="vrij5">Vrijdag 5 juni</label>
+
+                <input type="radio" name="day-choise" id="maa8" value="maa8">
+                <label for="maa8">Maandag 8 juni</label>
+                <input type="radio" name="day-choise" id="din9" value="din9">
+                <label for="din9">Dinsdag 9 juni</label>
+                <input type="radio" name="day-choise" id="woe10" value="woe10">
+                <label for="woe10">Woensdag 10 juni</label>
+                <input type="radio" name="day-choise" id="don11" value="don11">
+                <label for="don11">Donderdag 11 juni</label>
+                <input type="radio" name="day-choise" id="vrij12" value="vrij12">
+                <label for="vrij12">Vrijdag 12 juni</label>
+
+                <input type="radio" name="day-choise" id="maa15" value="maa15">
+                <label for="maa15">Maandag 15 juni</label>
+                <input type="radio" name="day-choise" id="din16" value="din16">
+                <label for="din16">Dinsdag 16 juni</label>
+                <input type="radio" name="day-choise" id="woe17" value="woe17">
+                <label for="woe17">Woensdag 17 juni</label>
+                <input type="radio" name="day-choise" id="don18" value="don18">
+                <label for="don18">Donderdag 18 juni</label>
+                <input type="radio" name="day-choise" id="vrij19" value="vrij19">
+                <label for="vrij19">Vrijdag 19 juni</label>
+
+                <input type="radio" name="day-choise" id="maa22" value="maa22">
+                <label for="maa22">Maandag 22 juni</label>
+                <input type="radio" name="day-choise" id="din23" value="din23">
+                <label for="din23">Dinsdag 23 juni</label>
+                <input type="radio" name="day-choise" id="woe24" value="woe24">
+                <label for="woe24">Woensdag 24 juni</label>
+                <input type="radio" name="day-choise" id="don25" value="don25">
+                <label for="don25">Donderdag 25 juni</label>
+                <input type="radio" name="day-choise" id="vrij26" value="vrij26">
+                <label for="vrij26">Vrijdag 26 juni</label>
+
+                <input type="radio" name="day-choise" id="maa29" value="maa29">
+                <label for="maa29">Maandag 29 juni</label>
+                <input type="radio" name="day-choise" id="din30" value="din30">
+                <label for="din30">Dinsdag 30 juni</label>
+
+                <p>Kies een beschikbare tijd</p>
+                <input type="radio" name="time-choise" id="uur1000" value="uur1000">
+                <label for="uur1000">10:00</label>
+                <input type="radio" name="time-choise" id="uur1030" value="uur1030">
+                <label for="uur1030">10:30</label>
+                <input type="radio" name="time-choise" id="uur1300" value="uur1300">
+                <label for="uur1300">13:00</label>
+                <input type="radio" name="time-choise" id="uur1600" value="uur1600">
+                <label for="uur1600">16:00</label>
+                <input type="radio" name="time-choise" id="uur1630" value="uur1630">
+                <label for="uur1630">16:30</label>
+            </fieldset>
         </section>
         <section class="backButtonContainer">
             <a href="/tweede-stap" class="backButton"> < <%= ticketShop.articleSelectionContent.backButtonText %></a>
@@ -67,7 +122,7 @@
         <section class="ticketOrder">
             <div>
                 <p>Bestellingslijst...</p>
-                <input class="backAndNextButton" type="submit" value="Ga verder">
+                <input class="backAndNextButton" type="submit" value="Naar extra opties">
             </div>
         </section>
     </form>
