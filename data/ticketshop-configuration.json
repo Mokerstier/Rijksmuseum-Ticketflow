@@ -183,7 +183,9 @@
           "name": "Entree museum + rondleiding Hoogtepunten",
           "shortDescription": "volwassenen (16+) | 60 min. <br/> dagelijks | + € 5,00 per persoon",
           "longDescription": "De rondleiding Hoogtepunten van het Rijksmuseum is een verrassingstocht langs bekende hoogtepunten én onverwachte schatten in het Rijksmuseum, van middeleeuwen tot Mondriaan.<br/><br/>Elke dag kun je aansluiten bij rondleidingen op vaste tijdstippen. Kies hieronder een datum en tijdstip.",
-          "summaryName": "met rondleiding"
+          "summaryName": "met rondleiding",
+          "expoImage": "assets/images/RijksFotos/tourtype1.jpg"
+          
         },
         {
           "expositionId": "87115c7a-9305-e711-80cd-5820b1e20440",
@@ -191,7 +193,8 @@
           "name": "Entree museum + privérondleiding Hoogtepunten",
           "shortDescription": "volwassenen (16+) | 60 min. <br/> dagelijks | + € 80,00 per rondleiding",
           "longDescription": "De rondleiding Hoogtepunten van het Rijksmuseum is een verrassingstocht langs bekende hoogtepunten én onverwachte schatten in het Rijksmuseum, van middeleeuwen tot Mondriaan.<br/><br/>Kies hieronder een datum en tijdstip.",
-          "summaryName": "met privérondleiding"
+          "summaryName": "met privérondleiding",
+          "expoImage": "assets/images/RijksFotos/tourtype2.jpg"
         },
         {
           "expositionId": "099ccc29-4b14-ea11-a2e0-d9c772e4e9da",
@@ -199,7 +202,8 @@
           "name": "Entree museum + rondleiding Caravaggio-Bernini",
           "shortDescription": "volwassenen (16+) | 60 min. <br/> dagelijks | + € 5,00 per persoon",
           "longDescription": "De rondleiding neemt je mee naar Rome aan het begin van de 17de eeuw. Je kijkt samen met een rondleider naar de nieuwe kunsttaal die toen werd geïntroduceerd: de barok.<br/><br/>Tijdens de tentoonstelling kun je aansluiten bij rondleidingen op vaste tijdstippen. Kies hieronder een datum en tijdstip.",
-          "summaryName": "met rondleiding"
+          "summaryName": "met rondleiding",
+          "expoImage": "assets/images/RijksFotos/tourtype3special.jpg"
         },
         {
           "expositionId": "96D63FDB-6647-EA11-A2E0-D9C772E4E9DA",
@@ -207,7 +211,8 @@
           "name": "Entree museum",
           "shortDescription": "",
           "longDescription": "Voor een bezoek aan het museum is het noodzakelijk om een starttijd te reserveren. Het Rijksmuseum is elke dag open van 9 tot 17 uur.<br/><br/><b>Kies hieronder je starttijd voor het Rijksmuseum.</b>",
-          "summaryName": ""
+          "summaryName": "",
+          "expoImage": "assets/images/RijksFotos/tourtype4.jpg"
         }
       ]
     },
