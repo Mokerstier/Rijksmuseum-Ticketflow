@@ -18,7 +18,9 @@
                 <% expositionContents.forEach(function(option) { %>
                     <div>
                         <input id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
-                        <label for="<%= option.expositionId %>"><%= option.name %> 
+                        <label for="<%= option.expositionId %>">
+                            <img src="<%= option.expoImage %>">
+                            <%= option.name %> 
                             <span><%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %></span>
                         </label>
                     </div>
