@@ -19,26 +19,40 @@
           </thead>
           <tbody>
             <tr>
-              <td><%= articles[0].Name %></td>
+              <td><%= articles[0].Name %>
+                <% if(articles[0].Description != "" && articles[0].Description != "NULL"){ %>
+                  <p><%= articles[0].Description %></p>
+                <% } %>
+              </td>
               <td class="align-middle">€ <%= (articles[0].PriceCent / 100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal <%= articles[0].Name %>" name="Articles[0]" id="">
-                  <% for( let i = 0; i <
-                  articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option data-price="<%= articles[0].PriceCent %>" value="<%= i %>"><%= i %></option>
+                  <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                    <% if(i == 2){ %>
+                      <option selected="selected" data-price="<%= articles[0].PriceCent %>" value="<%= i %>"><%= i %></option>
+                      <% } else{ %>
+                        <option data-price="<%= articles[0].PriceCent %>" value="<%= i %>"><%= i %></option>
+                      <% } %>
                   <% } %>
                 </select>
               </td>
               <td><output class="output">€0.00</output></td>
             </tr>
             <tr>
-              <td><%= articles[1].Name %></td>
+              <td><%= articles[1].Name %>
+                <% if(articles[1].Description != "" && articles[1].Description != "NULL"){ %>
+                  <p><%= articles[1].Description %></p>
+                <% } %>
+              </td>
               <td class="align-middle">€ <%= (articles[1].PriceCent /100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal ><%= articles[1].Name %>" name="Articles[1]" id="">
-                  <% for( let i = 0; i <
-                  articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option data-price="<%= articles[1].PriceCent %>" value="<%= i %>"><%= i %></option>
+                  <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                    <% if(i == 2){ %>
+                      <option selected="selected" data-price="<%= articles[1].PriceCent %>" value="<%= i %>"><%= i %></option>
+                      <% } else{ %>
+                        <option data-price="<%= articles[1].PriceCent %>" value="<%= i %>"><%= i %></option>
+                      <% } %>
                   <% } %>
                 </select>
               </td>
@@ -60,7 +74,11 @@
           </thead>
           <tbody>
             <tr>
-              <td><%= articles[2].Name %></td>
+              <td><%= articles[2].Name %>
+                <% if(articles[2].Description != "" && articles[2].Description != "NULL"){ %>
+                  <p><%= articles[2].Description %></p>
+                <% } %>
+              </td>
               <td class="align-middle">€ <%= (articles[2].PriceCent /100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal" name="Articles[2]" id="">
@@ -72,7 +90,11 @@
               <td><output class="output">€0.00</output></td>
             </tr>
             <tr>
-              <td><%= articles[3].Name %></td>
+              <td><%= articles[3].Name %>
+                <% if(articles[3].Description != "" && articles[3].Description != "NULL"){ %>
+                  <p><%= articles[3].Description %></p>
+                <% } %>
+              </td>
               <td class="align-middle">€ <%= (articles[3].PriceCent /100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal" name="Articles[3]" id="">
@@ -84,7 +106,11 @@
               <td><output class="output">€0.00</output></td>
             </tr>
             <tr>
-              <td><%= articles[4].Name %></td>
+              <td><%= articles[4].Name %>
+                <% if(articles[4].Description != "" && articles[4].Description != "NULL"){ %>
+                  <p><%= articles[4].Description %></p>
+                <% } %>
+              </td>
               <td class="align-middle">€ <%= (articles[4].PriceCent / 100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal" name="Articles[4]" id="">
@@ -96,7 +122,11 @@
               <td><output class="output">€0.00</output></td>
             </tr>
             <tr>
-              <td><%= articles[5].Name %></td>
+              <td><%= articles[5].Name %>
+                <% if(articles[5].Description != "" && articles[5].Description != "NULL"){ %>
+                  <p><%= articles[5].Description %></p>
+                <% } %>
+              </td>
               <td class="align-middle">€ <%= (articles[5].PriceCent / 100).toFixed(2) %></td>
               <td>
                 <select aria-label="Aantal" name="Articles[5]" id="">
@@ -137,7 +167,7 @@
     <section class="ticketOrder">
       <div>
         <p>Bestellingslijst...</p>
-        <input class="backAndNextButton" type="submit" value="Ga verder">
+        <input class="backAndNextButton" type="submit" value="Plan je bezoek">
       </div>
     </section>
   </form>
