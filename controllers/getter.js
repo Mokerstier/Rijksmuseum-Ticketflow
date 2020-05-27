@@ -60,7 +60,7 @@ function getExpoData(req, res) {
     const data = expositionPeriodsJSON
     
     const filterData = data.filter(expo => {
-        if (expo.ExpositionId === id && expo.RemainingTIckets >= count){
+        if (expo.ExpositionId === id.toUpperCase() && expo.RemainingTIckets >= count){
             return expo
         }
     })
