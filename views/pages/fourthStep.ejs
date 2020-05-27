@@ -20,7 +20,11 @@
                 <tbody>
                     <% articlesAdditional.forEach(function(option) { %>
                     <tr>
-                        <td><%- option.Name %></td>
+                        <td><%- option.Name %>
+                            <% if(option.Description != "" && option.Description != "NULL"){ %>
+                                <p><%= option.Description %></p>
+                            <% } %>
+                        </td>
                         <td>€ <%- (option.PriceCent / 100).toFixed(2) %></td>
                         <td>
                             <input type="number" name="<%- option.Name %>" id="" max="6" min="0" value="0">
