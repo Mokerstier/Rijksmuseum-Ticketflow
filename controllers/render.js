@@ -1,6 +1,5 @@
 const getter = require('./getter.js')
 const ticketShopJSON = require('../data/ticketshop-configuration.json')
-const groupChoic = ''
 
 function getFirstStep(req, res) {
     res.render('pages/firstStep.ejs', {
