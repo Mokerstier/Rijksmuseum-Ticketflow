@@ -27,9 +27,12 @@
             <td class="align-middle">€ <%= (articles[0].PriceCent / 100).toFixed(2) %></td>
             <td>
               <select aria-label="Aantal <%= articles[0].Name %>" name="Articles[0]" id="">
-                <% for( let i = 0; i <
-                articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                <option data-price="<%= articles[0].PriceCent %>" value="<%= i %>"><%= i %></option>
+                <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                  <% if(i == 2){ %>
+                  <option selected="selected" data-price="<%= articles[0].PriceCent %>" value="<%= i %>"><%= i %></option>
+                  <% } else{ %>
+                    <option data-price="<%= articles[0].PriceCent %>" value="<%= i %>"><%= i %></option>
+                  <% } %>
                 <% } %>
               </select>
             </td>

@@ -3,7 +3,7 @@
     
     
     <% articles.forEach((article) => { %>
-        <input type="radio" name="ticketChoice" id="<%= article.Code %>">
+        <input type="radio" name="ticketChoice" value="<%= article.Name %>" id="<%= article.Code %>">
         <label for="<%= article.Code %>">
             <div class="ticket-container">
                 <h2><%= article.Name %></h2>
