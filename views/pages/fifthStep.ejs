@@ -1,14 +1,14 @@
 <%- include ("../partials/head.ejs") %>
 <nav>
     <a href="/">1. Kies je groep ></a>
-    <a href="/tweede-stap">2. Tickets > </a>
+    <a href="/tweede-stap?groupChoice=<%- groupChoice %>">2. Tickets > </a>
     <a href="/derde-stap">3. Plan je bezoek ></a>
     <a href="/vierde-stap">4. Extra opties ></a>
     <a href="/vijfde-stap">5. Persoonsgegevens ></a>
     <a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a>
 </nav>
 <main>
-<form action="/vijfde-stap" method="GET"> 
+<form action="/zesde-stap" method="GET"> 
     <section class="timeCountdown">
         <p>Je hebt nu een tijd gereserveerd. De resterende tijd om je bestelling af te ronden is <span>25:00</span></p>
     </section>

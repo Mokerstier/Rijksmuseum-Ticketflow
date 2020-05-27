@@ -1,143 +1,167 @@
 <form class="form-first-step" action="derde-stap" method="GET">
-    <%- include ("../partials/usps.ejs") %>
-    <section>
-      <h1>
-        <%= variantContent.articleSelectionContent.articleSelectionTitle %>
-      </h1>
-      <h2><%= variantContent.pageTitle %></h2>
+  <%- include ("../partials/usps.ejs") %>
+  <section>
+    <h1>
+      <%= variantContent.articleSelectionContent.articleSelectionTitle %>
+    </h1>
+    <h2><%= variantContent.pageTitle %></h2>
 
-      <fieldset>
-        <legend>Reguliere tickets</legend>
-        <table class="full-width">
-          <thead>
-            <th>
-              <%= variantContent.articleSelectionContent.articleTableTitle %>
-            </th>
-            <th>Prijs</th>
-            <th>Aantal</th>
-            <th>Subtotaal</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td><%= articles[0].Name %></td>
-              <td class="align-middle">€ <%= (articles[0].PriceCent / 100).toFixed(2) %></td>
-              <td>
-                <select aria-label="Aantal <%= articles[0].Name %>" name="Articles[0]" id="">
-                  <% for( let i = 0; i <
-                  articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option data-price="<%= articles[0].PriceCent %>" value="<%= i %>"><%= i %></option>
-                  <% } %>
-                </select>
-              </td>
-              <td><output class="output">€0.00</output></td>
-            </tr>
-            <tr>
-              <td><%= articles[1].Name %></td>
-              <td class="align-middle">€ <%= (articles[1].PriceCent /100).toFixed(2) %></td>
-              <td>
-                <select aria-label="Aantal ><%= articles[1].Name %>" name="Articles[1]" id="">
-                  <% for( let i = 0; i <
-                  articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option data-price="<%= articles[1].PriceCent %>" value="<%= i %>"><%= i %></option>
-                  <% } %>
-                </select>
-              </td>
-              <td><output class="output">€0.00</output></td>
-            </tr>
-          </tbody>
-        </table>
-      </fieldset>
-      <fieldset>
-        <legend>Tickets met korting</legend>
-        <table class="full-width">
-          <thead>
-            <th>
-              <%= variantContent.articleSelectionContent.articleTableTitle %>
-            </th>
-            <th>Prijs</th>
-            <th>Aantal</th>
-            <th>Subtotaal</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td><%= articles[2].Name %></td>
-              <td class="align-middle">€ <%= (articles[2].PriceCent /100).toFixed(2) %></td>
-              <td>
-                <select aria-label="Aantal" name="Articles[2]" id="">
-                  <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option data-price="<%= articles[2].PriceCent %>" value="<%= i %>"><%= i %></option>
-                  <% } %>
-                </select>
-              </td>
-              <td><output class="output">€0.00</output></td>
-            </tr>
-            <tr>
-              <td><%= articles[3].Name %></td>
-              <td class="align-middle">€ <%= (articles[3].PriceCent /100).toFixed(2) %></td>
-              <td>
-                <select aria-label="Aantal" name="Articles[3]" id="">
-                  <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option data-price="<%= articles[3].PriceCent %>" value="<%= i %>"><%= i %></option>
-                  <% } %>
-                </select>
-              </td>
-              <td><output class="output">€0.00</output></td>
-            </tr>
-            <tr>
-              <td><%= articles[4].Name %></td>
-              <td class="align-middle">€ <%= (articles[4].PriceCent / 100).toFixed(2) %></td>
-              <td>
-                <select aria-label="Aantal" name="Articles[4]" id="">
-                  <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option data-price="<%= articles[4].PriceCent %>" value="<%= i %>"><%= i %></option>
-                  <% } %>
-                </select>
-              </td>
-              <td><output class="output">€0.00</output></td>
-            </tr>
-            <tr>
-              <td><%= articles[5].Name %></td>
-              <td class="align-middle">€ <%= (articles[5].PriceCent / 100).toFixed(2) %></td>
-              <td>
-                <select aria-label="Aantal" name="Articles[5]" id="">
-                  <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
-                  <option name="Articles[5]sub" data-price="<%= articles[5].PriceCent %>" value="<%= i %>"><%= i %></option>
-                  <% } %>
-                </select>
-              </td>
-              <td ><output>€0.00</output></td>
-            </tr>
-            <tr>
-              <td class="align-middle text-strong">
-                Totaal
-              </td>
-              <td class="align-middle mobile-sm-hide"></td>
-              <td class="align-middle"></td>
-              <td class="align-middle text-strong">
-                <output id="total-first-step" class="block-right">€0.00</output>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="field-validation-error hidden">
-          <span>
-            <%- variantContent.articleSelectionContent.totalArticlesValidationError %>
-          </span>
-        </p>
-      </fieldset>
-      <p>
-        <%= variantContent.articleSelectionContent.paragraphContentTitle %>
+    <fieldset>
+      <legend>Reguliere tickets</legend>
+      <table class="full-width">
+        <thead>
+          <th>
+            <%= variantContent.articleSelectionContent.articleTableTitle %>
+          </th>
+          <th>Prijs</th>
+          <th>Aantal</th>
+          <th>Subtotaal</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= articles[0].Name %>
+              <% if(articles[0].Description != "" && articles[0].Description != "NULL"){ %>
+                <p><%= articles[0].Description %></p>
+              <% } %>
+            </td>
+            <td class="align-middle">€ <%= (articles[0].PriceCent / 100).toFixed(2) %></td>
+            <td>
+              <select aria-label="Aantal <%= articles[0].Name %>" name="Articles[0]" id="">
+                <% for( let i = 0; i <
+                articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                <option data-price="<%= articles[0].PriceCent %>" value="<%= i %>"><%= i %></option>
+                <% } %>
+              </select>
+            </td>
+            <td><output class="output">€0.00</output></td>
+          </tr>
+          <tr>
+            <td><%= articles[1].Name %>
+              <% if(articles[1].Description != "" && articles[1].Description != "NULL"){ %>
+                <p><%= articles[1].Description %></p>
+              <% } %>
+            </td>
+            <td class="align-middle">€ <%= (articles[1].PriceCent /100).toFixed(2) %></td>
+            <td>
+              <select aria-label="Aantal ><%= articles[1].Name %>" name="Articles[1]" id="">
+                <% for( let i = 0; i <
+                articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                <option data-price="<%= articles[1].PriceCent %>" value="<%= i %>"><%= i %></option>
+                <% } %>
+              </select>
+            </td>
+            <td><output class="output">€0.00</output></td>
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Tickets met korting</legend>
+      <table class="full-width">
+        <thead>
+          <th>
+            <%= variantContent.articleSelectionContent.articleTableTitle %>
+          </th>
+          <th>Prijs</th>
+          <th>Aantal</th>
+          <th>Subtotaal</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= articles[2].Name %>
+              <% if(articles[2].Description != "" && articles[2].Description != "NULL"){ %>
+                <p><%= articles[2].Description %></p>
+              <% } %>
+            </td>
+            <td class="align-middle">€ <%= (articles[2].PriceCent /100).toFixed(2) %></td>
+            <td>
+              <select aria-label="Aantal" name="Articles[2]" id="">
+                <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                <option data-price="<%= articles[2].PriceCent %>" value="<%= i %>"><%= i %></option>
+                <% } %>
+              </select>
+            </td>
+            <td><output class="output">€0.00</output></td>
+          </tr>
+          <tr>
+            <td><%= articles[3].Name %>
+              <% if(articles[3].Description != "" && articles[3].Description != "NULL"){ %>
+                <p><%= articles[3].Description %></p>
+              <% } %>
+            </td>
+            <td class="align-middle">€ <%= (articles[3].PriceCent /100).toFixed(2) %></td>
+            <td>
+              <select aria-label="Aantal" name="Articles[3]" id="">
+                <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                <option data-price="<%= articles[3].PriceCent %>" value="<%= i %>"><%= i %></option>
+                <% } %>
+              </select>
+            </td>
+            <td><output class="output">€0.00</output></td>
+          </tr>
+          <tr>
+            <td><%= articles[4].Name %>
+              <% if(articles[4].Description != "" && articles[4].Description != "NULL"){ %>
+                <p><%= articles[4].Description %></p>
+              <% } %>
+            </td>
+            <td class="align-middle">€ <%= (articles[4].PriceCent / 100).toFixed(2) %></td>
+            <td>
+              <select aria-label="Aantal" name="Articles[4]" id="">
+                <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                <option data-price="<%= articles[4].PriceCent %>" value="<%= i %>"><%= i %></option>
+                <% } %>
+              </select>
+            </td>
+            <td><output class="output">€0.00</output></td>
+          </tr>
+          <tr>
+            <td><%= articles[5].Name %>
+              <% if(articles[5].Description != "" && articles[5].Description != "NULL"){ %>
+                <p><%= articles[5].Description %></p>
+              <% } %>
+            </td>
+            <td class="align-middle">€ <%= (articles[5].PriceCent / 100).toFixed(2) %></td>
+            <td>
+              <select aria-label="Aantal" name="Articles[5]" id="">
+                <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
+                <option name="Articles[5]sub" data-price="<%= articles[5].PriceCent %>" value="<%= i %>"><%= i %></option>
+                <% } %>
+              </select>
+            </td>
+            <td ><output>€0.00</output></td>
+          </tr>
+          <tr>
+            <td class="align-middle text-strong">
+              Totaal
+            </td>
+            <td class="align-middle mobile-sm-hide"></td>
+            <td class="align-middle"></td>
+            <td class="align-middle text-strong">
+              <output id="total-first-step" class="block-right">€0.00</output>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="field-validation-error hidden">
+        <span>
+          <%- variantContent.articleSelectionContent.totalArticlesValidationError %>
+        </span>
       </p>
-      <ul>
-        <% variantContent.articleSelectionContent.paragraphContentListItems.map(item => { %>
-        <li><%= item %></li>
-        <% }) %>
-      </ul>
-    </section>
-    <section class="ticketOrder">
-      <div>
-        <p>Bestellingslijst...</p>
-        <input class="backAndNextButton" type="submit" value="Ga verder">
-      </div>
-    </section>
-  </form>
+    </fieldset>
+    <p>
+      <%= variantContent.articleSelectionContent.paragraphContentTitle %>
+    </p>
+    <ul>
+      <% variantContent.articleSelectionContent.paragraphContentListItems.map(item => { %>
+      <li><%= item %></li>
+      <% }) %>
+    </ul>
+  </section>
+  <section class="ticketOrder">
+    <div>
+      <p>Bestellingslijst...</p>
+      <input class="backAndNextButton" type="submit" value="Plan je bezoek">
+    </div>
+  </section>
+</form>
