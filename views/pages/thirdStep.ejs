@@ -1,8 +1,8 @@
 <%- include ("../partials/head.ejs") %>
 <nav>
     <a href="/">1. Kies je groep ></a>
-    <a href="/tweede-stap?groupChoice=<%- groupChoice %>">2. Tickets ></a>
-    <a href="/derde-stap">3. Plan je bezoek ></a>
+    <a href="/tweede-stap?groupChoice=<%- groupChoice %>">2. Tickets > </a>
+    <a href="/derde-stap?totalTickets=<%-ticketCount%>">3. Plan je bezoek ></a>
     <a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a>
     <a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a>
     <a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a>
@@ -17,7 +17,7 @@
                 <legend>Plan hier je rondleiding door het Rijksmuseum</legend>
                 <% expositionContents.forEach(function(option) { %>
                     <div>
-                        <input id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
+                        <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
                         <label for="<%= option.expositionId %>">
                             <img src="<%= option.expoImage %>">
                             <%= option.name %> 
@@ -129,4 +129,7 @@
         </section>
     </form>
 </main>
+<script>
+    const ticketCount = "<%= ticketCount %>"
+</script>
 <%- include ("../partials/footer.ejs") %>

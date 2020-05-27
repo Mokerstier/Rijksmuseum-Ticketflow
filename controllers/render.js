@@ -31,13 +31,15 @@ function getThirdStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
+    ticketCount = req.query.totalTickets
     res.render('pages/thirdStep.ejs', {
         title: 'Plan je bezoek',
         expositionContents: expositionContents,
         ticketShop: ticketConfiguration,
         DonationOptions: articlesDonation,
         articlesAdditional: articlesAdditional,
-        groupChoice: groupChoice
+        groupChoice: groupChoice,
+        ticketCount: ticketCount
     })
 }
 
@@ -52,7 +54,8 @@ function getFourthStep(req, res) {
         ticketShop: ticketConfiguration,
         DonationOptions: articlesDonation,
         articlesAdditional: articlesAdditional,
-        groupChoice: groupChoice
+        groupChoice: groupChoice,
+        ticketCount: ticketCount
     })
 }
 
@@ -61,7 +64,8 @@ function getFifthStep(req, res) {
     res.render('pages/fifthStep.ejs', {
         title: 'Persoonlijke gegevens',
         ticketShop: ticketConfiguration,
-        groupChoice: groupChoice
+        groupChoice: groupChoice,
+        ticketCount: ticketCount
     })
 }
 
@@ -70,7 +74,8 @@ function getSixthStep(req, res) {
     res.render('pages/sixthStep.ejs', {
         title: 'Overzicht en betalen',
         ticketShop: ticketConfiguration,
-        groupChoice: groupChoice
+        groupChoice: groupChoice,
+        ticketCount: ticketCount
     })
 }
 
