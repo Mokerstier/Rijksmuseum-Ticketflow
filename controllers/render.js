@@ -1,5 +1,6 @@
 const getter = require('./getter.js')
 const ticketShopJSON = require('../data/ticketshop-configuration.json')
+const groupChoic = ''
 
 function getFirstStep(req, res) {
     res.render('pages/firstStep.ejs', {
@@ -11,8 +12,8 @@ function getSecondStep(req, res) {
     const articles = getter.getArticles()
     const variantContent = ticketShopJSON.variantContent[0]
     const articleConfiguration = ticketShopJSON.articleConfiguration[0]
-    const groupChoice = req.query.groupChoice
-    if(groupChoice === "large-group"){
+    groupChoice = req.query.groupChoice
+    if (groupChoice === "large-group") {
         res.redirect('https://www.rijksmuseum.nl/nl/groepsbezoek')
     } else {
         res.render('pages/secondStep.ejs', {
@@ -36,7 +37,8 @@ function getThirdStep(req, res) {
         expositionContents: expositionContents,
         ticketShop: ticketConfiguration,
         DonationOptions: articlesDonation,
-        articlesAdditional: articlesAdditional
+        articlesAdditional: articlesAdditional,
+        groupChoice: groupChoice
     })
 }
 
@@ -47,10 +49,11 @@ function getFourthStep(req, res) {
     const articlesAdditional = getter.getAdditional()
     res.render('pages/fourthStep.ejs', {
         title: 'Extra opties',
-            expositionContents: expositionContents,
-            ticketShop: ticketConfiguration,
-            DonationOptions: articlesDonation,
-            articlesAdditional: articlesAdditional
+        expositionContents: expositionContents,
+        ticketShop: ticketConfiguration,
+        DonationOptions: articlesDonation,
+        articlesAdditional: articlesAdditional,
+        groupChoice: groupChoice
     })
 }
 
@@ -58,7 +61,8 @@ function getFifthStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     res.render('pages/fifthStep.ejs', {
         title: 'Persoonlijke gegevens',
-        ticketShop: ticketConfiguration
+        ticketShop: ticketConfiguration,
+        groupChoice: groupChoice
     })
 }
 
@@ -66,7 +70,8 @@ function getSixthStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     res.render('pages/sixthStep.ejs', {
         title: 'Overzicht en betalen',
-        ticketShop: ticketConfiguration
+        ticketShop: ticketConfiguration,
+        groupChoice: groupChoice
     })
 }
 
