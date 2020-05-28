@@ -194,11 +194,17 @@
                     }
                     let daysArray = []
                     let dataToCheck = []
+                    if (filteredDays.length == 0) {
+                        const dayContainer = document.querySelector(".chooseDay")
+                        Array.from(dayContainer.children).map(child => {
+                            child.remove()
+                        })
+                    }
                     filteredDays = filteredDays.filter(expo => {
                         let date = new Date(expo.PeriodStart)
                         const dayDate = date.getDate()
 
-                        console.log(date)
+                        // console.log(date)
                         date = String(date).split(" ")
                         if (date[0] == "Sun") {
                             date = "Zondag"
@@ -221,15 +227,10 @@
                             date: dayDate
                         }
 
-                        console.log("before", daysArray)
-
-
                         if (!dataToCheck.includes(dayDate)) {
                             dataToCheck.push(dayDate)
                             daysArray.push(day)
                         }
-
-                        console.log("after", daysArray)
 
                         const dayContainer = document.querySelector(".chooseDay")
                         Array.from(dayContainer.children).map(child => {
@@ -257,7 +258,7 @@
                         // console.log(dayDate)
                         return expo
                     })
-                    console.log("hoi hooooi", filteredDays)
+                    console.log("filtered Days: ", filteredDays)
                 })
             })
 
