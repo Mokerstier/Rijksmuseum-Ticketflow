@@ -1,9 +1,83 @@
 (function () {
     const inputs = document.querySelectorAll('.step-two .entree-options-container input[type="radio"]')
     for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('change', async function () {
+            const selectMonth = document.querySelector(".monthDatePicker")
+            Array.from(selectMonth.children).map(child =>{
+                child.remove()
+            })
+
+            if (inputs[i].checked) {
+                const expoID = inputs[i].dataset.id
+                let totalTickets = Number(ticketCount)
+
+                const data = await getExpoPeriod(expoID, totalTickets)
+
+                const monthData = Array.from(data).map(expo => {
+                    const date = new Date(expo.PeriodStart)
+                    const month = date.getMonth()
+                    return month
+                })
+                
+                function getUnique(monthData){
+                    const uniqueArray = [];
+
+                    for(let value of monthData){
+                        if(uniqueArray.indexOf(value) === -1){
+                            uniqueArray.push(value);
+                        }
+                    }
+                    return uniqueArray;
+                }
+
+                const uniqueMonthArray = getUnique(monthData)
+                
+
+                uniqueMonthArray.sort((a, b) =>{
+                    return a - b
+                })
+
+                const monthNames = { 
+                    "1": "Januari",
+                    "2": "Februari",
+                    "3": "Maart",
+                    "4": "April",
+                    "5": "Mei",
+                    "6": "Juni",
+                    "7": "Juli",
+                    "8": "Augustus",
+                    "9": "September",
+                    "10": "Oktober",
+                    "11": "November",
+                    "12": "December"
+                }
+
+                const getMonthName = uniqueMonthArray.map(month => {
+                    return monthNames[month]
+                })
+                getMonthName.map(month =>{
+                    const option = document.createElement('option')
+                    option.textContent = month
+                    option.value = month
+                    selectMonth.appendChild(option)
+                })
+            }
+        })
+    }
+
+    async function getExpoPeriod(expoID, totalTickets){
+        let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
+        let expoData = await response.json()
+        return expoData
+    }
+})();
+
+
+(function () {
+    const inputs = document.querySelectorAll('.step-two .entree-options-container input[type="radio"]')
+    for (let i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener('change', function () {
             if (inputs[i].checked) {
-                console.log(i)
                 const allP = document.querySelectorAll('.step-two .entree-options-container p')
                 Array.from(allP).forEach(element => {
                     element.classList.remove("on")
@@ -14,6 +88,10 @@
         })
     }
 })();
+
+
+
+
 (function () {
     const firstForm = document.querySelector('.form-first-step')
     const validationError = document.querySelector('.field-validation-error')
@@ -48,79 +126,109 @@
 
     }
     if (firstForm) {
-        (function () {
-            const inputs = firstForm.querySelectorAll('select')
+        (function (){
+            function priceTicket() {
+                let ticketCount = 0
+                const inputs = firstForm.querySelectorAll('select')
+                const totalTickets = document.querySelector('.totalTickets')
+                const optionValues = []
+                Array.from(inputs).map(input => {
+                    const options = input.querySelectorAll('option')
 
-            const optionValues = []
-            Array.from(inputs).map(input => {
-
-                const options = input.querySelectorAll('option')
-
-                const value = Array.from(options).map(option => {
-                    if (option.selected) {
-                        optionValues.push(Number(option.value))
-                        calcSubtotal(option)
-                    }
+                    const value = Array.from(options).map(option => {
+                        if (option.selected) {
+                            optionValues.push(Number(option.value))
+                            ticketCount = Number(option.value) + ticketCount
+                            totalTickets.value = ticketCount
+                            calcSubtotal(option)
+                        }
+                    })
+                    return value
                 })
-                return value
-            })
 
-            const totalFirstStep = document.querySelector('#total-first-step')
-            totalFirstStep.dataset.value = calcTotal()
-            totalFirstStep.innerText = `€${parseFloat(calcTotal() / 100).toFixed(2)}`
+                const totalFirstStep = document.querySelector('#total-first-step')
+                totalFirstStep.dataset.value = calcTotal()
+                totalFirstStep.innerText = `€${parseFloat(calcTotal() / 100).toFixed(2)}`
 
-            const totalArticles = optionValues.reduce((current, all) => {
-                all = current + all
-                return all
-            })
+                const totalArticles = optionValues.reduce((current, all) => {
+                    all = current + all
+                    return all
+                })
 
 
-            if (totalArticles >= maxAmountOfArticles) {
-                validationError.classList.remove('hidden')
-            } else {
-                validationError.classList.add('hidden')
+                if (totalArticles >= maxAmountOfArticles) {
+                    validationError.classList.remove('hidden')
+                } else {
+                    validationError.classList.add('hidden')
+                }
+
             }
 
+            priceTicket()
+            firstForm.addEventListener('change', priceTicket)
         })()
+    }
+})();
 
 
-        firstForm.addEventListener('change', function (e) {
-            const inputs = firstForm.querySelectorAll('select')
+(function () {
+  function localStorageTest() {
+    const test = "test";
+    try {
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 
-            const optionValues = []
-            Array.from(inputs).map(input => {
+  if (localStorageTest() === true) {
+    const form = document.querySelector("form")
+    const formName = form.dataset.formname
+    // Check if formData is populated and push it to the form
+    let storedForm = localStorage.getItem("formData")
 
-                const options = input.querySelectorAll('option')
-
-                const value = Array.from(options).map(option => {
-                    if (option.selected) {
-                        optionValues.push(Number(option.value))
-                        calcSubtotal(option)
-                    }
-                })
-                return value
-            })
-
-            const totalFirstStep = document.querySelector('#total-first-step')
-            totalFirstStep.dataset.value = calcTotal()
-            totalFirstStep.innerText = `€${parseFloat(calcTotal() / 100).toFixed(2)}`
-
-            const totalArticles = optionValues.reduce((current, all) => {
-                all = current + all
-                return all
-            })
-
-
-            if (totalArticles >= maxAmountOfArticles) {
-                validationError.classList.remove('hidden')
-            } else {
-                validationError.classList.add('hidden')
-            }
-
+    storedForm = storedForm ? JSON.parse(storedForm) : {}
+    if (storedForm[formName]){
+        const arrayValues = Object.values(storedForm[formName])
+        arrayValues.forEach(value => {
+            const checkThisInput = form.querySelector(`input[value='${value}']`)
+            checkThisInput.checked = true
         })
     }
 
+    // Put formData in localStorage
+    form.addEventListener("change", function () {
+      console.log("form changed");
+      let formData = new FormData(form);
+      
+      
+      let dataObject = {}
+      formData.forEach((value, key) => {
+        dataObject[key] = value
+      });
+      let formDataJSON = JSON.stringify(dataObject)
+      console.log(formDataJSON)
+
+      let existing = localStorage.getItem("formData")
+
+      // If no existing data, create an array
+      // Otherwise, convert the localStorage string to an array
+      existing = existing ? JSON.parse(existing) : {}
+      
+      // Add new data to localStorage Array
+      existing[form.dataset.formname] = dataObject
+
+      // Save back to localStorage
+      localStorage.setItem("formData", JSON.stringify(existing))
+    })
+
+  } else {
+    console.log("Local Storage is unavailable");
+  }
 })();
+
 (function () {
     
 })

@@ -1,3 +1,5 @@
+
+
 (function () {
     const firstForm = document.querySelector('.form-first-step')
     const validationError = document.querySelector('.field-validation-error')
@@ -32,76 +34,46 @@
 
     }
     if (firstForm) {
-        (function () {
-            const inputs = firstForm.querySelectorAll('select')
+        (function (){
+            function priceTicket() {
+                let ticketCount = 0
+                const inputs = firstForm.querySelectorAll('select')
+                const totalTickets = document.querySelector('.totalTickets')
+                const optionValues = []
+                Array.from(inputs).map(input => {
+                    const options = input.querySelectorAll('option')
 
-            const optionValues = []
-            Array.from(inputs).map(input => {
-
-                const options = input.querySelectorAll('option')
-
-                const value = Array.from(options).map(option => {
-                    if (option.selected) {
-                        optionValues.push(Number(option.value))
-                        calcSubtotal(option)
-                    }
+                    const value = Array.from(options).map(option => {
+                        if (option.selected) {
+                            optionValues.push(Number(option.value))
+                            ticketCount = Number(option.value) + ticketCount
+                            totalTickets.value = ticketCount
+                            calcSubtotal(option)
+                        }
+                    })
+                    return value
                 })
-                return value
-            })
 
-            const totalFirstStep = document.querySelector('#total-first-step')
-            totalFirstStep.dataset.value = calcTotal()
-            totalFirstStep.innerText = `€${parseFloat(calcTotal() / 100).toFixed(2)}`
+                const totalFirstStep = document.querySelector('#total-first-step')
+                totalFirstStep.dataset.value = calcTotal()
+                totalFirstStep.innerText = `€${parseFloat(calcTotal() / 100).toFixed(2)}`
 
-            const totalArticles = optionValues.reduce((current, all) => {
-                all = current + all
-                return all
-            })
+                const totalArticles = optionValues.reduce((current, all) => {
+                    all = current + all
+                    return all
+                })
 
 
-            if (totalArticles >= maxAmountOfArticles) {
-                validationError.classList.remove('hidden')
-            } else {
-                validationError.classList.add('hidden')
+                if (totalArticles >= maxAmountOfArticles) {
+                    validationError.classList.remove('hidden')
+                } else {
+                    validationError.classList.add('hidden')
+                }
+
             }
 
+            priceTicket()
+            firstForm.addEventListener('change', priceTicket)
         })()
-
-
-        firstForm.addEventListener('change', function (e) {
-            const inputs = firstForm.querySelectorAll('select')
-
-            const optionValues = []
-            Array.from(inputs).map(input => {
-
-                const options = input.querySelectorAll('option')
-
-                const value = Array.from(options).map(option => {
-                    if (option.selected) {
-                        optionValues.push(Number(option.value))
-                        calcSubtotal(option)
-                    }
-                })
-                return value
-            })
-
-            const totalFirstStep = document.querySelector('#total-first-step')
-            totalFirstStep.dataset.value = calcTotal()
-            totalFirstStep.innerText = `€${parseFloat(calcTotal() / 100).toFixed(2)}`
-
-            const totalArticles = optionValues.reduce((current, all) => {
-                all = current + all
-                return all
-            })
-
-
-            if (totalArticles >= maxAmountOfArticles) {
-                validationError.classList.remove('hidden')
-            } else {
-                validationError.classList.add('hidden')
-            }
-
-        })
     }
-
 })();

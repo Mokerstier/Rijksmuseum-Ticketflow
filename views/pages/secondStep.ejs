@@ -9,9 +9,11 @@
 </nav>
 
 <main>
-  
-    <%- include (`../partials/${groupChoice}.ejs`) %>
-  
+    <form class="form-first-step" action="derde-stap" method="GET" data-formName="<%=formName%>">
+      <%- include (`../partials/${groupChoice}.ejs`) %>
+      <input class="totalTickets" name="totalTickets" value="">
+    </form>
+
 </main>
 <script>
   const maxAmountOfArticles = "<%= articleConfiguration.maxAmountOfArticles %>";
