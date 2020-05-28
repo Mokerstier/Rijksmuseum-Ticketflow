@@ -1,12 +1,12 @@
 (function () {
     const formThirdStep = document.querySelector(".step-three")
     let checkboxes
-    if (formThirdStep){
-        function getUnique(data){
+    if (formThirdStep) {
+        function getUnique(data) {
             const uniqueArray = [];
 
-            for(let value of data){
-                if(uniqueArray.indexOf(value) === -1){
+            for (let value of data) {
+                if (uniqueArray.indexOf(value) === -1) {
                     uniqueArray.push(value);
                 }
             }
@@ -18,7 +18,7 @@
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].addEventListener('change', async function () {
                 const selectMonth = document.querySelector(".monthDatePicker")
-                Array.from(selectMonth.children).map(child =>{
+                Array.from(selectMonth.children).map(child => {
                     child.remove()
                 })
 
@@ -37,12 +37,12 @@
                     })
 
                     const uniqueMonthArray = getUnique(monthData)
-                    
-                    uniqueMonthArray.sort((a, b) =>{
+
+                    uniqueMonthArray.sort((a, b) => {
                         return a - b
                     })
 
-                    const monthNames = { 
+                    const monthNames = {
                         "0": "Januari",
                         "1": "Februari",
                         "2": "Maart",
@@ -61,12 +61,12 @@
                         return monthNames[month]
                     })
 
-                    getMonthName.map(month =>{
+                    getMonthName.map(month => {
                         const option = document.createElement('option')
 
                         let monthNumber
                         for (let [key, value] of Object.entries(monthNames)) {
-                            if (value === month){
+                            if (value === month) {
                                 monthNumber = key
                             }
                         }
@@ -81,9 +81,9 @@
         }
 
         const select = document.querySelector(".monthDatePicker")
-        select.addEventListener('change', function(){
+        select.addEventListener('change', function () {
 
-            const dayNames = { 
+            const dayNames = {
                 "0": "Zondag",
                 "1": "Maandag",
                 "2": "Dinsdag",
@@ -96,13 +96,13 @@
             const options = document.querySelectorAll(".optionMonth")
             const dayArray = []
             const filteredMonth = []
-            Array.from(options).map(option =>{
-                if (option.selected){  
+            Array.from(options).map(option => {
+                if (option.selected) {
                     const monthNumber = Number(option.dataset.monthNumber)
-                    data[0].filter(expo =>{
+                    data[0].filter(expo => {
                         const date = new Date(expo.PeriodStart)
                         const month = date.getMonth()
-                        if (month === monthNumber){
+                        if (month === monthNumber) {
                             filteredMonth.push(expo)
                             const day = new Date(expo.PeriodStart).getDay()
                             dayArray.push(day)
@@ -112,12 +112,12 @@
             })
 
             const uniqueDays = getUnique(dayArray)
-            uniqueDays.sort((a, b) =>{
+            uniqueDays.sort((a, b) => {
                 return a - b
             })
 
             const checkboxContainer = document.querySelector(".checkboxDay")
-            Array.from(checkboxContainer.children).map(child =>{
+            Array.from(checkboxContainer.children).map(child => {
                 child.remove()
             })
 
@@ -125,21 +125,21 @@
                 return dayNames[day]
             })
 
-            getDayNames.map(day =>{
+            getDayNames.map(day => {
                 const checkbox = document.createElement('input')
-                
+
                 const label = document.createElement('label')
-            
+
                 let dayNumber
                 for (let [key, value] of Object.entries(dayNames)) {
-                    if (value === day){
+                    if (value === day) {
                         dayNumber = key
                     }
                 }
 
                 label.textContent = day
-                label.htmlFor = day 
-                
+                label.htmlFor = day
+
                 checkbox.type = "checkbox"
                 checkbox.classList.add("inputDay")
                 checkbox.dataset.dayNumber = dayNumber
@@ -148,61 +148,86 @@
 
                 checkboxContainer.appendChild(checkbox)
                 checkboxContainer.appendChild(label)
-                
+
             })
             checkboxes = document.querySelectorAll(".inputDay")
-           
+
             let filteredDays = []
-            
+
             Array.from(checkboxes).map(checkbox => {
-            
-                checkbox.addEventListener('change', async function(){
-                    
-                    if(checkbox.checked){
+
+                checkbox.addEventListener('change', async function () {
+
+                    if (checkbox.checked) {
                         const dayNumber = Number(checkbox.dataset.dayNumber)
-                        
-                        filteredMonth.filter(expo =>{
+
+                        filteredMonth.filter(expo => {
                             const date = new Date(expo.PeriodStart)
                             const day = date.getDay()
-                            if (day === dayNumber){
+                            if (day === dayNumber) {
                                 filteredDays.push(expo)
                             }
                         })
-                        
-                    } else if (!checkbox.checked){
+
+                    } else if (!checkbox.checked) {
                         const dayNumber = Number(checkbox.dataset.dayNumber)
-                        filteredDays = filteredDays.filter(expo =>{
+                        filteredDays = filteredDays.filter(expo => {
                             const date = new Date(expo.PeriodStart)
                             const day = date.getDay()
-                            
-                            if (day !== dayNumber){
+
+                            if (day !== dayNumber) {
                                 return expo
                             }
                         })
                     }
                     let daysArray = []
-                    filteredDays = filteredDays.filter(expo =>{
-                        const date = new Date(expo.PeriodStart)
+                    let dataToCheck = []
+                    filteredDays = filteredDays.filter(expo => {
+                        let date = new Date(expo.PeriodStart)
                         const dayDate = date.getDate()
-                        
+
+                        console.log(date)
+                        date = String(date).split(" ")
+                        if (date[0] == "Sun") {
+                            date = "Zondag"
+                        } else if (date[0] == "Mon") {
+                            date = "Maandag"
+                        } else if (date[0] == "Tue") {
+                            date = "Dinsdag"
+                        } else if (date[0] == "Wed") {
+                            date = "Woensdag"
+                        } else if (date[0] == "Thu") {
+                            date = "Donderdag"
+                        } else if (date[0] == "Fri") {
+                            date = "Vrijdag"
+                        } else if (date[0] == "Sat") {
+                            date = "Zaterdag"
+                        }
+
                         const day = {
                             name: date,
                             date: dayDate
                         }
-                        
-                        if(!daysArray.includes(day.date)){
+
+                        console.log("before", daysArray)
+
+
+                        if (!dataToCheck.includes(dayDate)) {
+                            dataToCheck.push(dayDate)
                             daysArray.push(day)
                         }
-                        console.log(daysArray)
+
+                        console.log("after", daysArray)
+
                         const dayContainer = document.querySelector(".chooseDay")
-                        Array.from(dayContainer.children).map( child =>{
+                        Array.from(dayContainer.children).map(child => {
                             child.remove()
                         })
 
-                        daysArray.map(day =>{
+                        daysArray.map(day => {
                             const radiobutton = document.createElement("input")
                             const label = document.createElement("label")
-                            
+
 
                             radiobutton.type = "radio"
                             radiobutton.value = day.date
@@ -212,29 +237,28 @@
 
                             label.htmlFor = day.date
                             label.textContent = `${day.name} ${day.date}`
-                          
+
                             dayContainer.appendChild(radiobutton)
                             dayContainer.appendChild(label)
                         })
-                        
-                        console.log(dayDate)
+
+                        // console.log(dayDate)
                         return expo
                     })
                     console.log("hoi hooooi", filteredDays)
                 })
             })
-            
+
         })
-    
-        
-       
-        
 
-    async function getExpoPeriod(expoID, totalTickets){
-        let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
-        let expoData = await response.json()
-        return expoData
+
+
+
+
+        async function getExpoPeriod(expoID, totalTickets) {
+            let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
+            let expoData = await response.json()
+            return expoData
+        }
     }
-}
 })();
-
