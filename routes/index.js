@@ -1,6 +1,7 @@
 function routes() {
     const exRoutes = require('express').Router()
     const render = require('../controllers/render')
+    const getter = require('../controllers/getter')
 
     exRoutes
         .get('/', render.getFirstStep)
@@ -9,6 +10,7 @@ function routes() {
         .get('/vierde-stap', render.getFourthStep)
         .get('/vijfde-stap', render.getFifthStep)
         .get('/zesde-stap', render.getSixthStep)
+        .get('/getExpoPeriod/:id/:count', getter.getExpoData)
 
     return exRoutes
 }
