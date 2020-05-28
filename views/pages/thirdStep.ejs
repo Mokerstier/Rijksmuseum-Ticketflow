@@ -31,24 +31,15 @@
             <% }%>
         </section>
         <section class="datePicker">
-            <fieldset>
                 <legend>Kies hier je datum en tijd</legend>
-                <label>In welke maand wil je gaan?</label>
-                <select class="monthDatePicker" name="month">
-
-                </select>
-
+                <label for="monthDatePicker">In welke maand wil je gaan?</label>
+                <select id="monthDatePicker" class="monthDatePicker" name="month"></select>
                 <p>Wil je doordeweeks of in het weekend?</p>
-                <fieldset class="checkboxDay">
-
-                </fieldset>
-
+                <fieldset class="checkboxDay"></fieldset>
                 <p>Kies een beschikbare dag</p>
-                <fieldset class="chooseDay">
-
-                </fieldset>
-             
-            </fieldset>
+                <fieldset class="chooseDay"></fieldset>
+                <p>Kies een start tijd</p>
+                <fieldset class="chooseTime"></fieldset>
         </section>
         <section class="backButtonContainer">
             <a href="/tweede-stap" class="backButton"> < <%= ticketShop.articleSelectionContent.backButtonText %></a>
