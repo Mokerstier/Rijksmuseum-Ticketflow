@@ -66,7 +66,7 @@ function getExpoData(req, res) {
     })
 
     
-    console.log(filterData)
+    // console.log(filterData)
     res.send(filterData)
     // return expositionPeriodsJSON
     
