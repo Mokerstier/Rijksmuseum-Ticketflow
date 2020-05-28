@@ -112,6 +112,11 @@
             uniqueDays.sort((a, b) =>{
                 return a - b
             })
+            
+            const checkboxContainer = document.querySelector(".checkboxDay")
+            Array.from(checkboxContainer.children).map(child =>{
+                child.remove()
+            })
 
             const getDayNames = uniqueDays.map(day => {
                 return dayNames[day]
@@ -121,8 +126,7 @@
                 const checkbox = document.createElement('input')
                 
                 const label = document.createElement('label')
-                const checkboxContainer = document.querySelector(".checkboxDay")
-
+            
                 let dayNumber
                 for (let [key, value] of Object.entries(dayNames)) {
                     if (value === day){
@@ -145,47 +149,54 @@
 
         })
 
-        const checkboxDay = document.querySelector(".checkboxDay")
-        checkboxDay.addEventListener('change', function(){
-            console.log("hoi")
+    //     const checkboxDay = document.querySelector(".checkboxDay")
+    //     checkboxDay.addEventListener('change', function(){
+    //         console.log("hoi")
 
-            const dayNames = { 
-                "0": "Zondag",
-                "1": "Maandag",
-                "2": "Dinsdag",
-                "3": "Woensdag",
-                "4": "Donderdag",
-                "5": "Vrijdag",
-                "6": "Zaterdag",
-            }
+    //         const dayNames = { 
+    //             "0": "Zondag",
+    //             "1": "Maandag",
+    //             "2": "Dinsdag",
+    //             "3": "Woensdag",
+    //             "4": "Donderdag",
+    //             "5": "Vrijdag",
+    //             "6": "Zaterdag",
+    //         }
 
-            console.log(dayNames)
+    //         console.log(dayNames)
 
-            const optionsDayAndTime = document.querySelectorAll(".checkboxDay")
+    //     const checkboxContainer = document.querySelector(".checkboxDay")
+    //     Array.from(checkboxContainer.children).map(child =>{
+    //         child.remove()
+    //     })
 
-            const dayArray = []
-            Array.from(optionsDayAndTime).map(option =>{
-                if (option.selected){  
-                    const monthNumber = Number(option.dataset.monthNumber)
-                    data[0].filter(expo =>{
-                        const date = new Date(expo.PeriodStart)
-                        const month = date.getMonth()
-                        if (month === monthNumber){
-                            const day = new Date(expo.PeriodStart).getDay()
-                            dayArray.push(day)
-                        }
-                    })
-                }
-            })
+    //     getDayNames.map(day =>{
+    //         const checkbox = document.createElement('input')
+    //         const label = document.createElement('label')
 
-        })
+    //         const dayArray = []
+    //         Array.from(optionsDayAndTime).map(option =>{
+    //             if (option.selected){  
+    //                 const monthNumber = Number(option.dataset.monthNumber)
+    //                 data[0].filter(expo =>{
+    //                     const date = new Date(expo.PeriodStart)
+    //                     const month = date.getMonth()
+    //                     if (month === monthNumber){
+    //                         const day = new Date(expo.PeriodStart).getDay()
+    //                         dayArray.push(day)
+    //                     }
+    //                 })
+    //             }
+    //         })
 
-        async function getExpoPeriod(expoID, totalTickets){
-            let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
-            let expoData = await response.json()
-            return expoData
-        }
+    //     })
+    // })
+    async function getExpoPeriod(expoID, totalTickets){
+        let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
+        let expoData = await response.json()
+        return expoData
     }
+}
 })();
 
 
