@@ -112,7 +112,7 @@
             uniqueDays.sort((a, b) =>{
                 return a - b
             })
-            
+
             const checkboxContainer = document.querySelector(".checkboxDay")
             Array.from(checkboxContainer.children).map(child =>{
                 child.remove()
@@ -148,49 +148,7 @@
             })
 
         })
-
-    //     const checkboxDay = document.querySelector(".checkboxDay")
-    //     checkboxDay.addEventListener('change', function(){
-    //         console.log("hoi")
-
-    //         const dayNames = { 
-    //             "0": "Zondag",
-    //             "1": "Maandag",
-    //             "2": "Dinsdag",
-    //             "3": "Woensdag",
-    //             "4": "Donderdag",
-    //             "5": "Vrijdag",
-    //             "6": "Zaterdag",
-    //         }
-
-    //         console.log(dayNames)
-
-    //     const checkboxContainer = document.querySelector(".checkboxDay")
-    //     Array.from(checkboxContainer.children).map(child =>{
-    //         child.remove()
-    //     })
-
-    //     getDayNames.map(day =>{
-    //         const checkbox = document.createElement('input')
-    //         const label = document.createElement('label')
-
-    //         const dayArray = []
-    //         Array.from(optionsDayAndTime).map(option =>{
-    //             if (option.selected){  
-    //                 const monthNumber = Number(option.dataset.monthNumber)
-    //                 data[0].filter(expo =>{
-    //                     const date = new Date(expo.PeriodStart)
-    //                     const month = date.getMonth()
-    //                     if (month === monthNumber){
-    //                         const day = new Date(expo.PeriodStart).getDay()
-    //                         dayArray.push(day)
-    //                     }
-    //                 })
-    //             }
-    //         })
-
-    //     })
-    // })
+        
     async function getExpoPeriod(expoID, totalTickets){
         let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
         let expoData = await response.json()
