@@ -19,7 +19,7 @@
                     <div>
                         <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
                         <label for="<%= option.expositionId %>">
-                            <img src="<%= option.expoImage %>">
+                            <img src="<%= option.expoImage %>" alt="Een foto van een tour in het Rijksmuseum">
                             <%= option.name %> 
                             <span><%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %></span>
                         </label>
@@ -51,10 +51,10 @@
                 </select>
 
                 <p>Wil je doordeweeks of in het weekend?</p>
-                <input type="radio" name="week-choise" id="duringTheWeek" value="duringTheWeek">
-                <label for="duringTheWeek">Doordeweeks</label>
-                <input type="radio" name="week-choise" id="weekend" value="weekend">
-                <label for="weekend">Weekend</label>
+                <fieldset class="checkboxDay">
+
+                </fieldset>
+        
 
                 <!-- <p>Kies een beschikbare dag</p>
                 <input type="radio" name="day-choise" id="maa1" value="maa1">
