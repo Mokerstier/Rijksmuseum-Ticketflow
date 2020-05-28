@@ -1,7 +1,10 @@
 (function () {
     const formThirdStep = document.querySelector(".step-three")
     let checkboxes
+    let AvailableDaysRadioButtons
+    let ChosenMonth
     if (formThirdStep) {
+
         function getUnique(data) {
             const uniqueArray = [];
 
@@ -27,6 +30,10 @@
                 })
                 const selectMonth = document.querySelector(".monthDatePicker")
                 Array.from(selectMonth.children).map(child => {
+                    child.remove()
+                })
+                const startTimeContainer = document.querySelector(".chooseTime")
+                Array.from(startTimeContainer.children).map(child => {
                     child.remove()
                 })
 
@@ -84,14 +91,27 @@
                         option.value = month
                         selectMonth.appendChild(option)
                     })
+                    datePicker()
                 }
             })
         }
 
         const select = document.querySelector(".monthDatePicker")
-        select.addEventListener('change', function () {
+        select.addEventListener('change', datePicker)
+
+        async function getExpoPeriod(expoID, totalTickets) {
+            let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
+            let expoData = await response.json()
+            return expoData
+        }
+
+        function datePicker() {
             const dayContainer = document.querySelector(".chooseDay")
             Array.from(dayContainer.children).map(child => {
+                child.remove()
+            })
+            const startTimeContainer = document.querySelector(".chooseTime")
+            Array.from(startTimeContainer.children).map(child => {
                 child.remove()
             })
 
@@ -111,6 +131,8 @@
             Array.from(options).map(option => {
                 if (option.selected) {
                     const monthNumber = Number(option.dataset.monthNumber)
+                    ChosenMonth = monthNumber
+
                     data[0].filter(expo => {
                         const date = new Date(expo.PeriodStart)
                         const month = date.getMonth()
@@ -169,6 +191,10 @@
             Array.from(checkboxes).map(checkbox => {
 
                 checkbox.addEventListener('change', async function () {
+                    const startTimeContainer = document.querySelector(".chooseTime")
+                    Array.from(startTimeContainer.children).map(child => {
+                        child.remove()
+                    })
 
                     if (checkbox.checked) {
                         const dayNumber = Number(checkbox.dataset.dayNumber)
@@ -247,6 +273,7 @@
                             radiobutton.dataset.dayDate = day.date
                             radiobutton.name = "dayChoice"
                             radiobutton.id = day.date
+                            radiobutton.classList.add("AvailableDaysRadioButtons")
 
                             label.htmlFor = day.date
                             label.textContent = `${day.name} ${day.date}`
@@ -254,24 +281,54 @@
                             dayContainer.appendChild(radiobutton)
                             dayContainer.appendChild(label)
                         })
+                        AvailableDaysRadioButtons = document.querySelectorAll(".AvailableDaysRadioButtons")
 
                         // console.log(dayDate)
                         return expo
                     })
                     console.log("filtered Days: ", filteredDays)
+
+                    Array.from(AvailableDaysRadioButtons).map(radioBtn => {
+                        radioBtn.addEventListener("change", function () {
+                            const startTimeContainer = document.querySelector(".chooseTime")
+                            Array.from(startTimeContainer.children).map(child => {
+                                child.remove()
+                            })
+                            let startTimeArray = []
+                            if (radioBtn.checked) {
+                                const dateOfChosenDay = Number(radioBtn.dataset.dayDate)
+                                console.dir(radioBtn)
+                                filteredDays.filter(expo => {
+                                    //console.log(expo)
+                                    const date = new Date(expo.PeriodStart)
+                                    const day = date.getDate()
+                                    console.log(day, dateOfChosenDay)
+
+                                    if (day === dateOfChosenDay) {
+                                        startTimeArray.push(expo)
+                                    }
+                                })
+                            }
+                            console.log(startTimeArray)
+                            startTimeArray.map(expo => {
+                                const radioStartTime = document.createElement('input')
+                                const label = document.createElement('label')
+                                label.textContent = expo.PeriodStart
+                                label.htmlFor = expo.PeriodStart
+
+                                radioStartTime.dataset.startTime = expo.PeriodStart
+                                radioStartTime.type = "radio"
+                                radioStartTime.value = expo.PeriodStart
+                                radioStartTime.id = expo.PeriodStart
+
+                                startTimeContainer.appendChild(radioStartTime)
+                                startTimeContainer.appendChild(label)
+                            })
+                        })
+                    })
                 })
             })
 
-        })
-
-
-
-
-
-        async function getExpoPeriod(expoID, totalTickets) {
-            let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
-            let expoData = await response.json()
-            return expoData
         }
     }
 })();
