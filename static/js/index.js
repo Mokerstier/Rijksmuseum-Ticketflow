@@ -17,6 +17,14 @@
         const inputs = document.querySelectorAll('.step-three .entree-options-container input[type="radio"]')
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].addEventListener('change', async function () {
+                const checkboxContainer = document.querySelector(".checkboxDay")
+                Array.from(checkboxContainer.children).map(child => {
+                    child.remove()
+                })
+                const dayContainer = document.querySelector(".chooseDay")
+                Array.from(dayContainer.children).map(child => {
+                    child.remove()
+                })
                 const selectMonth = document.querySelector(".monthDatePicker")
                 Array.from(selectMonth.children).map(child => {
                     child.remove()
@@ -82,6 +90,10 @@
 
         const select = document.querySelector(".monthDatePicker")
         select.addEventListener('change', function () {
+            const dayContainer = document.querySelector(".chooseDay")
+            Array.from(dayContainer.children).map(child => {
+                child.remove()
+            })
 
             const dayNames = {
                 "0": "Zondag",
