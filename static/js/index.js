@@ -1,5 +1,6 @@
 (function () {
     const formThirdStep = document.querySelector(".step-three")
+    let checkboxes
     if (formThirdStep){
         function getUnique(data){
             const uniqueArray = [];
@@ -94,6 +95,7 @@
 
             const options = document.querySelectorAll(".optionMonth")
             const dayArray = []
+            const filteredMonth = []
             Array.from(options).map(option =>{
                 if (option.selected){  
                     const monthNumber = Number(option.dataset.monthNumber)
@@ -101,6 +103,7 @@
                         const date = new Date(expo.PeriodStart)
                         const month = date.getMonth()
                         if (month === monthNumber){
+                            filteredMonth.push(expo)
                             const day = new Date(expo.PeriodStart).getDay()
                             dayArray.push(day)
                         }
@@ -145,10 +148,88 @@
 
                 checkboxContainer.appendChild(checkbox)
                 checkboxContainer.appendChild(label)
+                
             })
+            checkboxes = document.querySelectorAll(".inputDay")
+           
+            let filteredDays = []
+            
+            Array.from(checkboxes).map(checkbox => {
+            
+                checkbox.addEventListener('change', async function(){
+                    
+                    if(checkbox.checked){
+                        const dayNumber = Number(checkbox.dataset.dayNumber)
+                        
+                        filteredMonth.filter(expo =>{
+                            const date = new Date(expo.PeriodStart)
+                            const day = date.getDay()
+                            if (day === dayNumber){
+                                filteredDays.push(expo)
+                            }
+                        })
+                        
+                    } else if (!checkbox.checked){
+                        const dayNumber = Number(checkbox.dataset.dayNumber)
+                        filteredDays = filteredDays.filter(expo =>{
+                            const date = new Date(expo.PeriodStart)
+                            const day = date.getDay()
+                            
+                            if (day !== dayNumber){
+                                return expo
+                            }
+                        })
+                    }
+                    let daysArray = []
+                    filteredDays = filteredDays.filter(expo =>{
+                        const date = new Date(expo.PeriodStart)
+                        const dayDate = date.getDate()
+                        
+                        const day = {
+                            name: date,
+                            date: dayDate
+                        }
+                        
+                        if(!daysArray.includes(day.date)){
+                            daysArray.push(day)
+                        }
+                        console.log(daysArray)
+                        const dayContainer = document.querySelector(".chooseDay")
+                        Array.from(dayContainer.children).map( child =>{
+                            child.remove()
+                        })
 
+                        daysArray.map(day =>{
+                            const radiobutton = document.createElement("input")
+                            const label = document.createElement("label")
+                            
+
+                            radiobutton.type = "radio"
+                            radiobutton.value = day.date
+                            radiobutton.dataset.dayDate = day.date
+                            radiobutton.name = "dayChoice"
+                            radiobutton.id = day.date
+
+                            label.htmlFor = day.date
+                            label.textContent = `${day.name} ${day.date}`
+                          
+                            dayContainer.appendChild(radiobutton)
+                            dayContainer.appendChild(label)
+                        })
+                        
+                        console.log(dayDate)
+                        return expo
+                    })
+                    console.log("hoi hooooi", filteredDays)
+                })
+            })
+            
         })
+    
         
+       
+        
+
     async function getExpoPeriod(expoID, totalTickets){
         let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
         let expoData = await response.json()
