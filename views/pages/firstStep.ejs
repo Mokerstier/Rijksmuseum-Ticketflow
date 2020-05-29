@@ -8,24 +8,53 @@
     <a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a>
 </nav>
 <main>
-    <form action="/tweede-stap" method="GET">
-        <section>
-            <h2>Met wie kom je naar het museum?</h2>
+    <form action="/tweede-stap" method="GET" data-formName="firstFormChoice">
+        <section class="entree-options-container group-choice">
+            <h2>Kies je groep</h2>
             <fieldset>
-                <input type="radio" name="groupChoice" id="only" value="only">
-                <label for="only">Alleen op je eigen tempo</label>
-                <input type="radio" name="groupChoice" id="family" value="family">
-                <label for="family">Samen met je gezin</label>
-                <input type="radio" name="groupChoice" id="date" value="date">
-                <label for="date">Gezellig op date</label>
-                <input type="radio" name="groupChoice" id="small-group" value="small-group">
-                <label for="small-group">Groep van 2 tot en met 15 mensen</label>
-                <input type="radio" name="groupChoice" id="large-group" value="large-group">
-                <label for="large-group">Groep met meer dan 15 mensen</label>
+                <legend>Met wie kom je naar het museum?</legend>
+                <div>
+                        <input type="radio" name="groupChoice" id="only" value="only">
+                        <label for="only">
+                            <img src="/assets/images/RijksFotos/tourtype3special.jpg" alt="Een foto van een tour in het Rijksmuseum">
+                            <h3>Alleen op je eigen tempo</h3>
+                        </label>
+                </div>
+                <div>
+                    <input type="radio" name="groupChoice" id="family" value="family">
+                    <label for="family">
+                        <img src="/assets/images/RijksFotos/gezin.jpg" alt="Een foto van een tour in het Rijksmuseum">
+                        <h3>Samen met je gezin</h3>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="groupChoice" id="date" value="date">
+                    <label for="date">
+                        <img src="/assets/images/RijksFotos/date.jpeg" alt="Een foto van een tour in het Rijksmuseum">
+                        <h3>Gezellig op date</h3>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="groupChoice" id="small-group" value="small-group">
+                    <label for="small-group">
+                        <img src="/assets/images/RijksFotos/groepKinderen.jpg" alt="Een foto van een tour in het Rijksmuseum">
+                        <h3>Groep van 2 tot en met 15 mensen</h3>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="groupChoice" id="large-group" value="large-group">
+                    <label for="large-group">
+                        <img src="/assets/images/RijksFotos/groep.jpg" alt="Een foto van een tour in het Rijksmuseum">
+                        <h3>Groep met meer dan 15 mensen</h3>
+                    </label>
+                </div>
             </fieldset>
         </section>
-        <section>
-            <input type="submit" value="Naar Tickets">
+        <section class="ticketOrder">
+            <div>
+                <p>Bestellingslijst...</p>
+                <input class="backAndNextButton" type="submit" value="Naar Tickets">
+            </div>
         </section>
     </form>
 </main>

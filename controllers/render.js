@@ -20,7 +20,8 @@ function getSecondStep(req, res) {
             articles: articles,
             variantContent: variantContent,
             articleConfiguration: articleConfiguration,
-            groupChoice: groupChoice
+            groupChoice: groupChoice,
+            formName: `${groupChoice}TicketChoice`
         })
     }
 
@@ -39,7 +40,8 @@ function getThirdStep(req, res) {
         DonationOptions: articlesDonation,
         articlesAdditional: articlesAdditional,
         groupChoice: groupChoice,
-        ticketCount: ticketCount
+        ticketCount: ticketCount,
+        formName: "dateTicketChoice"
     })
 }
 
@@ -55,7 +57,8 @@ function getFourthStep(req, res) {
         DonationOptions: articlesDonation,
         articlesAdditional: articlesAdditional,
         groupChoice: groupChoice,
-        ticketCount: ticketCount
+        ticketCount: ticketCount,
+        formName: "dateTicketChoice"
     })
 }
 
@@ -65,7 +68,8 @@ function getFifthStep(req, res) {
         title: 'Persoonlijke gegevens',
         ticketShop: ticketConfiguration,
         groupChoice: groupChoice,
-        ticketCount: ticketCount
+        ticketCount: ticketCount,
+        formName: "dateTicketChoice"
     })
 }
 
@@ -75,7 +79,8 @@ function getSixthStep(req, res) {
         title: 'Overzicht en betalen',
         ticketShop: ticketConfiguration,
         groupChoice: groupChoice,
-        ticketCount: ticketCount
+        ticketCount: ticketCount,
+        formName: "dateTicketChoice"
     })
 }
 
