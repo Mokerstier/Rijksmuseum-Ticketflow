@@ -20,9 +20,10 @@
                 <tbody>
                     <% articlesAdditional.forEach(function(option) { %>
                     <tr>
-                        <td><%- option.Name %>
+                        <td><%- option.Name %> 
                             <% if(option.Description != "" && option.Description != "NULL"){ %>
-                                <p><%= option.Description %></p>
+                                <span class="iBtn">i</span>
+                                <p class="tooltip"><%= option.Description %></p>
                             <% } %>
                         </td>
                         <td>€ <%- (option.PriceCent / 100).toFixed(2) %></td>

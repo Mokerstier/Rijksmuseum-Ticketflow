@@ -18,9 +18,10 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= articles[0].Name %>
+            <td><%= articles[0].Name %> 
               <% if(articles[0].Description != "" && articles[0].Description != "NULL"){ %>
-                <p><%= articles[0].Description %></p>
+                <span class="iBtn">i</span>
+                <p class="tooltip"><%= articles[0].Description %></p>
               <% } %>
             </td>
             <td class="align-middle">€ <%= (articles[0].PriceCent / 100).toFixed(2) %></td>
@@ -35,9 +36,10 @@
             <td><output data-article-name="<%= articles[0].Name %>" class="output">€0.00</output></td>
           </tr>
           <tr>
-            <td><%= articles[1].Name %>
+            <td><%= articles[1].Name %> 
               <% if(articles[1].Description != "" && articles[1].Description != "NULL"){ %>
-                <p><%= articles[1].Description %></p>
+                <span class="iBtn">i</span>
+                <p class="tooltip"><%= articles[1].Description %></p>
               <% } %>
             </td>
             <td class="align-middle">€ <%= (articles[1].PriceCent /100).toFixed(2) %></td>
@@ -51,25 +53,11 @@
             </td>
             <td><output data-article-name="<%= articles[1].Name %>" class="output">€0.00</output></td>
           </tr>
-        </tbody>
-      </table>
-    </fieldset>
-    <fieldset>
-      <legend>Tickets met korting</legend>
-      <table class="full-width">
-        <thead>
-          <th>
-            <%= variantContent.articleSelectionContent.articleTableTitle %>
-          </th>
-          <th>Prijs</th>
-          <th>Aantal</th>
-          <th>Subtotaal</th>
-        </thead>
-        <tbody>
           <tr>
-            <td><%= articles[2].Name %>
+            <td><%= articles[2].Name %> 
               <% if(articles[2].Description != "" && articles[2].Description != "NULL"){ %>
-                <p><%= articles[2].Description %></p>
+                <span class="iBtn">i</span>
+                <p class="tooltip"><%= articles[2].Description %></p>
               <% } %>
             </td>
             <td class="align-middle">€ <%= (articles[2].PriceCent /100).toFixed(2) %></td>
@@ -83,9 +71,10 @@
             <td><output data-article-name="<%= articles[2].Name %>" class="output">€0.00</output></td>
           </tr>
           <tr>
-            <td><%= articles[3].Name %>
+            <td><%= articles[3].Name %> 
               <% if(articles[3].Description != "" && articles[3].Description != "NULL"){ %>
-                <p><%= articles[3].Description %></p>
+                <span class="iBtn">i</span>
+                <p class="tooltip"><%= articles[3].Description %></p>
               <% } %>
             </td>
             <td class="align-middle">€ <%= (articles[3].PriceCent /100).toFixed(2) %></td>
@@ -99,9 +88,10 @@
             <td><output data-article-name="<%= articles[3].Name %>" class="output">€0.00</output></td>
           </tr>
           <tr>
-            <td><%= articles[4].Name %>
+            <td><%= articles[4].Name %> 
               <% if(articles[4].Description != "" && articles[4].Description != "NULL"){ %>
-                <p><%= articles[4].Description %></p>
+                <span class="iBtn">i</span>
+                <p class="tooltip"><%= articles[4].Description %></p>
               <% } %>
             </td>
             <td class="align-middle">€ <%= (articles[4].PriceCent / 100).toFixed(2) %></td>
@@ -115,9 +105,10 @@
             <td><output data-article-name="<%= articles[4].Name %>" class="output">€0.00</output></td>
           </tr>
           <tr>
-            <td><%= articles[5].Name %>
+            <td><%= articles[5].Name %> 
               <% if(articles[5].Description != "" && articles[5].Description != "NULL"){ %>
-                <p><%= articles[5].Description %></p>
+                <span class="iBtn">i</span>
+                <p class="tooltip"><%= articles[5].Description %></p>
               <% } %>
             </td>
             <td class="align-middle">€ <%= (articles[5].PriceCent / 100).toFixed(2) %></td>
