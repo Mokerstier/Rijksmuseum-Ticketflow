@@ -20,9 +20,17 @@
     storedForm = storedForm ? JSON.parse(storedForm) : {}
     if (storedForm[formName]){
         const arrayValues = Object.values(storedForm[formName])
+        console.log(arrayValues)
         arrayValues.forEach(value => {
-            const checkThisInput = form.querySelector(`input[value='${value}']`)
-            checkThisInput.checked = true
+            const checkThisInputs = form.querySelectorAll(`input`)
+            console.log(checkThisInputs)
+            Array.from(checkThisInputs).map(input =>{
+              if ((input.type == "radio" || input.type == "checkbox") && input.value == value) {
+                input.checked = true
+              }
+            })
+            
+            
         })
     }
 

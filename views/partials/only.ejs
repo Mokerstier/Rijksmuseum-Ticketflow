@@ -2,7 +2,7 @@
     
     
     <% articles.forEach((article) => { %>
-        <input type="radio" name="ticketChoice" value="<%= article.Name %>" id="<%= article.Code %>">
+        <input type="radio" name="ticketChoice" data-article-name="<%= article.Name %>" data-article-price="<%= article.PriceCent %>" value="<%= article.Name %>" id="<%= article.Code %>">
         <label for="<%= article.Code %>">
             <div class="ticket-container">
                 <h2><%= article.Name %></h2>
@@ -10,12 +10,14 @@
                     <p>€ <%= (article.PriceCent / 100).toFixed(2) %></p>
                 </div>
             </div>
+            <output data-article-name="<%= article.Name %>" class="output">€0.00</output>
         </label>
+        
         <% if(articles.Description != "" && article.Description != "NULL"){ %>
             <p><%= article.Description %></p>
         <% } %>
     <% }) %>
-    
+    <output id="total-first-step" class="block-right">€0.00</output>
 
     <div class="solo-subtotal-container">
 
