@@ -351,97 +351,74 @@
 
 (function () {
   const firstForm = document.querySelector(".form-first-step");
-  const validationError = document.querySelector(".field-validation-error");
 
-  function calcSubtotal(articleOption) {
-    console.log(articleOption.dataset.articleName)
-    const subTotal =
-      Number(articleOption.dataset.price) * Number(articleOption.value);
-    // const output =
-    //   document.querySelector(`data-article-name="${}"`);
-    const subTotalContainer =
-      articleOption.parentElement.parentElement.nextElementSibling;
-    // subTotalContainer.innerText = ""
-
-    output.innerText = `€${parseFloat(subTotal / 100).toFixed(2)}`;
-    output.dataset.value = subTotal;
-    // subTotalContainer.appendChild(output)
-  }
-
-  function calcTotal() {
-    const outputs = document.querySelectorAll(".output");
-    outputValues = [];
-    const value = Array.from(outputs).map((output) => {
-      outputValues.push(Number(output.dataset.value));
-    });
-
-    const total = outputValues.reduce((current, all) => {
-      all = current + all;
-
-      return all;
-    });
-    return total;
-  }
   if (firstForm) {
-    (function () {
-      function priceTicket() {
-        let ticketCount = 0;
-        const totalTickets = document.querySelector(".totalTickets");
-        const optionValues = [];
-        const radios = firstForm.querySelectorAll("input");
-       console.log(radios)
+    const validationError = document.querySelector(".field-validation-error");
+    const totalTickets = document.querySelector(".totalTickets");
+    const numberTickets = document.querySelector("#aantal-first-step");
+    const totalTicketsPrice = document.querySelector("#total-first-step");
+
+    function calcTicketCount() {
+      let ticketCount;
+      const formData = new FormData(firstForm);
+      let data = {};
+      const subTotal = [];
+      let totalPrice;
+
+      if (firstForm.dataset.formname === "onlyTicketChoice") {
+        ticketCount = 1;
+        console.log("solo-soldier");
+        data = {
+          ticketChoice: formData.get("ticketChoice"),
+        };
+        const radioButtons = firstForm.querySelectorAll("input[type=radio]");
+        Array.from(radioButtons).map((radio) => {
+          if (radio.checked) {
+            totalPrice = Number(radio.dataset.articlePrice);
+          }
+        });
+      } else {
+        ticketCount = 0;
+        // for (let pair of formData.entries()) {
+        //   data[pair[0]] = pair[1]
+        // }
+
         const selects = firstForm.querySelectorAll("select");
-        console.log(selects)
         if (!selects.length == 0) {
           Array.from(selects).map((select) => {
             const options = select.querySelectorAll("option");
             const value = Array.from(options).map((option) => {
               if (option.selected) {
-                 
-                optionValues.push(Number(option.value));
                 ticketCount = Number(option.value) + ticketCount;
-                totalTickets.value = ticketCount;
-                calcSubtotal(option);
+                subTotal.push(
+                  Number(option.dataset.price) * Number(option.value)
+                );
               }
             });
             return value;
           });
-        } else {
-            console.log('single ticket flow')
-          
-          Array.from(radios).map(input => {
-              
-            if (input.name === "ticketChoice") {
-              optionValues.push(Number(input.dataset.articlePrice))
-              ticketCount = 1
-              totalTickets.value = ticketCount
-              calcSubtotal(input)
-            }
+          totalPrice = subTotal.reduce((current, all) => {
+            return (all = current + all);
           });
         }
-
-        const totalFirstStep = document.querySelector("#total-first-step");
-        totalFirstStep.dataset.value = calcTotal();
-        totalFirstStep.innerText = `€${parseFloat(calcTotal() / 100).toFixed(2)}`;
-
-        const totalArticles = optionValues.reduce((current, all) => {
-          all = current + all;
-          return all;
-        });
-
-        if (totalArticles >= maxAmountOfArticles) {
-          validationError.classList.remove("hidden");
-        } else {
-          validationError.classList.add("hidden");
-        }
       }
+      if (ticketCount >= maxAmountOfArticles) {
+        validationError.classList.remove("hidden");
+      } else {
+        validationError.classList.add("hidden");
+      }
+    
+      totalTicketsPrice.value = `€${parseFloat(totalPrice / 100).toFixed(2)}`;
+      totalTickets.value = ticketCount;
+      numberTickets.textContent = ticketCount;
+      console.log(subTotal);
+      console.log(totalPrice);
+    }
 
-    //   priceTicket();
-      firstForm.addEventListener("change", priceTicket);
-    })();
+    firstForm.addEventListener("change", calcTicketCount);
+    window.addEventListener("load", calcTicketCount);
   }
 })();
-
 
 (function () {
   function localStorageTest() {
@@ -472,7 +449,7 @@
         arrayValues.forEach(value => {
 
             if(formInputs){
-              console.log(formInputs)
+              
               Array.from(formInputs).map(input =>{
                 if ((input.type == "radio" || input.type == "checkbox") && input.value == value) {
                   input.checked = true
@@ -483,16 +460,16 @@
             if(formSelects){
               
               Array.from(formObject).map(object =>{
-                // console.log(object)
+               
                 Array.from(formSelects).map(select =>{
-                  // console.log(select)
+                  
                   if (select.name == object[0]){
                     Array.from(select.children).map(option =>{
                       if(option.value == object[1]){
                         option.selected = true
                       }
                     })
-                    console.log(select.name + object)
+                    
                   }
                 })
               })
@@ -502,7 +479,7 @@
 
     // Put formData in localStorage
     form.addEventListener("change", function () {
-      console.log("form changed");
+      
       let formData = new FormData(form);
       
       
@@ -511,7 +488,7 @@
         dataObject[key] = value
       });
       let formDataJSON = JSON.stringify(dataObject)
-      console.log(formDataJSON)
+      
 
       let existing = localStorage.getItem("formData")
 
