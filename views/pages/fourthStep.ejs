@@ -28,7 +28,12 @@
                         </td>
                         <td>€ <%- (option.PriceCent / 100).toFixed(2) %></td>
                         <td>
-                            <input type="number" name="<%- option.Name %>" id="" max="6" min="0" value="0">
+                            <select aria-label="Aantal <%- option.Name %>" name="<%- option.Name %>" id="">
+                                <% for( let i = 0; i < 15; i++ ){ %>
+                            <option data-price="<%= option.PriceCent %>" value="<%= i %>"><%= i %></option>
+                                <%} %>
+                            </select>
+                            
                         </td>
                         <td>€ <output>0</output></td>
                     </tr>
