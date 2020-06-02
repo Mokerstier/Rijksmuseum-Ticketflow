@@ -14,7 +14,7 @@
           <% } %>
           <p class="align-middle">€ <%= (articles[0].PriceCent / 100).toFixed(2) %></p>
         </div>
-        <div>
+        <div class="ticket-amount-container">
           <button type="button" class="remove-ticket">-</button>
           <select aria-label="Aantal <%= articles[0].Name %>" name="Articles[0]" id="">
             <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
@@ -37,7 +37,7 @@
           <% } %>
           <p class="align-middle">€ <%= (articles[1].PriceCent /100).toFixed(2) %></p>
         </div>
-        <div>
+        <div class="ticket-amount-container">
           <button type="button" class="remove-ticket">-</button>
           <select aria-label="Aantal ><%= articles[1].Name %>" name="Articles[1]" id="">
             <% for( let i = 0; i <
@@ -57,7 +57,7 @@
           <% } %>
           <p class="align-middle">€ <%= (articles[2].PriceCent /100).toFixed(2) %></p>
         </div>
-        <div>
+        <div class="ticket-amount-container">
           <button type="button" class="remove-ticket">-</button>
           <select aria-label="Aantal" name="Articles[2]" id="">
             <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
@@ -76,7 +76,7 @@
           <% } %>
           <p class="align-middle">€ <%= (articles[3].PriceCent /100).toFixed(2) %></p>
         </div>
-        <div>
+        <div class="ticket-amount-container">
           <button type="button" class="remove-ticket">-</button>  
           <select aria-label="Aantal" name="Articles[3]" id="">
             <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
@@ -95,7 +95,7 @@
           <% } %>
           <p class="align-middle">€ <%= (articles[4].PriceCent / 100).toFixed(2) %></p>
         </div>  
-        <div>  
+        <div class="ticket-amount-container">  
           <button type="button" class="remove-ticket">-</button> 
           <select aria-label="Aantal" name="Articles[4]" id="">
             <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
@@ -114,7 +114,7 @@
           <% } %>
           <p class="align-middle">€ <%= (articles[5].PriceCent / 100).toFixed(2) %></p>
         </div>
-        <div>
+        <div class="ticket-amount-container">
           <button type="button" class="remove-ticket">-</button> 
           <select aria-label="Aantal" name="Articles[5]" id="">
             <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
