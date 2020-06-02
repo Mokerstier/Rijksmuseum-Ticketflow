@@ -51,12 +51,15 @@
           });
         }
       }
-      if (ticketCount >= maxAmountOfArticles) {
-        validationError.classList.remove("hidden");
-      } else {
-        validationError.classList.add("hidden");
+
+      if(validationError){
+        if (ticketCount >= maxAmountOfArticles) {
+          validationError.classList.remove("hidden");
+        } else {
+          validationError.classList.add("hidden");
+        }
       }
-    
+      
       totalTicketsPrice.value = `€${parseFloat(totalPrice / 100).toFixed(2)}`;
       totalTickets.value = ticketCount;
       numberTickets.textContent = ticketCount;
