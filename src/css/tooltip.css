@@ -8,6 +8,7 @@ td {
   padding: 1em;
   border-radius: 20px;
   left: 0;
+  bottom: 1.5em;
   background-color: white;
   z-index: 1;
 }
