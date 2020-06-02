@@ -1,42 +1,43 @@
     <%- include ("../partials/usps.ejs") %>
-    
-    
-    <% articles.forEach((article) => { %>
-        <input type="radio" name="ticketChoice" data-article-name="<%= article.Name %>" data-article-price="<%= article.PriceCent %>" value="<%= article.Name %>" id="<%= article.Code %>">
-        <label for="<%= article.Code %>">
-            <div class="ticket-container">
-                <h2><%= article.Name %></h2>
-                <div class="price-container">
-                    <p>€ <%= (article.PriceCent / 100).toFixed(2) %></p>
-                </div>
-            </div>
-            <output data-article-name="<%= article.Name %>" class="output">€0.00</output>
-        </label>
-        
-        <% if(articles.Description != "" && article.Description != "NULL"){ %>
-            <p><%= article.Description %></p>
-        <% } %>
-    <% }) %>
-    <output id="total-first-step" class="block-right">€0.00</output>
-
-    <div class="solo-subtotal-container">
-
-    </div>
-
-    <p>
-        <%= variantContent.articleSelectionContent.paragraphContentTitle %>
-      </p>
-      <ul>
-        <% variantContent.articleSelectionContent.paragraphContentListItems.map(item => { %>
-        <li><%= item %></li>
-        <% }) %>
-      </ul>
-      <section class="backButtonContainer">
-        <a href="/" class="backButton"> < Terug naar kies je groep</a>
-      </section>  
-      <section class="ticketOrder">
+  <section>
+      <fieldset>
         <div>
-          <p>Bestellingslijst...</p>
-          <input class="backAndNextButton" type="submit" value="Plan je bezoek">
-        </div>
-      </section>
+        <% articles.forEach((article) => { %>
+          <article>
+            <div>
+              <input type="radio" name="ticketChoice" data-article-name="<%= article.Name %>" data-article-price="<%= article.PriceCent %>" value="<%= article.Name %>" id="<%= article.Code %>">
+              <label for="<%= article.Code %>">
+                  <div class="ticket-container">
+                      <h2><%= article.Name %></h2>
+                      <p class="align-middle">€ <%= (article.PriceCent / 100).toFixed(2) %></p>
+                  </div>
+                  <% if(article.Description != "" && article.Description != "NULL"){ %>
+                    <button type="button" class="iBtn">i</button>
+                    <p class="tooltip"><%= article.Description %></p>
+                  <% } %>
+              </label>
+            </div>
+            <div></div>
+          </article>
+        <% }) %>
+      </div>
+      <p>Totaal prijs: <output id="total-first-step" class="block-right">€0.00</output></p>
+    </fieldset>
+    <p>
+      <%= variantContent.articleSelectionContent.paragraphContentTitle %>
+    </p>
+    <ul>
+      <% variantContent.articleSelectionContent.paragraphContentListItems.map(item => { %>
+      <li><%= item %></li>
+      <% }) %>
+    </ul>
+</section>
+<section class="backButtonContainer">
+  <a href="/" class="backButton"> < Terug naar kies je groep</a>
+</section>  
+<section class="ticketOrder">
+  <div>
+    <p>Bestellingslijst...</p>
+    <input class="backAndNextButton" type="submit" value="Plan je bezoek">
+  </div>
+</section>
