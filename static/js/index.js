@@ -464,17 +464,39 @@
     storedForm = storedForm ? JSON.parse(storedForm) : {}
     if (storedForm[formName]){
         const arrayValues = Object.values(storedForm[formName])
-        console.log(arrayValues)
+        const formObject = Object.entries(storedForm[formName])
+
+        const formInputs = form.querySelectorAll('input')
+        const formSelects = form.querySelectorAll('select')
+
         arrayValues.forEach(value => {
-            const checkThisInputs = form.querySelectorAll(`input`)
-            console.log(checkThisInputs)
-            Array.from(checkThisInputs).map(input =>{
-              if ((input.type == "radio" || input.type == "checkbox") && input.value == value) {
-                input.checked = true
-              }
-            })
-            
-            
+
+            if(formInputs){
+              console.log(formInputs)
+              Array.from(formInputs).map(input =>{
+                if ((input.type == "radio" || input.type == "checkbox") && input.value == value) {
+                  input.checked = true
+                }
+              })
+            }
+
+            if(formSelects){
+              
+              Array.from(formObject).map(object =>{
+                // console.log(object)
+                Array.from(formSelects).map(select =>{
+                  // console.log(select)
+                  if (select.name == object[0]){
+                    Array.from(select.children).map(option =>{
+                      if(option.value == object[1]){
+                        option.selected = true
+                      }
+                    })
+                    console.log(select.name + object)
+                  }
+                })
+              })
+            }
         })
     }
 
