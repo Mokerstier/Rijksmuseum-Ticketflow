@@ -1,59 +1,102 @@
 <%- include ("../partials/head.ejs") %>
 <nav>
-    <a href="/">1. Kies je groep ></a>
-    <a href="/tweede-stap?groupChoice=<%- groupChoice %>">2. Tickets > </a>
-    <a href="/derde-stap?totalTickets=<%-ticketCount%>">3. Plan je bezoek ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a>
+  <a href="/">1. Kies je groep ></a>
+  <a href="/tweede-stap?groupChoice=<%- groupChoice %>">2. Tickets > </a>
+  <a href="/derde-stap?totalTickets=<%-ticketCount%>">3. Plan je bezoek ></a>
+  <a class="navStepDisabled" tabindex="-1" href="/vierde-stap"
+    >4. Extra opties ></a
+  >
+  <a class="navStepDisabled" tabindex="-1" href="/vijfde-stap"
+    >5. Persoonsgegevens ></a
+  >
+  <a class="navStepDisabled" tabindex="-1" href="/zesde-stap"
+    >6. Overzicht en betaling ></a
+  >
 </nav>
 
 <main>
-    <form class="step-three" action="/vierde-stap" method="GET" data-formName="dateTourChoice">
-        <section class="entree-options-container">
-            <!-- <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2> -->
-            <h2>Plan je bezoek</h2>
-            <fieldset>
-                <legend>Plan hier je rondleiding door het Rijksmuseum</legend>
-                <% expositionContents.forEach(function(option) { %>
-                    <div>
-                        <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticket option" value="<%= option.name %>">
-                        <label for="<%= option.expositionId %>">
-                            <img src="<%= option.expoImage %>" alt="Een foto van een tour in het Rijksmuseum">
-                            <%= option.name %> 
-                            <span><%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %></span>
-                        </label>
-                    </div>
-                <% })%>
-            </fieldset>
-            <% for( let i = 0; i < expositionContents.length; i++ ){ %>
-                <p class="expositionContents<%= i %>"><%- expositionContents[i].longDescription %></p>
-            <% }%>
-        </section>
-        <section class="datePicker">
-                <legend>Kies hier je datum en tijd</legend>
-                <label for="monthDatePicker">In welke maand wil je gaan?</label>
-                <select id="monthDatePicker" class="monthDatePicker" name="month"></select>
-                <p>Wil je doordeweeks of in het weekend?</p>
-                <fieldset class="checkboxDay"></fieldset>
-                <p>Kies een beschikbare dag</p>
-                <fieldset class="chooseDay"></fieldset>
-                <p>Kies een start tijd</p>
-                <fieldset class="chooseTime"></fieldset>
-        </section>
-        <section class="backButtonContainer">
-            <a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="backButton"> < <%= ticketShop.articleSelectionContent.backButtonText %></a>
-        </section>  
-        <section class="ticketOrder">
-            <div>
-                <p>Bestellingslijst...</p>
-                <input class="backAndNextButton" type="submit" value="Naar extra opties">
-            </div>
-        </section>
-    </form>
+  <form
+    class="step-three"
+    action="/vierde-stap"
+    method="GET"
+    data-formName="dateTourChoice"
+  >
+    <section class="entree-options-container">
+      <!-- <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2> -->
+      <h2>Plan je bezoek</h2>
+      <fieldset>
+        <legend>Plan hier je rondleiding door het Rijksmuseum</legend>
+        <% expositionContents.forEach(function(option) { %>
+        <div>
+          <input
+            id="<%= option.expositionId %>"
+            data-id="<%= option.expositionId %>"
+            type="radio"
+            name="ticket option"
+            value="<%= option.name %>"
+          />
+          <label for="<%= option.expositionId %>">
+            <img
+              src="<%= option.expoImage %>"
+              alt="Een foto van een tour in het Rijksmuseum"
+            />
+            <%= option.name %>
+            <span
+              ><%=
+              ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription
+              %></span
+            >
+          </label>
+        </div>
+        <% })%>
+      </fieldset>
+      <% for( let i = 0; i < expositionContents.length; i++ ){ %>
+      <p class="expositionContents<%= i %>">
+        <%- expositionContents[i].longDescription %>
+      </p>
+      <% }%>
+    </section>
+    <section class="datePicker">
+      <legend>Kies hier je datum en tijd</legend>
+      <label for="monthDatePicker">In welke maand wil je gaan?</label>
+      <select
+        id="monthDatePicker"
+        class="monthDatePicker"
+        name="month"
+      ></select>
+      <p>Wil je doordeweeks of in het weekend?</p>
+      <fieldset class="checkboxDay"></fieldset>
+      <p>Welke datum wil je komen?</p>
+      <fieldset class="chooseDay"></fieldset>
+      <p>Kies een geschikt dagdeel</p>
+      <fieldset class="choose-day-period"></fieldset>
+
+      <p>Hoelaat wil je komen?</p>
+      <fieldset class="chooseTime">
+        <div class="morning-container"></div>
+        <div class="midday-container"></div>
+      </fieldset>
+
+    </section>
+    <section class="backButtonContainer">
+      <a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="backButton">
+        < <%= ticketShop.articleSelectionContent.backButtonText %></a
+      >
+    </section>
+    <section class="ticketOrder">
+      <div>
+        <p>Bestellingslijst...</p>
+        <input
+          class="backAndNextButton"
+          type="submit"
+          value="Naar extra opties"
+        />
+      </div>
+    </section>
+  </form>
 </main>
 <script>
-    const ticketCount = "<%= ticketCount %>"
-    console.log(ticketCount)
+  const ticketCount = "<%= ticketCount %>";
+  console.log(ticketCount);
 </script>
 <%- include ("../partials/footer.ejs") %>
