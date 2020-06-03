@@ -11,6 +11,7 @@
 <main>
     <h2>Stel je tickets samen</h2>
     <form class="form-first-step" action="derde-stap" method="GET" data-formName="<%=formName%>">
+      <input type="hidden" name="javascript" value="0">
       <%- include (`../partials/${groupChoice}.ejs`) %>
       <input type="hidden" class="totalTickets" name="totalTickets" value="">
       
