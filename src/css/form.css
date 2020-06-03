@@ -215,12 +215,6 @@ tr {
   padding: 0.5em 1em;
   font-size: 0.8em;
 }
-[action="/vijfde-stap"] select {
-  display: inline-block;
-  width: 30.7em;
-  padding: 0.5em 1em;
-  font-size: 0.8em;
-}
 [action="/vijfde-stap"] section:nth-last-of-type(3) {
   margin-top: 3em;
 }
