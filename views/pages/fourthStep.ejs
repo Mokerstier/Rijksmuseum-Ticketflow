@@ -1,8 +1,8 @@
 <%- include ("../partials/head.ejs") %>
 <nav>
-    <a href="/">1. Kies je groep ></a>
-    <a href="/tweede-stap?groupChoice=<%- groupChoice %>">2. Tickets > </a>
-    <a href="/derde-stap?totalTickets=<%-ticketCount%>">3. Plan je bezoek ></a>
+    <a class="visited" href="/">1. Kies je groep &#10003</a>
+    <a class="visited" href="/tweede-stap?groupChoice=<%- groupChoice %>">2. Tickets &#10003</a>
+    <a class="visited" href="/derde-stap?totalTickets=<%-ticketCount%>">3. Plan je bezoek &#10003</a>
     <a href="/vierde-stap">4. Extra opties ></a>
     <a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a>
     <a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a>
@@ -10,36 +10,31 @@
 <main>
     <form class="step-two" action="/vijfde-stap" method="GET" data-formName="extraOptionsChoice">
         <section>
-            <table class="full-width">
-                <thead>
-                    <th><%= ticketShop.expositionSelectionContent.multimediaSelectionTitle %></th>
-                    <th>Prijs</th>
-                    <th>Aantal</th>
-                    <th>Subtotaal</th>
-                </thead>
-                <tbody>
+            <fieldset>
+                <div>
                     <% articlesAdditional.forEach(function(option) { %>
-                    <tr>
-                        <td><%- option.Name %> 
-                            <% if(option.Description != "" && option.Description != "NULL"){ %>
-                                <span class="iBtn">i</span>
-                                <p class="tooltip"><%= option.Description %></p>
-                            <% } %>
-                        </td>
-                        <td>€ <%- (option.PriceCent / 100).toFixed(2) %></td>
-                        <td>
-                            <select aria-label="Aantal <%- option.Name %>" name="<%- option.Name %>" id="">
-                                <% for( let i = 0; i < 15; i++ ){ %>
-                            <option data-price="<%= option.PriceCent %>" value="<%= i %>"><%= i %></option>
-                                <%} %>
-                            </select>
-                            
-                        </td>
-                        <td>€ <output>0</output></td>
-                    </tr>
-                    <% })%>
-                </tbody>
-            </table>
+                        <article>
+                            <div>
+                                <h3><%= option.Name %></h3>
+                                <% if(option.Description != "" && option.Description != "NULL"){ %>
+                                    <span class="iBtn">i</span>
+                                    <p class="tooltip"><%= option.Description %></p>
+                                <% } %>
+                                <p class="align-middle">€ <%- (option.PriceCent / 100).toFixed(2) %></p>
+                            </div>
+                            <div class="ticket-amount-container">
+                                <button type="button" class="remove-ticket">-</button>
+                                <select aria-label="Aantal <%- option.Name %>" name="<%- option.Name %>" id="">
+                                    <% for( let i = 0; i <  Number(ticketCount)+1 ; i++ ){ %>
+                                <option data-price="<%= option.PriceCent %>" value="<%= i %>"><%= i %></option>
+                                    <%} %>
+                                </select>
+                                <button type="button" class="add-ticket">+</button>
+                            </div>
+                        </article>
+                      <% })%>
+                </div>
+            </fieldset>
         </section>
         <section class="donation">
             <h2>Doneer aan het Rijksmuseum</h2>
@@ -64,4 +59,7 @@
         </section>
     </form>
 </main>
+<script>
+    const ticketCount = "<%= ticketCount %>";
+  </script>
 <%- include ("../partials/footer.ejs") %>
