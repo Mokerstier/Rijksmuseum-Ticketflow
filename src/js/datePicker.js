@@ -180,7 +180,7 @@
 
       getDayNames.map((day) => {
         const checkbox = document.createElement("input");
-
+        const span = document.createElement('span')
         const label = document.createElement("label");
 
         let dayNumber;
@@ -199,8 +199,13 @@
         checkbox.id = day;
         checkbox.value = day;
 
-        checkboxContainer.appendChild(checkbox);
-        checkboxContainer.appendChild(label);
+        if (day == "Zondag") {
+          span.classList.add("zondag")
+        }
+
+        span.appendChild(checkbox);
+        span.appendChild(label);
+        checkboxContainer.appendChild(span);
       });
       checkboxes = document.querySelectorAll(".inputDay");
 
