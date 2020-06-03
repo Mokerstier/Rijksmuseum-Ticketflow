@@ -11,7 +11,8 @@
 <main>
     <form class="form-first-step" action="derde-stap" method="GET" data-formName="<%=formName%>">
       <%- include (`../partials/${groupChoice}.ejs`) %>
-      <input class="totalTickets" name="totalTickets" value="">
+      <input type="hidden" class="totalTickets" name="totalTickets" value="">
+      
     </form>
 
 </main>

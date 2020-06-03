@@ -1,5 +1,9 @@
     <%- include ("../partials/usps.ejs") %>
   <section>
+    <h1>
+      <%= variantContent.articleSelectionContent.articleSelectionTitle %>
+    </h1>
+    
       <fieldset>
         <div>
         <% articles.forEach((article) => { %>
@@ -21,6 +25,7 @@
           </article>
         <% }) %>
       </div>
+      <p>Aantal tickets: <output id="aantal-first-step" class="block-right">0</output></p>
       <p>Totaal prijs: <output id="total-first-step" class="block-right">€0.00</output></p>
     </fieldset>
     <p>
