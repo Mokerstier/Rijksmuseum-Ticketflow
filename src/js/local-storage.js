@@ -28,7 +28,7 @@
         arrayValues.forEach(value => {
 
             if(formInputs){
-              console.log(formInputs)
+              
               Array.from(formInputs).map(input =>{
                 if ((input.type == "radio" || input.type == "checkbox") && input.value == value) {
                   input.checked = true
@@ -39,16 +39,16 @@
             if(formSelects){
               
               Array.from(formObject).map(object =>{
-                // console.log(object)
+               
                 Array.from(formSelects).map(select =>{
-                  // console.log(select)
+                  
                   if (select.name == object[0]){
                     Array.from(select.children).map(option =>{
                       if(option.value == object[1]){
                         option.selected = true
                       }
                     })
-                    console.log(select.name + object)
+                    
                   }
                 })
               })
@@ -58,7 +58,7 @@
 
     // Put formData in localStorage
     form.addEventListener("change", function () {
-      console.log("form changed");
+      
       let formData = new FormData(form);
       
       
@@ -67,7 +67,7 @@
         dataObject[key] = value
       });
       let formDataJSON = JSON.stringify(dataObject)
-      console.log(formDataJSON)
+      
 
       let existing = localStorage.getItem("formData")
 

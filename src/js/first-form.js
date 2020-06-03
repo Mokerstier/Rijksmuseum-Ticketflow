@@ -1,92 +1,98 @@
 (function () {
   const firstForm = document.querySelector(".form-first-step");
-  const validationError = document.querySelector(".field-validation-error");
 
-  function calcSubtotal(articleOption) {
-    console.log(articleOption.dataset.articleName)
-    const subTotal =
-      Number(articleOption.dataset.price) * Number(articleOption.value);
-    // const output =
-    //   document.querySelector(`data-article-name="${}"`);
-    const subTotalContainer =
-      articleOption.parentElement.parentElement.nextElementSibling;
-    // subTotalContainer.innerText = ""
-
-    output.innerText = `€${parseFloat(subTotal / 100).toFixed(2)}`;
-    output.dataset.value = subTotal;
-    // subTotalContainer.appendChild(output)
-  }
-
-  function calcTotal() {
-    const outputs = document.querySelectorAll(".output");
-    outputValues = [];
-    const value = Array.from(outputs).map((output) => {
-      outputValues.push(Number(output.dataset.value));
-    });
-
-    const total = outputValues.reduce((current, all) => {
-      all = current + all;
-
-      return all;
-    });
-    return total;
-  }
   if (firstForm) {
-    (function () {
-      function priceTicket() {
-        let ticketCount = 0;
-        const totalTickets = document.querySelector(".totalTickets");
-        const optionValues = [];
-        const radios = firstForm.querySelectorAll("input");
-       console.log(radios)
+    const validationError = document.querySelector(".field-validation-error");
+    const totalTickets = document.querySelector(".totalTickets");
+    const numberTickets = document.querySelector("#aantal-first-step");
+    const totalTicketsPrice = document.querySelector("#total-first-step");
+
+    function calcTicketCount() {
+      let ticketCount;
+      const formData = new FormData(firstForm);
+      let data = {};
+      const subTotal = [];
+      let totalPrice;
+
+      if (firstForm.dataset.formname === "onlyTicketChoice") {
+        ticketCount = 1;
+        console.log("solo-soldier");
+        data = {
+          ticketChoice: formData.get("ticketChoice"),
+        };
+        const radioButtons = firstForm.querySelectorAll("input[type=radio]");
+        Array.from(radioButtons).map((radio) => {
+          if (radio.checked) {
+            totalPrice = Number(radio.dataset.articlePrice);
+          }
+        });
+      } else {
+        ticketCount = 0;
+        // for (let pair of formData.entries()) {
+        //   data[pair[0]] = pair[1]
+        // }
+
         const selects = firstForm.querySelectorAll("select");
-        console.log(selects)
         if (!selects.length == 0) {
           Array.from(selects).map((select) => {
             const options = select.querySelectorAll("option");
             const value = Array.from(options).map((option) => {
               if (option.selected) {
-                 
-                optionValues.push(Number(option.value));
                 ticketCount = Number(option.value) + ticketCount;
-                totalTickets.value = ticketCount;
-                calcSubtotal(option);
+                subTotal.push(
+                  Number(option.dataset.price) * Number(option.value)
+                );
               }
             });
             return value;
           });
-        } else {
-            console.log('single ticket flow')
-          
-          Array.from(radios).map(input => {
-              
-            if (input.name === "ticketChoice") {
-              optionValues.push(Number(input.dataset.articlePrice))
-              ticketCount = 1
-              totalTickets.value = ticketCount
-              calcSubtotal(input)
-            }
+          totalPrice = subTotal.reduce((current, all) => {
+            return (all = current + all);
           });
         }
+      }
 
-        const totalFirstStep = document.querySelector("#total-first-step");
-        totalFirstStep.dataset.value = calcTotal();
-        totalFirstStep.innerText = `€${parseFloat(calcTotal() / 100).toFixed(2)}`;
-
-        const totalArticles = optionValues.reduce((current, all) => {
-          all = current + all;
-          return all;
-        });
-
-        if (totalArticles >= maxAmountOfArticles) {
+      if(validationError){
+        if (ticketCount >= maxAmountOfArticles) {
           validationError.classList.remove("hidden");
         } else {
           validationError.classList.add("hidden");
         }
       }
 
-    //   priceTicket();
-      firstForm.addEventListener("change", priceTicket);
-    })();
+      totalTicketsPrice.value = `€${parseFloat(totalPrice / 100).toFixed(2)}`;
+      totalTickets.value = ticketCount;
+      numberTickets.textContent = ticketCount;
+      console.log(subTotal);
+      console.log(totalPrice);
+    }
+
+    const countModule = document.querySelectorAll('.ticket-amount-container')
+    console.log(countModule)
+    Array.from(countModule).map(module =>{
+        const removeButton = module.querySelector('.remove-ticket')
+        const addButton = module.querySelector('.add-ticket')
+        const ticketSelect = module.querySelector('select')
+        console.log(ticketSelect.selectedIndex)
+        removeButton.addEventListener('click', function(){
+            if(ticketSelect.selectedIndex === 0){
+                ticketSelect.selectedIndex = 0
+            } else {
+                ticketSelect.selectedIndex = ticketSelect.selectedIndex -1
+            }
+            calcTicketCount()
+        })
+        addButton.addEventListener('click', function(){
+          if(ticketSelect.selectedIndex === Number(maxAmountOfArticles)){
+              ticketSelect.selectedIndex = Number(maxAmountOfArticles)
+          } else {
+              ticketSelect.selectedIndex = ticketSelect.selectedIndex +1
+          }
+          calcTicketCount()
+      })
+    })
+
+    firstForm.addEventListener("change", calcTicketCount);
+    window.addEventListener("load", calcTicketCount);
   }
 })();
