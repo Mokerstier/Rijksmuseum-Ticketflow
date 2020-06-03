@@ -180,7 +180,7 @@
 
       getDayNames.map((day) => {
         const checkbox = document.createElement("input");
-
+        const span = document.createElement('span')
         const label = document.createElement("label");
 
         let dayNumber;
@@ -199,8 +199,9 @@
         checkbox.id = day;
         checkbox.value = day;
 
-        checkboxContainer.appendChild(checkbox);
-        checkboxContainer.appendChild(label);
+        span.appendChild(checkbox);
+        span.appendChild(label);
+        checkboxContainer.appendChild(span);
       });
       checkboxes = document.querySelectorAll(".inputDay");
 
@@ -456,7 +457,6 @@
     }
   }
 })();
-
 (function () {
     const inputs = document.querySelectorAll('.step-three .entree-options-container input[type="radio"]')
     for (let i = 0; i < inputs.length; i++) {
