@@ -9,7 +9,7 @@
           <article>
             <div>
               <h3><%= articles[a].Name %></h3>
-              <% if(articles[a].Description != "" && articles[0].Description != "NULL"){ %>
+              <% if(articles[a].Description != "" && articles[a].Description != "NULL"){ %>
                 <button type="button" class="iBtn">i</button>
                 <p class="tooltip"><%= articles[a].Description %></p>
               <% } %>
