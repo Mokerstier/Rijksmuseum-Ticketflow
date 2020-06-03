@@ -17,3 +17,6 @@ nav a {
   opacity: 0.4;
   pointer-events: none;
 }
+.visited {
+  color: #8bc400;
+}
