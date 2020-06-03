@@ -8,9 +8,11 @@
     <a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a>
 </nav>
 <main>
+    <h2>Extra opties voor bij je bestelling</h2>
     <form class="step-two" action="/vijfde-stap" method="GET" data-formName="extraOptionsChoice">
         <section>
             <fieldset>
+                <legend>Kies hier jouw multimedia bij je bezoek</legend>
                 <div>
                     <% articlesAdditional.forEach(function(option) { %>
                         <article>
@@ -37,9 +39,9 @@
             </fieldset>
         </section>
         <section class="donation">
-            <h2>Doneer aan het Rijksmuseum</h2>
-            <p>Doneer nu</p>
             <fieldset>
+                <legend>Doneer aan het Rijksmuseum</legend>
+                <p>Doneer nu</p>
                 <% DonationOptions.forEach(function(option) { %>
                         <input id="donation<%- option.Code %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
                         <label for="donation<%- option.Code %>">€ <%= (option.PriceCent/ 100).toFixed(2) %></label>

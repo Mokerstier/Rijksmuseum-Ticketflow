@@ -6,11 +6,10 @@ body {
 * {
   box-sizing: border-box;
 }
-h1 {
-  font-size: 1.2em;
-}
 h2 {
-  font-size: 1em;
+  font-size: 1.5em;
+  margin: 2em auto;
+  text-align: center;
 }
 form {
   position: relative;
@@ -18,9 +17,6 @@ form {
 main {
   margin: 1em auto 3em auto;
   position: relative;
-}
-main > h2 {
-  margin: 2em 0em;
 }
 section {
   width: 80%;

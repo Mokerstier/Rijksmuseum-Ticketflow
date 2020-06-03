@@ -63,9 +63,6 @@ td:first-child {
 tr {
   border-bottom: 1px solid #343537;
 }
-.step-three {
-  margin: 5em 0em 0em 0em;
-}
 .entree-options-container {
   background-color: white;
   margin-bottom: 3em;
@@ -194,6 +191,7 @@ tr {
   padding: 0.5em 1em;
   border-radius: 5px;
   margin: 3em auto;
+  text-align: center;
 }
 .timeCountdown span {
   font-weight: bold;
@@ -229,16 +227,4 @@ tr {
 [action="/vijfde-stap"] section:nth-last-of-type(3) a:focus {
   text-decoration: underline;
   color: #d55140;
-}
-.checkboxDay {
-  display: flex;
-  flex-direction: column;
-}
-.checkboxDay input:first-of-type {
-  background-color: lightgreen;
-  order: 13;
-}
-.checkboxDay label:first-of-type {
-  background-color: lightgreen;
-  order: 14;
 }
