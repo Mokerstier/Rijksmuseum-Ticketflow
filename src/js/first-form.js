@@ -52,7 +52,7 @@
         }
       }
 
-      if(validationError){
+      if (validationError) {
         if (ticketCount >= maxAmountOfArticles) {
           validationError.classList.remove("hidden");
         } else {
@@ -69,26 +69,26 @@
 
     const countModule = document.querySelectorAll('.ticket-amount-container')
     console.log(countModule)
-    Array.from(countModule).map(module =>{
-        const removeButton = module.querySelector('.remove-ticket')
-        const addButton = module.querySelector('.add-ticket')
-        const ticketSelect = module.querySelector('select')
-        console.log(ticketSelect.selectedIndex)
-        removeButton.addEventListener('click', function(){
-            if(ticketSelect.selectedIndex === 0){
-                ticketSelect.selectedIndex = 0
-            } else {
-                ticketSelect.selectedIndex = ticketSelect.selectedIndex -1
-            }
-            calcTicketCount()
-        })
-        addButton.addEventListener('click', function(){
-          if(ticketSelect.selectedIndex === Number(maxAmountOfArticles)){
-              ticketSelect.selectedIndex = Number(maxAmountOfArticles)
-          } else {
-              ticketSelect.selectedIndex = ticketSelect.selectedIndex +1
-          }
-          calcTicketCount()
+    Array.from(countModule).map(module => {
+      const removeButton = module.querySelector('.remove-ticket')
+      const addButton = module.querySelector('.add-ticket')
+      const ticketSelect = module.querySelector('select')
+      console.log(ticketSelect.selectedIndex)
+      removeButton.addEventListener('click', function () {
+        if (ticketSelect.selectedIndex === 0) {
+          ticketSelect.selectedIndex = 0
+        } else {
+          ticketSelect.selectedIndex = ticketSelect.selectedIndex - 1
+        }
+        calcTicketCount()
+      })
+      addButton.addEventListener('click', function () {
+        if (ticketSelect.selectedIndex === Number(maxAmountOfArticles)) {
+          ticketSelect.selectedIndex = Number(maxAmountOfArticles)
+        } else {
+          ticketSelect.selectedIndex = ticketSelect.selectedIndex + 1
+        }
+        calcTicketCount()
       })
     })
 
