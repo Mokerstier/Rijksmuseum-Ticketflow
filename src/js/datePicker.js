@@ -201,7 +201,7 @@
 
         if (day == "Zondag") {
           span.classList.add("zondag")
-        }
+        } 
 
         span.appendChild(checkbox);
         span.appendChild(label);
