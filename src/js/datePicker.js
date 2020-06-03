@@ -199,6 +199,10 @@
         checkbox.id = day;
         checkbox.value = day;
 
+        if (day == "Zondag") {
+          span.classList.add("zondag")
+        }
+
         span.appendChild(checkbox);
         span.appendChild(label);
         checkboxContainer.appendChild(span);
