@@ -1,11 +1,13 @@
 <%- include ("../partials/head.ejs") %> 
 <nav>
-    <a href="/">1. Kies je groep ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/tweede-stap">2. Tickets > </a>
-    <a class="navStepDisabled" tabindex="-1" href="/derde-stap">3. Plan je bezoek ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a>
+    <ul>
+        <li><a href="/" aria-current="page" title="1. Kies je groep">1. Kies je groep ></a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/tweede-stap">2. Tickets > </a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/derde-stap">3. Plan je bezoek ></a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
+    </ul>
 </nav>
 <main>
     <form action="/tweede-stap" method="GET" data-formName="firstFormChoice">
