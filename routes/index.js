@@ -8,6 +8,8 @@ function routes() {
         .get('/tweede-stap', render.getSecondStep)
         .get('/derde-stap', render.getThirdStep)
         .get('/vierde-stap', render.getFourthStep)
+        .get('/vierde-stap-datum', render.getFourthStepDate)
+        .get('/vierde-stap-dag', render.getFourthStepDay)
         .get('/vijfde-stap', render.getFifthStep)
         .get('/zesde-stap', render.getSixthStep)
         .get('/getExpoPeriod/:id/:count', getter.getExpoData)

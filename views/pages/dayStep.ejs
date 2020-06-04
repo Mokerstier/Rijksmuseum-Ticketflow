@@ -1,0 +1,37 @@
+<%- include ("../partials/head.ejs") %> 
+<nav>
+    <a class="visited" href="/">1. Kies je groep &#10003</a>
+    <a class="visited" href="/tweede-stap?groupChoice=<%- groupChoice %>">2. Tickets &#10003</a>
+    <a href="/derde-stap?totalTickets=<%-ticketCount%>">3. Plan je bezoek ></a>
+    <a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a>
+    <a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a>
+    <a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a>
+</nav>
+
+<main>
+    <h2>Op welke dag wil je komen?
+    </h2>
+    <form class="form-first-step" action="vierde-stap-tijd" method="GET" >
+        <p class="exponame"><%= expoName%></p>
+        <p class="exponame"><%= monthNames[month]%></p>
+        <section>
+        <h3>Selecteer een dag</h3>
+        <% days.forEach(day => { %>
+            <input id="<%=day.date%>" type="radio" value="<%=day.date%>">
+            <label for="<%=day.date%>"><%=day.name%> <%=day.date%></label> 
+        <% }) %>
+        </section>
+        <section class="ticketOrder">
+            <div>
+              <p>Bestellingslijst...</p>
+              <input class="backAndNextButton" type="submit" value="Kies een dag">
+            </div>
+          </section>
+          <input type="hidden" name="ticketCount" value="<%= ticketCount %>">
+          <input type="hidden" name="expoID" value="<%= expoID %>">
+    </form>
+
+</main>
+
+
+<%- include ("../partials/footer.ejs") %>

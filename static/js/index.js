@@ -1,5 +1,12 @@
 (function () {
   const formThirdStep = document.querySelector(".step-three");
+  const javascript = document.querySelector('input[name=javascript]')
+  
+  if (javascript){
+    javascript.value = 1
+  }
+  
+
   let checkboxes;
   let AvailableDaysRadioButtons;
   let ChosenMonth;
@@ -81,11 +88,11 @@
             "11": "December",
           };
 
-          const getMonthName = uniqueMonthArray.map((month) => {
+          const getMonthNames = uniqueMonthArray.map((month) => {
             return monthNames[month];
           });
 
-          getMonthName.map((month) => {
+          getMonthNames.map((month) => {
             const option = document.createElement("option");
 
             let monthNumber;

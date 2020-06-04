@@ -12,15 +12,22 @@
 
 <main>
   <h2>Plan je bezoek</h2>
-  <form class="step-three" action="/vierde-stap" method="GET" data-formName="dateTourChoice">
+
+  <% if(javascript == 1){ %>
+    <form class="step-three" action="/vierde-stap" method="GET" data-formName="dateTourChoice">
+  <% } else { %>
+    <form class="step-three" action="/vierde-stap-datum" method="GET" data-formName="dateTourChoice">
+  <% } %>
+
     <section class="entree-options-container">
       <!-- <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2> -->
       <fieldset>
         <legend>Plan hier je rondleiding door het Rijksmuseum</legend>
         <% expositionContents.forEach(function(option) { %>
         <div>
-          <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticket option"
-            value="<%= option.name %>" />
+          
+          <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+            value="<%= option.name%>,<%= option.expositionId %>" />
           <label for="<%= option.expositionId %>">
             <img src="<%= option.expoImage %>" alt="Een foto van een tour in het Rijksmuseum" />
             <%= option.name %>
@@ -36,11 +43,11 @@
       </p>
       <% }%>
     </section>
-    <script>
-    console.log('hallo')
-    </script>
 
-    <%- include ("../partials/datepicker.ejs") %>
+    <% if( javascript == 1){ %>
+      <%- include ("../partials/datepicker.ejs") %>
+    <% } %>
+    
 
     <section class="backButtonContainer">
       <a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="backButton">
@@ -49,9 +56,16 @@
     <section class="ticketOrder">
       <div>
         <p>Bestellingslijst...</p>
-        <input class="backAndNextButton" type="submit" value="Naar extra opties" />
+        <% if(javascript == 1){ %>
+          <input class="backAndNextButton" type="submit" value="Naar extra opties" />
+        <% } else { %>
+          <input class="backAndNextButton" type="submit" value="Kies datum" />
+        <% } %>
       </div>
     </section>
+
+    <input type="hidden" class="totalTickets" name="totalTickets" value="<%= ticketCount %>">
+
   </form>
 </main>
 <script>
