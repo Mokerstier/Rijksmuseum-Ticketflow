@@ -3,6 +3,12 @@ const ticketShopJSON = require('../data/ticketshop-configuration.json')
 let ticketChoice = null
 let ticketDefault = []
 let groupChoice = ""
+let expoChoice
+let monthChoice 
+let dayChoice
+let expoPeriodIDChoice
+let multiMediaChoice
+let donationChoice
 
 function checkDefault() {
     if (groupChoice === "small-group") {
@@ -51,11 +57,12 @@ function getThirdStep(req, res) {
     const javascript = req.query.javascript
     if (req.query.Articles) {
         ticketChoice = req.query.Articles.a
+        ticketCount = getter.getTicketCount(req, res)
     }
     if (req.query.ticketChoice) {
         ticketChoice = req.query.ticketChoice
     }
-    ticketCount = getter.getTicketCount(req, res)
+    
     console.log(ticketChoice)
     res.render('pages/thirdStep.ejs', {
         title: 'Plan je bezoek',
@@ -66,30 +73,15 @@ function getThirdStep(req, res) {
         groupChoice: groupChoice,
         ticketCount: ticketCount,
         formName: "dateTicketChoice",
-        javascript: javascript
+        javascript: javascript,
+        expoChoice: expoChoice
     })
 }
 
-function getFourthStep(req, res) {
-    const expositionContents = ticketShopJSON.expositionConfiguration[0].expositionContents
-    const ticketConfiguration = ticketShopJSON.variantContent[0]
-    const articlesDonation = getter.getDonation()
-    const articlesAdditional = getter.getAdditional()
-    res.render('pages/fourthStep.ejs', {
-        title: 'Extra opties',
-        expositionContents: expositionContents,
-        ticketShop: ticketConfiguration,
-        DonationOptions: articlesDonation,
-        articlesAdditional: articlesAdditional,
-        groupChoice: groupChoice,
-        ticketCount: ticketCount,
-        formName: "dateTicketChoice"
-    })
-}
-
-function getFourthStepDate(req, res){
+function getThirdStepDate(req, res){
     const ticketCount = req.query.totalTickets
     const expoName = getter.getExpoName(req, res)
+    expoChoice = expoName
     const expoID = getter.getExpoId(req, res)
     const months = getter.getExpoMonth(ticketCount, expoID)
    
@@ -99,15 +91,17 @@ function getFourthStepDate(req, res){
         ticketCount: ticketCount,
         expoID: expoID,
         expoName: expoName,
-        months: months
+        months: months,
+        monthChoice: monthChoice
     })
 }
 
-function getFourthStepDay(req, res){
+function getThirdStepDay(req, res){
     const expoID = req.query.expoID
     const ticketCount = req.query.ticketCount
     const expoName = req.query.expoName
     const month = req.query.month
+    monthChoice = month
     const days = getter.getExpoDay(expoID, ticketCount, month)
     
     const monthNames = {
@@ -133,16 +127,63 @@ function getFourthStepDay(req, res){
         expoName: expoName,
         monthNames: monthNames,
         month: month,
-        days: days
+        days: days,
+        dayChoice: dayChoice
     })
 }
 
-function getFourthStepTime(req, res){
+function getThirdStepTime(req, res){
+    const expoID = req.query.expoID
+    const ticketCount = req.query.ticketCount
+    const expoName = req.query.expoName
+    const monthNumber = req.query.monthNumber
+    const month = req.query.month
+    const day = req.query.day
+    dayChoice = day
+    const expos = getter.getExpoTime(expoID, ticketCount, monthNumber, day)
 
+    res.render('pages/timeStep.ejs',{
+        groupChoice: groupChoice,
+        title: 'Kies een tijdslot',
+        ticketCount: ticketCount,
+        expoID: expoID,
+        expoName: expoName,
+        expos: expos,
+        month: month,
+        day: day,
+        expoPeriodIDChoice: expoPeriodIDChoice
+    })
+}
+
+function getFourthStep(req, res) {
+    const expositionContents = ticketShopJSON.expositionConfiguration[0].expositionContents
+    const ticketConfiguration = ticketShopJSON.variantContent[0]
+    const articlesDonation = getter.getDonation()
+    const articlesAdditional = getter.getAdditional()
+    if(req.query.startTime){
+        expoPeriodIDChoice = req.query.startTime.split(',')
+        expoPeriodIDChoice = expoPeriodIDChoice[1]
+    }
+    res.render('pages/fourthStep.ejs', {
+        title: 'Extra opties',
+        expositionContents: expositionContents,
+        ticketShop: ticketConfiguration,
+        DonationOptions: articlesDonation,
+        articlesAdditional: articlesAdditional,
+        groupChoice: groupChoice,
+        ticketCount: ticketCount,
+        formName: "dateTicketChoice",
+        multiMediaChoice: multiMediaChoice,
+        donationChoice: donationChoice
+    })
 }
 
 function getFifthStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
+    console.log(req.query)
+    multiMediaChoice = req.query.Multimediatour
+    donationChoice = req.query.Doneer
+
     res.render('pages/fifthStep.ejs', {
         title: 'Persoonlijke gegevens',
         ticketShop: ticketConfiguration,
@@ -170,10 +211,10 @@ module.exports = {
     getFirstStep,
     getSecondStep,
     getThirdStep,
+    getThirdStepDate,    
+    getThirdStepDay,
+    getThirdStepTime,
     getFourthStep,
-    getFourthStepDate,
     getFifthStep,
-    getSixthStep,
-    getFourthStepDay,
-    getFourthStepTime
+    getSixthStep
 }

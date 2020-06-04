@@ -16,7 +16,7 @@
   <% if(javascript == 1){ %>
     <form class="step-three" action="/vierde-stap" method="GET" data-formName="dateTourChoice">
   <% } else { %>
-    <form class="step-three" action="/vierde-stap-datum" method="GET" data-formName="dateTourChoice">
+    <form class="step-three" action="/derde-stap-datum" method="GET" data-formName="dateTourChoice">
   <% } %>
 
     <section class="entree-options-container">
@@ -26,8 +26,15 @@
         <% expositionContents.forEach(function(option) { %>
         <div>
           
-          <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+            <% if(expoChoice == option.name){ %>
+            <input checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
             value="<%= option.name%>,<%= option.expositionId %>" />
+            
+          <% } else {%>
+            <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+            value="<%= option.name%>,<%= option.expositionId %>" />
+          <% } %>
+          
           <label for="<%= option.expositionId %>">
             <img src="<%= option.expoImage %>" alt="Een foto van een tour in het Rijksmuseum" />
             <%= option.name %>

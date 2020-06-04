@@ -7,10 +7,13 @@ function routes() {
         .get('/', render.getFirstStep)
         .get('/tweede-stap', render.getSecondStep)
         .get('/derde-stap', render.getThirdStep)
+        
+        // No javascript on client
+        .get('/derde-stap-datum', render.getThirdStepDate)
+        .get('/derde-stap-dag', render.getThirdStepDay)
+        .get('/derde-stap-tijd', render.getThirdStepTime)
+
         .get('/vierde-stap', render.getFourthStep)
-        .get('/vierde-stap-datum', render.getFourthStepDate)
-        .get('/vierde-stap-dag', render.getFourthStepDay)
-        .get('/vierde-stap-tijd', render.getFourthStepTime)
         .get('/vijfde-stap', render.getFifthStep)
         .get('/zesde-stap', render.getSixthStep)
         .get('/getExpoPeriod/:id/:count', getter.getExpoData)

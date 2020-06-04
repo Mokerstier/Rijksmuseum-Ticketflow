@@ -204,6 +204,21 @@ function getExpoDay(expoID, ticketCount, monthNumber){
     return daysArray
 }
 
+function getExpoTime(expoID, ticketCount, monthNumber, day){
+    const data = expositionPeriodsJSON
+    const dataToUse = []
+    const filterData = data.filter(expo => {
+        const month = new Date(expo.PeriodStart).getMonth() 
+        const dayDate = new Date(expo.PeriodStart).getDate()
+        
+        if (expo.ExpositionId === expoID.toUpperCase() && expo.RemainingTIckets >= ticketCount && month == monthNumber && dayDate == day){
+            
+            return expo
+        }
+    })
+    dataToUse.push(filterData)
+    return dataToUse[0]
+}
 module.exports = {
     getArticles,
     getDonation,
@@ -213,5 +228,6 @@ module.exports = {
     getExpoId,
     getExpoMonth,
     getExpoName,
-    getExpoDay
+    getExpoDay,
+    getExpoTime
 }

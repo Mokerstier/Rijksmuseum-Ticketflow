@@ -26,9 +26,14 @@
                             </div>
                             <div class="ticket-amount-container">
                                 <button type="button" class="remove-ticket">-</button>
-                                <select aria-label="Aantal <%- option.Name %>" name="<%- option.Name %>" id="">
+                                <select aria-label="Aantal <%- option.Name %>" name="<%- option.FormName %>" id="">
                                     <% for( let i = 0; i <  Number(ticketCount)+1 ; i++ ){ %>
-                                <option data-price="<%= option.PriceCent %>" value="<%= i %>"><%= i %></option>
+                                        <% if(multiMediaChoice == i){%>
+                                            <option selected="selected" data-price="<%= option.PriceCent %>" value="<%= i %>"><%= i %></option>
+                                        <%}  else {%>
+                                            <option data-price="<%= option.PriceCent %>" value="<%= i %>"><%= i %></option>
+                                        <%} %>
+                                
                                     <%} %>
                                 </select>
                                 <button type="button" class="add-ticket">+</button>
@@ -43,7 +48,11 @@
                 <legend>Doneer aan het Rijksmuseum</legend>
                 <p>Doneer nu</p>
                 <% DonationOptions.forEach(function(option) { %>
-                        <input id="donation<%- option.Code %>" type="radio" name="Doneer option" value="<%= option.PriceCent %>">
+                    <% if(donationChoice == option.PriceCent){%>
+                        <input checked="checked" id="donation<%- option.Code %>" type="radio" name="Doneer" value="<%= option.PriceCent %>">
+                    <%}  else {%>
+                        <input id="donation<%- option.Code %>" type="radio" name="Doneer" value="<%= option.PriceCent %>">
+                    <%} %>   
                         <label for="donation<%- option.Code %>">€ <%= (option.PriceCent/ 100).toFixed(2) %></label>
                 <% })%>
                 <input id="noDonation" type="radio" name="Doneer option" value="0">

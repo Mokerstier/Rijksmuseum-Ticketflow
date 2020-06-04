@@ -11,13 +11,17 @@
 <main>
     <h2>In welke maand wil je gaan?
     </h2>
-    <form class="form-first-step" action="vierde-stap-dag" method="GET" >
+    <form class="form-first-step" action="derde-stap-dag" method="GET" >
         <p class="exponame"><%= expoName%></p>
         <section>
         <label for="monthDatePicker">Selecteer een maand</label>
         <select id="monthDatePicker" class="monthDatePicker" name="month">
             <% months.forEach(month => { %>
+                <%if(monthChoice == Object.keys(month)){%>
+                <option selected="selected" value="<%= Object.keys(month) %>"><%=Object.values(month) %></option>
+                <% } else {%>
                 <option value="<%= Object.keys(month) %>"><%=Object.values(month) %></option>
+                <% } %>
             <% }) %>
         </select>
         </section>
