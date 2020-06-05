@@ -8,7 +8,7 @@ td {
   padding: 1em;
   border-radius: 20px;
   left: 0;
-  bottom: 1.5em;
+  bottom: 3em;
   background-color: white;
   z-index: 1;
 }
@@ -27,5 +27,14 @@ td {
   transition: all 0.5s;
 }
 .iBtn:hover + .tooltip {
+  display: block;
+}
+.iBtn:focus {
+  border: 1px solid white;
+  color: white;
+  background-color: black;
+  transition: all 0.5s;
+}
+.iBtn:focus + .tooltip {
   display: block;
 }

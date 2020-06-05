@@ -1,42 +1,44 @@
 <%- include ("../partials/head.ejs") %> 
 <nav>
-    <a href="/">1. Kies je groep ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/tweede-stap">2. Tickets > </a>
-    <a class="navStepDisabled" tabindex="-1" href="/derde-stap">3. Plan je bezoek ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a>
-    <a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a>
+    <ul>
+        <li><a href="/" aria-current="page" title="1. Kies je groep" class="linkStyleUnderline">1. Kies je groep ></a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/tweede-stap">2. Tickets > </a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/derde-stap">3. Plan je bezoek ></a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
+    </ul>
 </nav>
 <main>
     <form action="/tweede-stap" method="GET" data-formName="firstFormChoice">
         <section class="group-choice">
             <h2>Met wie kom je naar het museum?</h2>
                 <div>
-                    <a href="/tweede-stap?groupChoice=only">
+                    <a href="/tweede-stap?groupChoice=only" title="Alleen op je eigen tempo">
                         <img src="/assets/images/RijksFotos/tourtype3special.jpg" alt="Een foto van een tour in het Rijksmuseum">
                         <h3>Alleen op je eigen tempo</h3>
                     </a>
                 </div>
                 <div>
-                    <a href="/tweede-stap?groupChoice=family">
+                    <a href="/tweede-stap?groupChoice=family" title="Samen met je gezin">
                         <img src="/assets/images/RijksFotos/gezin.jpg" alt="Een foto van een tour in het Rijksmuseum">
                         <h3>Samen met je gezin</h3>
                     </a>
                 </div>
                 <div>
-                    <a href="/tweede-stap?groupChoice=date">
+                    <a href="/tweede-stap?groupChoice=date" title="Gezellig op date">
                         <img src="/assets/images/RijksFotos/date.jpeg" alt="Een foto van een tour in het Rijksmuseum">
                         <h3>Gezellig op date</h3>
                     </a>
                 </div>
                 <div>
-                    <a href="/tweede-stap?groupChoice=small-group">
+                    <a href="/tweede-stap?groupChoice=small-group" title="Groep van 2 tot en met 15 mensen">
                         <img src="/assets/images/RijksFotos/groepKinderen.jpg" alt="Een foto van een tour in het Rijksmuseum">
                         <h3>Groep van 2 tot en met 15 mensen</h3>
                     </a>
                 </div>
                 <div>
-                    <a href="https://www.rijksmuseum.nl/nl/groepsbezoek">
+                    <a href="https://www.rijksmuseum.nl/nl/groepsbezoek" title="Groep met meer dan 15 mensen">
                         <img src="/assets/images/RijksFotos/groep.jpg" alt="Een foto van een tour in het Rijksmuseum">
                         <h3>Groep met meer dan 15 mensen</h3>
                     </a>
