@@ -2,8 +2,8 @@
 <nav>
   <ul>
       <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
-      <li><a href="/tweede-stap" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
-      <li><a href="/derde-stap" aria-current="page">3. Plan je bezoek ></a></li> 
+      <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
+      <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" aria-current="page">3. Plan je bezoek ></a></li> 
       <li><a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a></li> 
       <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
       <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
@@ -12,35 +12,34 @@
 
 <main>
   <h2>Plan je bezoek</h2>
-  <form
-    class="step-three"
-    action="/vierde-stap"
-    method="GET"
-    data-formName="dateTourChoice"
-  >
+
+  <% if(javascript == 1){ %>
+    <form class="step-three" action="/vierde-stap" method="GET" data-formName="dateTourChoice">
+  <% } else { %>
+    <form class="step-three" action="/derde-stap-datum" method="GET" data-formName="dateTourChoice">
+  <% } %>
+
     <section class="entree-options-container">
       <!-- <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2> -->
       <fieldset>
         <legend>Plan hier je rondleiding door het Rijksmuseum</legend>
         <% expositionContents.forEach(function(option) { %>
         <div>
-          <input
-            id="<%= option.expositionId %>"
-            data-id="<%= option.expositionId %>"
-            type="radio"
-            name="ticket option"
-            value="<%= option.name %>"
-          />
-          <label for="<%= option.expositionId %>">
-            <img
-              src="<%= option.expoImage %>"
-              alt="Een foto van een tour in het Rijksmuseum"
-            />
-            <%= option.name %>
-            <%=
-              ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription
-              %>
+          
+            <% if(expoChoice == option.name){ %>
+            <input checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+            value="<%= option.name%>,<%= option.expositionId %>" />
             
+          <% } else {%>
+            <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+            value="<%= option.name%>,<%= option.expositionId %>" />
+          <% } %>
+          
+          <label for="<%= option.expositionId %>">
+            <img src="<%= option.expoImage %>" alt="Een foto van een tour in het Rijksmuseum" />
+            <%= option.name %>
+            <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>
+
           </label>
         </div>
         <% })%>
@@ -51,42 +50,29 @@
       </p>
       <% }%>
     </section>
-    <section class="datePicker">
-      <legend>Kies hier je datum en tijd</legend>
-      <label for="monthDatePicker">In welke maand wil je gaan?</label>
-      <select
-        id="monthDatePicker"
-        class="monthDatePicker"
-        name="month"
-      ></select>
-      <p>Op welke dag wil je naar het museum?</p>
-      <fieldset class="checkboxDay"></fieldset>
-      <p>Welke datum wil je komen?</p>
-      <fieldset class="chooseDay"></fieldset>
-      <p>Wanneer op de dag wil je komen?</p>
-      <fieldset class="choose-day-period"></fieldset>
-      <p>Hoelaat wil je komen?</p>
-      <fieldset class="chooseTime">
-        <div class="morning-container"></div>
-        <div class="midday-container"></div>
-      </fieldset>
 
-    </section>
+    <% if( javascript == 1){ %>
+      <%- include ("../partials/datepicker.ejs") %>
+    <% } %>
+    
+
     <section class="backButtonContainer">
       <a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="backButton">
-        < <%= ticketShop.articleSelectionContent.backButtonText %></a
-      >
+        < <%= ticketShop.articleSelectionContent.backButtonText %></a>
     </section>
     <section class="ticketOrder">
       <div>
         <p>Bestellingslijst...</p>
-        <input
-          class="backAndNextButton"
-          type="submit"
-          value="Naar extra opties"
-        />
+        <% if(javascript == 1){ %>
+          <input class="backAndNextButton" type="submit" value="Naar extra opties" />
+        <% } else { %>
+          <input class="backAndNextButton" type="submit" value="Kies datum" />
+        <% } %>
       </div>
     </section>
+
+    <input type="hidden" class="totalTickets" name="totalTickets" value="<%= ticketCount %>">
+
   </form>
 </main>
 <script>

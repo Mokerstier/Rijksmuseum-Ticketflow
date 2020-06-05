@@ -1,0 +1,46 @@
+<%- include ("../partials/head.ejs") %> 
+<nav>
+    <ul>
+        <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
+        <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
+        <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" aria-current="page">3. Plan je bezoek ></a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
+        <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
+    </ul>
+  </nav>
+
+<main>
+    <h2>Op welke dag wil je komen?
+    </h2>
+    <form class="form-first-step" action="derde-stap-tijd" method="GET" >
+        <p class="exponame"><%= expoName%></p>
+        <p class="exponame"><%= monthNames[month]%></p>
+        <section>
+        <h3>Selecteer een dag</h3>
+        <% days.forEach(day => { %>
+            <% if(dayChoice == day.date){ %>
+            <input checked="checked" id="<%=day.date%>" name="day" type="radio" value="<%=day.date%>">
+            <% } else { %>
+                <input id="<%=day.date%>" name="day" type="radio" value="<%=day.date%>">
+            <% } %>
+            <label for="<%=day.date%>"><%=day.name%> <%=day.date%></label> 
+        <% }) %>
+        </section>
+        <section class="ticketOrder">
+            <div>
+              <p>Bestellingslijst...</p>
+              <input class="backAndNextButton" type="submit" value="Kies een tijd">
+            </div>
+          </section>
+          <input type="hidden" name="monthNumber" value="<%= month%>">
+          <input type="hidden" name="month" value="<%= monthNames[month]%>">
+          <input type="hidden" name="expoName" value="<%= expoName %>">
+          <input type="hidden" name="ticketCount" value="<%= ticketCount %>">
+          <input type="hidden" name="expoID" value="<%= expoID %>">
+    </form>
+
+</main>
+
+
+<%- include ("../partials/footer.ejs") %>

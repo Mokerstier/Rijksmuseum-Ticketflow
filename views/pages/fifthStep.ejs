@@ -2,8 +2,8 @@
 <nav>
     <ul>
         <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
-        <li><a href="/tweede-stap" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
-        <li><a href="/derde-stap" class="visited linkStyleUnderline">3. Plan je bezoek &#10003</a></li> 
+        <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
+        <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" class="visited linkStyleUnderline">3. Plan je bezoek &#10003</a></li> 
         <li><a href="/vierde-stap" class="visited linkStyleUnderline">4. Extra opties &#10003</a></li> 
         <li><a href="/vijfde-stap" aria-current="page">5. Persoonsgegevens ></a></li> 
         <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
@@ -16,7 +16,7 @@
     <section class="timeCountdown">
         <p>Je hebt nu een tijd gereserveerd. De resterende tijd om je bestelling af te ronden is <span>25:00</span></p>
     </section>
-    <h2>Persoonsgegevens</h3>
+    <h2>Persoonsgegevens</h2>
     <section>
         <fieldset>
             <label for="firstName">Naam *</label>
