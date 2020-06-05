@@ -1,13 +1,16 @@
 
 <%- include ("../partials/head.ejs") %>
 <nav>
-    <a class="visited" href="/">1. Kies je groep &#10003</a>
-    <a class="visited" href="/tweede-stap?groupChoice=<%- groupChoice %>">2. Tickets &#10003</a>
-    <a class="visited" href="/derde-stap?totalTickets=<%-ticketCount%>">3. Plan je bezoek &#10003</a>
-    <a class="visited" href="/vierde-stap">4. Extra opties &#10003</a>
-    <a class="visited" href="/vijfde-stap">5. Persoonsgegevens &#10003</a>
-    <a href="/zesde-stap">6. Overzicht en betaling</a>
+    <ul>
+        <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
+        <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
+        <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" class="visited linkStyleUnderline">3. Plan je bezoek &#10003</a></li>
+        <li><a href="/vierde-stap" class="visited linkStyleUnderline">4. Extra opties &#10003</a></li> 
+        <li><a href="/vijfde-stap" class="visited linkStyleUnderline">5. Persoonsgegevens &#10003</a></li> 
+        <li><a href="/zesde-stap" aria-current="page">6. Overzicht en betaling ></a></li> 
+    </ul>
 </nav>
+
 <main>
     <h2>Zesde stap</h2>
 </main>

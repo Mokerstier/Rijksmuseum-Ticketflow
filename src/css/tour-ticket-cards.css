@@ -70,20 +70,6 @@
   margin-right: 0.5em;
   margin-bottom: 1em;
 }
-.group-choice a:focus div {
-  background-color: #343537;
-  outline: none;
-  -webkit-appearance: none;
-  -webkit-box-shadow: 0px 0px 0px 5px #d9531e;
-  box-shadow: 0px 0px 0px 5px #d9531e;
-}
-.group-choice a:hover {
-  background-color: #343537;
-  outline: none;
-  -webkit-appearance: none;
-  -webkit-box-shadow: 0px 0px 0px 5px #d9531e;
-  box-shadow: 0px 0px 0px 5px #d9531e;
-}
 .group-choice h3 {
   text-align: center;
   height: 3em;

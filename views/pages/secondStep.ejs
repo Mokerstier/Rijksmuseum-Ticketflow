@@ -1,11 +1,13 @@
 <%- include ("../partials/head.ejs") %> 
 <nav>
-  <a class="visited" href="/">1. Kies je groep &#10003</a>
-  <a href="/tweede-stap?groupChoice=<%- groupChoice %>">2. Tickets ></a>
-  <a class="navStepDisabled" tabindex="-1" href="#">3. Plan je bezoek ></a>
-  <a class="navStepDisabled" tabindex="-1" href="#">4. Extra opties ></a>
-  <a class="navStepDisabled" tabindex="-1" href="#">5. Persoonsgegevens ></a>
-  <a class="navStepDisabled" tabindex="-1" href="#">6. Overzicht en betaling ></a>
+  <ul>
+      <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
+      <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="linkStyleUnderline">2. Tickets ></a></li> 
+      <li><a class="navStepDisabled" tabindex="-1" href="/derde-stap">3. Plan je bezoek ></a></li> 
+      <li><a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a></li> 
+      <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
+      <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
+  </ul>
 </nav>
 
 <main>

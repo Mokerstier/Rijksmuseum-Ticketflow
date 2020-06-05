@@ -9,6 +9,7 @@ let dayChoice
 let expoPeriodIDChoice
 let multiMediaChoice
 let donationChoice
+let javascript
 
 function checkDefault() {
     if (groupChoice === "small-group") {
@@ -33,7 +34,7 @@ function getSecondStep(req, res) {
     const articleConfiguration = ticketShopJSON.articleConfiguration[0]
     groupChoice = req.query.groupChoice
     ticketDefault = checkDefault()
-    console.log(ticketDefault)
+    console.log('ticketDefault '+ticketDefault)
     if (groupChoice === "large-group") {
         res.redirect('https://www.rijksmuseum.nl/nl/groepsbezoek')
     }
@@ -54,16 +55,17 @@ function getThirdStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
-    const javascript = req.query.javascript
+    javascript = req.query.javascript
+
     if (req.query.Articles) {
-        ticketChoice = req.query.Articles.a
+        ticketChoice = req.query.Articles
         ticketCount = getter.getTicketCount(req, res)
     }
     if (req.query.ticketChoice) {
         ticketChoice = req.query.ticketChoice
     }
     
-    console.log(ticketChoice)
+    console.log('TicketChoice '+ticketChoice)
     res.render('pages/thirdStep.ejs', {
         title: 'Plan je bezoek',
         expositionContents: expositionContents,
@@ -92,7 +94,8 @@ function getThirdStepDate(req, res){
         expoID: expoID,
         expoName: expoName,
         months: months,
-        monthChoice: monthChoice
+        monthChoice: monthChoice,
+        javascript: javascript
     })
 }
 
@@ -128,7 +131,8 @@ function getThirdStepDay(req, res){
         monthNames: monthNames,
         month: month,
         days: days,
-        dayChoice: dayChoice
+        dayChoice: dayChoice,
+        javascript: javascript
     })
 }
 
@@ -151,7 +155,8 @@ function getThirdStepTime(req, res){
         expos: expos,
         month: month,
         day: day,
-        expoPeriodIDChoice: expoPeriodIDChoice
+        expoPeriodIDChoice: expoPeriodIDChoice,
+        javascript: javascript
     })
 }
 
@@ -174,7 +179,8 @@ function getFourthStep(req, res) {
         ticketCount: ticketCount,
         formName: "dateTicketChoice",
         multiMediaChoice: multiMediaChoice,
-        donationChoice: donationChoice
+        donationChoice: donationChoice,
+        javascript: javascript
     })
 }
 
@@ -189,7 +195,8 @@ function getFifthStep(req, res) {
         ticketShop: ticketConfiguration,
         groupChoice: groupChoice,
         ticketCount: ticketCount,
-        formName: "dateTicketChoice"
+        formName: "dateTicketChoice",
+        javascript: javascript
     })
 }
 
@@ -200,7 +207,8 @@ function getSixthStep(req, res) {
         ticketShop: ticketConfiguration,
         groupChoice: groupChoice,
         ticketCount: ticketCount,
-        formName: "dateTicketChoice"
+        formName: "dateTicketChoice",
+        javascript: javascript
     })
 }
 

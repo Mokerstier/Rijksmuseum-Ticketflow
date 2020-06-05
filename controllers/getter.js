@@ -8,7 +8,7 @@ function getArticles() {
     articles.map(articleID => {
         articlesJSON.map(object => {
             if (object.Code === articleID) {
-                // console.log(object)
+                
                 articleArray.push(object)
             }
         })
@@ -23,7 +23,7 @@ function getDonation() {
     articles.map(articleID => {
         articlesJSON.map(object => {
             if (object.Code === articleID) {
-                // console.log(object)
+                
                 if (object.Language === "NL") {
                     articleArray.push(object)
                 }
@@ -40,7 +40,7 @@ function getAdditional() {
     articles.map(articleID => {
         articlesJSON.map(object => {
             if (object.Code === articleID) {
-                // console.log(object)
+                
                 if (object.Language === "NL") {
                     articleArray.push(object)
                 }
@@ -73,8 +73,8 @@ function getExpoData(req, res) {
 }
 
 function getTicketCount(req, res){
-    let ticketsCount = req.query.Articles.a
-    console.log(ticketsCount)
+    let ticketsCount = req.query.Articles
+    console.log('Articles '+ticketsCount)
     ticketsCount = ticketsCount.reduce((all, current) =>{
         all = Number(all) + Number(current)
         return all

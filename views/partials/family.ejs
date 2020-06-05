@@ -15,7 +15,7 @@
             </div>
             <div class="ticket-amount-container">
               <button type="button" class="remove-ticket">-</button>
-              <select aria-label="Aantal <%= articles[a].Name %>" name="Articles[a]" id="">
+              <select aria-label="Aantal <%= articles[a].Name %>" name="Articles[<%-a%>]" id="">
                 <% if(ticketChoice != null){ %>
                   <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
                       <% if(i == ticketChoice[a]) { %>
@@ -57,7 +57,7 @@
       </ul>
     </section>
     <section class="backButtonContainer">
-      <a href="/" class="backButton"> < Terug naar kies je groep</a>
+      <a href="/" class="backButton linkStyleUnderline"> < Terug naar kies je groep</a>
     </section>  
     <section class="ticketOrder">
       <div>
