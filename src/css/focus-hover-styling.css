@@ -3,7 +3,19 @@
 }
 .backAndNextButton:focus {
   background-color: black;
-  outline: 2px solid purple;
+  border: 3px solid #d55140;
+  outline: none;
+}
+.group-choice a:focus {
+  background-color: #343537;
+  outline: 5px solid #d9531e;
+}
+.group-choice a:hover {
+  background-color: #343537;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-box-shadow: 0px 0px 0px 5px #d9531e;
+  box-shadow: 0px 0px 0px 5px #d9531e;
 }
 .backButton {
   color: #d9531e;
@@ -109,25 +121,52 @@
 }
 .checkboxDay span {
   position: relative;
-  border: 1px solid black;
-  border-radius: 3px;
+  margin: 0.5em;
   width: 10em;
   height: 2em;
   display: inline-block;
   padding-right: 1em;
-  background: linear-gradient(to right, black 50%, white 50%);
+  background-color: #718875;
+  color: white;
+}
+.checkboxDay span:focus-within {
+  color: white;
+  animation: test 0.5s ease-out alternate;
+  background: linear-gradient(to right, #d55140 50%, #718875 50%);
   background-size: 200% 100%;
-  background-position: right bottom;
-  transition: all 0.5s ease-out;
+}
+.checkboxDay span:focus-within input:checked + label {
+  color: white;
+  outline: 3px solid #d55140;
 }
 .checkboxDay span input:checked + label {
   background-position: left bottom;
-  color: red;
-}
-.checkboxDay span:focus-within {
-  background-position: left bottom;
+  background-color: #343537;
   color: white;
+  animation: none;
+}
+.checkboxDay span input:checked + label::before {
+  content: url(/assets/images/greenCheckmarkSmall.png);
+  padding-right: 0.5em;
+  filter: brightness(10) saturate(100%);
+}
+@keyframes test {
+  from {
+    background-position: right bottom;
+  }
+  to {
+    background-position: left bottom;
+  }
 }
 .checkboxDay input {
   opacity: 0;
+}
+.checkboxDay label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 10em;
+  height: 2em;
+  text-align: center;
+  padding-top: 0.4em;
 }
