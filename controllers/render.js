@@ -42,6 +42,7 @@ function getSecondStep(req, res) {
     const articles = getter.getArticles()
     const variantContent = ticketShopJSON.variantContent[0]
     const articleConfiguration = ticketShopJSON.articleConfiguration[0]
+    javascript = req.query.javascript
     groupChoice = req.query.groupChoice
     ticketDefault = checkDefault()
     console.log('ticketDefault ' + ticketDefault)
@@ -56,7 +57,8 @@ function getSecondStep(req, res) {
         groupChoice: groupChoice,
         formName: `${groupChoice}TicketChoice`,
         ticketChoice: ticketChoice,
-        ticketDefault: ticketDefault
+        ticketDefault: ticketDefault,
+        javascript: javascript
     })
 }
 
@@ -96,11 +98,12 @@ function getThirdStep(req, res) {
 
 function getThirdStepDate(req, res) {
     const ticketCount = req.query.totalTickets
-    const expoName = getter.getExpoName(req, res)
-    expoChoice = expoName
-    const expoID = getter.getExpoId(req, res)
-    const months = getter.getExpoMonth(ticketCount, expoID)
-
+    if (req.query.ticketOption) {
+        expoName = getter.getExpoName(req, res)
+        expoChoice = expoName
+        expoID = getter.getExpoId(req, res)
+        months = getter.getExpoMonth(ticketCount, expoID)
+    }
 
     res.render('pages/monthStep.ejs', {
         groupChoice: groupChoice,
@@ -115,12 +118,14 @@ function getThirdStepDate(req, res) {
 }
 
 function getThirdStepDay(req, res) {
-    const expoID = req.query.expoID
-    const ticketCount = req.query.ticketCount
-    const expoName = req.query.expoName
-    const month = req.query.month
-    monthChoice = month
-    const days = getter.getExpoDay(expoID, ticketCount, month)
+    if (req.query.expoID) {
+        expoID = req.query.expoID
+        ticketCount = req.query.ticketCount
+        expoName = req.query.expoName
+        month = req.query.month
+        monthChoice = month
+        days = getter.getExpoDay(expoID, ticketCount, month)
+    }
 
     const monthNames = {
         "0": "Januari",
@@ -180,8 +185,8 @@ function getFourthStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
-    if (req.query.startTime) {
-        expoPeriodIDChoice = req.query.startTime.split(',')
+    if (req.query.startTimeChoice) {
+        expoPeriodIDChoice = req.query.startTimeChoice.split(',')
         expoPeriodIDChoice = expoPeriodIDChoice[1]
     }
 
