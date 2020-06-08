@@ -1,3 +1,6 @@
+*:focus {
+  outline: 5px solid #d9531e;
+}
 @media (prefers-reduced-motion: no-preference) {
   .backAndNextButton:hover {
     background-color: black;
