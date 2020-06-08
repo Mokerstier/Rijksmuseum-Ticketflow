@@ -67,7 +67,6 @@ function getThirdStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
-
     totalPrice = req.query.totalPrice
     javascript = req.query.javascript
 
@@ -79,9 +78,9 @@ function getThirdStep(req, res) {
         ticketChoice = req.query.ticketChoice
     }
 
-
-
-    console.log('TicketChoice ' + ticketChoice)
+    const availableExpoId = getter.getAllUnavailableExpoId(ticketCount)
+    console.log(availableExpoId)
+ 
     res.render('pages/thirdStep.ejs', {
         title: 'Plan je bezoek',
         expositionContents: expositionContents,
@@ -92,7 +91,8 @@ function getThirdStep(req, res) {
         ticketCount: ticketCount,
         formName: "dateTicketChoice",
         javascript: javascript,
-        expoChoice: expoChoice
+        expoChoice: expoChoice,
+        availableExpoId: availableExpoId
     })
 }
 
