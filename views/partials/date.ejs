@@ -14,7 +14,9 @@
           <p class="align-middle">€ <%= (articles[a].PriceCent / 100).toFixed(2) %></p>
         </div>
         <div class="ticket-amount-container">
+          <% if (javascript == 1) {%>
           <button type="button" class="remove-ticket">-</button>
+          <% } %>
           <select aria-label="Aantal <%= articles[a].Name %>" name="Articles[<%-a%>]" id="">
             <% if(ticketChoice != null){ %>
               <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
@@ -34,7 +36,9 @@
               <% } %>
             <% } %>
           </select>
+          <% if (javascript == 1) {%>
           <button type="button" class="add-ticket">+</button>
+          <% } %>
         </div>
       </article>
       <% } %>

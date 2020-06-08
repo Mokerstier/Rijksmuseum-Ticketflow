@@ -28,7 +28,9 @@
                                 <p class="align-middle">€ <%- (option.PriceCent / 100).toFixed(2) %></p>
                             </div>
                             <div class="ticket-amount-container">
+                                <% if (javascript == 1){ %>
                                 <button type="button" class="remove-ticket">-</button>
+                                <% } %>
                                 <select aria-label="Aantal <%- option.Name %>" name="<%- option.FormName %>" id="">
                                     <% for( let i = 0; i <  Number(ticketCount)+1 ; i++ ){ %>
                                         <% if(multiMediaChoice == i){%>
@@ -39,7 +41,9 @@
                                 
                                     <%} %>
                                 </select>
+                                <% if (javascript == 1){ %>
                                 <button type="button" class="add-ticket">+</button>
+                                <% } %>
                             </div>
                         </article>
                       <% })%>
