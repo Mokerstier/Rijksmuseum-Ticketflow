@@ -244,6 +244,7 @@
 
             daysArray.map((day) => {
               const radiobutton = document.createElement("input");
+              const span = document.createElement('span');
               const label = document.createElement("label");
 
               radiobutton.type = "radio";
@@ -256,8 +257,9 @@
               label.htmlFor = day.date;
               label.textContent = `${day.name} ${day.date}`;
 
-              dayContainer.appendChild(radiobutton);
-              dayContainer.appendChild(label);
+              span.appendChild(radiobutton);
+              span.appendChild(label);
+              dayContainer.appendChild(span)
             });
             availableDaysRadioButtons = document.querySelectorAll(".AvailableDaysRadioButtons");
             return expo;
@@ -299,6 +301,7 @@
                 if (!startMorning.length == 0) {
                   const checkBoxDayPeriod = document.createElement("input");
                   const label = document.createElement("label");
+                  const span = document.createElement('span');
                   checkBoxDayPeriod.type = "checkbox";
                   checkBoxDayPeriod.value = "morning";
                   checkBoxDayPeriod.id = "morningCheck";
@@ -307,8 +310,9 @@
                   label.textContent = "ochtend";
                   label.htmlFor = "morningCheck";
 
-                  dayPeriodContainer.appendChild(checkBoxDayPeriod);
-                  dayPeriodContainer.appendChild(label);
+                  span.appendChild(checkBoxDayPeriod);
+                  span.appendChild(label);
+                  dayPeriodContainer.appendChild(span);
 
                   checkBoxDayPeriod.addEventListener("change", function () {
                     if (checkBoxDayPeriod.checked) {
@@ -323,6 +327,8 @@
                 if (!startMidday.length == 0) {
                   const checkBoxDayPeriod = document.createElement("input");
                   const label = document.createElement("label");
+                  const span = document.createElement('span');
+
                   checkBoxDayPeriod.type = "checkbox";
                   checkBoxDayPeriod.value = "midday";
                   checkBoxDayPeriod.id = "middayCheck";
@@ -330,8 +336,9 @@
 
                   label.textContent = "middag";
                   label.htmlFor = "middayCheck";
-                  dayPeriodContainer.appendChild(checkBoxDayPeriod);
-                  dayPeriodContainer.appendChild(label);
+                  span.appendChild(checkBoxDayPeriod);
+                  span.appendChild(label);
+                  dayPeriodContainer.appendChild(span)
                   console.log("element created");
 
                   checkBoxDayPeriod.addEventListener("change", function () {
@@ -349,6 +356,7 @@
                   array.map((expo) => {
                     const radioStartTime = document.createElement("input");
                     const label = document.createElement("label");
+                    const span = document.createElement('span');
                     label.textContent = expo.PeriodStart;
                     label.htmlFor = expo.PeriodStart;
 
@@ -358,8 +366,9 @@
                     radioStartTime.id = expo.PeriodStart;
                     radioStartTime.name = 'startTimeChoice'
 
-                    container.appendChild(radioStartTime);
-                    container.appendChild(label);
+                    span.appendChild(radioStartTime);
+                    span.appendChild(label);
+                    container.appendChild(span)
                   });
                 } else {
                   console.log("er zit niks in");

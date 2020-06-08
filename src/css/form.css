@@ -16,10 +16,6 @@ fieldset {
   border: 0;
   padding: 0;
 }
-legend {
-  font-weight: bold;
-  margin: 0em 0em 1em 0em;
-}
 td {
   text-align: left;
   padding: 12px 0 12px 12px;
@@ -212,20 +208,37 @@ tr {
   text-decoration: underline;
   color: #343537;
 }
-.checkboxDay span {
+.informationToursMuseum {
+  width: 30em;
+  margin: 0em auto;
+}
+.datePicker {
+  max-width: 40em;
+}
+.datePicker > fieldset {
+  margin-bottom: 3em;
+  border: 1px solid #343537;
+  padding: 1em;
+}
+.datePicker > fieldset legend {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+}
+.datePicker span {
   position: relative;
-  margin: 0.5em;
+  margin: 0.5em auto;
   width: 10em;
   height: 2em;
-  display: inline-block;
+  display: block;
   padding-right: 1em;
   background-color: #718875;
   color: white;
 }
-.checkboxDay input {
+.datePicker span > input {
   opacity: 0;
 }
-.checkboxDay label {
+.datePicker span > label {
   position: absolute;
   left: 0;
   right: 0;

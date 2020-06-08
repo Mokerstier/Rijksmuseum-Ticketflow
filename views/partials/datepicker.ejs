@@ -1,15 +1,28 @@
 <section class="datePicker">
-    <legend>Kies hier je datum en tijd</legend>
-    <label for="monthDatePicker">In welke maand wil je gaan?</label>
-    <select id="monthDatePicker" class="monthDatePicker" name="month"></select>
-    <p>Op welke dag wil je naar het museum?</p>
-    <fieldset class="checkboxDay"></fieldset>
-    <p>Welke datum wil je komen?</p>
-    <fieldset class="chooseDay"></fieldset>
-    <p>Wanneer op de dag wil je komen?</p>
-    <fieldset class="choose-day-period"></fieldset>
-    <p>Hoelaat wil je komen?</p>
+    <h3>Kies hier je datum en tijd</h3>
+    <fieldset>
+      <legend>In welke maand wil je gaan?</legend>
+      <label for="monthDatePicker">In maand:</label>
+      <select id="monthDatePicker" class="monthDatePicker" name="month"></select>
+    </fieldset>
+
+    <fieldset>
+      <legend>Op welke dag wil je naar het museum?</legend>
+      <div class="checkboxDay"></div>
+    </fieldset>
+    
+    <fieldset>
+      <legend>Welke datum wil je komen?</legend>
+      <div class="chooseDay"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Wanneer op de dag wil je komen?</legend>
+      <div class="choose-day-period"></div>
+    </fieldset>
+
     <fieldset class="chooseTime">
+      <legend>Hoelaat wil je komen?</legend>
       <div class="morning-container"></div>
       <div class="midday-container"></div>
     </fieldset>

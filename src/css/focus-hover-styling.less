@@ -21,64 +21,20 @@ a:hover {
     background-color: #343537;
 }
 
-.checkboxDay span input:checked+label {
+.datePicker span > input:checked+label {
     background-position: left bottom;
     background-color: #343537;
     color: white;
     animation: none;
 }
 
-.checkboxDay span input:checked+label::before {
+.datePicker span > input:checked+label::before {
     content: url(/assets/images/greenCheckmarkSmall.png);
     padding-right: 0.5em;
     filter: brightness(10) saturate(100%);
 }
 
 @media (prefers-reduced-motion: no-preference){
-
-    // .backButton:hover {
-    //     color: #d55140;
-    //     text-decoration: underline;
-    // }
-
-    // .backButton:focus {
-    //     color: #d55140;
-    //     text-decoration: underline;
-    // }
-
-    // [action="/vijfde-stap"] section:nth-last-of-type(3) a:hover {
-    //     text-decoration: underline;
-    //     color: #d55140;
-    // }
-
-    // [action="/vijfde-stap"] section:nth-last-of-type(3) a:focus {
-    //     text-decoration: underline;
-    //     color: #d55140;
-    // }
-
-    // input:focus + label {
-    //     -webkit-appearance: none;
-    //     -webkit-box-shadow: 0px 0px 0px 5px #d9531e;
-    //     box-shadow: 0px 0px 0px 5px #d9531e;
-    // }
-
-    // input:focus {
-    //     outline: none;
-    //     -webkit-appearance: none;
-    //     -webkit-box-shadow: 0px 0px 0px 5px #d9531e;
-    //     box-shadow: 0px 0px 0px 5px #d9531e;
-    // }
-
-    // a:hover {
-    //     color: #d9531e;
-    //     text-decoration: underline;
-    // }
-
-    // a:focus {
-    //     color: #d9531e;
-    //     text-decoration: underline;
-    // }
-
     .backAndNextButton:hover {
         background-color: black;
     }
@@ -169,14 +125,14 @@ a:hover {
         color: white;
     }
 
-    .checkboxDay span:focus-within {
+    .datePicker span:focus-within {
         color: white;
         animation: test 0.5s ease-out alternate;
         background: linear-gradient(to right, #d55140 50%, #718875 50%);
         background-size: 200% 100%;
     }
 
-    .checkboxDay span:focus-within input:checked+label{
+    .datePicker span:focus-within > input:checked+label{
         color: white;
         outline: 3px solid #d55140;
     }

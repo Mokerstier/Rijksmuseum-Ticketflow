@@ -45,10 +45,12 @@
         <% })%>
       </fieldset>
       <% for( let i = 0; i < expositionContents.length; i++ ){ %>
-      <p class="expositionContents<%= i %>">
-        <%- expositionContents[i].longDescription %>
-      </p>
-      <% }%>
+      <article class="informationToursMuseum">
+        <p class="expositionContents<%= i %>">
+          <%- expositionContents[i].longDescription %>
+        </p>
+        <% }%>
+      </article>
     </section>
 
     <% if( javascript == 1){ %>

@@ -16,13 +16,13 @@ a:hover {
 [action="/vijfde-stap"] section:first-of-type button:active {
   background-color: #343537;
 }
-.checkboxDay span input:checked + label {
+.datePicker span > input:checked + label {
   background-position: left bottom;
   background-color: #343537;
   color: white;
   animation: none;
 }
-.checkboxDay span input:checked + label::before {
+.datePicker span > input:checked + label::before {
   content: url(/assets/images/greenCheckmarkSmall.png);
   padding-right: 0.5em;
   filter: brightness(10) saturate(100%);
@@ -104,13 +104,13 @@ a:hover {
     background-color: #343537;
     color: white;
   }
-  .checkboxDay span:focus-within {
+  .datePicker span:focus-within {
     color: white;
     animation: test 0.5s ease-out alternate;
     background: linear-gradient(to right, #d55140 50%, #718875 50%);
     background-size: 200% 100%;
   }
-  .checkboxDay span:focus-within input:checked + label {
+  .datePicker span:focus-within > input:checked + label {
     color: white;
     outline: 3px solid #d55140;
   }
