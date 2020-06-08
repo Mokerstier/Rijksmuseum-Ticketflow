@@ -118,6 +118,9 @@
     async function getExpoPeriod(expoID, totalTickets) {
       let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`);
       let expoData = await response.json();
+      if(expoData.length == 0){
+        expoError()
+      }
       return expoData;
     }
 
