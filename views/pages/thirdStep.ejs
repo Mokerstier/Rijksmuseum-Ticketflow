@@ -25,25 +25,41 @@
         <legend>Plan hier je rondleiding door het Rijksmuseum</legend>
         <% expositionContents.forEach(function(option) { %>
             <div>
-
+              <% if(availableExpoId.length == 1) { %>
                 <% if(!availableExpoId.includes(option.expositionId.toUpperCase())){ %>
                   <p class="expo-validation-error">
                     Deze rondleiding is niet beschikbaar voor uw groepsgrootte.
                   </p>
-                    <input disabled id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+                  <input disabled id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
                     value="<%= option.name%>,<%= option.expositionId %>" />
-
                 <% } else { %>
                   <% if(expoChoice == option.name){ %>
                     <input checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
                     value="<%= option.name%>,<%= option.expositionId %>" />
                     
-                  <% } else {%>
-                    <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
-                    value="<%= option.name%>,<%= option.expositionId %>" />
+                  <% } else { %>
+                      <input checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+                      value="<%= option.name%>,<%= option.expositionId %>" />
                   <% } %>
                 <% } %>
-
+              <% } else { %>
+                <% if(!availableExpoId.includes(option.expositionId.toUpperCase())){ %>
+                  <p class="expo-validation-error">
+                    Deze rondleiding is niet beschikbaar voor uw groepsgrootte.
+                  </p>
+                  <input disabled id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+                    value="<%= option.name%>,<%= option.expositionId %>" />
+                <% } else { %>
+                  <% if(expoChoice == option.name){ %>
+                    <input checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+                    value="<%= option.name%>,<%= option.expositionId %>" />
+                    
+                  <% } else { %>
+                      <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+                      value="<%= option.name%>,<%= option.expositionId %>" />
+                  <% } %>
+                <% } %>
+              <% } %>
 
 
             <label for="<%= option.expositionId %>">
