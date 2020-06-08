@@ -1,57 +1,30 @@
 (function () {
   const formThirdStep = document.querySelector(".step-three");
   const javascript = document.querySelector('input[name=javascript]')
-  
-  if (javascript){
+
+  if (javascript) {
     javascript.value = 1
   }
-  
 
   let checkboxes;
   let AvailableDaysRadioButtons;
   let ChosenMonth;
-  if (formThirdStep) {
-    function getUnique(data) {
-      const uniqueArray = [];
 
-      for (let value of data) {
-        if (uniqueArray.indexOf(value) === -1) {
-          uniqueArray.push(value);
-        }
-      }
-      return uniqueArray;
-    }
+  if (formThirdStep) {
     const dayPeriodContainer = document.querySelector(".choose-day-period");
+    const inputs = document.querySelectorAll('.step-three .entree-options-container input[type="radio"]');
+    const selectMonth = document.querySelector(".monthDatePicker");
+    const select = document.querySelector(".monthDatePicker");
     let data = [];
-    const inputs = document.querySelectorAll(
-      '.step-three .entree-options-container input[type="radio"]'
-    );
+
     for (let i = 0; i < inputs.length; i++) {
       inputs[i].addEventListener("change", async function () {
-        const checkboxContainer = document.querySelector(".checkboxDay");
-        Array.from(checkboxContainer.children).map((child) => {
-          child.remove();
-        });
-        const dayContainer = document.querySelector(".chooseDay");
-        Array.from(dayContainer.children).map((child) => {
-          child.remove();
-        });
-        const selectMonth = document.querySelector(".monthDatePicker");
-        Array.from(selectMonth.children).map((child) => {
-          child.remove();
-        });
-        Array.from(dayPeriodContainer.children).map((child) => {
-          child.remove();
-        });
-        const middayContainer = document.querySelector(".midday-container");
-        Array.from(middayContainer.children).map((child) => {
-          child.remove();
-        });
-
-        const morningContainer = document.querySelector(".morning-container");
-        Array.from(morningContainer.children).map((child) => {
-          child.remove();
-        });
+        removeChilds(".checkboxDay")
+        removeChilds(".chooseDay")
+        removeChilds(".monthDatePicker")
+        removeChilds(".choose-day-period")
+        removeChilds(".midday-container")
+        removeChilds(".morning-container")
 
         if (inputs[i].checked) {
           const expoID = inputs[i].dataset.id;
@@ -112,7 +85,7 @@
       });
     }
 
-    const select = document.querySelector(".monthDatePicker");
+
     select.addEventListener("change", datePicker);
 
     async function getExpoPeriod(expoID, totalTickets) {
@@ -122,24 +95,13 @@
     }
 
     function datePicker() {
-      const dayContainer = document.querySelector(".chooseDay");
-      Array.from(dayContainer.children).map((child) => {
-        child.remove();
-      });
+      const options = document.querySelectorAll(".optionMonth");
+      const checkboxContainer = document.querySelector(".checkboxDay");
 
-      Array.from(dayPeriodContainer.children).map((child) => {
-        child.remove();
-      });
-
-      const middayContainer = document.querySelector(".midday-container");
-      Array.from(middayContainer.children).map((child) => {
-        child.remove();
-      });
-
-      const morningContainer = document.querySelector(".morning-container");
-      Array.from(morningContainer.children).map((child) => {
-        child.remove();
-      });
+      removeChilds(".chooseDay")
+      removeChilds(".choose-day-period")
+      removeChilds(".midday-container")
+      removeChilds(".morning-container")
 
       const dayNames = {
         "0": "Zondag",
@@ -150,8 +112,6 @@
         "5": "Vrijdag",
         "6": "Zaterdag",
       };
-
-      const options = document.querySelectorAll(".optionMonth");
       const dayArray = [];
       const filteredMonth = [];
       Array.from(options).map((option) => {
@@ -176,10 +136,7 @@
         return a - b;
       });
 
-      const checkboxContainer = document.querySelector(".checkboxDay");
-      Array.from(checkboxContainer.children).map((child) => {
-        child.remove();
-      });
+      removeChilds(".checkboxDay")
 
       const getDayNames = uniqueDays.map((day) => {
         return dayNames[day];
@@ -208,33 +165,25 @@
 
         if (day == "Zondag") {
           span.classList.add("zondag")
-        } 
+        }
 
         span.appendChild(checkbox);
         span.appendChild(label);
         checkboxContainer.appendChild(span);
       });
+
       checkboxes = document.querySelectorAll(".inputDay");
-
       let filteredDays = [];
-
       Array.from(checkboxes).map((checkbox) => {
         checkbox.addEventListener("change", async function () {
-          Array.from(dayPeriodContainer.children).map((child) => {
-            child.remove();
-          });
-          const middayContainer = document.querySelector(".midday-container");
-          Array.from(middayContainer.children).map((child) => {
-            child.remove();
-          });
-          const morningContainer = document.querySelector(".morning-container");
-          Array.from(morningContainer.children).map((child) => {
-            child.remove();
-          });
+          const dayContainer = document.querySelector(".chooseDay");
+
+          removeChilds(".choose-day-period")
+          removeChilds(".midday-container")
+          removeChilds(".morning-container")
 
           if (checkbox.checked) {
             const dayNumber = Number(checkbox.dataset.dayNumber);
-
             filteredMonth.filter((expo) => {
               const date = new Date(expo.PeriodStart);
               const day = date.getDay();
@@ -255,17 +204,15 @@
           }
           let daysArray = [];
           let dataToCheck = [];
+
           if (filteredDays.length == 0) {
-            const dayContainer = document.querySelector(".chooseDay");
-            Array.from(dayContainer.children).map((child) => {
-              child.remove();
-            });
+            removeChilds(".chooseDay")
           }
+
           filteredDays = filteredDays.filter((expo) => {
             let date = new Date(expo.PeriodStart);
             const dayDate = date.getDate();
 
-            // console.log(date)
             date = String(date).split(" ");
             if (date[0] == "Sun") {
               date = "Zondag";
@@ -293,10 +240,7 @@
               daysArray.push(day);
             }
 
-            const dayContainer = document.querySelector(".chooseDay");
-            Array.from(dayContainer.children).map((child) => {
-              child.remove();
-            });
+            removeChilds(".chooseDay")
 
             daysArray.map((day) => {
               const radiobutton = document.createElement("input");
@@ -315,33 +259,20 @@
               dayContainer.appendChild(radiobutton);
               dayContainer.appendChild(label);
             });
-            availableDaysRadioButtons = document.querySelectorAll(
-              ".AvailableDaysRadioButtons"
-            );
-
-            // console.log(dayDate)
+            availableDaysRadioButtons = document.querySelectorAll(".AvailableDaysRadioButtons");
             return expo;
           });
           console.log("filtered Days: ", filteredDays);
 
           Array.from(availableDaysRadioButtons).map((radioBtn) => {
             radioBtn.addEventListener("change", function () {
-              Array.from(dayPeriodContainer.children).map((child) => {
-                child.remove();
-              });
-              const middayContainer = document.querySelector(
-                ".midday-container"
-              );
-              Array.from(middayContainer.children).map((child) => {
-                child.remove();
-              });
-              const morningContainer = document.querySelector(
-                ".morning-container"
-              );
-              Array.from(morningContainer.children).map((child) => {
-                child.remove();
-              });
-              let startTimeArray = [];
+              const middayContainer = document.querySelector(".midday-container");
+              const morningContainer = document.querySelector(".morning-container");
+
+              removeChilds(".choose-day-period")
+              removeChilds(".midday-container")
+              removeChilds(".morning-container")
+
               const startMorning = [];
               const startMidday = [];
 
@@ -349,7 +280,6 @@
                 const dateOfChosenDay = Number(radioBtn.dataset.dayDate);
                 console.dir(radioBtn);
                 filteredDays.filter((expo) => {
-                  //console.log(expo)
                   const date = new Date(expo.PeriodStart);
                   const day = date.getDate();
                   console.log(day, dateOfChosenDay);
@@ -382,7 +312,6 @@
 
                   checkBoxDayPeriod.addEventListener("change", function () {
                     if (checkBoxDayPeriod.checked) {
-                      //   addToStartTime(startMorning);
                       showAvailableStartTime(startMorning, morningContainer);
                     } else if (!checkBoxDayPeriod.checked) {
                       Array.from(morningContainer.children).map((child) => {
@@ -407,38 +336,13 @@
 
                   checkBoxDayPeriod.addEventListener("change", function () {
                     if (checkBoxDayPeriod.checked) {
-                      //   addToStartTime(startMidday);
                       showAvailableStartTime(startMidday, middayContainer);
                     } else if (!checkBoxDayPeriod.checked) {
-                      Array.from(middayContainer.children).map((child) => {
-                        child.remove();
-                      });
+                      removeChilds(".midday-container")
                     }
                   });
                 }
               }
-
-              //   function removeFromStartTime(array) {
-              //     console.log("unchecked");
-              //     startTimeArray = startTimeArray.map((expo) => {
-              //       console.log(expo);
-              //       return array.map((expoStart) => {
-              //         if (
-              //           expoStart.ExpositionPeriodId != expo.ExpositionPeriodId
-              //         ) {
-              //           return expo;
-              //         }
-              //       });
-              //     });
-              //     showAvailableStartTime(startTimeArray);
-              //   }
-
-              //   function addToStartTime(array) {
-              //     array.map((expo) => {
-              //       startTimeArray.push(expo);
-              //     });
-              //     showAvailableStartTime(startTimeArray);
-              //   }
 
               function showAvailableStartTime(array, container) {
                 if (array.length != 0) {
@@ -465,6 +369,24 @@
           });
         });
       });
+    }
+
+    function removeChilds(className) {
+      const container = document.querySelector(className);
+      Array.from(container.children).map((child) => {
+        child.remove();
+      });
+    }
+
+    function getUnique(data) {
+      const uniqueArray = [];
+
+      for (let value of data) {
+        if (uniqueArray.indexOf(value) === -1) {
+          uniqueArray.push(value);
+        }
+      }
+      return uniqueArray;
     }
   }
 })();
@@ -493,6 +415,7 @@
     const totalTickets = document.querySelector(".totalTickets");
     const numberTickets = document.querySelector("#aantal-first-step");
     const totalTicketsPrice = document.querySelector("#total-first-step");
+    const totalPriceToSend = document.querySelector(".total-price")
 
     function calcTicketCount() {
       let ticketCount;
@@ -548,6 +471,7 @@
       }
 
       totalTicketsPrice.value = `€${parseFloat(totalPrice / 100).toFixed(2)}`;
+      totalPriceToSend.value = `€${parseFloat(totalPrice / 100).toFixed(2)}`;
       totalTickets.value = ticketCount;
       numberTickets.textContent = ticketCount;
       console.log(subTotal);
