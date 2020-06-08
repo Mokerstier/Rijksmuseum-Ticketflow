@@ -1,6 +1,6 @@
-.step-three .entree-options-container p {
+.step-three .entree-options-container .article-description {
   display: none;
 }
-.step-three .entree-options-container p.on {
+.step-three .entree-options-container .article-description.on {
   display: block;
 }

@@ -1,6 +1,18 @@
 const articlesJSON = require('../data/articles.json')
 const ticketShopJSON = require('../data/ticketshop-configuration.json')
 const expositionPeriodsJSON = require('../data/expositions-periods.json')
+const expositionContents = ticketShopJSON.expositionConfiguration[0].expositionContents
+
+function getUnique(data) {
+  const uniqueArray = [];
+
+  for (let value of data) {
+    if (uniqueArray.indexOf(value) === -1) {
+      uniqueArray.push(value);
+    }
+  }
+  return uniqueArray;
+}
 
 function getArticles() {
     const articles = ticketShopJSON.articleConfiguration[0].articleWhitelist
@@ -49,6 +61,28 @@ function getAdditional() {
 
     })
     return articleArray
+}
+function getAllUnavailableExpoId(count){
+  const data = expositionPeriodsJSON
+  const uniqueExpoID = []
+  
+  expositionContents.map(expo =>{
+    uniqueExpoID.push(expo.expositionId)
+  })
+
+  // console.log(uniqueExpoID)
+  let availableExpo = []
+  const filterData = []
+  uniqueExpoID.map(id =>{
+    
+    data.map(expo => {
+      if (expo.ExpositionId === id.toUpperCase() && expo.RemainingTIckets >= count){
+        filterData.push(expo.ExpositionId)
+      }
+    })
+  })
+  availableExpo = getUnique(filterData)
+  return availableExpo
 }
 
 function getExpoData(req, res) {
@@ -102,16 +136,7 @@ function getExpoMonth(ticketCount, expoID){
         }
     })
     dataToUse.push(filterData)
-    function getUnique(data) {
-        const uniqueArray = [];
-  
-        for (let value of data) {
-          if (uniqueArray.indexOf(value) === -1) {
-            uniqueArray.push(value);
-          }
-        }
-        return uniqueArray;
-      }
+
     const monthData = dataToUse[0].map((expo) => {
         const date = new Date(expo.PeriodStart);
         const month = date.getMonth();
@@ -220,6 +245,7 @@ function getExpoTime(expoID, ticketCount, monthNumber, day){
     return dataToUse[0]
 }
 module.exports = {
+    getAllUnavailableExpoId,
     getArticles,
     getDonation,
     getAdditional,

@@ -11,6 +11,7 @@
   let ChosenMonth;
 
   if (formThirdStep) {
+    const validationError = document.querySelector(".field-validation-error");
     const dayPeriodContainer = document.querySelector(".choose-day-period");
     const inputs = document.querySelectorAll('.step-three .entree-options-container input[type="radio"]');
     const selectMonth = document.querySelector(".monthDatePicker");
@@ -84,7 +85,15 @@
         }
       });
     }
-
+    function expoError(){
+      
+      validationError.classList.remove('hidden')
+      validationError.textContent = 'Er is geen rondleiding beschikbaar voor uw groepsgrootte'
+      validationError.scrollIntoView()
+    }
+    function removeError(){
+      validationError.classList.add('hidden')
+    }
 
     select.addEventListener("change", datePicker);
 
@@ -93,6 +102,8 @@
       let expoData = await response.json();
       if(expoData.length == 0){
         expoError()
+      } else {
+        removeError()
       }
       return expoData;
     }
@@ -466,7 +477,8 @@
       }
 
       if (validationError) {
-        if (ticketCount >= maxAmountOfArticles) {
+        console.log(maxAmountOfArticles+ ticketCount)
+        if (ticketCount > maxAmountOfArticles) {
           validationError.classList.remove("hidden");
         } else {
           validationError.classList.add("hidden");
