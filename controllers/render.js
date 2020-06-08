@@ -4,12 +4,22 @@ let ticketChoice = null
 let ticketDefault = []
 let groupChoice = ""
 let expoChoice
-let monthChoice 
+let monthChoice
 let dayChoice
+let totalPrice
+let startTimeChoice
+let ticketCount
 let expoPeriodIDChoice
 let multiMediaChoice
 let donationChoice
 let javascript
+let firstName
+let lastName
+let tussenName
+let email
+let zipCode
+let acceptTerms
+let country
 
 function checkDefault() {
     if (groupChoice === "small-group") {
@@ -34,7 +44,7 @@ function getSecondStep(req, res) {
     const articleConfiguration = ticketShopJSON.articleConfiguration[0]
     groupChoice = req.query.groupChoice
     ticketDefault = checkDefault()
-    console.log('ticketDefault '+ticketDefault)
+    console.log('ticketDefault ' + ticketDefault)
     if (groupChoice === "large-group") {
         res.redirect('https://www.rijksmuseum.nl/nl/groepsbezoek')
     }
@@ -55,6 +65,8 @@ function getThirdStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
+
+    totalPrice = req.query.totalPrice
     javascript = req.query.javascript
 
     if (req.query.Articles) {
@@ -64,8 +76,10 @@ function getThirdStep(req, res) {
     if (req.query.ticketChoice) {
         ticketChoice = req.query.ticketChoice
     }
-    
-    console.log('TicketChoice '+ticketChoice)
+
+
+
+    console.log('TicketChoice ' + ticketChoice)
     res.render('pages/thirdStep.ejs', {
         title: 'Plan je bezoek',
         expositionContents: expositionContents,
@@ -80,13 +94,14 @@ function getThirdStep(req, res) {
     })
 }
 
-function getThirdStepDate(req, res){
+function getThirdStepDate(req, res) {
     const ticketCount = req.query.totalTickets
     const expoName = getter.getExpoName(req, res)
     expoChoice = expoName
     const expoID = getter.getExpoId(req, res)
     const months = getter.getExpoMonth(ticketCount, expoID)
-   
+
+
     res.render('pages/monthStep.ejs', {
         groupChoice: groupChoice,
         title: 'Kies een maand',
@@ -99,14 +114,14 @@ function getThirdStepDate(req, res){
     })
 }
 
-function getThirdStepDay(req, res){
+function getThirdStepDay(req, res) {
     const expoID = req.query.expoID
     const ticketCount = req.query.ticketCount
     const expoName = req.query.expoName
     const month = req.query.month
     monthChoice = month
     const days = getter.getExpoDay(expoID, ticketCount, month)
-    
+
     const monthNames = {
         "0": "Januari",
         "1": "Februari",
@@ -120,9 +135,9 @@ function getThirdStepDay(req, res){
         "9": "Oktober",
         "10": "November",
         "11": "December",
-      }
+    }
 
-    res.render('pages/dayStep.ejs',{
+    res.render('pages/dayStep.ejs', {
         groupChoice: groupChoice,
         title: 'Kies een dag',
         ticketCount: ticketCount,
@@ -136,7 +151,7 @@ function getThirdStepDay(req, res){
     })
 }
 
-function getThirdStepTime(req, res){
+function getThirdStepTime(req, res) {
     const expoID = req.query.expoID
     const ticketCount = req.query.ticketCount
     const expoName = req.query.expoName
@@ -146,7 +161,7 @@ function getThirdStepTime(req, res){
     dayChoice = day
     const expos = getter.getExpoTime(expoID, ticketCount, monthNumber, day)
 
-    res.render('pages/timeStep.ejs',{
+    res.render('pages/timeStep.ejs', {
         groupChoice: groupChoice,
         title: 'Kies een tijdslot',
         ticketCount: ticketCount,
@@ -165,10 +180,14 @@ function getFourthStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
-    if(req.query.startTime){
+    if (req.query.startTime) {
         expoPeriodIDChoice = req.query.startTime.split(',')
         expoPeriodIDChoice = expoPeriodIDChoice[1]
     }
+
+    startTimeChoice = req.query.startTimeChoice
+
+
     res.render('pages/fourthStep.ejs', {
         title: 'Extra opties',
         expositionContents: expositionContents,
@@ -196,12 +215,26 @@ function getFifthStep(req, res) {
         groupChoice: groupChoice,
         ticketCount: ticketCount,
         formName: "dateTicketChoice",
-        javascript: javascript
+        javascript: javascript,
+        firstName: firstName,
+        lastName: lastName,
+        tussenName: tussenName,
+        email: email,
+        zipCode: zipCode,
+        acceptTerms: acceptTerms,
+        country: country
     })
 }
 
 function getSixthStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
+    firstName = req.query.voornaam
+    lastName = req.query.achternaam
+    tussenName = req.query.tussenvoegsel
+    email = req.query.email
+    zipCode = req.query.postcode
+    acceptTerms = req.query.acceptterms
+    country = req.query.land
     res.render('pages/sixthStep.ejs', {
         title: 'Overzicht en betalen',
         ticketShop: ticketConfiguration,
@@ -219,7 +252,7 @@ module.exports = {
     getFirstStep,
     getSecondStep,
     getThirdStep,
-    getThirdStepDate,    
+    getThirdStepDate,
     getThirdStepDay,
     getThirdStepTime,
     getFourthStep,

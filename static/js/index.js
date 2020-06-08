@@ -493,6 +493,7 @@
     const totalTickets = document.querySelector(".totalTickets");
     const numberTickets = document.querySelector("#aantal-first-step");
     const totalTicketsPrice = document.querySelector("#total-first-step");
+    const totalPriceToSend = document.querySelector(".total-price")
 
     function calcTicketCount() {
       let ticketCount;
@@ -548,6 +549,7 @@
       }
 
       totalTicketsPrice.value = `€${parseFloat(totalPrice / 100).toFixed(2)}`;
+      totalPriceToSend.value = `€${parseFloat(totalPrice / 100).toFixed(2)}`;
       totalTickets.value = ticketCount;
       numberTickets.textContent = ticketCount;
       console.log(subTotal);

@@ -21,9 +21,9 @@
         <h3>Selecteer een tijd slot</h3>
         <% expos.forEach(expo => { %>
             <% if(expoPeriodIDChoice == expo.ExpositionPeriodId){ %>
-                <input checked="checked" type="radio" name="startTime" id="<%= expo.ExpositionPeriodId %>" value="<%= expo.PeriodStart %>,<%= expo.ExpositionPeriodId %>">
+                <input checked="checked" type="radio" name="startTimeChoice" id="<%= expo.ExpositionPeriodId %>" value="<%= expo.PeriodStart %>,<%= expo.ExpositionPeriodId %>">
             <%} else { %>
-                <input type="radio" name="startTime" id="<%= expo.ExpositionPeriodId %>" value="<%= expo.PeriodStart %>,<%= expo.ExpositionPeriodId %>">
+                <input type="radio" name="startTimeChoice" id="<%= expo.ExpositionPeriodId %>" value="<%= expo.PeriodStart %>,<%= expo.ExpositionPeriodId %>">
             <% } %>
             <label for="<%= expo.ExpositionPeriodId %>"><%= expo.PeriodStart %></label>
         <% }) %>
