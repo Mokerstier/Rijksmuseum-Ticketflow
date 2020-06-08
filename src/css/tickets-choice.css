@@ -16,7 +16,7 @@
   background-image: url(/assets/images/ticket.png);
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 16em;
 }
 .form-first-step fieldset > div article > div:first-of-type h3,
 .step-two fieldset > div article > div:first-of-type h3 {
@@ -37,6 +37,18 @@
   position: absolute;
   left: 2em;
   bottom: 3em;
+}
+.form-first-step fieldset > div article > div:first-of-type.two-tickets,
+.step-two fieldset > div article > div:first-of-type.two-tickets {
+  background-image: url(/assets/images/two-tickets.png);
+}
+.form-first-step fieldset > div article > div:first-of-type.three-tickets,
+.step-two fieldset > div article > div:first-of-type.three-tickets {
+  background-image: url(/assets/images/three-tickets.png);
+}
+.form-first-step fieldset > div article > div:first-of-type.more-tickets,
+.step-two fieldset > div article > div:first-of-type.more-tickets {
+  background-image: url(/assets/images/more-than-three-tickets.png);
 }
 .form-first-step fieldset > div article > div:last-of-type,
 .step-two fieldset > div article > div:last-of-type {

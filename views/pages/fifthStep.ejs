@@ -2,8 +2,8 @@
 <nav>
     <ul>
         <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
-        <li><a href="/tweede-stap" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
-        <li><a href="/derde-stap" class="visited linkStyleUnderline">3. Plan je bezoek &#10003</a></li> 
+        <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
+        <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" class="visited linkStyleUnderline">3. Plan je bezoek &#10003</a></li> 
         <li><a href="/vierde-stap" class="visited linkStyleUnderline">4. Extra opties &#10003</a></li> 
         <li><a href="/vijfde-stap" aria-current="page">5. Persoonsgegevens ></a></li> 
         <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
@@ -16,34 +16,71 @@
     <section class="timeCountdown">
         <p>Je hebt nu een tijd gereserveerd. De resterende tijd om je bestelling af te ronden is <span>25:00</span></p>
     </section>
-    <h2>Persoonsgegevens</h3>
+    <h2>Persoonsgegevens</h2>
     <section>
         <fieldset>
             <label for="firstName">Naam *</label>
-            <input name="voornaam" placeholder="Voornaam" id="firstName" type="text">
-            <input name="tussenvoegsel" placeholder="Tussenvoegsel" id="tussenName" type="text">
-            <input name="achternaam" placeholder="Achternaam" id="lastName" type="text">
+            <input name="voornaam" placeholder="Voornaam" id="firstName" type="text" value="<%= firstName %>">
+            <input name="tussenvoegsel" placeholder="Tussenvoegsel" id="tussenName" type="text" value="<%= tussenName %>">
+            <input name="achternaam" placeholder="Achternaam" id="lastName" type="text" value="<%= lastName %>">
         </fieldset>
         <fieldset>
             <label for="emailAddress">E-mailadres *</label>
-            <input name="email" id="emailAddress" type="email">
+            <input name="email" id="emailAddress" type="email" value="<%= email %>">
         </fieldset>
     </section>
     <section>
         <fieldset>
             <label for="zipCode">Postcode *</label>
-            <input id="zipCode" name="postcode" type="text">
+            <input id="zipCode" name="postcode" type="text" value="<%= zipCode %>">
         </fieldset>
         <fieldset>
             <label for="country">Land *</label>
             <select name="land" id="country">
-                <option selected="selected" value="Netherlands">Nederland</option>
-                <option value="United States">United States</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Germany">Germany</option>
-                <option value="France">France</option>
+                <% if(country =="Netherlands") { %>
+                    <option selected="selected" value="Netherlands">Nederland</option>
+                <% }else{%>
+                    <option selected="selected" value="Netherlands">Nederland</option>
+                <% }%>
+
+                <% if(country =="United States") { %>
+                    <option selected="selected" value="United States">United States</option>
+                <% }else{%>
+                    <option value="United States">United States</option>
+                <% }%>
+
+                <% if(country =="United Kingdom") { %>
+                    <option selected="selected" value="United Kingdom">United Kingdom</option>
+                <% }else{%>
+                    <option value="United Kingdom">United Kingdom</option>
+                <% }%>
+
+                <% if(country =="Germany") { %>
+                    <option selected="selected" value="Germany">Germany</option>
+                <% }else{%>
+                    <option value="Germany">Germany</option>
+                <% }%>
+
+                <% if(country =="France") { %>
+                    <option selected="selected" value="France">France</option>
+                <% }else{%>
+                    <option value="France">France</option>
+                <% }%>
+
                 <option disabled="disabled" value="---------">---------</option>
-                <option value="Afghanistan">Afghanistan</option>
+
+                <% if(country =="Afghanistan") { %>
+                    <option selected="selected" value="Afghanistan">Afghanistan</option>
+                <% }else{%>
+                    <option value="Afghanistan">Afghanistan</option>
+                <% }%>
+
+                <% if(country =="Albania") { %>
+                    <option selected="selected" value="Albania">Albania</option>
+                <% }else{%>
+                    <option value="Albania">Albania</option>
+                <% }%>
+                
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
                 <option value="American Samoa">American Samoa</option>
@@ -287,7 +324,11 @@
     </section>
     <section>
         <p><%- ticketShop.personalDetailsContent.privacyPolicyText %></p>
+        <% if(acceptTerms == "on") { %>
+        <input checked="checked" name="acceptterms" id="acceptterms" type="checkbox">
+        <% }else {%>
         <input name="acceptterms" id="acceptterms" type="checkbox">
+        <%}%>
         <label for="acceptterms"><%- ticketShop.personalDetailsContent.acceptTermsAndConditions %></label>
     </section>
     <section class="backButtonContainer">

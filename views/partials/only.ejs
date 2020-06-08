@@ -8,7 +8,11 @@
         <% articles.forEach((article) => { %>
           <article>
             <div>
+              <% if(ticketChoice == article.Name){ %>
+              <input checked="checked" type="radio" name="ticketChoice" data-article-name="<%= article.Name %>" data-article-price="<%= article.PriceCent %>" value="<%= article.Name %>" id="<%= article.Code %>">
+              <% } else {%>
               <input type="radio" name="ticketChoice" data-article-name="<%= article.Name %>" data-article-price="<%= article.PriceCent %>" value="<%= article.Name %>" id="<%= article.Code %>">
+              <% } %>
               <label for="<%= article.Code %>">
                   <div class="ticket-container">
                       <h3><%= article.Name %></h3>
@@ -26,6 +30,7 @@
       </div>
       <p>Aantal tickets: <output id="aantal-first-step" class="block-right">0</output></p>
       <p>Totaal prijs: <output id="total-first-step" class="block-right">€0.00</output></p>
+      <input name="totalPrice" type="hidden" class="total-price">
     </fieldset>
     <p>
       <%= variantContent.articleSelectionContent.paragraphContentTitle %>

@@ -98,6 +98,7 @@
     "Code": "R010000",
     "PriceCent": 500,
     "Name": "Multimediatour met leentoestel",
+    "FormName": "Multimediatour",
     "Mandatory": 0,
     "Language": "NL",
     "Description": "De multimediatour en andere tours zijn af te spelen met een huurtoestel. Deze kun je vast reserveren voor €5.\n\nAlle tours zijn ook gratis beschikbaar in de Rijksmuseum App.\n\nMocht je van je eigen telefoon of tablet gebruik willen maken, zorg dan voor een headset en een opgeladen batterij."

@@ -2,7 +2,7 @@
 <nav>
   <ul>
       <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
-      <li><a href="/tweede-stap" aria-current="page" class="linkStyleUnderline">2. Tickets > </a></li> 
+      <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="linkStyleUnderline">2. Tickets ></a></li> 
       <li><a class="navStepDisabled" tabindex="-1" href="/derde-stap">3. Plan je bezoek ></a></li> 
       <li><a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a></li> 
       <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
@@ -13,6 +13,7 @@
 <main>
     <h2>Stel je tickets samen</h2>
     <form class="form-first-step" action="derde-stap" method="GET" data-formName="<%=formName%>">
+      <input type="hidden" name="javascript" value="0">
       <%- include (`../partials/${groupChoice}.ejs`) %>
       <input type="hidden" class="totalTickets" name="totalTickets" value="">
       
