@@ -1,12 +1,4 @@
-.backAndNextButton:hover {
-    background-color: black;
-}
-
-.backAndNextButton:focus {
-    background-color: black;
-    border: 3px solid #d55140;
-    outline: none;
-}
+@media (prefers-reduced-motion: no-preference){
 
 // .backButton:hover {
 //     color: #d55140;
@@ -51,6 +43,16 @@
 //     text-decoration: underline;
 // }
 
+.backAndNextButton:hover {
+    background-color: black;
+}
+
+.backAndNextButton:focus {
+    background-color: black;
+    border: 3px solid #d55140;
+    outline: none;
+}
+
 .group-choice {
     a:focus {
         background-color: #343537;
@@ -59,10 +61,10 @@
 
     a:hover {
         background-color: #343537;
-        outline: none;
-        -webkit-appearance: none;
-        -webkit-box-shadow: 0px 0px 0px 5px #d9531e;
-        box-shadow: 0px 0px 0px 5px #d9531e;
+        // outline: none;
+        // -webkit-appearance: none;
+        // -webkit-box-shadow: 0px 0px 0px 5px #d9531e;
+        // box-shadow: 0px 0px 0px 5px #d9531e;
     }
 }
 
@@ -276,4 +278,5 @@
     height: 2em;
     text-align: center;
     padding-top: 0.4em;
+}
 }
