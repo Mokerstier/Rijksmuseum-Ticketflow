@@ -1,63 +1,51 @@
 (function () {
-    const form = document.querySelector('form')
-    const submit = form.querySelector('input[type="submit"]')
+  const form = document.querySelector('[data-formname="personalInfo"]');
+  const submit = form.querySelector('input[type="submit"]');
 
-    
+  if (form) {
+    submit.disabled = true;
 
-    if(form){
-        submit.disabled = true
-        const required = form.querySelectorAll('[required]')
-        Array.from(required).forEach(element =>{
-            element.addEventListener("change", checkRequired)
-        })
-        
-        console.log(required)
-        
-        function checkRequired(){ 
-
-            let inputArray = []
-            Array.from(required).forEach(element =>{
-                inputArray.push(element)
-                
-            })  
-                let valid = true;
-
-                inputArray.map(element => {
-                    console.log('AAAAAA',isValid(element))
-                    console.log('AAAAAA')
-                  if (!isValid(element) || !element.value) {
-                      
-                    return valid = false
-                  } 
-                })
-                console.log(valid)
-                if (!valid) {
-                    submit.disabled = true 
-                    console.log('disabled')
-                }else{
-                    submit.disabled = false;
-                    console.log('enabled')
-                } 
-
-              }
-        
-        function isValid(input){
-            console.dir(input)
-            console.log(input.validity.valid)
-            if (input.validity.valid) return true
+    function validateForm() {
+      const inputs = form.querySelectorAll("input[required]");
+      const checkdInputs = [];
+      const options = form.querySelectorAll("option");
+      Array.from(inputs).map((input) => {
+        if (input.type == "checkbox") {
+          if (input.checked) {
+            console.log("checkbox ok");
+            checkdInputs.push(true)
+          } else {
+            console.log("checkbox niet ok");
+            checkdInputs.push(false)
+            submit.disabled = true;
+          }
+        } else if(input.type == "text" || input.type =="email"){
+            if(input.value != ''){
+                console.log("inputs ok");
+                checkdInputs.push(true)
+            } else {
+                console.log("inputs niet ok");
+                checkdInputs.push(false)
+            }
         }
-        window.addEventListener("load", checkRequired)
-        form.addEventListener("change", checkRequired)
-        
-          
+        if (!checkdInputs.includes(false)){
+            submit.disabled = false
+        }
+      });
     }
+    window.addEventListener("load", validateForm);
+    form.addEventListener("change", validateForm);
+  }
 })();
+
 (function () {
   const formThirdStep = document.querySelector(".step-three");
-  const javascript = document.querySelector('input[name=javascript]')
+  const javascript = document.querySelector("input[name=javascript]");
+  
+  
 
   if (javascript) {
-    javascript.value = 1
+    javascript.value = 1;
   }
 
   let checkboxes;
@@ -65,25 +53,28 @@
   let ChosenMonth;
 
   if (formThirdStep) {
+    const submit = formThirdStep.querySelector('input[type="submit"]');
     const validationError = document.querySelector(".field-validation-error");
     const dayPeriodContainer = document.querySelector(".choose-day-period");
-    const inputs = document.querySelectorAll('.step-three .entree-options-container input[type="radio"]');
+    const inputs = document.querySelectorAll(
+      '.step-three .entree-options-container input[type="radio"]'
+    );
     const selectMonth = document.querySelector(".monthDatePicker");
     const select = document.querySelector(".monthDatePicker");
     let data = [];
 
     for (let i = 0; i < inputs.length; i++) {
       inputs[i].addEventListener("change", () => checkForm(i));
-      window.addEventListener('load', () => checkForm(i))
+      window.addEventListener("load", () => checkForm(i));
     }
-    
-    async function checkForm (i) {
-      removeChilds(".checkboxDay")
-      removeChilds(".chooseDay")
-      removeChilds(".monthDatePicker")
-      removeChilds(".choose-day-period")
-      removeChilds(".midday-container")
-      removeChilds(".morning-container")
+
+    async function checkForm(i) {
+      removeChilds(".checkboxDay");
+      removeChilds(".chooseDay");
+      removeChilds(".monthDatePicker");
+      removeChilds(".choose-day-period");
+      removeChilds(".midday-container");
+      removeChilds(".morning-container");
 
       if (inputs[i].checked) {
         const expoID = inputs[i].dataset.id;
@@ -142,14 +133,14 @@
         datePicker();
       }
     }
-    function expoError(){
-      
-      validationError.classList.remove('hidden')
-      validationError.textContent = 'Er is geen rondleiding beschikbaar voor uw groepsgrootte'
-      validationError.scrollIntoView()
+    function expoError() {
+      validationError.classList.remove("hidden");
+      validationError.textContent =
+        "Er is geen rondleiding beschikbaar voor uw groepsgrootte";
+      validationError.scrollIntoView();
     }
-    function removeError(){
-      validationError.classList.add('hidden')
+    function removeError() {
+      validationError.classList.add("hidden");
     }
 
     select.addEventListener("change", datePicker);
@@ -157,10 +148,10 @@
     async function getExpoPeriod(expoID, totalTickets) {
       let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`);
       let expoData = await response.json();
-      if(expoData.length == 0){
-        expoError()
+      if (expoData.length == 0) {
+        expoError();
       } else {
-        removeError()
+        removeError();
       }
       return expoData;
     }
@@ -169,10 +160,10 @@
       const options = document.querySelectorAll(".optionMonth");
       const checkboxContainer = document.querySelector(".checkboxDay");
 
-      removeChilds(".chooseDay")
-      removeChilds(".choose-day-period")
-      removeChilds(".midday-container")
-      removeChilds(".morning-container")
+      removeChilds(".chooseDay");
+      removeChilds(".choose-day-period");
+      removeChilds(".midday-container");
+      removeChilds(".morning-container");
 
       const dayNames = {
         "0": "Zondag",
@@ -207,7 +198,7 @@
         return a - b;
       });
 
-      removeChilds(".checkboxDay")
+      removeChilds(".checkboxDay");
 
       const getDayNames = uniqueDays.map((day) => {
         return dayNames[day];
@@ -215,7 +206,7 @@
 
       getDayNames.map((day) => {
         const checkbox = document.createElement("input");
-        const span = document.createElement('span')
+        const span = document.createElement("span");
         const label = document.createElement("label");
 
         let dayNumber;
@@ -228,15 +219,16 @@
         label.textContent = day;
         label.htmlFor = day;
 
-        checkbox.required = true
+        
         checkbox.type = "checkbox";
         checkbox.classList.add("inputDay");
         checkbox.dataset.dayNumber = dayNumber;
         checkbox.id = day;
         checkbox.value = day;
+        checkbox.name = 'dayChoice[]'
 
         if (day == "Zondag") {
-          span.classList.add("zondag")
+          span.classList.add("zondag");
         }
 
         span.appendChild(checkbox);
@@ -250,9 +242,9 @@
         checkbox.addEventListener("change", async function () {
           const dayContainer = document.querySelector(".chooseDay");
 
-          removeChilds(".choose-day-period")
-          removeChilds(".midday-container")
-          removeChilds(".morning-container")
+          removeChilds(".choose-day-period");
+          removeChilds(".midday-container");
+          removeChilds(".morning-container");
 
           if (checkbox.checked) {
             const dayNumber = Number(checkbox.dataset.dayNumber);
@@ -278,7 +270,7 @@
           let dataToCheck = [];
 
           if (filteredDays.length == 0) {
-            removeChilds(".chooseDay")
+            removeChilds(".chooseDay");
           }
 
           filteredDays = filteredDays.filter((expo) => {
@@ -312,14 +304,14 @@
               daysArray.push(day);
             }
 
-            removeChilds(".chooseDay")
+            removeChilds(".chooseDay");
 
             daysArray.map((day) => {
               const radiobutton = document.createElement("input");
-              const span = document.createElement('span');
+              const span = document.createElement("span");
               const label = document.createElement("label");
 
-              radiobutton.required = true
+              
               radiobutton.type = "radio";
               radiobutton.value = day.date;
               radiobutton.dataset.dayDate = day.date;
@@ -332,21 +324,27 @@
 
               span.appendChild(radiobutton);
               span.appendChild(label);
-              dayContainer.appendChild(span)
+              dayContainer.appendChild(span);
             });
-            availableDaysRadioButtons = document.querySelectorAll(".AvailableDaysRadioButtons");
+            availableDaysRadioButtons = document.querySelectorAll(
+              ".AvailableDaysRadioButtons"
+            );
             return expo;
           });
-          console.log("filtered Days: ", filteredDays);
+          
 
           Array.from(availableDaysRadioButtons).map((radioBtn) => {
             radioBtn.addEventListener("change", function () {
-              const middayContainer = document.querySelector(".midday-container");
-              const morningContainer = document.querySelector(".morning-container");
+              const middayContainer = document.querySelector(
+                ".midday-container"
+              );
+              const morningContainer = document.querySelector(
+                ".morning-container"
+              );
 
-              removeChilds(".choose-day-period")
-              removeChilds(".midday-container")
-              removeChilds(".morning-container")
+              removeChilds(".choose-day-period");
+              removeChilds(".midday-container");
+              removeChilds(".morning-container");
 
               const startMorning = [];
               const startMidday = [];
@@ -357,7 +355,7 @@
                 filteredDays.filter((expo) => {
                   const date = new Date(expo.PeriodStart);
                   const day = date.getDate();
-                  console.log(day, dateOfChosenDay);
+                  
                   const hour = date.getHours();
 
                   if (day === dateOfChosenDay) {
@@ -368,15 +366,14 @@
                     }
                   }
                 });
-                console.log(startMorning);
-                console.log(startMidday);
+                
 
                 if (!startMorning.length == 0) {
                   const checkBoxDayPeriod = document.createElement("input");
                   const label = document.createElement("label");
-                  const span = document.createElement('span');
+                  const span = document.createElement("span");
+
                   
-                  checkBoxDayPeriod.required = true
                   checkBoxDayPeriod.type = "checkbox";
                   checkBoxDayPeriod.value = "morning";
                   checkBoxDayPeriod.id = "morningCheck";
@@ -402,9 +399,9 @@
                 if (!startMidday.length == 0) {
                   const checkBoxDayPeriod = document.createElement("input");
                   const label = document.createElement("label");
-                  const span = document.createElement('span');
+                  const span = document.createElement("span");
 
-                  checkBoxDayPeriod.required = true
+                  
                   checkBoxDayPeriod.type = "checkbox";
                   checkBoxDayPeriod.value = "midday";
                   checkBoxDayPeriod.id = "middayCheck";
@@ -414,14 +411,14 @@
                   label.htmlFor = "middayCheck";
                   span.appendChild(checkBoxDayPeriod);
                   span.appendChild(label);
-                  dayPeriodContainer.appendChild(span)
-                  console.log("element created");
+                  dayPeriodContainer.appendChild(span);
+                  
 
                   checkBoxDayPeriod.addEventListener("change", function () {
                     if (checkBoxDayPeriod.checked) {
                       showAvailableStartTime(startMidday, middayContainer);
                     } else if (!checkBoxDayPeriod.checked) {
-                      removeChilds(".midday-container")
+                      removeChilds(".midday-container");
                     }
                   });
                 }
@@ -432,20 +429,22 @@
                   array.map((expo) => {
                     const radioStartTime = document.createElement("input");
                     const label = document.createElement("label");
-                    const span = document.createElement('span');
+                    const span = document.createElement("span");
                     label.textContent = expo.PeriodStart;
                     label.htmlFor = expo.PeriodStart;
 
-                    radioStartTime.required = true
+                    
                     radioStartTime.dataset.startTime = expo.PeriodStart;
                     radioStartTime.type = "radio";
                     radioStartTime.value = expo.PeriodStart;
                     radioStartTime.id = expo.PeriodStart;
-                    radioStartTime.name = 'startTimeChoice'
-
+                    radioStartTime.name = "startTimeChoice";
+                    radioStartTime.addEventListener('change', function(){
+                      submit.disabled = false
+                    })
                     span.appendChild(radioStartTime);
                     span.appendChild(label);
-                    container.appendChild(span)
+                    container.appendChild(span);
                   });
                 } else {
                   console.log("er zit niks in");
@@ -456,8 +455,19 @@
         });
       });
     }
-
+    function getRequired(){
+      const required = form.querySelectorAll("[required]");
+      console.log('getting required');
+      console.log(required);
+      
+      
+      Array.from(required).forEach((element) => {
+        element.addEventListener("change", checkRequired);
+      });
+      return required
+      }
     function removeChilds(className) {
+      submit.disabled = true
       const container = document.querySelector(className);
       Array.from(container.children).map((child) => {
         child.remove();
@@ -474,8 +484,11 @@
       }
       return uniqueArray;
     }
+  
+
   }
 })();
+
 (function () {
     const inputs = document.querySelectorAll('.step-three .entree-options-container input[type="radio"]')
     for (let i = 0; i < inputs.length; i++) {

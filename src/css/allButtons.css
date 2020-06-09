@@ -6,6 +6,12 @@
   border-radius: 5px;
   border: none;
 }
+.backAndNextButton:disabled {
+  background-color: #5e5e5e;
+}
+.backAndNextButton:disabled:hover {
+  background-color: #5e5e5e;
+}
 .backButtonContainer {
   margin: 3em auto;
 }

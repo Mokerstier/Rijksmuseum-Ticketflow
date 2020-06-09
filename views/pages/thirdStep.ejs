@@ -2,7 +2,7 @@
 <nav>
   <ul>
       <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
-      <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
+      <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>&javascript=<%- javascript %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
       <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" aria-current="page">3. Plan je bezoek ></a></li> 
       <li><a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a></li> 
       <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
@@ -14,9 +14,9 @@
   <h2>Plan je bezoek</h2>
 
   <% if(javascript == 1){ %>
-    <form class="step-three" action="/vierde-stap" method="GET" data-formName="dateTourChoice">
+    <form validate class="step-three" action="/vierde-stap" method="GET" data-formName="dateTourChoice">
   <% } else { %>
-    <form class="step-three" action="/derde-stap-datum" method="GET" data-formName="dateTourChoice">
+    <form validate class="step-three" action="/derde-stap-datum" method="GET" data-formName="dateTourChoice">
   <% } %>
 
     <section class="entree-options-container">

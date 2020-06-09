@@ -1,54 +1,39 @@
 (function () {
-    const form = document.querySelector('form')
-    const submit = form.querySelector('input[type="submit"]')
+  const form = document.querySelector('[data-formname="personalInfo"]');
+  const submit = form.querySelector('input[type="submit"]');
 
-    
+  if (form) {
+    submit.disabled = true;
 
-    if(form){
-        submit.disabled = true
-        const required = form.querySelectorAll('[required]')
-        Array.from(required).forEach(element =>{
-            element.addEventListener("change", checkRequired)
-        })
-        
-        console.log(required)
-        
-        function checkRequired(){ 
-
-            let inputArray = []
-            Array.from(required).forEach(element =>{
-                inputArray.push(element)
-                
-            })  
-                let valid = true;
-
-                inputArray.map(element => {
-                    console.log('AAAAAA',isValid(element))
-                    console.log('AAAAAA')
-                  if (!isValid(element) || !element.value) {
-                      
-                    return valid = false
-                  } 
-                })
-                console.log(valid)
-                if (!valid) {
-                    submit.disabled = true 
-                    console.log('disabled')
-                }else{
-                    submit.disabled = false;
-                    console.log('enabled')
-                } 
-
-              }
-        
-        function isValid(input){
-            console.dir(input)
-            console.log(input.validity.valid)
-            if (input.validity.valid) return true
+    function validateForm() {
+      const inputs = form.querySelectorAll("input[required]");
+      const checkdInputs = [];
+      const options = form.querySelectorAll("option");
+      Array.from(inputs).map((input) => {
+        if (input.type == "checkbox") {
+          if (input.checked) {
+            console.log("checkbox ok");
+            checkdInputs.push(true)
+          } else {
+            console.log("checkbox niet ok");
+            checkdInputs.push(false)
+            submit.disabled = true;
+          }
+        } else if(input.type == "text" || input.type =="email"){
+            if(input.value != ''){
+                console.log("inputs ok");
+                checkdInputs.push(true)
+            } else {
+                console.log("inputs niet ok");
+                checkdInputs.push(false)
+            }
         }
-        window.addEventListener("load", checkRequired)
-        form.addEventListener("change", checkRequired)
-        
-          
+        if (!checkdInputs.includes(false)){
+            submit.disabled = false
+        }
+      });
     }
+    window.addEventListener("load", validateForm);
+    form.addEventListener("change", validateForm);
+  }
 })();
