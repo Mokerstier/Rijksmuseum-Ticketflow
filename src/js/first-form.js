@@ -2,6 +2,7 @@
   const firstForm = document.querySelector(".form-first-step");
 
   if (firstForm) {
+    const legendLabel = document.querySelector("#legendLabel")
     const validationError = document.querySelector(".field-validation-error");
     const totalTickets = document.querySelector(".totalTickets");
     const numberTickets = document.querySelector("#aantal-first-step");
@@ -62,10 +63,12 @@
         }
       }
 
-      totalTicketsPrice.value = `€${parseFloat(totalPrice / 100).toFixed(2)}`;
+      totalTicketsPrice.value = `Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`;
       totalPriceToSend.value = `€${parseFloat(totalPrice / 100).toFixed(2)}`;
       totalTickets.value = ticketCount;
-      numberTickets.textContent = ticketCount;
+      numberTickets.textContent = `Aantal tickets: ${ticketCount}`;
+      legendLabel.textContent = `Belangrijk! Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is Aantal tickets: ${ticketCount}, Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`
+      console.log("hoooooooi", legendLabel);
       console.log(subTotal);
       console.log(totalPrice);
     }
