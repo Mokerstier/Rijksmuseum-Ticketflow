@@ -174,6 +174,7 @@
         label.textContent = day;
         label.htmlFor = day;
 
+        checkbox.required = true
         checkbox.type = "checkbox";
         checkbox.classList.add("inputDay");
         checkbox.dataset.dayNumber = dayNumber;
@@ -264,6 +265,7 @@
               const span = document.createElement('span');
               const label = document.createElement("label");
 
+              radiobutton.required = true
               radiobutton.type = "radio";
               radiobutton.value = day.date;
               radiobutton.dataset.dayDate = day.date;
@@ -319,6 +321,8 @@
                   const checkBoxDayPeriod = document.createElement("input");
                   const label = document.createElement("label");
                   const span = document.createElement('span');
+                  
+                  checkBoxDayPeriod.required = true
                   checkBoxDayPeriod.type = "checkbox";
                   checkBoxDayPeriod.value = "morning";
                   checkBoxDayPeriod.id = "morningCheck";
@@ -346,6 +350,7 @@
                   const label = document.createElement("label");
                   const span = document.createElement('span');
 
+                  checkBoxDayPeriod.required = true
                   checkBoxDayPeriod.type = "checkbox";
                   checkBoxDayPeriod.value = "midday";
                   checkBoxDayPeriod.id = "middayCheck";
@@ -377,6 +382,7 @@
                     label.textContent = expo.PeriodStart;
                     label.htmlFor = expo.PeriodStart;
 
+                    radioStartTime.required = true
                     radioStartTime.dataset.startTime = expo.PeriodStart;
                     radioStartTime.type = "radio";
                     radioStartTime.value = expo.PeriodStart;

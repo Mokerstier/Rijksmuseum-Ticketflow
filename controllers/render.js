@@ -70,16 +70,18 @@ function getThirdStep(req, res) {
     totalPrice = req.query.totalPrice
     javascript = req.query.javascript
 
+    ticketCount = getter.getTicketCount(req, res)
     if (req.query.Articles) {
         ticketChoice = req.query.Articles
-        ticketCount = getter.getTicketCount(req, res)
+        
+        
     }
     if (req.query.ticketChoice) {
         ticketChoice = req.query.ticketChoice
     }
 
     const availableExpoId = getter.getAllUnavailableExpoId(ticketCount)
-    console.log(availableExpoId)
+
  
     res.render('pages/thirdStep.ejs', {
         title: 'Plan je bezoek',

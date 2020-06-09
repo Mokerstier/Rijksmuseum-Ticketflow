@@ -1,4 +1,58 @@
 (function () {
+    const form = document.querySelector('form')
+    const submit = form.querySelector('input[type="submit"]')
+
+    
+
+    if(form){
+        submit.disabled = true
+        const required = form.querySelectorAll('[required]')
+        Array.from(required).forEach(element =>{
+            element.addEventListener("change", checkRequired)
+        })
+        
+        console.log(required)
+        
+        function checkRequired(){ 
+
+            let inputArray = []
+            Array.from(required).forEach(element =>{
+                inputArray.push(element)
+                
+            })  
+                let valid = true;
+
+                inputArray.map(element => {
+                    console.log('AAAAAA',isValid(element))
+                    console.log('AAAAAA')
+                  if (!isValid(element) || !element.value) {
+                      
+                    return valid = false
+                  } 
+                })
+                console.log(valid)
+                if (!valid) {
+                    submit.disabled = true 
+                    console.log('disabled')
+                }else{
+                    submit.disabled = false;
+                    console.log('enabled')
+                } 
+
+              }
+        
+        function isValid(input){
+            console.dir(input)
+            console.log(input.validity.valid)
+            if (input.validity.valid) return true
+        }
+        window.addEventListener("load", checkRequired)
+        form.addEventListener("change", checkRequired)
+        
+          
+    }
+})();
+(function () {
   const formThirdStep = document.querySelector(".step-three");
   const javascript = document.querySelector('input[name=javascript]')
 
@@ -174,6 +228,7 @@
         label.textContent = day;
         label.htmlFor = day;
 
+        checkbox.required = true
         checkbox.type = "checkbox";
         checkbox.classList.add("inputDay");
         checkbox.dataset.dayNumber = dayNumber;
@@ -264,6 +319,7 @@
               const span = document.createElement('span');
               const label = document.createElement("label");
 
+              radiobutton.required = true
               radiobutton.type = "radio";
               radiobutton.value = day.date;
               radiobutton.dataset.dayDate = day.date;
@@ -319,6 +375,8 @@
                   const checkBoxDayPeriod = document.createElement("input");
                   const label = document.createElement("label");
                   const span = document.createElement('span');
+                  
+                  checkBoxDayPeriod.required = true
                   checkBoxDayPeriod.type = "checkbox";
                   checkBoxDayPeriod.value = "morning";
                   checkBoxDayPeriod.id = "morningCheck";
@@ -346,6 +404,7 @@
                   const label = document.createElement("label");
                   const span = document.createElement('span');
 
+                  checkBoxDayPeriod.required = true
                   checkBoxDayPeriod.type = "checkbox";
                   checkBoxDayPeriod.value = "midday";
                   checkBoxDayPeriod.id = "middayCheck";
@@ -377,6 +436,7 @@
                     label.textContent = expo.PeriodStart;
                     label.htmlFor = expo.PeriodStart;
 
+                    radioStartTime.required = true
                     radioStartTime.dataset.startTime = expo.PeriodStart;
                     radioStartTime.type = "radio";
                     radioStartTime.value = expo.PeriodStart;
@@ -445,6 +505,7 @@
     const numberTickets = document.querySelector("#aantal-first-step");
     const totalTicketsPrice = document.querySelector("#total-first-step");
     const totalPriceToSend = document.querySelector(".total-price")
+    const submit = firstForm.querySelector('input[type="submit"]')
 
     function calcTicketCount() {
       let ticketCount;
@@ -478,6 +539,7 @@
             const value = Array.from(options).map((option) => {
               if (option.selected) {
                 ticketCount = Number(option.value) + ticketCount;
+                
                 subTotal.push(
                   Number(option.dataset.price) * Number(option.value)
                 );
@@ -490,7 +552,13 @@
           });
         }
       }
-
+      if (ticketCount == 0){
+        submit.disabled = true 
+          console.log('disabled')
+      } else {
+        submit.disabled = false
+          console.dir( submit)
+      }
       if (validationError) {
         console.log(maxAmountOfArticles+ ticketCount)
         if (ticketCount > maxAmountOfArticles) {
@@ -694,36 +762,30 @@
         })
 
         function changeBackgroudnTickets(select) {
-            console.log(select)
-            console.log("changing")
             const options = select.querySelectorAll("option")
             Array.from(options).map((option) => {
                 if (option.selected) {
                     const div = option.parentNode.parentNode.parentNode.firstElementChild
                     if (Number(option.value) <= 1) {
-                        console.log(option, " ticket 1")
-                        console.dir(div)
+
                         div.classList.remove("two-tickets")
                         div.classList.remove("three-tickets")
                         div.classList.remove("more-tickets")
 
                     } else if (Number(option.value) == 2) {
-                        console.log(option, "tickets 2")
-                        console.dir(div)
+
                         div.classList.add("two-tickets")
                         div.classList.remove("three-tickets")
                         div.classList.remove("more-tickets")
 
                     } else if (Number(option.value) == 3) {
-                        console.log(option, "tickets 3")
-                        console.dir(div)
+
                         div.classList.remove("two-tickets")
                         div.classList.add("three-tickets")
                         div.classList.remove("more-tickets")
 
                     } else {
-                        console.log(option, " more than 3 tickets")
-                        console.dir(div)
+
                         div.classList.remove("two-tickets")
                         div.classList.remove("three-tickets")
                         div.classList.add("more-tickets")
