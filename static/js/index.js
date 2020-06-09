@@ -1,8 +1,8 @@
 (function () {
   const form = document.querySelector('[data-formname="personalInfo"]');
-  const submit = form.querySelector('input[type="submit"]');
 
   if (form) {
+    const submit = form.querySelector('input[type="submit"]');
     submit.disabled = true;
 
     function validateForm() {
@@ -13,23 +13,23 @@
         if (input.type == "checkbox") {
           if (input.checked) {
             console.log("checkbox ok");
-            checkdInputs.push(true)
+            checkdInputs.push(true);
           } else {
             console.log("checkbox niet ok");
-            checkdInputs.push(false)
+            checkdInputs.push(false);
             submit.disabled = true;
           }
-        } else if(input.type == "text" || input.type =="email"){
-            if(input.value != ''){
-                console.log("inputs ok");
-                checkdInputs.push(true)
-            } else {
-                console.log("inputs niet ok");
-                checkdInputs.push(false)
-            }
+        } else if (input.type == "text" || input.type == "email") {
+          if (input.value != "") {
+            console.log("inputs ok");
+            checkdInputs.push(true);
+          } else {
+            console.log("inputs niet ok");
+            checkdInputs.push(false);
+          }
         }
-        if (!checkdInputs.includes(false)){
-            submit.disabled = false
+        if (!checkdInputs.includes(false)) {
+          submit.disabled = false;
         }
       });
     }
@@ -430,7 +430,8 @@
                     const radioStartTime = document.createElement("input");
                     const label = document.createElement("label");
                     const span = document.createElement("span");
-                    label.textContent = expo.PeriodStart;
+                    
+                    label.textContent = new Date(expo.PeriodStart).getHours() + ':'+new Date(expo.PeriodStart).getMinutes() ;
                     label.htmlFor = expo.PeriodStart;
 
                     
@@ -455,17 +456,7 @@
         });
       });
     }
-    function getRequired(){
-      const required = form.querySelectorAll("[required]");
-      console.log('getting required');
-      console.log(required);
-      
-      
-      Array.from(required).forEach((element) => {
-        element.addEventListener("change", checkRequired);
-      });
-      return required
-      }
+
     function removeChilds(className) {
       submit.disabled = true
       const container = document.querySelector(className);

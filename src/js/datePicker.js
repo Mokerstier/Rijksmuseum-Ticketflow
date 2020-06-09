@@ -390,7 +390,8 @@
                     const radioStartTime = document.createElement("input");
                     const label = document.createElement("label");
                     const span = document.createElement("span");
-                    label.textContent = expo.PeriodStart;
+                    
+                    label.textContent = new Date(expo.PeriodStart).getHours() + ':'+new Date(expo.PeriodStart).getMinutes() ;
                     label.htmlFor = expo.PeriodStart;
 
                     
@@ -415,17 +416,7 @@
         });
       });
     }
-    function getRequired(){
-      const required = form.querySelectorAll("[required]");
-      console.log('getting required');
-      console.log(required);
-      
-      
-      Array.from(required).forEach((element) => {
-        element.addEventListener("change", checkRequired);
-      });
-      return required
-      }
+
     function removeChilds(className) {
       submit.disabled = true
       const container = document.querySelector(className);
