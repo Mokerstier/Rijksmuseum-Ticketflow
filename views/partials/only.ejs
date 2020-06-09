@@ -4,32 +4,35 @@
         <legend>
           <%= variantContent.articleSelectionContent.articleSelectionTitle %>
         </legend>
+        <h3 id="legendLabel">Belangrijk! Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is Aantal tickets: 0, Totale prijs: €0.00</h3>
         <div>
-        <% articles.forEach((article) => { %>
+          <% for( let a = 0; a < articles.length; a++ ){ %>
           <article>
             <div>
-              <% if(ticketChoice == article.Name){ %>
-              <input checked="checked" type="radio" name="ticketChoice" data-article-name="<%= article.Name %>" data-article-price="<%= article.PriceCent %>" value="<%= article.Name %>" id="<%= article.Code %>">
+              <% if(ticketChoice == articles[a].Name){ %>
+              <input checked="checked" type="radio" name="ticketChoice" aria-controls="ticketInfo" data-article-name="<%= articles[a].Name %>" data-article-price="<%= articles[a].PriceCent %>" value="<%= articles[a].Name %>" id="<%= articles[a].Code %>">
               <% } else {%>
-              <input type="radio" name="ticketChoice" data-article-name="<%= article.Name %>" data-article-price="<%= article.PriceCent %>" value="<%= article.Name %>" id="<%= article.Code %>">
+              <input type="radio" name="ticketChoice" aria-controls="ticketInfo" data-article-name="<%= articles[a].Name %>" data-article-price="<%= articles[a].PriceCent %>" value="<%= articles[a].Name %>" id="<%= articles[a].Code %>">
               <% } %>
-              <label for="<%= article.Code %>">
+              <label for="<%= articles[a].Code %>">
                   <div class="ticket-container">
-                      <h3><%= article.Name %></h3>
-                      <p class="align-middle">€ <%= (article.PriceCent / 100).toFixed(2) %></p>
+                      <h3><%= articles[a].Name %></h3>
+                      <p class="align-middle">€ <%= (articles[a].PriceCent / 100).toFixed(2) %></p>
                   </div>
-                  <% if(article.Description != "" && article.Description != "NULL"){ %>
-                    <button type="button" class="iBtn">i</button>
-                    <p class="tooltip"><%= article.Description %></p>
+                  <% if(articles[a].Description != "" && articles[a].Description != "NULL"){ %>
+                    <button type="button" class="iBtn" aria-describedby="tooltip<%= a %>">i</button>
+                    <p class="tooltip" id="tooltip<%= a %>"><%= articles[a].Description %></p>
                   <% } %>
               </label>
             </div>
             <div></div>
           </article>
-        <% }) %>
+        <% } %>
       </div>
-      <p>Aantal tickets: <output id="aantal-first-step" class="block-right">0</output></p>
-      <p>Totaal prijs: <output id="total-first-step" class="block-right">€0.00</output></p>
+      <section id="ticketInfo">
+        <p><output id="aantal-first-step" class="block-right" role="status" aria-live="polite">Aantal tickets: 0</output></p>
+        <p><output id="total-first-step" class="block-right" role="status" aria-live="polite">Totale prijs: €0.00</output></p>
+      </section>
       <input name="totalPrice" type="hidden" class="total-price">
     </fieldset>
     <p>

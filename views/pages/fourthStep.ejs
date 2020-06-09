@@ -17,26 +17,26 @@
             <fieldset>
                 <legend>Kies hier jouw multimedia bij je bezoek</legend>
                 <div>
-                    <% articlesAdditional.forEach(function(option) { %>
+                    <% for( let a = 0; a < articlesAdditional.length; a++ ){ %>
                         <article>
                             <div>
-                                <h3><%= option.Name %></h3>
-                                <% if(option.Description != "" && option.Description != "NULL"){ %>
-                                    <span class="iBtn">i</span>
-                                    <p class="tooltip"><%= option.Description %></p>
+                                <h3><%= articlesAdditional[a].Name %></h3>
+                                <% if(articlesAdditional[a].Description != "" && articlesAdditional[a].Description != "NULL"){ %>
+                                    <button type="button" class="iBtn" aria-describedby="tooltip<%= a %>">i</button>
+                                    <p class="tooltip" id="tooltip<%= a %>"><%= articlesAdditional[a].Description %></p>
                                 <% } %>
-                                <p class="align-middle">€ <%- (option.PriceCent / 100).toFixed(2) %></p>
+                                <p class="align-middle">€ <%- (articlesAdditional[a].PriceCent / 100).toFixed(2) %></p>
                             </div>
                             <div class="ticket-amount-container">
                                 <% if (javascript == 1){ %>
                                 <button type="button" class="remove-ticket">-</button>
                                 <% } %>
-                                <select aria-label="Aantal <%- option.Name %>" name="<%- option.FormName %>" id="">
+                                <select aria-label="Aantal <%- articlesAdditional[a].Name %>" name="<%- articlesAdditional[a].FormName %>" id="">
                                     <% for( let i = 0; i <  Number(ticketCount)+1 ; i++ ){ %>
                                         <% if(multiMediaChoice == i){%>
-                                            <option selected="selected" data-price="<%= option.PriceCent %>" value="<%= i %>"><%= i %></option>
+                                            <option selected="selected" data-price="<%= articlesAdditional[a].PriceCent %>" value="<%= i %>"><%= i %></option>
                                         <%}  else {%>
-                                            <option data-price="<%= option.PriceCent %>" value="<%= i %>"><%= i %></option>
+                                            <option data-price="<%= articlesAdditional[a].PriceCent %>" value="<%= i %>"><%= i %></option>
                                         <%} %>
                                 
                                     <%} %>
@@ -46,7 +46,7 @@
                                 <% } %>
                             </div>
                         </article>
-                      <% })%>
+                      <% }%>
                 </div>
             </fieldset>
         </section>
