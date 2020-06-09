@@ -540,6 +540,10 @@
     window.addEventListener("load", calcTicketCount);
   }
 })();
+// Code van:
+// https://stackoverflow.com/questions/34672091/center-focused-element-of-webpages-vertically
+// Het is wel geupdate omdat het verouderde code was
+
 document.documentOffsetTop = function () {
     return this.offsetTop + ( this.offsetParent ? this.offsetParent.documentOffsetTop() : 0 );
 };
@@ -552,11 +556,9 @@ document.scrollIntoViewCenter = function () {
 window.addEventListener("keyup", myScript);
   
 function myScript(e) {
-if ('9' == e.keyCode) {  
-    // tab = 9
-    //find and vertically center focused input
-    document.activeElement.scrollIntoViewCenter();
-}
+    if ('9' == e.keyCode) {  
+        document.activeElement.scrollIntoViewCenter();
+    }
 }
 
 (function () {
