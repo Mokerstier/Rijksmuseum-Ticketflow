@@ -540,6 +540,24 @@
     window.addEventListener("load", calcTicketCount);
   }
 })();
+document.documentOffsetTop = function () {
+    return this.offsetTop + ( this.offsetParent ? this.offsetParent.documentOffsetTop() : 0 );
+};
+  
+document.scrollIntoViewCenter = function () {
+    window.scrollTo( 0, this.documentOffsetTop() - (window.innerHeight / 2 ) );
+};
+  
+  
+window.addEventListener("keyup", myScript);
+  
+function myScript(e) {
+if ('9' == e.keyCode) {  
+    // tab = 9
+    //find and vertically center focused input
+    document.activeElement.scrollIntoViewCenter();
+}
+}
 
 (function () {
   function localStorageTest() {
