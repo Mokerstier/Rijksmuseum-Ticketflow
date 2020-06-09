@@ -166,6 +166,7 @@ tr {
   background-color: #eaeaea;
   height: 5em;
   width: 100%;
+  z-index: 2;
 }
 .ticketOrder > div {
   position: relative;
