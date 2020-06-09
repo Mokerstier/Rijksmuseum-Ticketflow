@@ -54,7 +54,8 @@
       }
 
       if (validationError) {
-        if (ticketCount >= maxAmountOfArticles) {
+        console.log(maxAmountOfArticles+ ticketCount)
+        if (ticketCount > maxAmountOfArticles) {
           validationError.classList.remove("hidden");
         } else {
           validationError.classList.add("hidden");

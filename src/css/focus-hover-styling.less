@@ -76,6 +76,28 @@ a:hover {
         transform: scaleX(1);
     }
 
+.entree-options-container div input:checked+label {
+    transform: scale(1);
+    background-color: #343537;
+    color: white;
+}
+.entree-options-container div input:disabled+label{
+    background-color: #727272;
+    &:hover{
+        background-color: #727272;
+    }
+    img{
+        filter: grayscale(100%);
+    }
+    
+}
+.entree-options-container div input:hover+label {
+    transform: scale(1);
+    background-color: #343537;
+    color: white;
+}
+
+
     .add-ticket:focus, .remove-ticket:focus {
         color: white;
         background-color: #343537;

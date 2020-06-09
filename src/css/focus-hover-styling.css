@@ -12,8 +12,22 @@ a:hover {
 .entree-options-container div input:checked + label {
   background-color: #343537;
 }
+
 .form-first-step article div:last-of-type button:active,
 [action="/vijfde-stap"] section:first-of-type button:active {
+
+.entree-options-container div input:disabled + label {
+  background-color: #727272;
+}
+.entree-options-container div input:disabled + label:hover {
+  background-color: #727272;
+}
+.entree-options-container div input:disabled + label img {
+  filter: grayscale(100%);
+}
+.entree-options-container div input:hover + label {
+  transform: scale(1);
+
   background-color: #343537;
 }
 .datePicker span > input:checked + label {

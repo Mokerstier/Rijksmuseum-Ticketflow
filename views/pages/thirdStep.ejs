@@ -24,26 +24,59 @@
       <fieldset>
         <legend>Plan hier je rondleiding door het Rijksmuseum</legend>
         <% expositionContents.forEach(function(option) { %>
-        <div>
-          
-            <% if(expoChoice == option.name){ %>
-            <input checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
-            value="<%= option.name%>,<%= option.expositionId %>" />
-            
-          <% } else {%>
-            <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
-            value="<%= option.name%>,<%= option.expositionId %>" />
-          <% } %>
-          
-          <label for="<%= option.expositionId %>">
-            <img src="<%= option.expoImage %>" alt="Een foto van een tour in het Rijksmuseum" />
-            <%= option.name %>
-            <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>
+            <div>
+              <% if(availableExpoId.length == 1) { %>
+                <% if(!availableExpoId.includes(option.expositionId.toUpperCase())){ %>
+                  <p class="expo-validation-error">
+                    Deze rondleiding is niet beschikbaar voor uw groepsgrootte.
+                  </p>
+                  <input disabled id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+                    value="<%= option.name%>,<%= option.expositionId %>" />
+                <% } else { %>
+                  <% if(expoChoice == option.name){ %>
+                    <input checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+                    value="<%= option.name%>,<%= option.expositionId %>" />
+                    
+                  <% } else { %>
+                      <input checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+                      value="<%= option.name%>,<%= option.expositionId %>" />
+                  <% } %>
+                <% } %>
+              <% } else { %>
+                <% if(!availableExpoId.includes(option.expositionId.toUpperCase())){ %>
+                  <p class="expo-validation-error">
+                    Deze rondleiding is niet beschikbaar voor uw groepsgrootte.
+                  </p>
+                  <input disabled id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+                    value="<%= option.name%>,<%= option.expositionId %>" />
+                <% } else { %>
+                  <% if(expoChoice == option.name){ %>
+                    <input checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+                    value="<%= option.name%>,<%= option.expositionId %>" />
+                    
+                  <% } else { %>
+                      <input id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
+                      value="<%= option.name%>,<%= option.expositionId %>" />
+                  <% } %>
+                <% } %>
+              <% } %>
 
-          </label>
-        </div>
-        <% })%>
+
+            <label for="<%= option.expositionId %>">
+              <img src="<%= option.expoImage %>" alt="Een foto van een tour in het Rijksmuseum" />
+              <%= option.name %>
+              <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>
+  
+            </label>
+          </div>
+          
+        <% }) %>
+
+        <p class="field-validation-error hidden">
+          Er is geen rondleiding beschikbaar voor uw groepsgrootte
+        </p>
       </fieldset>
+
       <% for( let i = 0; i < expositionContents.length; i++ ){ %>
       <article class="informationToursMuseum">
         <p class="expositionContents<%= i %>">
@@ -51,8 +84,10 @@
         </p>
         <% }%>
       </article>
+
     </section>
 
+    
     <% if( javascript == 1){ %>
       <%- include ("../partials/datepicker.ejs") %>
     <% } %>

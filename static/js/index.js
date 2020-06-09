@@ -11,6 +11,7 @@
   let ChosenMonth;
 
   if (formThirdStep) {
+    const validationError = document.querySelector(".field-validation-error");
     const dayPeriodContainer = document.querySelector(".choose-day-period");
     const inputs = document.querySelectorAll('.step-three .entree-options-container input[type="radio"]');
     const selectMonth = document.querySelector(".monthDatePicker");
@@ -18,79 +19,95 @@
     let data = [];
 
     for (let i = 0; i < inputs.length; i++) {
-      inputs[i].addEventListener("change", async function () {
-        removeChilds(".checkboxDay")
-        removeChilds(".chooseDay")
-        removeChilds(".monthDatePicker")
-        removeChilds(".choose-day-period")
-        removeChilds(".midday-container")
-        removeChilds(".morning-container")
-
-        if (inputs[i].checked) {
-          const expoID = inputs[i].dataset.id;
-          let totalTickets = Number(ticketCount);
-
-          const dataToPush = await getExpoPeriod(expoID, totalTickets);
-          data = [];
-          data.push(dataToPush);
-
-          const monthData = data[0].map((expo) => {
-            const date = new Date(expo.PeriodStart);
-            const month = date.getMonth();
-            return month;
-          });
-
-          const uniqueMonthArray = getUnique(monthData);
-
-          uniqueMonthArray.sort((a, b) => {
-            return a - b;
-          });
-
-          const monthNames = {
-            "0": "Januari",
-            "1": "Februari",
-            "2": "Maart",
-            "3": "April",
-            "4": "Mei",
-            "5": "Juni",
-            "6": "Juli",
-            "7": "Augustus",
-            "8": "September",
-            "9": "Oktober",
-            "10": "November",
-            "11": "December",
-          };
-
-          const getMonthNames = uniqueMonthArray.map((month) => {
-            return monthNames[month];
-          });
-
-          getMonthNames.map((month) => {
-            const option = document.createElement("option");
-
-            let monthNumber;
-            for (let [key, value] of Object.entries(monthNames)) {
-              if (value === month) {
-                monthNumber = key;
-              }
-            }
-            option.classList.add("optionMonth");
-            option.dataset.monthNumber = monthNumber;
-            option.textContent = month;
-            option.value = month;
-            selectMonth.appendChild(option);
-          });
-          datePicker();
-        }
-      });
+      inputs[i].addEventListener("change", () => checkForm(i));
+      window.addEventListener('load', () => checkForm(i))
     }
+    
+    async function checkForm (i) {
+      removeChilds(".checkboxDay")
+      removeChilds(".chooseDay")
+      removeChilds(".monthDatePicker")
+      removeChilds(".choose-day-period")
+      removeChilds(".midday-container")
+      removeChilds(".morning-container")
 
+      if (inputs[i].checked) {
+        const expoID = inputs[i].dataset.id;
+        let totalTickets = Number(ticketCount);
+
+        const dataToPush = await getExpoPeriod(expoID, totalTickets);
+        data = [];
+        data.push(dataToPush);
+
+        const monthData = data[0].map((expo) => {
+          const date = new Date(expo.PeriodStart);
+          const month = date.getMonth();
+          return month;
+        });
+
+        const uniqueMonthArray = getUnique(monthData);
+
+        uniqueMonthArray.sort((a, b) => {
+          return a - b;
+        });
+
+        const monthNames = {
+          "0": "Januari",
+          "1": "Februari",
+          "2": "Maart",
+          "3": "April",
+          "4": "Mei",
+          "5": "Juni",
+          "6": "Juli",
+          "7": "Augustus",
+          "8": "September",
+          "9": "Oktober",
+          "10": "November",
+          "11": "December",
+        };
+
+        const getMonthNames = uniqueMonthArray.map((month) => {
+          return monthNames[month];
+        });
+
+        getMonthNames.map((month) => {
+          const option = document.createElement("option");
+
+          let monthNumber;
+          for (let [key, value] of Object.entries(monthNames)) {
+            if (value === month) {
+              monthNumber = key;
+            }
+          }
+          option.classList.add("optionMonth");
+          option.dataset.monthNumber = monthNumber;
+          option.textContent = month;
+          option.value = month;
+          selectMonth.appendChild(option);
+        });
+        datePicker();
+      }
+    }
+    function expoError(){
+      
+      validationError.classList.remove('hidden')
+      validationError.textContent = 'Er is geen rondleiding beschikbaar voor uw groepsgrootte'
+      validationError.scrollIntoView()
+    }
+    function removeError(){
+      validationError.classList.add('hidden')
+    }
 
     select.addEventListener("change", datePicker);
 
     async function getExpoPeriod(expoID, totalTickets) {
       let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`);
       let expoData = await response.json();
+      if(expoData.length == 0){
+        expoError()
+      } else {
+        removeError()
+      }
       return expoData;
     }
 
@@ -472,7 +489,8 @@
       }
 
       if (validationError) {
-        if (ticketCount >= maxAmountOfArticles) {
+        console.log(maxAmountOfArticles+ ticketCount)
+        if (ticketCount > maxAmountOfArticles) {
           validationError.classList.remove("hidden");
         } else {
           validationError.classList.add("hidden");
@@ -605,6 +623,16 @@
   }
 })();
 
+(function () {
+    const linkFamily = document.querySelector(".family-flow-link")
+    const linkDate = document.querySelector(".date-flow-link")
+    const linkGroup = document.querySelector(".group-flow-link")
+    if (linkFamily) {
+        linkFamily.href = "/tweede-stap?groupChoice=family&javascript=1";
+        linkDate.href = "/tweede-stap?groupChoice=date&javascript=1";
+        linkGroup.href = "/tweede-stap?groupChoice=small-group&javascript=1";
+    }
+})();
 (function () {
     const forthForm = document.querySelector(".step-two")
     if (forthForm) {
