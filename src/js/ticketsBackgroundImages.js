@@ -24,36 +24,30 @@
         })
 
         function changeBackgroudnTickets(select) {
-            console.log(select)
-            console.log("changing")
             const options = select.querySelectorAll("option")
             Array.from(options).map((option) => {
                 if (option.selected) {
                     const div = option.parentNode.parentNode.parentNode.firstElementChild
                     if (Number(option.value) <= 1) {
-                        console.log(option, " ticket 1")
-                        console.dir(div)
+
                         div.classList.remove("two-tickets")
                         div.classList.remove("three-tickets")
                         div.classList.remove("more-tickets")
 
                     } else if (Number(option.value) == 2) {
-                        console.log(option, "tickets 2")
-                        console.dir(div)
+
                         div.classList.add("two-tickets")
                         div.classList.remove("three-tickets")
                         div.classList.remove("more-tickets")
 
                     } else if (Number(option.value) == 3) {
-                        console.log(option, "tickets 3")
-                        console.dir(div)
+
                         div.classList.remove("two-tickets")
                         div.classList.add("three-tickets")
                         div.classList.remove("more-tickets")
 
                     } else {
-                        console.log(option, " more than 3 tickets")
-                        console.dir(div)
+
                         div.classList.remove("two-tickets")
                         div.classList.remove("three-tickets")
                         div.classList.add("more-tickets")

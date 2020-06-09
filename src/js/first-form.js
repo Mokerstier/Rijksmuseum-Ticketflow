@@ -8,6 +8,7 @@
     const numberTickets = document.querySelector("#aantal-first-step");
     const totalTicketsPrice = document.querySelector("#total-first-step");
     const totalPriceToSend = document.querySelector(".total-price")
+    const submit = firstForm.querySelector('input[type="submit"]')
 
     function calcTicketCount() {
       let ticketCount;
@@ -41,6 +42,7 @@
             const value = Array.from(options).map((option) => {
               if (option.selected) {
                 ticketCount = Number(option.value) + ticketCount;
+                
                 subTotal.push(
                   Number(option.dataset.price) * Number(option.value)
                 );
@@ -53,7 +55,13 @@
           });
         }
       }
-
+      if (ticketCount == 0){
+        submit.disabled = true 
+          console.log('disabled')
+      } else {
+        submit.disabled = false
+          console.dir( submit)
+      }
       if (validationError) {
         console.log(maxAmountOfArticles+ ticketCount)
         if (ticketCount > maxAmountOfArticles) {

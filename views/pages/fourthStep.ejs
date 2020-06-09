@@ -4,7 +4,7 @@
         <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
         <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
         <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" class="visited linkStyleUnderline">3. Plan je bezoek &#10003</a></li> 
-        <li><a href="/vierde-stap" aria-current="page">4. Extra opties ></a></li> 
+        <li><a href="/vierde-stap?javascript=<%- javascript %>" aria-current="page">4. Extra opties ></a></li> 
         <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
         <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
     </ul>
@@ -12,7 +12,7 @@
 
 <main>
     <h2>Extra opties voor bij je bestelling</h2>
-    <form class="step-two" action="/vijfde-stap" method="GET" data-formName="extraOptionsChoice">
+    <form validate class="step-two" action="/vijfde-stap" method="GET" data-formName="extraOptionsChoice">
         <section>
             <fieldset>
                 <legend>Kies hier jouw multimedia bij je bezoek</legend>
@@ -62,7 +62,7 @@
                     <%} %>   
                         <label for="donation<%- option.Code %>">€ <%= (option.PriceCent/ 100).toFixed(2) %></label>
                 <% })%>
-                <input id="noDonation" type="radio" name="Doneer" value="0">
+                <input checked="checked" id="noDonation" type="radio" name="Doneer" value="0">
                 <label for="noDonation">€ 0.00</label>
             </fieldset>
         </section>

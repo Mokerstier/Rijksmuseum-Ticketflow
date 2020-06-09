@@ -2,16 +2,16 @@
 <nav>
     <ul>
         <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
-        <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
+        <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>&javascript=<%- javascript %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
         <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" class="visited linkStyleUnderline">3. Plan je bezoek &#10003</a></li> 
-        <li><a href="/vierde-stap" class="visited linkStyleUnderline">4. Extra opties &#10003</a></li> 
+        <li><a href="/vierde-stap?javascript=<%- javascript %>" class="visited linkStyleUnderline">4. Extra opties &#10003</a></li> 
         <li><a href="/vijfde-stap" aria-current="page">5. Persoonsgegevens ></a></li> 
         <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
     </ul>
 </nav>
 
 <main>
-<form action="/zesde-stap" method="GET" data-formName="personalInfo"> 
+<form validate action="/zesde-stap" method="GET" data-formName="personalInfo"> 
     <!-- <h2>Persoonsgegevens</h3> -->
     <section class="timeCountdown">
         <p role="alert">Je hebt nu een tijd gereserveerd. De resterende tijd om je bestelling af te ronden is <span>25:00</span></p>
@@ -20,23 +20,23 @@
     <section>
         <fieldset>
             <label for="firstName">Naam *</label>
-            <input name="voornaam" placeholder="Voornaam" id="firstName" type="text" value="<%= firstName %>">
+            <input required name="voornaam" placeholder="Voornaam" id="firstName" type="text" value="<%= firstName %>">
             <input name="tussenvoegsel" placeholder="Tussenvoegsel" id="tussenName" type="text" value="<%= tussenName %>">
-            <input name="achternaam" placeholder="Achternaam" id="lastName" type="text" value="<%= lastName %>">
+            <input required name="achternaam" placeholder="Achternaam" id="lastName" type="text" value="<%= lastName %>">
         </fieldset>
         <fieldset>
             <label for="emailAddress">E-mailadres *</label>
-            <input name="email" id="emailAddress" type="email" value="<%= email %>">
+            <input required name="email" id="emailAddress" type="email" value="<%= email %>">
         </fieldset>
     </section>
     <section>
         <fieldset>
             <label for="zipCode">Postcode *</label>
-            <input id="zipCode" name="postcode" type="text" value="<%= zipCode %>">
+            <input required id="zipCode" name="postcode" type="text" value="<%= zipCode %>">
         </fieldset>
         <fieldset>
             <label for="country">Land *</label>
-            <select name="land" id="country">
+            <select required name="land" id="country">
                 <% if(country =="Netherlands") { %>
                     <option selected="selected" value="Netherlands">Nederland</option>
                 <% }else{%>
@@ -325,9 +325,9 @@
     <section>
         <p><%- ticketShop.personalDetailsContent.privacyPolicyText %></p>
         <% if(acceptTerms == "on") { %>
-        <input checked="checked" name="acceptterms" id="acceptterms" type="checkbox">
+        <input required checked="checked" name="acceptterms" id="acceptterms" type="checkbox">
         <% }else {%>
-        <input name="acceptterms" id="acceptterms" type="checkbox">
+        <input required name="acceptterms" id="acceptterms" type="checkbox">
         <%}%>
         <label for="acceptterms"><%- ticketShop.personalDetailsContent.acceptTermsAndConditions %></label>
     </section>

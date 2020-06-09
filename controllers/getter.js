@@ -107,8 +107,9 @@ function getExpoData(req, res) {
 }
 
 function getTicketCount(req, res){
-    let ticketsCount = req.query.Articles
-    console.log('Articles '+ticketsCount)
+    let ticketsCount
+    !req.query.Articles ? ticketsCount = [1] : ticketsCount = req.query.Articles
+
     ticketsCount = ticketsCount.reduce((all, current) =>{
         all = Number(all) + Number(current)
         return all

@@ -10,9 +10,9 @@
           <article>
             <div>
               <% if(ticketChoice == articles[a].Name){ %>
-              <input checked="checked" type="radio" name="ticketChoice" aria-controls="ticketInfo" data-article-name="<%= articles[a].Name %>" data-article-price="<%= articles[a].PriceCent %>" value="<%= articles[a].Name %>" id="<%= articles[a].Code %>">
+              <input required checked="checked" type="radio" name="ticketChoice" aria-controls="ticketInfo" data-article-name="<%= articles[a].Name %>" data-article-price="<%= articles[a].PriceCent %>" value="<%= articles[a].Name %>" id="<%= articles[a].Code %>">
               <% } else {%>
-              <input type="radio" name="ticketChoice" aria-controls="ticketInfo" data-article-name="<%= articles[a].Name %>" data-article-price="<%= articles[a].PriceCent %>" value="<%= articles[a].Name %>" id="<%= articles[a].Code %>">
+              <input required type="radio" name="ticketChoice" aria-controls="ticketInfo" data-article-name="<%= articles[a].Name %>" data-article-price="<%= articles[a].PriceCent %>" value="<%= articles[a].Name %>" id="<%= articles[a].Code %>">
               <% } %>
               <label for="<%= articles[a].Code %>">
                   <div class="ticket-container">
