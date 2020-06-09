@@ -21,20 +21,20 @@ a:hover {
     background-color: #343537;
 }
 
-.datePicker span > input:checked+label {
+.datePicker span>input:checked+label {
     background-position: left bottom;
     background-color: #343537;
     color: white;
     animation: none;
 }
 
-.datePicker span > input:checked+label::before {
+.datePicker span>input:checked+label::before {
     content: url(/assets/images/greenCheckmarkSmall.png);
     padding-right: 0.5em;
     filter: brightness(10) saturate(100%);
 }
 
-@media (prefers-reduced-motion: no-preference){
+@media (prefers-reduced-motion: no-preference) {
     .backAndNextButton:hover {
         background-color: black;
     }
@@ -55,11 +55,11 @@ a:hover {
             background-color: #343537;
         }
     }
-    
+
     .linkStyleUnderline:hover {
         color: #d2982f;
     }
-    
+
     .linkStyleUnderline:hover::before {
         visibility: visible;
         transform: scaleX(1);
@@ -70,43 +70,50 @@ a:hover {
         outline: 1px solid #d2982f;
         outline-offset: 10px;
     }
-    
+
     .linkStyleUnderline:focus::before {
         visibility: visible;
         transform: scaleX(1);
     }
 
-.entree-options-container div input:checked+label {
-    transform: scale(1);
-    background-color: #343537;
-    color: white;
-}
-.entree-options-container div input:disabled+label{
-    background-color: #727272;
-    &:hover{
+    .entree-options-container div input:checked+label {
+        transform: scale(1);
+        background-color: #343537;
+        color: white;
+    }
+
+    .entree-options-container div input:hover+label {
+        transform: scale(1);
+        background-color: #343537;
+        color: white;
+    }
+
+    .entree-options-container div input:disabled+label {
         background-color: #727272;
+
+        &:hover {
+            background-color: #727272;
+        }
+
+        img {
+            filter: grayscale(100%);
+        }
+
     }
-    img{
-        filter: grayscale(100%);
-    }
-    
-}
-.entree-options-container div input:hover+label {
-    transform: scale(1);
-    background-color: #343537;
-    color: white;
-}
 
 
-    .add-ticket:focus, .remove-ticket:focus {
+
+    .add-ticket:focus,
+    .remove-ticket:focus {
         color: white;
         background-color: #343537;
         border: 3px solid #d9531e;
-        overflow: hidden;    
+        overflow: hidden;
         margin: 2px;
     }
 
-    .add-ticket:active, .remove-ticket:active {
+    .add-ticket:active,
+    .remove-ticket:active {
         color: white;
         background-color: #343537;
         box-shadow: 0 3px 6px -6px black;
@@ -127,9 +134,11 @@ a:hover {
         0% {
             transform: scale(1);
         }
+
         50% {
             transform: scale(1.1);
         }
+
         100% {
             transform: scale(1);
         }
@@ -154,7 +163,7 @@ a:hover {
         background-size: 200% 100%;
     }
 
-    .datePicker span:focus-within > input:checked+label{
+    .datePicker span:focus-within>input:checked+label {
         color: white;
         outline: 3px solid #d55140;
     }
@@ -163,6 +172,7 @@ a:hover {
         from {
             background-position: right bottom;
         }
+
         to {
             background-position: left bottom;
         }
