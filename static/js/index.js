@@ -631,8 +631,9 @@
       totalTicketsPrice.value = `Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`;
       totalPriceToSend.value = `€${parseFloat(totalPrice / 100).toFixed(2)}`;
       totalTickets.value = ticketCount;
-      numberTickets.textContent = `Aantal tickets: ${ticketCount}`;
-      legendLabel.textContent = `Belangrijk! Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is Aantal tickets: ${ticketCount}, Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`
+      numberTickets.textContent = `Totaal aantal tickets: ${ticketCount}`;
+      
+      legendLabel.setAttribute('aria-label', `Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is totaal aantal tickets: ${ticketCount}, Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`)
       console.log("hoooooooi", legendLabel);
       console.log(subTotal);
       console.log(totalPrice);

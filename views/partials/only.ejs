@@ -1,10 +1,10 @@
     <%- include ("../partials/usps.ejs") %>
   <section>
       <fieldset>
-        <legend>
+        <legend id="legendLabel">
           <%= variantContent.articleSelectionContent.articleSelectionTitle %>
         </legend>
-        <h3 id="legendLabel">Belangrijk! Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is Aantal tickets: 0, Totale prijs: €0.00</h3>
+        
         <div>
           <% for( let a = 0; a < articles.length; a++ ){ %>
           <article>
@@ -20,7 +20,7 @@
                       <p class="align-middle">€ <%= (articles[a].PriceCent / 100).toFixed(2) %></p>
                   </div>
                   <% if(articles[a].Description != "" && articles[a].Description != "NULL"){ %>
-                    <button type="button" class="iBtn" aria-describedby="tooltip<%= a %>">i</button>
+                    <div aria-label="extra informatie" tabindex="0" type="button" class="iBtn" aria-describedby="tooltip<%= a %>">i</div>
                     <p class="tooltip" id="tooltip<%= a %>"><%= articles[a].Description %></p>
                   <% } %>
               </label>
@@ -30,7 +30,7 @@
         <% } %>
       </div>
       <section id="ticketInfo">
-        <p><output id="aantal-first-step" class="block-right" role="status" aria-live="polite">Aantal tickets: 0</output></p>
+        <p><output id="aantal-first-step" class="block-right" role="status" aria-live="polite">Totaal aantal tickets: 0</output></p>
         <p><output id="total-first-step" class="block-right" role="status" aria-live="polite">Totale prijs: €0.00</output></p>
       </section>
       <input name="totalPrice" type="hidden" class="total-price">

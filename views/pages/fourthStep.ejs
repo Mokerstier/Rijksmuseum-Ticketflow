@@ -22,7 +22,7 @@
                             <div>
                                 <h3><%= articlesAdditional[a].Name %></h3>
                                 <% if(articlesAdditional[a].Description != "" && articlesAdditional[a].Description != "NULL"){ %>
-                                    <button type="button" class="iBtn" aria-describedby="tooltip<%= a %>">i</button>
+                                    <div aria-label="extra informatie" tabindex="0" type="button" class="iBtn" aria-describedby="tooltip<%= a %>">i</div>
                                     <p class="tooltip" id="tooltip<%= a %>"><%= articlesAdditional[a].Description %></p>
                                 <% } %>
                                 <p class="align-middle">€ <%- (articlesAdditional[a].PriceCent / 100).toFixed(2) %></p>
