@@ -18,7 +18,7 @@
         </div>
         <div class="ticket-amount-container">
           <% if (javascript == 1) {%>
-          <button type="button" class="remove-ticket">-</button>
+          <div aria-hidden="true" class="remove-ticket">-</div>
           <% } %>
           <select aria-label="Aantal <%= articles[a].Name %>" aria-controls="ticketInfo"  name="ticketType[<%-a%>]" id="">
             <% if(ticketChoice != null){ %>
@@ -40,7 +40,7 @@
             <% } %>
           </select>
           <% if (javascript == 1) {%>
-          <button type="button" class="add-ticket">+</button>
+          <div aria-hidden="true" class="add-ticket">+</div>
           <% } %>
         </div>
       </article>

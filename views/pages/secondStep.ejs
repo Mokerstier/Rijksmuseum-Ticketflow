@@ -1,17 +1,18 @@
 <%- include ("../partials/head.ejs") %> 
 <nav>
   <ul>
-      <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
-      <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>&javascript=<%- javascript %>" class="linkStyleUnderline">2. Tickets ></a></li> 
-      <li><a class="navStepDisabled" tabindex="-1" href="/derde-stap">3. Plan je bezoek ></a></li> 
-      <li><a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a></li> 
-      <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
-      <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
+    <li><a href="#main">Skip navigatie</a></li>
+    <li><a aria-label="Stap 1 kies je groep, vinkje" href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
+    <li><a aria-label="Stap 2 Ticket selectie" href="/tweede-stap?groupChoice=<%- groupChoice %>&javascript=<%- javascript %>" aria-current="page" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
+    <li><p class="navStepDisabled">3. Plan je bezoek ></p></li> 
+    <li><p class="navStepDisabled">4. Extra opties ></p></li> 
+    <li><p class="navStepDisabled">5. Persoonsgegevens ></p></li> 
+    <li><p class="navStepDisabled">6. Overzicht en betaling ></p></li>  
   </ul>
 </nav>
 
-<main>
-    <h2>Stel je tickets samen</h2>
+<main id="main">
+    <h2 aria-label="Stap 2 van de 6, Stel je tickets samen">Stel je tickets samen</h2>
     <form validate class="form-first-step" action="derde-stap" method="GET" data-formName="<%=formName%>">
       <input type="hidden" name="javascript" value="0">
       <%- include (`../partials/${groupChoice}.ejs`) %>

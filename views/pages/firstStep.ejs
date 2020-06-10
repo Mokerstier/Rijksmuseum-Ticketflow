@@ -1,18 +1,19 @@
 <%- include ("../partials/head.ejs") %> 
 <nav>
     <ul>
-        <li><a href="/" aria-current="page" title="1. Kies je groep" class="linkStyleUnderline">1. Kies je groep ></a></li> 
-        <li><a class="navStepDisabled" tabindex="-1" href="/tweede-stap">2. Tickets > </a></li> 
-        <li><a class="navStepDisabled" tabindex="-1" href="/derde-stap">3. Plan je bezoek ></a></li> 
-        <li><a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a></li> 
-        <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
-        <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
+        <li><a href="#main">Skip navigatie</a></li>
+        <li><a aria-label="Stap 1 kies je groep" href="/" aria-current="page" title="1. Kies je groep" class="linkStyleUnderline">1. Kies je groep ></a></li> 
+        <li><p class="navStepDisabled">2. Tickets > </p></li> 
+        <li><p class="navStepDisabled">3. Plan je bezoek ></p></li> 
+        <li><p class="navStepDisabled">4. Extra opties ></p></li> 
+        <li><p class="navStepDisabled">5. Persoonsgegevens ></p></li> 
+        <li><p class="navStepDisabled">6. Overzicht en betaling ></p></li> 
     </ul>
 </nav>
-<main>
+<main id="main">
     <form action="/tweede-stap" method="GET" data-formName="firstFormChoice">
         <section class="group-choice">
-            <h2>Met wie kom je naar het museum?</h2>
+            <h2 aria-label="Stap 1 van de 6, met wie kom je naar het museum?">Met wie kom je naar het museum?</h2>
                 <div>
                     <a aria-label="Kom je alleen? klik hier." class="only-flow-link" href="/tweede-stap?groupChoice=only&javascript=0" title="Alleen op je eigen tempo">
                         <img src="/assets/images/RijksFotos/tourtype3special.jpg" alt="Een foto van een tour in het Rijksmuseum">
