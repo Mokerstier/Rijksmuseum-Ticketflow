@@ -36,7 +36,7 @@
 .step-two fieldset > div article > div:first-of-type .iBtn {
   position: absolute;
   left: 2em;
-  bottom: 3em;
+  bottom: 2em;
 }
 .form-first-step fieldset > div article > div:first-of-type.two-tickets,
 .step-two fieldset > div article > div:first-of-type.two-tickets {

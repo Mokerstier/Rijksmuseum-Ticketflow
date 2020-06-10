@@ -71,8 +71,8 @@ function getThirdStep(req, res) {
     javascript = req.query.javascript
 
     ticketCount = getter.getTicketCount(req, res)
-    if (req.query.Articles) {
-        ticketChoice = req.query.Articles
+    if (req.query.ticketType) {
+        ticketChoice = req.query.ticketType
         
         
     }

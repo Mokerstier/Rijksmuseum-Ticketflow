@@ -1,0 +1,15 @@
+#ticketInfo {
+  margin: 0 auto;
+}
+#ticketInfo p {
+  margin-top: 0;
+}
+#ticketInfo p:last-of-type {
+  margin-bottom: 0;
+}
+#ticketInfo output > span {
+  display: block;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}

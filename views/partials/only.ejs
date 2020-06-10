@@ -10,9 +10,9 @@
           <article>
             <div>
               <% if(ticketChoice == articles[a].Name){ %>
-              <input required checked="checked" type="radio" name="ticketChoice" aria-controls="ticketInfo" data-article-name="<%= articles[a].Name %>" data-article-price="<%= articles[a].PriceCent %>" value="<%= articles[a].Name %>" id="<%= articles[a].Code %>">
+              <input required aria-controls="ticketInfo" checked="checked" type="radio" name="ticketChoice" aria-controls="ticketInfo" data-article-name="<%= articles[a].Name %>" data-article-price="<%= articles[a].PriceCent %>" value="<%= articles[a].Name %>" id="<%= articles[a].Code %>">
               <% } else {%>
-              <input required type="radio" name="ticketChoice" aria-controls="ticketInfo" data-article-name="<%= articles[a].Name %>" data-article-price="<%= articles[a].PriceCent %>" value="<%= articles[a].Name %>" id="<%= articles[a].Code %>">
+              <input required aria-controls="ticketInfo" type="radio" name="ticketChoice" aria-controls="ticketInfo" data-article-name="<%= articles[a].Name %>" data-article-price="<%= articles[a].PriceCent %>" value="<%= articles[a].Name %>" id="<%= articles[a].Code %>">
               <% } %>
               <label for="<%= articles[a].Code %>">
                   <div class="ticket-container">
@@ -29,10 +29,7 @@
           </article>
         <% } %>
       </div>
-      <section id="ticketInfo">
-        <p><output id="aantal-first-step" class="block-right" role="status" aria-live="polite">Totaal aantal tickets: 0</output></p>
-        <p><output id="total-first-step" class="block-right" role="status" aria-live="polite">Totale prijs: €0.00</output></p>
-      </section>
+
       <input name="totalPrice" type="hidden" class="total-price">
     </fieldset>
     <p>
@@ -47,9 +44,15 @@
 <section class="backButtonContainer">
   <a href="/" class="backButton linkStyleUnderline" aria-label="Klik hier om terug te gaan naar stap 1, Kies je groep"> < Terug naar kies je groep</a>
 </section>  
-<section class="ticketOrder">
-  <div>
-    <p>Bestellingslijst...</p>
-    <input class="backAndNextButton" type="submit" value="Plan je bezoek" aria-label="Klik hier om door te gaan naar stap 3, plan je bezoek">
-  </div>
-</section>
+
+    <section class="ticketOrder">
+      <div>
+        <% if (javascript == 1){ %>
+          <section id="ticketInfo">
+            <p><output id="aantal-first-step" class="block-right" role="status" aria-live="polite"> <span></span> Totaal aantal tickets: 2</output></p>
+            <p><output id="total-first-step" class="block-right" role="status" aria-live="polite"> <span>en</span> Totale prijs: €38.00</output></p>
+          </section>
+        <% } %>
+        <input class="backAndNextButton" type="submit" value="Plan je bezoek" aria-label="Klik hier om door te gaan naar stap 3, plan je bezoek">
+      </div>
+    </section>
