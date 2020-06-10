@@ -229,7 +229,8 @@ function getFifthStep(req, res) {
         email: email,
         zipCode: zipCode,
         acceptTerms: acceptTerms,
-        country: country
+        country: country,
+        startTimeChoice: startTimeChoice
     })
 }
 
