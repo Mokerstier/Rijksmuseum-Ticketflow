@@ -430,8 +430,10 @@
                     const radioStartTime = document.createElement("input");
                     const label = document.createElement("label");
                     const span = document.createElement("span");
-                    
-                    label.textContent = new Date(expo.PeriodStart).getHours() + ':'+new Date(expo.PeriodStart).getMinutes() ;
+                    const time = document.createElement('time');
+                    const timeStamp = new Date(expo.PeriodStart).toLocaleTimeString().split(':')
+                    time.textContent = timeStamp[0]+':'+ timeStamp[1]
+                    time.dateTime = timeStamp[0]+':'+ timeStamp[1]
                     label.htmlFor = expo.PeriodStart;
 
                     
@@ -443,6 +445,7 @@
                     radioStartTime.addEventListener('change', function(){
                       submit.disabled = false
                     })
+                    label.appendChild(time)
                     span.appendChild(radioStartTime);
                     span.appendChild(label);
                     container.appendChild(span);
