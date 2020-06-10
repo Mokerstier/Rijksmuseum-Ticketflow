@@ -1,6 +1,7 @@
 <%- include ("../partials/head.ejs") %> 
 <nav>
     <ul>
+        <li><a href="#main">Skip navigatie</a></li>
         <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
         <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>&javascript=<%- javascript %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
         <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" aria-current="page">3. Plan je bezoek ></a></li> 
@@ -10,7 +11,7 @@
     </ul>
   </nav>
 
-<main>
+<main id="main">
     <h2>Hoelaat wil je komen?
     </h2>
     <form class="form-first-step" action="vierde-stap" method="GET" >
@@ -29,7 +30,7 @@
         <% }) %>
         </section>
         <section class="backButtonContainer">
-            <a href="/derde-stap-dag" class="backButton linkStyleUnderline"> < Terug naar kies een dag </a>
+            <a href="/derde-stap-dag" class="backButton linkStyleUnderline" aria-label="Klik hier om terug te gaan naar stap 3, kies een dag"> < Terug naar kies een dag </a>
         </section>  
         <section class="ticketOrder">
             <div>

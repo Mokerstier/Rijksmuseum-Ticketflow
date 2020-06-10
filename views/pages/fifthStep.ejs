@@ -1,22 +1,23 @@
 <%- include ("../partials/head.ejs") %>
 <nav>
     <ul>
-        <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
-        <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>&javascript=<%- javascript %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
-        <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" class="visited linkStyleUnderline">3. Plan je bezoek &#10003</a></li> 
-        <li><a href="/vierde-stap?javascript=<%- javascript %>" class="visited linkStyleUnderline">4. Extra opties &#10003</a></li> 
-        <li><a href="/vijfde-stap" aria-current="page">5. Persoonsgegevens ></a></li> 
-        <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
+        <li><a href="#main">Skip navigatie</a></li>
+        <li><a aria-label="Stap 1 kies je groep, vinkje" href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
+        <li><a aria-label="Stap 2 Ticket selectie, vinkje" href="/tweede-stap?groupChoice=<%- groupChoice %>&javascript=<%- javascript %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
+        <li><a aria-label="Stap 3 plan je bezoek, vinkje" href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" class="visited linkStyleUnderline">3. Plan je bezoek &#10003</a></li> 
+        <li><a aria-label="Stap 4 extra opties, vinkje" href="/vierde-stap?javascript=<%- javascript %>" class="visited linkStyleUnderline">4. Extra opties &#10003</a></li> 
+        <li><a aria-label="Stap 5 Persoonsgegevens" href="/vijfde-stap" aria-current="page">5. Persoonsgegevens ></a></li> 
+        <li><p class="navStepDisabled" >6. Overzicht en betaling ></p></li> 
     </ul>
 </nav>
 
-<main>
+<main id="main">
 <form validate action="/zesde-stap" method="GET" data-formName="personalInfo"> 
     <!-- <h2>Persoonsgegevens</h3> -->
     <section class="timeCountdown">
-        <p role="alert">Je hebt nu een tijd gereserveerd. De resterende tijd om je bestelling af te ronden is <span>25:00</span></p>
+        <p role="alert">Je hebt voor <date><%= new Date(startTimeChoice).toLocaleString() %></date>, <%= ticketCount %> tickets gereserveerd, uw reservering vervalt na <time datetime="00:25">25:00</time> minuten</p>
     </section>
-    <h2>Persoonsgegevens</h2>
+    <h2 aria-label="Stap 5 van de 6, Persoonsgegevens">Persoonsgegevens</h2>
     <section>
         <fieldset>
             <label for="firstName">Naam *</label>
@@ -332,12 +333,12 @@
         <label for="acceptterms"><%- ticketShop.personalDetailsContent.acceptTermsAndConditions %></label>
     </section>
     <section class="backButtonContainer">
-        <a href="/vierde-stap" class="backButton"> < Terug naar extra opties</a>
+        <a href="/vierde-stap" class="backButton" aria-label="Klik hier om terug te gaan naar stap 4, extra opties"> < Terug naar extra opties</a>
     </section>  
     <section class="ticketOrder">
         <div>
             <p>Bestellingslijst...</p>
-            <input class="backAndNextButton" type="submit" value="Ga verder">
+            <input class="backAndNextButton" type="submit" value="Ga verder" aria-label="Klik om door te gaan naar stap 6, overzicht en betaling">
         </div>
     </section>
 </form>

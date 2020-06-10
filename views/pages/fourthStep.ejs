@@ -1,17 +1,18 @@
 <%- include ("../partials/head.ejs") %>
 <nav>
     <ul>
-        <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
-        <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
-        <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" class="visited linkStyleUnderline">3. Plan je bezoek &#10003</a></li> 
-        <li><a href="/vierde-stap?javascript=<%- javascript %>" aria-current="page">4. Extra opties ></a></li> 
-        <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
-        <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
+        <li><a href="#main">Skip navigatie</a></li>
+        <li><a aria-label="Stap 1 kies je groep, vinkje" href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
+        <li><a aria-label="Stap 2 Ticket selectie, vinkje" href="/tweede-stap?groupChoice=<%- groupChoice %>&javascript=<%- javascript %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
+        <li><a aria-label="Stap 3 plan je bezoek, vinkje" href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" class="visited linkStyleUnderline">3. Plan je bezoek &#10003</a></li> 
+        <li><a aria-label="Stap 4 extra opties" href="/vierde-stap?javascript=<%- javascript %>" aria-current="page" class="visited linkStyleUnderline">4. Extra opties &#10003</a></li> 
+        <li><p class="navStepDisabled">5. Persoonsgegevens ></p></li> 
+        <li><p class="navStepDisabled">6. Overzicht en betaling ></p></li> 
     </ul>
 </nav>
 
-<main>
-    <h2>Extra opties voor bij je bestelling</h2>
+<main id="main">
+    <h2 aria-label="Stap 4 van de 6, Extra opties voor bij je bestelling">Extra opties voor bij je bestelling</h2>
     <form validate class="step-two" action="/vijfde-stap" method="GET" data-formName="extraOptionsChoice">
         <section>
             <fieldset>
@@ -22,14 +23,14 @@
                             <div>
                                 <h3><%= articlesAdditional[a].Name %></h3>
                                 <% if(articlesAdditional[a].Description != "" && articlesAdditional[a].Description != "NULL"){ %>
-                                    <button type="button" class="iBtn" aria-describedby="tooltip<%= a %>">i</button>
+                                    <div aria-label="extra informatie" tabindex="0" type="button" class="iBtn" aria-describedby="tooltip<%= a %>">i</div>
                                     <p class="tooltip" id="tooltip<%= a %>"><%= articlesAdditional[a].Description %></p>
                                 <% } %>
                                 <p class="align-middle">€ <%- (articlesAdditional[a].PriceCent / 100).toFixed(2) %></p>
                             </div>
                             <div class="ticket-amount-container">
                                 <% if (javascript == 1){ %>
-                                <button type="button" class="remove-ticket">-</button>
+                                <div aria-hidden="true" class="remove-ticket">-</div>
                                 <% } %>
                                 <select aria-label="Aantal <%- articlesAdditional[a].Name %>" name="<%- articlesAdditional[a].FormName %>" id="">
                                     <% for( let i = 0; i <  Number(ticketCount)+1 ; i++ ){ %>
@@ -42,7 +43,7 @@
                                     <%} %>
                                 </select>
                                 <% if (javascript == 1){ %>
-                                <button type="button" class="add-ticket">+</button>
+                                <div aria-hidden="true" class="add-ticket">+</div>
                                 <% } %>
                             </div>
                         </article>
@@ -67,12 +68,12 @@
             </fieldset>
         </section>
         <section class="backButtonContainer">
-            <a href="/derde-stap" class="backButton"> < Terug naar plan je bezoek</a>
+            <a href="/derde-stap" class="backButton" aria-label="Klik hier om terug te gaan naar stap 3, plan je bezoek"> < Terug naar plan je bezoek</a>
         </section>  
         <section class="ticketOrder">
             <div>
                 <p>Bestellingslijst...</p>
-                <input class="backAndNextButton" type="submit" value="Naar persoonsgegevens">
+                <input class="backAndNextButton" type="submit" value="Naar persoonsgegevens" aria-label="Klik hier om door te gaan naar stap 5, persoonsgegevens">
             </div>
         </section>
     </form>

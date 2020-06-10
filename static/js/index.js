@@ -41,8 +41,6 @@
 (function () {
   const formThirdStep = document.querySelector(".step-three");
   const javascript = document.querySelector("input[name=javascript]");
-  
-  
 
   if (javascript) {
     javascript.value = 1;
@@ -114,6 +112,19 @@
         const getMonthNames = uniqueMonthArray.map((month) => {
           return monthNames[month];
         });
+
+        const legend = document.querySelector(".legend-month");
+        if (getMonthNames.length == 1) {
+          legend.setAttribute(
+            "aria-label",
+            `In welke maand wil je gaan? er is ${getMonthNames.length} optie`
+          );
+        } else {
+          legend.setAttribute(
+            "aria-label",
+            `In welke maand wil je gaan? er zijn ${getMonthNames.length} opties`
+          );
+        }
 
         getMonthNames.map((month) => {
           const option = document.createElement("option");
@@ -204,6 +215,19 @@
         return dayNames[day];
       });
 
+      const legend = document.querySelector(".legend-day");
+      if (getDayNames.length == 1) {
+        legend.setAttribute(
+          "aria-label",
+          `Op welke dag wil je naar het museum? er is ${getDayNames.length} optie`
+        );
+      } else {
+        legend.setAttribute(
+          "aria-label",
+          `Op welke dag wil je naar het museum? er zijn ${getDayNames.length} opties`
+        );
+      }
+
       getDayNames.map((day) => {
         const checkbox = document.createElement("input");
         const span = document.createElement("span");
@@ -219,13 +243,12 @@
         label.textContent = day;
         label.htmlFor = day;
 
-        
         checkbox.type = "checkbox";
         checkbox.classList.add("inputDay");
         checkbox.dataset.dayNumber = dayNumber;
         checkbox.id = day;
         checkbox.value = day;
-        checkbox.name = 'dayChoice[]'
+        checkbox.name = "dayChoice[]";
 
         if (day == "Zondag") {
           span.classList.add("zondag");
@@ -303,7 +326,18 @@
               dataToCheck.push(dayDate);
               daysArray.push(day);
             }
-
+            const legend = document.querySelector(".legend-date");
+            if (daysArray.length == 1) {
+              legend.setAttribute(
+                "aria-label",
+                `Welke datum wil je komen? kies uit ${daysArray.length} optie`
+              );
+            } else {
+              legend.setAttribute(
+                "aria-label",
+                `Welke datum wil je komen? kies uit ${daysArray.length} opties met de pijltjes toetsen. `
+              );
+            }
             removeChilds(".chooseDay");
 
             daysArray.map((day) => {
@@ -311,7 +345,6 @@
               const span = document.createElement("span");
               const label = document.createElement("label");
 
-              
               radiobutton.type = "radio";
               radiobutton.value = day.date;
               radiobutton.dataset.dayDate = day.date;
@@ -331,7 +364,6 @@
             );
             return expo;
           });
-          
 
           Array.from(availableDaysRadioButtons).map((radioBtn) => {
             radioBtn.addEventListener("change", function () {
@@ -355,7 +387,7 @@
                 filteredDays.filter((expo) => {
                   const date = new Date(expo.PeriodStart);
                   const day = date.getDate();
-                  
+
                   const hour = date.getHours();
 
                   if (day === dateOfChosenDay) {
@@ -366,14 +398,24 @@
                     }
                   }
                 });
-                
+                if (startMorning.length == 0 || startMidday.length == 0) {
+                  const legend = document.querySelector(".legend-day-period");
+                  legend.setAttribute(
+                    "aria-label",
+                    `Wanneer op de dag wil je komen? kies uit 1 optie`
+                  );
+                } else {
+                  legend.setAttribute(
+                    "aria-label",
+                    `Wanneer op de dag wil je komen? kies uit 2 opties.`
+                  );
+                }
 
                 if (!startMorning.length == 0) {
                   const checkBoxDayPeriod = document.createElement("input");
                   const label = document.createElement("label");
                   const span = document.createElement("span");
 
-                  
                   checkBoxDayPeriod.type = "checkbox";
                   checkBoxDayPeriod.value = "morning";
                   checkBoxDayPeriod.id = "morningCheck";
@@ -401,7 +443,6 @@
                   const label = document.createElement("label");
                   const span = document.createElement("span");
 
-                  
                   checkBoxDayPeriod.type = "checkbox";
                   checkBoxDayPeriod.value = "midday";
                   checkBoxDayPeriod.id = "middayCheck";
@@ -412,7 +453,6 @@
                   span.appendChild(checkBoxDayPeriod);
                   span.appendChild(label);
                   dayPeriodContainer.appendChild(span);
-                  
 
                   checkBoxDayPeriod.addEventListener("change", function () {
                     if (checkBoxDayPeriod.checked) {
@@ -426,23 +466,40 @@
 
               function showAvailableStartTime(array, container) {
                 if (array.length != 0) {
+                  const legend = document.querySelector(".legend-time-stamp");
+                  if (array.length == 1) {
+                    legend.setAttribute(
+                      "aria-label",
+                      `Hoelaat wil je komen? kies uit ${array.length} optie`
+                    );
+                  } else {
+                    legend.setAttribute(
+                      "aria-label",
+                      `Hoelaat wil je komen? kies uit ${array.length} opties met de pijltjes toetsen.`
+                    );
+                  }
+
                   array.map((expo) => {
                     const radioStartTime = document.createElement("input");
                     const label = document.createElement("label");
                     const span = document.createElement("span");
-                    
-                    label.textContent = new Date(expo.PeriodStart).getHours() + ':'+new Date(expo.PeriodStart).getMinutes() ;
+                    const time = document.createElement("time");
+                    const timeStamp = new Date(expo.PeriodStart)
+                      .toLocaleTimeString()
+                      .split(":");
+                    time.textContent = timeStamp[0] + ":" + timeStamp[1];
+                    time.dateTime = timeStamp[0] + ":" + timeStamp[1];
                     label.htmlFor = expo.PeriodStart;
 
-                    
                     radioStartTime.dataset.startTime = expo.PeriodStart;
                     radioStartTime.type = "radio";
                     radioStartTime.value = expo.PeriodStart;
                     radioStartTime.id = expo.PeriodStart;
                     radioStartTime.name = "startTimeChoice";
-                    radioStartTime.addEventListener('change', function(){
-                      submit.disabled = false
-                    })
+                    radioStartTime.addEventListener("change", function () {
+                      submit.disabled = false;
+                    });
+                    label.appendChild(time);
                     span.appendChild(radioStartTime);
                     span.appendChild(label);
                     container.appendChild(span);
@@ -458,7 +515,7 @@
     }
 
     function removeChilds(className) {
-      submit.disabled = true
+      submit.disabled = true;
       const container = document.querySelector(className);
       Array.from(container.children).map((child) => {
         child.remove();
@@ -475,8 +532,6 @@
       }
       return uniqueArray;
     }
-  
-
   }
 })();
 
@@ -518,6 +573,7 @@
       let data = {};
       const subTotal = [];
       let totalPrice;
+      const selectedTickets = []
 
       if (firstForm.dataset.formname === "onlyTicketChoice") {
         ticketCount = 1;
@@ -536,7 +592,7 @@
         // for (let pair of formData.entries()) {
         //   data[pair[0]] = pair[1]
         // }
-
+        
         const selects = firstForm.querySelectorAll("select");
         if (!selects.length == 0) {
           Array.from(selects).map((select) => {
@@ -544,7 +600,9 @@
             const value = Array.from(options).map((option) => {
               if (option.selected) {
                 ticketCount = Number(option.value) + ticketCount;
-                
+                if(option.value > 0){
+                  selectedTickets.push({"name": option.dataset.name, "value": option.value})
+                }
                 subTotal.push(
                   Number(option.dataset.price) * Number(option.value)
                 );
@@ -552,6 +610,7 @@
             });
             return value;
           });
+          console.log(selectedTickets)
           totalPrice = subTotal.reduce((current, all) => {
             return (all = current + all);
           });
@@ -572,12 +631,28 @@
           validationError.classList.add("hidden");
         }
       }
+      const ticketSpan = document.createElement('span')
+      const totalPriceSpan = document.createElement('span')
+      
+      const listOfItems = []
+      selectedTickets.map(ticket => {
+        const ticketText = document.createElement('span')
+        ticketText.textContent = `${ticket.name} ticket, aantal ${ticket.value} `
+        ticketSpan.appendChild(ticketText)
+        listOfItems.push(` ${ticket.name} aantal ${ticket.value}`)
+      })
 
+      if(listOfItems.length == 0) listOfItems.push(' leeg')
+
+      totalPriceSpan.textContent = 'en '
       totalTicketsPrice.value = `Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`;
       totalPriceToSend.value = `€${parseFloat(totalPrice / 100).toFixed(2)}`;
       totalTickets.value = ticketCount;
-      numberTickets.textContent = `Aantal tickets: ${ticketCount}`;
-      legendLabel.textContent = `Belangrijk! Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is Aantal tickets: ${ticketCount}, Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`
+      numberTickets.textContent = `Totaal aantal tickets: ${ticketCount}`;
+      numberTickets.insertBefore(ticketSpan, numberTickets.childNodes[0])
+      totalTicketsPrice.insertBefore(totalPriceSpan, totalTicketsPrice.childNodes[0])
+      
+      legendLabel.setAttribute('aria-label', `Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is${listOfItems}. Totaal aantal tickets: ${ticketCount}, Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`)
       console.log("hoooooooi", legendLabel);
       console.log(subTotal);
       console.log(totalPrice);
@@ -730,10 +805,13 @@
     const linkFamily = document.querySelector(".family-flow-link")
     const linkDate = document.querySelector(".date-flow-link")
     const linkGroup = document.querySelector(".group-flow-link")
+    const linkOnly = document.querySelector(".only-flow-link")
     if (linkFamily) {
         linkFamily.href = "/tweede-stap?groupChoice=family&javascript=1";
         linkDate.href = "/tweede-stap?groupChoice=date&javascript=1";
         linkGroup.href = "/tweede-stap?groupChoice=small-group&javascript=1";
+        linkOnly.href = "/tweede-stap?groupChoice=only&javascript=1";
+
     }
 })();
 (function () {
