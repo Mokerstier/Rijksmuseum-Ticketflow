@@ -22,7 +22,13 @@
     <section class="entree-options-container">
       <!-- <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2> -->
       <fieldset>
-        <legend>Plan hier jouw bezoek voor het Rijksmuseum</legend>
+        <% if(availableExpoId.length == 1) {%>
+          <legend aria-label="Plan hier jouw bezoek voor het Rijksmuseum. Kies uit <%=availableExpoId.length%> optie.">Plan hier jouw bezoek voor het Rijksmuseum</legend>
+        <% } else { %>
+          <legend aria-label="Plan hier jouw bezoek voor het Rijksmuseum. Kies uit <%=availableExpoId.length%> opties met de pijltjes toetsen.">Plan hier jouw bezoek voor het Rijksmuseum</legend>
+        <% } %>
+        
+
         <% expositionContents.forEach(function(option) { %>
             <div>
               <% if(availableExpoId.length == 1) { %>
@@ -62,7 +68,7 @@
               <% } %>
 
 
-            <label for="<%= option.expositionId %>">
+            <label aria-label="<%= option.name %>. <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>" for="<%= option.expositionId %>">
               <img src="<%= option.expoImage %>" alt="Een foto van een tour in het Rijksmuseum" />
               <%= option.name %>
               <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>
@@ -77,8 +83,9 @@
         </p>
       </fieldset>
 
-      <% for( let i = 0; i < expositionContents.length; i++ ){ %>
       <article class="informationToursMuseum">
+      <% for( let i = 0; i < expositionContents.length; i++ ){ %>
+      
         <p class="article-description expositionContents<%= i %>">
           <%- expositionContents[i].longDescription %>
         </p>
@@ -101,7 +108,7 @@
       <div>
         <p>Bestellingslijst...</p>
         <% if(javascript == 1){ %>
-          <input class="backAndNextButton" type="submit" value="Naar extra opties" />
+          <input class="backAndNextButton" type="submit" value="Naar extra opties" aria-label="Klik hier om door te gaan naar stap 4, extra opties"/>
         <% } else { %>
           <input class="backAndNextButton" type="submit" value="Kies datum" />
         <% } %>
