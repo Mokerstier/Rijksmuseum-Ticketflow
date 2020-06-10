@@ -1,53 +1,50 @@
     <%- include ("../partials/usps.ejs") %>
     <section>
       <fieldset>
-        <legend><%= variantContent.articleSelectionContent.articleSelectionTitle %></legend>
-        <h3 id="legendLabel">Belangrijk! Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is Aantal tickets: 4, Totale prijs: €38.00</h3>
+        <legend id="legendLabel"><%= variantContent.articleSelectionContent.articleSelectionTitle %></legend>
+        
         <div>
          <% for( let a = 0; a < articles.length; a++ ){ %>
           <article>
             <div>
               <h3><%= articles[a].Name %></h3>
               <% if(articles[a].Description != "" && articles[a].Description != "NULL"){ %>
-                <button type="button" class="iBtn" aria-describedby="tooltip<%= a %>">i</button>
+                <div aria-label="extra informatie" tabindex="0" type="button" class="iBtn" aria-describedby="tooltip<%= a %>">i</div>
                 <p class="tooltip" id="tooltip<%= a %>"><%= articles[a].Description %></p>
               <% } %>
               <p class="align-middle">€ <%= (articles[a].PriceCent / 100).toFixed(2) %></p>
             </div>
             <div class="ticket-amount-container">
               <% if (javascript == 1) {%>
-              <button type="button" class="remove-ticket">-</button>
+              <div aria-hidden="true" class="remove-ticket">-</div>
               <% } %>
-              <select aria-label="Aantal <%= articles[a].Name %>" aria-controls="ticketInfo" name="Articles[<%-a%>]" id="">
+              <select aria-label="Aantal <%= articles[a].Name %>" aria-controls="ticketInfo" name="ticketType[<%-a%>]" id="">
                 <% if(ticketChoice != null){ %>
                   <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
                       <% if(i == ticketChoice[a]) { %>
-                        <option selected="selected" data-price="<%= articles[a].PriceCent %>" value="<%= i %>"><%= i %></option>
+                        <option data-name="<%= articles[a].Name %>" selected="selected" data-price="<%= articles[a].PriceCent %>" value="<%= i %>"><%= i %></option>
                       <% } else { %>
-                        <option data-price="<%= articles[a].PriceCent %>" value="<%= i %>"><%= i %></option>
+                        <option data-name="<%= articles[a].Name %>" data-price="<%= articles[a].PriceCent %>" value="<%= i %>"><%= i %></option>
                       <% } %>
                   <% } %>
                 <% } else {%>
                   <% for( let i = 0; i < articleConfiguration.maxAmountOfArticles+1; i++ ){ %>
                     <% if(i == ticketDefault[a]) { %>
-                      <option selected="selected" data-price="<%= articles[a].PriceCent %>" value="<%= i %>"><%= i %></option>
+                      <option data-name="<%= articles[a].Name %>" selected="selected" data-price="<%= articles[a].PriceCent %>" value="<%= i %>"><%= i %></option>
                     <% } else { %>
-                      <option data-price="<%= articles[a].PriceCent %>" value="<%= i %>"><%= i %></option>
+                      <option data-name="<%= articles[a].Name %>" data-price="<%= articles[a].PriceCent %>" value="<%= i %>"><%= i %></option>
                     <% } %>
                   <% } %>
                 <% } %>
               </select>
               <% if (javascript == 1) {%>
-              <button type="button" class="add-ticket">+</button>
+              <div aria-hidden="true" class="add-ticket">+</div>
               <% } %>
             </div>
           </article>
           <% } %>
         </div>
-        <section id="ticketInfo">
-          <p><output id="aantal-first-step" class="block-right" role="status" aria-live="polite">Aantal tickets: 0</output></p>
-          <p><output id="total-first-step" class="block-right" role="status" aria-live="polite">Totale prijs: €0.00</output></p>
-        </section>
+
         <input name="totalPrice" type="hidden" class="total-price">
         <p class="field-validation-error hidden">
           <span>
@@ -65,11 +62,16 @@
       </ul>
     </section>
     <section class="backButtonContainer">
-      <a href="/" class="backButton linkStyleUnderline"> < Terug naar kies je groep</a>
+      <a href="/" class="backButton linkStyleUnderline" aria-label="Klik hier om terug te gaan naar stap 1, Kies je groep"> < Terug naar kies je groep</a>
     </section>  
     <section class="ticketOrder">
       <div>
-        <p>Bestellingslijst...</p>
-        <input class="backAndNextButton" type="submit" value="Plan je bezoek">
+        <% if (javascript == 1){ %>
+          <section id="ticketInfo">
+            <p><output id="aantal-first-step" class="block-right" role="status" aria-live="polite"> <span>U heeft 2, Entree volwassenen tickets en 2 Entree t/m 18 jaar</span> Totaal aantal tickets: 4</output></p>
+            <p><output id="total-first-step" class="block-right" role="status" aria-live="polite"> <span>en</span> Totale prijs: €38.00</output></p>
+          </section>
+        <% } %>
+        <input class="backAndNextButton" type="submit" value="Plan je bezoek" aria-label="Klik hier om door te gaan naar stap 3, plan je bezoek">
       </div>
     </section>

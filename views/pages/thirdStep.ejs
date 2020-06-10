@@ -1,17 +1,18 @@
 <%- include ("../partials/head.ejs") %>
 <nav>
   <ul>
-      <li><a href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
-      <li><a href="/tweede-stap?groupChoice=<%- groupChoice %>&javascript=<%- javascript %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
-      <li><a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" aria-current="page">3. Plan je bezoek ></a></li> 
-      <li><a class="navStepDisabled" tabindex="-1" href="/vierde-stap">4. Extra opties ></a></li> 
-      <li><a class="navStepDisabled" tabindex="-1" href="/vijfde-stap">5. Persoonsgegevens ></a></li> 
-      <li><a class="navStepDisabled" tabindex="-1" href="/zesde-stap">6. Overzicht en betaling ></a></li> 
+      <li><a href="#main">Skip navigatie</a></li>
+      <li><a aria-label="Stap 1 Kies je groep, vinkje" href="/" class="visited linkStyleUnderline">1. Kies je groep &#10003</a></li> 
+      <li><a aria-label="Stap 2 Ticket selectie, vinkje" href="/tweede-stap?groupChoice=<%- groupChoice %>&javascript=<%- javascript %>" class="visited linkStyleUnderline">2. Tickets &#10003</a></li> 
+      <li><a aria-label="Stap 3 Plan je bezoek" href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" aria-current="page">3. Plan je bezoek ></a></li> 
+      <li><p class="navStepDisabled">4. Extra opties ></p></li> 
+      <li><p class="navStepDisabled">5. Persoonsgegevens ></p></li> 
+      <li><p class="navStepDisabled">6. Overzicht en betaling ></p></li> 
   </ul>
 </nav>
 
-<main>
-  <h2>Plan je bezoek</h2>
+<main id="main">
+  <h2 aria-label="Stap 3 van de 6, Plan je bezoek">Plan je bezoek</h2>
 
   <% if(javascript == 1){ %>
     <form validate class="step-three" action="/vierde-stap" method="GET" data-formName="dateTourChoice">
@@ -22,7 +23,13 @@
     <section class="entree-options-container">
       <!-- <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2> -->
       <fieldset>
-        <legend>Plan hier jouw bezoek voor het Rijksmuseum</legend>
+        <% if(availableExpoId.length == 1) {%>
+          <legend aria-label="Plan hier jouw bezoek voor het Rijksmuseum. Kies uit <%=availableExpoId.length%> optie.">Plan hier jouw bezoek voor het Rijksmuseum</legend>
+        <% } else { %>
+          <legend aria-label="Plan hier jouw bezoek voor het Rijksmuseum. Kies uit <%=availableExpoId.length%> opties met de pijltjes toetsen.">Plan hier jouw bezoek voor het Rijksmuseum</legend>
+        <% } %>
+        
+
         <% expositionContents.forEach(function(option) { %>
             <div>
               <% if(availableExpoId.length == 1) { %>
@@ -62,7 +69,7 @@
               <% } %>
 
 
-            <label for="<%= option.expositionId %>">
+            <label aria-label="<%= option.name %>. <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>" for="<%= option.expositionId %>">
               <img src="<%= option.expoImage %>" alt="Een foto van een tour in het Rijksmuseum" />
               <%= option.name %>
               <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>
@@ -77,8 +84,9 @@
         </p>
       </fieldset>
 
-      <% for( let i = 0; i < expositionContents.length; i++ ){ %>
       <article class="informationToursMuseum">
+      <% for( let i = 0; i < expositionContents.length; i++ ){ %>
+      
         <p class="article-description expositionContents<%= i %>">
           <%- expositionContents[i].longDescription %>
         </p>
@@ -94,14 +102,14 @@
     
 
     <section class="backButtonContainer">
-      <a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="backButton">
+      <a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="backButton" aria-label="Klik hier om terug te gaan naar stap 2, tickets">
         < <%= ticketShop.articleSelectionContent.backButtonText %></a>
     </section>
     <section class="ticketOrder">
       <div>
         <p>Bestellingslijst...</p>
         <% if(javascript == 1){ %>
-          <input class="backAndNextButton" type="submit" value="Naar extra opties" />
+          <input class="backAndNextButton" type="submit" value="Naar extra opties" aria-label="Klik hier om door te gaan naar stap 4, extra opties"/>
         <% } else { %>
           <input class="backAndNextButton" type="submit" value="Kies datum" />
         <% } %>

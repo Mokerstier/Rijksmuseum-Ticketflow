@@ -161,7 +161,7 @@ tr {
   position: sticky;
   position: -webkit-sticky;
   bottom: 0;
-  overflow-x: hidden;
+  overflow-y: hidden;
   margin: 0em 0 -3em 0em;
   background-color: #eaeaea;
   height: 5em;
@@ -293,8 +293,4 @@ tr {
 }
 .add-ticket {
   padding: 0em 0.5em 0.2em 0.5em;
-}
-#legendLabel {
-  height: 0em;
-  opacity: 0;
 }
