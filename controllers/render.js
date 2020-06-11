@@ -188,12 +188,12 @@ function getFourthStep(req, res) {
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
     if (req.query.startTimeChoice) {
+        console.log(req.query.startTimeChoice)
         expoPeriodIDChoice = req.query.startTimeChoice.split(',')
+        startTimeChoice = expoPeriodIDChoice[0]
         expoPeriodIDChoice = expoPeriodIDChoice[1]
+        console.log(expoPeriodIDChoice)
     }
-
-    startTimeChoice = req.query.startTimeChoice
-
 
     res.render('pages/fourthStep.ejs', {
         title: 'Extra opties',
