@@ -616,7 +616,7 @@
           });
         }
       }
-      if (ticketCount == 0){
+      if (ticketCount == 0 || ticketCount > maxAmountOfArticles){
         submit.disabled = true 
           console.log('disabled')
       } else {
@@ -637,9 +637,9 @@
       const listOfItems = []
       selectedTickets.map(ticket => {
         const ticketText = document.createElement('span')
-        ticketText.textContent = `${ticket.name} ticket, aantal ${ticket.value} `
+        ticketText.textContent = `${ticket.name} ticket, aantal ${ticket.value}. `
         ticketSpan.appendChild(ticketText)
-        listOfItems.push(` ${ticket.name} aantal ${ticket.value}`)
+        listOfItems.push(` ${ticket.name} aantal ${ticket.value}.`)
       })
 
       if(listOfItems.length == 0) listOfItems.push(' leeg')
@@ -652,7 +652,7 @@
       numberTickets.insertBefore(ticketSpan, numberTickets.childNodes[0])
       totalTicketsPrice.insertBefore(totalPriceSpan, totalTicketsPrice.childNodes[0])
       
-      legendLabel.setAttribute('aria-label', `Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is${listOfItems}. Totaal aantal tickets: ${ticketCount}, Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`)
+      legendLabel.setAttribute('aria-label', `Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is${listOfItems}. Totaal aantal tickets: ${ticketCount}, Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}.`)
       console.log("hoooooooi", legendLabel);
       console.log(subTotal);
       console.log(totalPrice);
@@ -845,6 +845,23 @@
 })();
 (function () {
     
+})();
+(function(){
+    window.addEventListener("keypress", function(e){
+        enter(e)
+    })
+
+    function enter(e){
+        if(e.key == "Enter"){
+            let focus = document.activeElement
+            if(focus.attributes.type.nodeValue == "checkbox" || "radio"){
+                e.preventDefault()
+                console.log("hoi")
+                focus.click()
+            }
+        }
+    }
+
 })();
 (function () {
     const firstForm = document.querySelector(".form-first-step");
