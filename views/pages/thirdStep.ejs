@@ -30,54 +30,54 @@
         <% } %>
         
 
-        <% expositionContents.forEach(function(option) { %>
+        <% for(let a = 0; a < expositionContents.length; a++) { %>
             <div>
               <% if(availableExpoId.length == 1) { %>
-                <% if(!availableExpoId.includes(option.expositionId.toUpperCase())){ %>
+                <% if(!availableExpoId.includes(expositionContents[a].expositionId.toUpperCase())){ %>
                   <p class="expo-validation-error">
                     Deze rondleiding is niet beschikbaar voor uw groepsgrootte.
                   </p>
-                  <input required disabled id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
-                    value="<%= option.name%>,<%= option.expositionId %>" />
+                  <input required disabled id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
                 <% } else { %>
-                  <% if(expoChoice == option.name){ %>
-                    <input required checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
-                    value="<%= option.name%>,<%= option.expositionId %>" />
+                  <% if(expoChoice == expositionContents[a].name){ %>
+                    <input required checked="checked" id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
                     
                   <% } else { %>
-                      <input required checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
-                      value="<%= option.name%>,<%= option.expositionId %>" />
+                      <input required checked="checked" id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                      value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
                   <% } %>
                 <% } %>
               <% } else { %>
-                <% if(!availableExpoId.includes(option.expositionId.toUpperCase())){ %>
+                <% if(!availableExpoId.includes(expositionContents[a].expositionId.toUpperCase())){ %>
                   <p class="expo-validation-error">
                     Deze rondleiding is niet beschikbaar voor uw groepsgrootte.
                   </p>
-                  <input required disabled id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
-                    value="<%= option.name%>,<%= option.expositionId %>" />
+                  <input required disabled id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
                 <% } else { %>
-                  <% if(expoChoice == option.name){ %>
-                    <input required checked="checked" id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
-                    value="<%= option.name%>,<%= option.expositionId %>" />
+                  <% if(expoChoice == expositionContents[a].name){ %>
+                    <input required checked="checked" id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
                     
                   <% } else { %>
-                      <input required id="<%= option.expositionId %>" data-id="<%= option.expositionId %>" type="radio" name="ticketOption"
-                      value="<%= option.name%>,<%= option.expositionId %>" />
+                      <input required id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                      value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
                   <% } %>
                 <% } %>
               <% } %>
 
 
-            <label aria-label="<%= option.name %>. <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>" for="<%= option.expositionId %>">
-              <img src="<%= option.expoImage %>" alt="Een foto van een tour in het Rijksmuseum" />
-              <%= option.name %>
+            <label aria-label="<%= expositionContents[a].name %>. <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>" for="<%= expositionContents[a].expositionId %>">
+              <img src="<%= expositionContents[a].expoImage %>" alt="Een foto van een tour in het Rijksmuseum" />
+              <%= expositionContents[a].name %>
               <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>
   
             </label>
           </div>
           
-        <% }) %>
+        <% } %>
 
         <p class="field-validation-error hidden">
           Er is geen rondleiding beschikbaar voor uw groepsgrootte
@@ -87,7 +87,7 @@
       <article class="informationToursMuseum">
       <% for( let i = 0; i < expositionContents.length; i++ ){ %>
       
-        <p class="article-description expositionContents<%= i %>">
+        <p class="article-description expositionContents<%= i %>" id="item[<%=i%>]">
           <%- expositionContents[i].longDescription %>
         </p>
         <% }%>

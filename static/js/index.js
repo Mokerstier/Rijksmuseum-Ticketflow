@@ -117,12 +117,12 @@
         if (getMonthNames.length == 1) {
           legend.setAttribute(
             "aria-label",
-            `In welke maand wil je gaan? er is ${getMonthNames.length} optie`
+            `In welke maand wil je gaan? Er is ${getMonthNames.length} optie beschikbaar`
           );
         } else {
           legend.setAttribute(
             "aria-label",
-            `In welke maand wil je gaan? er zijn ${getMonthNames.length} opties`
+            `In welke maand wil je gaan? Er zijn ${getMonthNames.length} opties beschikbaar`
           );
         }
 
@@ -219,12 +219,12 @@
       if (getDayNames.length == 1) {
         legend.setAttribute(
           "aria-label",
-          `Op welke dag wil je naar het museum? er is ${getDayNames.length} optie`
+          `Op welke dag wil je naar het museum? Er is ${getDayNames.length} optie beschikbaar`
         );
       } else {
         legend.setAttribute(
           "aria-label",
-          `Op welke dag wil je naar het museum? er zijn ${getDayNames.length} opties`
+          `Op welke dag wil je naar het museum? Er zijn ${getDayNames.length} opties beschikbaar`
         );
       }
 
@@ -330,12 +330,12 @@
             if (daysArray.length == 1) {
               legend.setAttribute(
                 "aria-label",
-                `Welke datum wil je komen? kies uit ${daysArray.length} optie`
+                `Op welke datum wil je komen? Kies uit ${daysArray.length} beschikbare optie`
               );
             } else {
               legend.setAttribute(
                 "aria-label",
-                `Welke datum wil je komen? kies uit ${daysArray.length} opties met de pijltjes toetsen. `
+                `Op welke datum wil je komen? Kies uit ${daysArray.length} beschikbare opties met de pijltjes toetsen. `
               );
             }
             removeChilds(".chooseDay");
@@ -402,12 +402,12 @@
                   const legend = document.querySelector(".legend-day-period");
                   legend.setAttribute(
                     "aria-label",
-                    `Wanneer op de dag wil je komen? kies uit 1 optie`
+                    `Wanneer op de dag wil je komen? Kies uit 1 beschikbare optie`
                   );
                 } else {
                   legend.setAttribute(
                     "aria-label",
-                    `Wanneer op de dag wil je komen? kies uit 2 opties.`
+                    `Wanneer op de dag wil je komen? Kies uit 2 beschikbare opties.`
                   );
                 }
 
@@ -470,12 +470,12 @@
                   if (array.length == 1) {
                     legend.setAttribute(
                       "aria-label",
-                      `Hoelaat wil je komen? kies uit ${array.length} optie`
+                      `Hoelaat wil je komen? Kies uit ${array.length} beschikbare optie`
                     );
                   } else {
                     legend.setAttribute(
                       "aria-label",
-                      `Hoelaat wil je komen? kies uit ${array.length} opties met de pijltjes toetsen.`
+                      `Hoelaat wil je komen? Kies uit ${array.length} beschikbare opties met de pijltjes toetsen.`
                     );
                   }
 
@@ -616,7 +616,7 @@
           });
         }
       }
-      if (ticketCount == 0){
+      if (ticketCount == 0 || ticketCount > maxAmountOfArticles){
         submit.disabled = true 
           console.log('disabled')
       } else {
@@ -637,9 +637,9 @@
       const listOfItems = []
       selectedTickets.map(ticket => {
         const ticketText = document.createElement('span')
-        ticketText.textContent = `${ticket.name} ticket, aantal ${ticket.value} `
+        ticketText.textContent = `${ticket.name} ticket, aantal ${ticket.value}. `
         ticketSpan.appendChild(ticketText)
-        listOfItems.push(` ${ticket.name} aantal ${ticket.value}`)
+        listOfItems.push(` ${ticket.name} aantal ${ticket.value}.`)
       })
 
       if(listOfItems.length == 0) listOfItems.push(' leeg')
@@ -652,7 +652,7 @@
       numberTickets.insertBefore(ticketSpan, numberTickets.childNodes[0])
       totalTicketsPrice.insertBefore(totalPriceSpan, totalTicketsPrice.childNodes[0])
       
-      legendLabel.setAttribute('aria-label', `Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is${listOfItems}. Totaal aantal tickets: ${ticketCount}, Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`)
+      legendLabel.setAttribute('aria-label', `Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is${listOfItems}. Totaal aantal tickets: ${ticketCount}, Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}.`)
       console.log("hoooooooi", legendLabel);
       console.log(subTotal);
       console.log(totalPrice);
@@ -845,6 +845,23 @@
 })();
 (function () {
     
+})();
+(function(){
+    window.addEventListener("keypress", function(e){
+        enter(e)
+    })
+
+    function enter(e){
+        if(e.key == "Enter"){
+            let focus = document.activeElement
+            if(focus.attributes.type.nodeValue == "checkbox" || "radio"){
+                e.preventDefault()
+                console.log("hoi")
+                focus.click()
+            }
+        }
+    }
+
 })();
 (function () {
     const firstForm = document.querySelector(".form-first-step");
