@@ -39,6 +39,11 @@
 })();
 
 (function () {
+    const fieldsets = document.getElementsByTagName('fieldset')
+
+
+})();
+(function () {
   const formThirdStep = document.querySelector(".step-three");
   const javascript = document.querySelector("input[name=javascript]");
 
