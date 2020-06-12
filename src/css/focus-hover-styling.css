@@ -27,6 +27,14 @@ a:hover {
   padding-right: 0.5em;
   filter: brightness(10) saturate(100%);
 }
+.add-ticket:hover,
+.remove-ticket:hover {
+  background-color: #4f5f51;
+}
+.add-ticket:active,
+.remove-ticket:active {
+  background-color: #343537;
+}
 @media (prefers-reduced-motion: no-preference) {
   .backAndNextButton:hover {
     background-color: black;
@@ -128,6 +136,9 @@ a:hover {
     animation: test 0.5s ease-out alternate;
     background: linear-gradient(to right, #d55140 50%, #718875 50%);
     background-size: 200% 100%;
+  }
+  .datePicker span:hover {
+    background-color: #343537;
   }
   .datePicker span:focus-within > input:checked + label {
     color: white;
