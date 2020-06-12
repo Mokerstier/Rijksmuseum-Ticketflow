@@ -453,7 +453,7 @@
 
                     radioStartTime.dataset.startTime = expo.PeriodStart;
                     radioStartTime.type = "radio";
-                    radioStartTime.value = expo.PeriodStart;
+                    radioStartTime.value = `${expo.PeriodStart},${expo.ExpositionPeriodId}`;
                     radioStartTime.id = expo.PeriodStart;
                     radioStartTime.name = "startTimeChoice";
                     radioStartTime.addEventListener("change", function () {
