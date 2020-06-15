@@ -14,19 +14,22 @@
 <main id="main">
     <h2>In welke maand wil je gaan?
     </h2>
-    <form class="form-first-step" action="derde-stap-dag" method="GET" >
-        <p class="exponame"><%= expoName%></p>
-        <section>
-        <label for="monthDatePicker">Selecteer een maand</label>
-        <select id="monthDatePicker" class="monthDatePicker" name="month">
-            <% months.forEach(month => { %>
-                <%if(monthChoice == Object.keys(month)){%>
-                <option selected="selected" value="<%= Object.keys(month) %>"><%=Object.values(month) %></option>
-                <% } else {%>
-                <option value="<%= Object.keys(month) %>"><%=Object.values(month) %></option>
-                <% } %>
-            <% }) %>
-        </select>
+    <form class="step-three" action="derde-stap-dag" method="GET" >
+        <section class="datePicker">
+            <p class="exponame"><%= expoName%></p>
+            <fieldset>
+                <legend class="legend-month" >In welke maand wil je gaan?</legend>
+                <label for="monthDatePicker">Selecteer een maand</label>
+                <select id="monthDatePicker" class="monthDatePicker" name="month">
+                    <% months.forEach(month => { %>
+                        <%if(monthChoice == Object.keys(month)){%>
+                        <option selected="selected" value="<%= Object.keys(month) %>"><%=Object.values(month) %></option>
+                        <% } else {%>
+                        <option value="<%= Object.keys(month) %>"><%=Object.values(month) %></option>
+                        <% } %>
+                    <% }) %>
+                </select>
+            </fieldset>
         </section>
         <section class="backButtonContainer">
             <a href="/derde-stap?totalTickets=<%-ticketCount%>&javascript=<%- javascript %>" class="backButton linkStyleUnderline" aria-label="Klik hier om terug te gaan naar stap 3, plan je bezoek"> < Terug naar plan je bezoek </a>

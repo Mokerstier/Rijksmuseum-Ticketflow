@@ -15,18 +15,24 @@
     <h2>Op welke dag wil je komen?
     </h2>
     <form class="form-first-step" action="derde-stap-tijd" method="GET" >
-        <p class="exponame"><%= expoName%></p>
-        <p class="exponame"><%= monthNames[month]%></p>
-        <section>
-        <h3>Selecteer een dag</h3>
-        <% days.forEach(day => { %>
-            <% if(dayChoice == day.date){ %>
-            <input checked="checked" id="<%=day.date%>" name="day" type="radio" value="<%=day.date%>">
-            <% } else { %>
-                <input id="<%=day.date%>" name="day" type="radio" value="<%=day.date%>">
-            <% } %>
-            <label for="<%=day.date%>"><%=day.name%> <%=day.date%></label> 
-        <% }) %>
+        <section class="datePicker">
+            <p class="exponame"><%= expoName%></p>
+            <p class="exponame"><%= monthNames[month]%></p>
+            <fieldset>
+                <legend class="legend-date">Selecteer een dag</legend>
+                <div class="chooseDay">        
+                    <% days.forEach(day => { %>
+                        <span>
+                            <% if(dayChoice == day.date){ %>
+                            <input checked="checked" id="<%=day.date%>" name="day" type="radio" value="<%=day.date%>">
+                            <% } else { %>
+                                <input id="<%=day.date%>" name="day" type="radio" value="<%=day.date%>">
+                            <% } %>
+                            <label for="<%=day.date%>"><%=day.name%> <%=day.date%></label> 
+                        </span>
+                    <% }) %>
+                </div>
+            </fieldset>
         </section>
         <section class="backButtonContainer">
             <a href="/derde-stap-datum" class="backButton linkStyleUnderline" aria-label="Klik hier om terug te gaan naar stap 3, kies een datum"> < Terug naar kies een datum </a>
