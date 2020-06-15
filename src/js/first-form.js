@@ -20,7 +20,6 @@
 
       if (firstForm.dataset.formname === "onlyTicketChoice") {
         ticketCount = 1;
-        console.log("solo-soldier");
         data = {
           ticketChoice: formData.get("ticketChoice"),
         };
@@ -53,7 +52,6 @@
             });
             return value;
           });
-          console.log(selectedTickets)
           totalPrice = subTotal.reduce((current, all) => {
             return (all = current + all);
           });
@@ -61,13 +59,10 @@
       }
       if (ticketCount == 0 || ticketCount > maxAmountOfArticles){
         submit.disabled = true 
-          console.log('disabled')
       } else {
         submit.disabled = false
-          console.dir( submit)
       }
       if (validationError) {
-        console.log(maxAmountOfArticles+ ticketCount)
         if (ticketCount > maxAmountOfArticles) {
           validationError.classList.remove("hidden");
         } else {
@@ -96,18 +91,13 @@
       totalTicketsPrice.insertBefore(totalPriceSpan, totalTicketsPrice.childNodes[0])
       
       legendLabel.setAttribute('aria-label', `Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is${listOfItems}. Totaal aantal tickets: ${ticketCount}, Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}.`)
-      console.log("hoooooooi", legendLabel);
-      console.log(subTotal);
-      console.log(totalPrice);
     }
 
     const countModule = document.querySelectorAll('.ticket-amount-container')
-    console.log(countModule)
     Array.from(countModule).map(module => {
       const removeButton = module.querySelector('.remove-ticket')
       const addButton = module.querySelector('.add-ticket')
       const ticketSelect = module.querySelector('select')
-      console.log(ticketSelect.selectedIndex)
       removeButton.addEventListener('click', function () {
         if (ticketSelect.selectedIndex === 0) {
           ticketSelect.selectedIndex = 0

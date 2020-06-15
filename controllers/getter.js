@@ -70,7 +70,6 @@ function getAllUnavailableExpoId(count){
     uniqueExpoID.push(expo.expositionId)
   })
 
-  // console.log(uniqueExpoID)
   let availableExpo = []
   const filterData = []
   uniqueExpoID.map(id =>{
@@ -88,9 +87,6 @@ function getAllUnavailableExpoId(count){
 function getExpoData(req, res) {
     const id = req.params.id
     const count = req.params.count
-    console.log("id", id)
-    console.log("count", count)
-    
     const data = expositionPeriodsJSON
     
     const filterData = data.filter(expo => {
@@ -99,8 +95,6 @@ function getExpoData(req, res) {
         }
     })
 
-    
-    // console.log(filterData)
     res.send(filterData)
     // return expositionPeriodsJSON
     
