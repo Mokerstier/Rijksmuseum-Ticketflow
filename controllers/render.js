@@ -7,6 +7,7 @@ let expoChoice
 let monthChoice
 let dayChoice
 let totalPrice
+let totalPriceRaw
 let startTimeChoice
 let ticketCount
 let expoPeriodIDChoice
@@ -69,7 +70,8 @@ function getThirdStep(req, res) {
     const articlesAdditional = getter.getAdditional()
     totalPrice = req.query.totalPrice
     javascript = req.query.javascript
-
+    totalPriceRaw = totalPrice.split('€').join('').split('.').join('')
+    console.log(totalPriceRaw)
     ticketCount = getter.getTicketCount(req, res)
     if (req.query.ticketType) {
         ticketChoice = req.query.ticketType
@@ -94,7 +96,9 @@ function getThirdStep(req, res) {
         formName: "dateTicketChoice",
         javascript: javascript,
         expoChoice: expoChoice,
-        availableExpoId: availableExpoId
+        availableExpoId: availableExpoId,
+        totalPrice: totalPrice,
+        totalPriceRaw: totalPriceRaw
     })
 }
 
@@ -187,12 +191,30 @@ function getFourthStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
+    let expo = []
+    // req.query.ticketOption.split(',')
+    // 0 = expoName
+    // 1 = expoID
+    // 2 = expoPrice
+    // 3 = expoPriceType
+    if (req.query.ticketOption) {
+        expo = req.query.ticketOption.split(',')
+
+        if(expo[3]== "fixed"){
+            totalPriceRaw = Number(expo[2]) + Number(totalPriceRaw)
+
+        } else {
+            totalPriceRaw = (Number(expo[2]) * Number(ticketCount)) +  Number(totalPriceRaw)
+
+        }
+        totalPrice = `€${parseFloat(totalPriceRaw / 100).toFixed(2)}`
+    }
+    
     if (req.query.startTimeChoice) {
         console.log(req.query.startTimeChoice)
         expoPeriodIDChoice = req.query.startTimeChoice.split(',')
         startTimeChoice = expoPeriodIDChoice[0]
         expoPeriodIDChoice = expoPeriodIDChoice[1]
-        console.log(expoPeriodIDChoice)
     }
 
     res.render('pages/fourthStep.ejs', {
@@ -206,7 +228,9 @@ function getFourthStep(req, res) {
         formName: "dateTicketChoice",
         multiMediaChoice: multiMediaChoice,
         donationChoice: donationChoice,
-        javascript: javascript
+        javascript: javascript,
+        totalPrice: totalPrice, 
+        totalPriceRaw: totalPriceRaw
     })
 }
 

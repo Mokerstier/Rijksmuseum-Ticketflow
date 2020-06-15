@@ -20,7 +20,6 @@
 
       if (firstForm.dataset.formname === "onlyTicketChoice") {
         ticketCount = 1;
-        console.log("solo-soldier");
         data = {
           ticketChoice: formData.get("ticketChoice"),
         };

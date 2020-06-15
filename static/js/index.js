@@ -51,6 +51,7 @@
   let ChosenMonth;
 
   if (formThirdStep) {
+    const totalPriceContainer = document.querySelector('#total-first-step')
     const submit = formThirdStep.querySelector('input[type="submit"]');
     const validationError = document.querySelector(".field-validation-error");
     const dayPeriodContainer = document.querySelector(".choose-day-period");
@@ -77,7 +78,20 @@
       if (inputs[i].checked) {
         const expoID = inputs[i].dataset.id;
         let totalTickets = Number(ticketCount);
-
+        let expoPrice = inputs[i].dataset.priceCent
+        const expoPriceType = inputs[i].dataset.priceType
+        console.log(expoPrice)
+        
+        if(expoPriceType == "per ticket"){
+          expoPrice = expoPrice * totalTickets
+          console.log(expoPrice)
+        }
+        let totalPrice = Number(totalPriceContainer.dataset.priceRaw)
+        totalPrice = totalPrice + Number(expoPrice)
+        console.log(totalPrice);
+        
+        totalPriceContainer.value = `Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`
+        
         const dataToPush = await getExpoPeriod(expoID, totalTickets);
         data = [];
         data.push(dataToPush);
@@ -577,7 +591,6 @@
 
       if (firstForm.dataset.formname === "onlyTicketChoice") {
         ticketCount = 1;
-        console.log("solo-soldier");
         data = {
           ticketChoice: formData.get("ticketChoice"),
         };
