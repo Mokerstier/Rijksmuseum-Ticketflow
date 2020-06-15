@@ -11,6 +11,7 @@
   let ChosenMonth;
 
   if (formThirdStep) {
+    const outputDate = document.querySelector('#start-time-choice')
     const totalPriceContainer = document.querySelector('#total-first-step')
     const submit = formThirdStep.querySelector('input[type="submit"]');
     const validationError = document.querySelector(".field-validation-error");
@@ -28,6 +29,10 @@
     }
 
     async function checkForm(i) {
+      if(outputDate){
+        outputDate.parentElement.remove()
+      }
+      
       removeChilds(".checkboxDay");
       removeChilds(".chooseDay");
       removeChilds(".monthDatePicker");

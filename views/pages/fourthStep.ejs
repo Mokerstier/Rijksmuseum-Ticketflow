@@ -32,12 +32,12 @@
                                 <% if (javascript == 1){ %>
                                 <div aria-hidden="true" class="remove-ticket">-</div>
                                 <% } %>
-                                <select aria-label="Aantal <%- articlesAdditional[a].Name %>" name="<%- articlesAdditional[a].FormName %>" id="">
+                                <select aria-controls="ticketInfo" data-price="<%= articlesAdditional[a].PriceCent %>" aria-label="Aantal <%- articlesAdditional[a].Name %>" name="<%- articlesAdditional[a].FormName %>" id="">
                                     <% for( let i = 0; i <  Number(ticketCount)+1 ; i++ ){ %>
-                                        <% if(multiMediaChoice == i){%>
-                                            <option selected="selected" data-price="<%= articlesAdditional[a].PriceCent %>" value="<%= i %>"><%= i %></option>
+                                        <% if(Number(multiMediaChoice) == i){%>
+                                            <option selected="selected" data-price="<%= articlesAdditional[a].PriceCent %>" value="<%= i %>,<%= articlesAdditional[a].PriceCent %>"><%= i %></option>
                                         <%}  else {%>
-                                            <option data-price="<%= articlesAdditional[a].PriceCent %>" value="<%= i %>"><%= i %></option>
+                                            <option data-price="<%= articlesAdditional[a].PriceCent %>" value="<%= i %>,<%= articlesAdditional[a].PriceCent %>"><%= i %></option>
                                         <%} %>
                                 
                                     <%} %>
@@ -57,13 +57,13 @@
                 <p>Doneer nu</p>
                 <% DonationOptions.forEach(function(option) { %>
                     <% if(donationChoice == option.PriceCent){%>
-                        <input checked="checked" id="donation<%- option.Code %>" type="radio" name="Doneer" value="<%= option.PriceCent %>">
+                        <input aria-controls="ticketInfo" checked="checked" id="donation<%- option.Code %>" type="radio" name="Doneer" value="<%= option.PriceCent %>">
                     <%}  else {%>
-                        <input id="donation<%- option.Code %>" type="radio" name="Doneer" value="<%= option.PriceCent %>">
+                        <input aria-controls="ticketInfo" id="donation<%- option.Code %>" type="radio" name="Doneer" value="<%= option.PriceCent %>">
                     <%} %>   
                         <label for="donation<%- option.Code %>">€ <%= (option.PriceCent/ 100).toFixed(2) %></label>
                 <% })%>
-                <input checked="checked" id="noDonation" type="radio" name="Doneer" value="0">
+                <input aria-controls="ticketInfo" checked="checked" id="noDonation" type="radio" name="Doneer" value="0">
                 <label for="noDonation">€ 0.00</label>
             </fieldset>
         </section>

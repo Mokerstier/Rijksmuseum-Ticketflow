@@ -7,8 +7,8 @@ let expoChoice
 let monthChoice
 let dayChoice
 let totalPrice
-let totalPriceRaw
-let startTimeChoice
+let totalPriceRawThree
+let startTimeChoice = null
 let ticketCount
 let expoPeriodIDChoice
 let multiMediaChoice
@@ -21,6 +21,10 @@ let email
 let zipCode
 let acceptTerms
 let country
+let totalPriceRawFour
+let totalPriceRawFive
+let totalPriceFour
+let totalPriceFive
 
 function checkDefault() {
     if (groupChoice === "small-group") {
@@ -68,12 +72,17 @@ function getThirdStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
-    totalPrice = req.query.totalPrice
+    
+
     javascript = req.query.javascript
-    totalPriceRaw = totalPrice.split('€').join('').split('.').join('')
-    console.log(totalPriceRaw)
-    ticketCount = getter.getTicketCount(req, res)
+    if(req.query.totalPrice){
+        totalPrice = req.query.totalPrice
+        totalPriceRawThree = totalPrice.split('€').join('').split('.').join('')
+        
+    }
+    
     if (req.query.ticketType) {
+        ticketCount = getter.getTicketCount(req, res)
         ticketChoice = req.query.ticketType
         
         
@@ -98,7 +107,8 @@ function getThirdStep(req, res) {
         expoChoice: expoChoice,
         availableExpoId: availableExpoId,
         totalPrice: totalPrice,
-        totalPriceRaw: totalPriceRaw
+        totalPriceRaw: totalPriceRawThree,
+        startTimeChoice: startTimeChoice
     })
 }
 
@@ -119,7 +129,8 @@ function getThirdStepDate(req, res) {
         expoName: expoName,
         months: months,
         monthChoice: monthChoice,
-        javascript: javascript
+        javascript: javascript,
+        startTimeChoice: startTimeChoice
     })
 }
 
@@ -158,7 +169,8 @@ function getThirdStepDay(req, res) {
         month: month,
         days: days,
         dayChoice: dayChoice,
-        javascript: javascript
+        javascript: javascript,
+        startTimeChoice: startTimeChoice
     })
 }
 
@@ -182,7 +194,9 @@ function getThirdStepTime(req, res) {
         month: month,
         day: day,
         expoPeriodIDChoice: expoPeriodIDChoice,
-        javascript: javascript
+        javascript: javascript,
+        startTimeChoice: startTimeChoice
+        
     })
 }
 
@@ -201,22 +215,22 @@ function getFourthStep(req, res) {
         expo = req.query.ticketOption.split(',')
 
         if(expo[3]== "fixed"){
-            totalPriceRaw = Number(expo[2]) + Number(totalPriceRaw)
+            totalPriceRawFour = Number(expo[2]) + Number(totalPriceRawThree)
 
         } else {
-            totalPriceRaw = (Number(expo[2]) * Number(ticketCount)) +  Number(totalPriceRaw)
+            totalPriceRawFour = (Number(expo[2]) * Number(ticketCount)) +  Number(totalPriceRawThree)
 
         }
-        totalPrice = `€${parseFloat(totalPriceRaw / 100).toFixed(2)}`
+        totalPriceFour = `€${parseFloat(totalPriceRawFour / 100).toFixed(2)}`
     }
     
     if (req.query.startTimeChoice) {
-        console.log(req.query.startTimeChoice)
+
         expoPeriodIDChoice = req.query.startTimeChoice.split(',')
         startTimeChoice = expoPeriodIDChoice[0]
         expoPeriodIDChoice = expoPeriodIDChoice[1]
     }
-
+    console.log('MEDIA CHOICE: ',multiMediaChoice)
     res.render('pages/fourthStep.ejs', {
         title: 'Extra opties',
         expositionContents: expositionContents,
@@ -226,20 +240,29 @@ function getFourthStep(req, res) {
         groupChoice: groupChoice,
         ticketCount: ticketCount,
         formName: "dateTicketChoice",
-        multiMediaChoice: multiMediaChoice,
+        multiMediaChoice: Number(multiMediaChoice),
         donationChoice: donationChoice,
         javascript: javascript,
-        totalPrice: totalPrice, 
-        totalPriceRaw: totalPriceRaw
+        totalPrice: totalPriceFour, 
+        totalPriceRaw: totalPriceRawFour,
+        startTimeChoice: startTimeChoice
     })
 }
 
 function getFifthStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
-    console.log(req.query)
-    multiMediaChoice = req.query.Multimediatour
-    donationChoice = req.query.Doneer
 
+    multiMediaChoice = req.query.Multimediatour.split(',')[0]
+    donationChoice = req.query.Doneer
+    if(req.query.Multimediatour){
+        const extras = req.query.Multimediatour.split(',')
+        const donate = req.query.Doneer
+
+        let totalExtra = (Number(extras[0]) * Number(extras[1])) + Number(donate)
+        totalPriceRawFive = Number(totalPriceRawFour) + Number(totalExtra)
+        totalPriceFive = `€${parseFloat(totalPriceRawFive / 100).toFixed(2)}`
+
+    }
     res.render('pages/fifthStep.ejs', {
         title: 'Persoonlijke gegevens',
         ticketShop: ticketConfiguration,
@@ -254,7 +277,9 @@ function getFifthStep(req, res) {
         zipCode: zipCode,
         acceptTerms: acceptTerms,
         country: country,
-        startTimeChoice: startTimeChoice
+        startTimeChoice: startTimeChoice,
+        totalPriceRaw: totalPriceRawFive,
+        totalPrice: totalPriceFive
     })
 }
 

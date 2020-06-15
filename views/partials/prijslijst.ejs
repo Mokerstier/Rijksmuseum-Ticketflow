@@ -11,6 +11,11 @@
             <output id="total-first-step" class="block-right" role="status" aria-live="polite" data-price-raw="<%=totalPriceRaw%>"> <span>en</span> Totale prijs: <%= totalPrice %></output>
             <% } else { %>
                 <output id="total-first-step" class="block-right" role="status" aria-live="polite"> <span>en</span> Totale prijs: €38.00</output>
-                <% } %>
+            <% } %>
         </p>
+        <% if(startTimeChoice !== null){ %>
+        <p>
+            <output id="start-time-choice" class="block-right" role="status" aria-live="polite"> <span>gereserveerde</span>Datum: <date><%= new Date(startTimeChoice).toLocaleString() %></date></output>
+        </p>
+        <% } %> 
 </section>
