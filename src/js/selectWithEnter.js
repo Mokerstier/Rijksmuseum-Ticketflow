@@ -8,7 +8,6 @@
             let focus = document.activeElement
             if(focus.attributes.type.nodeValue == "checkbox" || "radio"){
                 e.preventDefault()
-                console.log("hoi")
                 focus.click()
             }
         }

@@ -50,7 +50,6 @@ function getSecondStep(req, res) {
     javascript = req.query.javascript
     groupChoice = req.query.groupChoice
     ticketDefault = checkDefault()
-    console.log('ticketDefault ' + ticketDefault)
     if (groupChoice === "large-group") {
         res.redirect('https://www.rijksmuseum.nl/nl/groepsbezoek')
     }
@@ -225,7 +224,6 @@ function getFourthStep(req, res) {
     }
     
     if (req.query.startTimeChoice) {
-
         expoPeriodIDChoice = req.query.startTimeChoice.split(',')
         startTimeChoice = expoPeriodIDChoice[0]
         expoPeriodIDChoice = expoPeriodIDChoice[1]

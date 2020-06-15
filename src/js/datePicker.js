@@ -362,7 +362,6 @@
 
               if (radioBtn.checked) {
                 const dateOfChosenDay = Number(radioBtn.dataset.dayDate);
-                console.dir(radioBtn);
                 filteredDays.filter((expo) => {
                   const date = new Date(expo.PeriodStart);
                   const day = date.getDate();

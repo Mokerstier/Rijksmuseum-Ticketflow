@@ -12,19 +12,15 @@
       Array.from(inputs).map((input) => {
         if (input.type == "checkbox") {
           if (input.checked) {
-            console.log("checkbox ok");
             checkdInputs.push(true);
           } else {
-            console.log("checkbox niet ok");
             checkdInputs.push(false);
             submit.disabled = true;
           }
         } else if (input.type == "text" || input.type == "email") {
           if (input.value != "") {
-            console.log("inputs ok");
             checkdInputs.push(true);
           } else {
-            console.log("inputs niet ok");
             checkdInputs.push(false);
           }
         }
@@ -402,7 +398,6 @@
 
               if (radioBtn.checked) {
                 const dateOfChosenDay = Number(radioBtn.dataset.dayDate);
-                console.dir(radioBtn);
                 filteredDays.filter((expo) => {
                   const date = new Date(expo.PeriodStart);
                   const day = date.getDate();
@@ -632,7 +627,6 @@
             });
             return value;
           });
-          console.log(selectedTickets)
           totalPrice = subTotal.reduce((current, all) => {
             return (all = current + all);
           });
@@ -640,13 +634,10 @@
       }
       if (ticketCount == 0 || ticketCount > maxAmountOfArticles){
         submit.disabled = true 
-          console.log('disabled')
       } else {
         submit.disabled = false
-          console.dir( submit)
       }
       if (validationError) {
-        console.log(maxAmountOfArticles+ ticketCount)
         if (ticketCount > maxAmountOfArticles) {
           validationError.classList.remove("hidden");
         } else {
@@ -675,18 +666,13 @@
       totalTicketsPrice.insertBefore(totalPriceSpan, totalTicketsPrice.childNodes[0])
       
       legendLabel.setAttribute('aria-label', `Tickets voor het hele museum. 6 tickettypes beschikbaar. De huidige selectie is${listOfItems}. Totaal aantal tickets: ${ticketCount}, Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}.`)
-      console.log("hoooooooi", legendLabel);
-      console.log(subTotal);
-      console.log(totalPrice);
     }
 
     const countModule = document.querySelectorAll('.ticket-amount-container')
-    console.log(countModule)
     Array.from(countModule).map(module => {
       const removeButton = module.querySelector('.remove-ticket')
       const addButton = module.querySelector('.add-ticket')
       const ticketSelect = module.querySelector('select')
-      console.log(ticketSelect.selectedIndex)
       removeButton.addEventListener('click', function () {
         if (ticketSelect.selectedIndex === 0) {
           ticketSelect.selectedIndex = 0
@@ -962,7 +948,6 @@
             let focus = document.activeElement
             if(focus.attributes.type.nodeValue == "checkbox" || "radio"){
                 e.preventDefault()
-                console.log("hoi")
                 focus.click()
             }
         }
