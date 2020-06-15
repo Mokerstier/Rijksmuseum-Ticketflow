@@ -39,6 +39,86 @@
 })();
 
 (function () {
+  const form = document.querySelector(".step-three");
+
+  if (form) {
+    function tabNav(e) {
+      if (e.keyCode == 9) {
+        getFieldsets();
+      }
+    }
+
+    function getCurrentFieldset() {
+      let focus = document.activeElement;
+      console.dir(focus)
+      if(focus.nodeName == "INPUT" || focus.nodeName == "SELECT" || focus.nodeName == "OPTION" || focus.attributes.type.nodeValue != "submit"){
+        let currentFieldset = focus.closest("fieldset");
+        return currentFieldset;
+      }
+      
+
+      
+    }
+
+    function getNextFieldset() {
+      let focus = document.activeElement;
+      if(focus.nodeName == "INPUT" || focus.nodeName == "SELECT" || focus.nodeName == "OPTION" || focus.attributes.type.nodeValue != "submit"){
+        let nextFieldset = focus.closest("fieldset").nextElementSibling;
+        return nextFieldset;
+    }
+      
+      
+    }
+
+    function getPreviousFieldset(){
+        let focus = document.activeElement;
+        if(focus.nodeName == "INPUT" || focus.nodeName == "SELECT" || focus.nodeName == "OPTION" || focus.attributes.type.nodeValue != "submit"){
+            let previousFieldset = focus.closest("fieldset").previousElementSibling;
+            return previousFieldset;
+        }
+        
+  
+        
+    }
+
+    function getFieldsets() {
+      const next = getNextFieldset();
+      const current = getCurrentFieldset();
+      const previous = getPreviousFieldset();
+
+      if (previous){
+        previous.classList.remove('current-date-field')
+        previous.classList.remove('next-date-field')
+        console.dir(previous)
+        previous.classList.add('previous-date-field')
+      }
+
+      console.log(current);
+      current.classList.remove('previous-date-field')
+      current.classList.remove('next-date-field')
+
+      current.classList.add('current-date-field')
+
+      if(next){
+        next.classList.remove('previous-date-field')
+        next.classList.remove('current-date-field')
+        console.log(next);
+        next.classList.add('next-date-field')
+      }
+
+    }
+
+    form.addEventListener("change", function () {
+        getFieldsets();
+    });
+    window.addEventListener("keyup", function (e) {
+      console.log(e.keyCode)
+      tabNav(e);
+    });
+  }
+})();
+
+(function () {
   const formThirdStep = document.querySelector(".step-three");
   const javascript = document.querySelector("input[name=javascript]");
 
@@ -60,10 +140,14 @@
     const selectMonth = document.querySelector(".monthDatePicker");
     const select = document.querySelector(".monthDatePicker");
     let data = [];
+    const fieldset = document.querySelector('fieldset:first-of-type')
+    
 
     for (let i = 0; i < inputs.length; i++) {
-      inputs[i].addEventListener("change", () => checkForm(i));
+      fieldset.addEventListener("change", () => checkForm(i))
+      // inputs[i].addEventListener("change", () => checkForm(i));
       window.addEventListener("load", () => checkForm(i));
+      
     }
 
     async function checkForm(i) {
@@ -73,11 +157,15 @@
       removeChilds(".choose-day-period");
       removeChilds(".midday-container");
       removeChilds(".morning-container");
-
+      inputs[i].closest('.tour-element-container').classList.remove('checked')
+      inputs[i].closest('.tour-element-container').classList.add('not-checked')
+      
       if (inputs[i].checked) {
+        console.log(inputs[i].checked)
         const expoID = inputs[i].dataset.id;
         let totalTickets = Number(ticketCount);
-
+        inputs[i].closest('.tour-element-container').classList.add('checked')
+        inputs[i].closest('.tour-element-container').classList.remove('not-checked')
         const dataToPush = await getExpoPeriod(expoID, totalTickets);
         data = [];
         data.push(dataToPush);
@@ -142,7 +230,7 @@
           selectMonth.appendChild(option);
         });
         datePicker();
-      }
+      } 
     }
     function expoError() {
       validationError.classList.remove("hidden");
@@ -857,6 +945,7 @@
             if(focus.attributes.type.nodeValue == "checkbox" || "radio"){
                 e.preventDefault()
                 console.log("hoi")
+                console.log(focus.parentElement.parentElement)
                 focus.click()
             }
         }

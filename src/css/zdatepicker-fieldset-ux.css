@@ -1,0 +1,80 @@
+section.entree-options-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+section.entree-options-container fieldset {
+  border: none;
+}
+section.entree-options-container .previous-date-field {
+  padding: 0;
+  position: relative;
+  width: 30em;
+  height: 16em;
+}
+section.entree-options-container .previous-date-field .article-description {
+  position: absolute;
+  bottom: -46%;
+}
+section.entree-options-container .previous-date-field .tour-element-container {
+  width: 7em;
+  height: 7em;
+}
+section.entree-options-container .previous-date-field .tour-element-container label {
+  font-size: 12px;
+}
+section.entree-options-container .previous-date-field .tour-element-container img {
+  display: none;
+}
+section.entree-options-container .previous-date-field .not-checked:nth-of-type(1) {
+  position: absolute;
+  left: 15em;
+  bottom: 0;
+}
+section.entree-options-container .previous-date-field .not-checked:nth-of-type(2) {
+  position: absolute;
+  left: 23em;
+  bottom: 0;
+  border-bottom: #fff solid 1px;
+}
+section.entree-options-container .previous-date-field .not-checked:nth-of-type(3) {
+  position: absolute;
+  left: 15em;
+  top: 1em;
+  border-bottom: #fff solid 1px;
+}
+section.entree-options-container .previous-date-field .not-checked:nth-of-type(4) {
+  position: absolute;
+  left: 23em;
+  top: 1em;
+  border-bottom: #fff solid 1px;
+}
+section.entree-options-container .previous-date-field .checked {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 14em;
+  height: 14em;
+}
+section.entree-options-container .previous-date-field .checked img {
+  display: block;
+}
+section.entree-options-container .previous-date-field .checked label {
+  font-size: 16px;
+}
+section.entree-options-container .previous-date-field .tour-element-container:hover {
+  transform: scale(1.2);
+  z-index: 1;
+}
+section.entree-options-container .current-date-field {
+  width: 40em;
+  max-width: 40em;
+}
+section.entree-options-container .next-date-field {
+  width: 40em;
+  max-width: 40em;
+}

@@ -9,6 +9,7 @@
             if(focus.attributes.type.nodeValue == "checkbox" || "radio"){
                 e.preventDefault()
                 console.log("hoi")
+                console.log(focus.parentElement.parentElement)
                 focus.click()
             }
         }

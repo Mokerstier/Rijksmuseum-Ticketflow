@@ -8,8 +8,8 @@ a:hover {
   color: #d9531e;
 }
 .group-choice div:hover,
-.entree-options-container div:hover,
-.entree-options-container div input:checked + label {
+.entree-options-container .tour-element-container:hover,
+.entree-options-container .tour-element-container input:checked + label {
   background-color: #343537;
 }
 .form-first-step article div:last-of-type button:active,
@@ -59,23 +59,23 @@ a:hover {
     visibility: visible;
     transform: scaleX(1);
   }
-  .entree-options-container div input:checked + label {
+  .entree-options-container .tour-element-container input:checked + label {
     transform: scale(1);
     background-color: #343537;
     color: white;
   }
-  .entree-options-container div input:hover + label {
+  .entree-options-container .tour-element-container input:hover + label {
     transform: scale(1);
     background-color: #343537;
     color: white;
   }
-  .entree-options-container div input:disabled + label {
+  .entree-options-container .tour-element-container input:disabled + label {
     background-color: #727272;
   }
-  .entree-options-container div input:disabled + label:hover {
+  .entree-options-container .tour-element-container input:disabled + label:hover {
     background-color: #727272;
   }
-  .entree-options-container div input:disabled + label img {
+  .entree-options-container .tour-element-container input:disabled + label img {
     filter: grayscale(100%);
   }
   .add-ticket:focus,
@@ -93,7 +93,7 @@ a:hover {
     box-shadow: 0 3px 6px -6px black;
     transform: translateY(4px);
   }
-  .entree-options-container div:focus-within {
+  .entree-options-container .tour-element-container:focus-within {
     transform: scale(1);
     background-color: #343537;
     color: white;
@@ -113,12 +113,12 @@ a:hover {
       transform: scale(1);
     }
   }
-  .entree-options-container div input:checked + label {
+  .entree-options-container .tour-element-container input:checked + label {
     transform: scale(1);
     background-color: #343537;
     color: white;
   }
-  .entree-options-container div input:hover + label {
+  .entree-options-container .tour-element-container input:hover + label {
     transform: scale(1);
     background-color: #343537;
     color: white;

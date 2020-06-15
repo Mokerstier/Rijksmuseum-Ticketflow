@@ -102,7 +102,7 @@ tr {
     margin-bottom: 3em;
 }
 
-.entree-options-container fieldset div {
+.entree-options-container fieldset .tour-element-container {
     // position: relative;
     display: inline-block;
     color: #343537;
@@ -111,9 +111,10 @@ tr {
     height: 14em;
     position: relative;
     margin: 0.5em;
+    transition: all ease-in-out .7s;
 }
 
-.entree-options-container fieldset div>label {
+.entree-options-container fieldset .tour-element-container>label {
     color: white;
     position: absolute;
     text-align: left;
@@ -124,7 +125,7 @@ tr {
     top: 0;
 }
 
-.entree-options-container fieldset div>input {
+.entree-options-container fieldset .tour-element-container>input {
     opacity: 0;
     position: absolute;
 }
@@ -308,6 +309,7 @@ tr {
     margin-bottom: 3em;
     border: 1px solid #343537;
     padding: 1em;
+    transition: all ease-in-out .5s;
 }
 
 .datePicker>fieldset legend {

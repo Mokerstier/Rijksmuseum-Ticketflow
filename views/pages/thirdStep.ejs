@@ -20,9 +20,9 @@
     <form validate class="step-three" action="/derde-stap-datum" method="GET" data-formName="dateTourChoice">
   <% } %>
 
-    <section class="entree-options-container">
+    <section class="entree-options-container datePicker">
       <!-- <h2><%= ticketShop.expositionSelectionContent.pageTitle %></h2> -->
-      <fieldset>
+      <fieldset required class="current-date-field">
         <% if(availableExpoId.length == 1) {%>
           <legend aria-label="Plan hier jouw bezoek voor het Rijksmuseum. Kies uit <%=availableExpoId.length%> optie.">Plan hier jouw bezoek voor het Rijksmuseum</legend>
         <% } else { %>
@@ -31,7 +31,7 @@
         
 
         <% for(let a = 0; a < expositionContents.length; a++) { %>
-            <div>
+            <div class="tour-element-container">
               <% if(availableExpoId.length == 1) { %>
                 <% if(!availableExpoId.includes(expositionContents[a].expositionId.toUpperCase())){ %>
                   <p class="expo-validation-error">
@@ -82,24 +82,21 @@
         <p class="field-validation-error hidden">
           Er is geen rondleiding beschikbaar voor uw groepsgrootte
         </p>
+
+        <article class="informationToursMuseum">
+          <% for( let i = 0; i < expositionContents.length; i++ ){ %>
+          
+            <p class="article-description expositionContents<%= i %>" id="item[<%=i%>]">
+              <%- expositionContents[i].longDescription %>
+            </p>
+            <% }%>
+          </article>
       </fieldset>
 
-      <article class="informationToursMuseum">
-      <% for( let i = 0; i < expositionContents.length; i++ ){ %>
-      
-        <p class="article-description expositionContents<%= i %>" id="item[<%=i%>]">
-          <%- expositionContents[i].longDescription %>
-        </p>
-        <% }%>
-      </article>
-
-    </section>
-
-    
     <% if( javascript == 1){ %>
       <%- include ("../partials/datepicker.ejs") %>
     <% } %>
-    
+  </section>
 
     <section class="backButtonContainer">
       <a href="/tweede-stap?groupChoice=<%- groupChoice %>" class="backButton" aria-label="Klik hier om terug te gaan naar stap 2, tickets">

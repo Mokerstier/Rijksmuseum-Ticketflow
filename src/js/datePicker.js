@@ -20,10 +20,14 @@
     const selectMonth = document.querySelector(".monthDatePicker");
     const select = document.querySelector(".monthDatePicker");
     let data = [];
+    const fieldset = document.querySelector('fieldset:first-of-type')
+    
 
     for (let i = 0; i < inputs.length; i++) {
-      inputs[i].addEventListener("change", () => checkForm(i));
+      fieldset.addEventListener("change", () => checkForm(i))
+      // inputs[i].addEventListener("change", () => checkForm(i));
       window.addEventListener("load", () => checkForm(i));
+      
     }
 
     async function checkForm(i) {
@@ -33,11 +37,15 @@
       removeChilds(".choose-day-period");
       removeChilds(".midday-container");
       removeChilds(".morning-container");
-
+      inputs[i].closest('.tour-element-container').classList.remove('checked')
+      inputs[i].closest('.tour-element-container').classList.add('not-checked')
+      
       if (inputs[i].checked) {
+        console.log(inputs[i].checked)
         const expoID = inputs[i].dataset.id;
         let totalTickets = Number(ticketCount);
-
+        inputs[i].closest('.tour-element-container').classList.add('checked')
+        inputs[i].closest('.tour-element-container').classList.remove('not-checked')
         const dataToPush = await getExpoPeriod(expoID, totalTickets);
         data = [];
         data.push(dataToPush);
@@ -102,7 +110,7 @@
           selectMonth.appendChild(option);
         });
         datePicker();
-      }
+      } 
     }
     function expoError() {
       validationError.classList.remove("hidden");
