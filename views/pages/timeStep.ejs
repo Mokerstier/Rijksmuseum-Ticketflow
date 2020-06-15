@@ -14,20 +14,26 @@
 <main id="main">
     <h2>Hoelaat wil je komen?
     </h2>
-    <form class="form-first-step" action="vierde-stap" method="GET" >
-        <p class="exponame">Tour: <%= expoName%></p>
-        <p class="exponame">Maand: <%= month%> Datum:<%= day%></p>
-        <p class="exponame">Aantal tickets: <%= ticketCount%></p>
-        <section>
-        <h3>Selecteer een tijd slot</h3>
-        <% expos.forEach(expo => { %>
-            <% if(expoPeriodIDChoice == expo.ExpositionPeriodId){ %>
-                <input checked="checked" type="radio" name="startTimeChoice" id="<%= expo.ExpositionPeriodId %>" value="<%= expo.PeriodStart %>,<%= expo.ExpositionPeriodId %>">
-            <%} else { %>
-                <input type="radio" name="startTimeChoice" id="<%= expo.ExpositionPeriodId %>" value="<%= expo.PeriodStart %>,<%= expo.ExpositionPeriodId %>">
-            <% } %>
-            <label for="<%= expo.ExpositionPeriodId %>"><%= expo.PeriodStart %></label>
-        <% }) %>
+    <form class="step-three" action="vierde-stap" method="GET" >
+        <section class="datePicker">
+            <p class="exponame">Tour: <%= expoName%></p>
+            <p class="exponame">Maand: <%= month%> Datum:<%= day%></p>
+            <p class="exponame">Aantal tickets: <%= ticketCount%></p>
+            <fieldset class="chooseTime">
+                <legend class="legend-time-stamp">Selecteer een tijd slot</legend>
+                    <div class="morning-container midday-container">
+                    <% expos.forEach(expo => { %>
+                            <span>
+                                <% if(expoPeriodIDChoice == expo.ExpositionPeriodId){ %>
+                                    <input checked="checked" type="radio" name="startTimeChoice" id="<%= expo.ExpositionPeriodId %>" value="<%= expo.PeriodStart %>,<%= expo.ExpositionPeriodId %>">
+                                <%} else { %>
+                                    <input type="radio" name="startTimeChoice" id="<%= expo.ExpositionPeriodId %>" value="<%= expo.PeriodStart %>,<%= expo.ExpositionPeriodId %>">
+                                <% } %>
+                                <label for="<%= expo.ExpositionPeriodId %>"><time datetime="<%= new Date(expo.PeriodStart).toLocaleTimeString().split(':')[0] %>:<%= new Date(expo.PeriodStart).toLocaleTimeString().split(':')[1] %>"><%= new Date(expo.PeriodStart).toLocaleTimeString().split(":")[0] %>:<%= new Date(expo.PeriodStart).toLocaleTimeString().split(":")[1] %></time></label>
+                            </span>
+                    <% }) %>
+                </div>
+            </fieldset>
         </section>
         <section class="backButtonContainer">
             <a href="/derde-stap-dag" class="backButton linkStyleUnderline" aria-label="Klik hier om terug te gaan naar stap 3, kies een dag"> < Terug naar kies een dag </a>
