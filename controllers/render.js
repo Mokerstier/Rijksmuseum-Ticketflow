@@ -45,7 +45,6 @@ function getSecondStep(req, res) {
     javascript = req.query.javascript
     groupChoice = req.query.groupChoice
     ticketDefault = checkDefault()
-    console.log('ticketDefault ' + ticketDefault)
     if (groupChoice === "large-group") {
         res.redirect('https://www.rijksmuseum.nl/nl/groepsbezoek')
     }
@@ -188,11 +187,9 @@ function getFourthStep(req, res) {
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
     if (req.query.startTimeChoice) {
-        console.log(req.query.startTimeChoice)
         expoPeriodIDChoice = req.query.startTimeChoice.split(',')
         startTimeChoice = expoPeriodIDChoice[0]
         expoPeriodIDChoice = expoPeriodIDChoice[1]
-        console.log(expoPeriodIDChoice)
     }
 
     res.render('pages/fourthStep.ejs', {
@@ -212,7 +209,6 @@ function getFourthStep(req, res) {
 
 function getFifthStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
-    console.log(req.query)
     multiMediaChoice = req.query.Multimediatour
     donationChoice = req.query.Doneer
 
