@@ -8,6 +8,7 @@
 * [Installatie](#Installatie)
 * [API](#API)
 * [Features](#Features)
+* [Wishlist](#Wishlist)
 * [Credits](#Credits)
 
 ## Het team
@@ -101,8 +102,9 @@ $ npm run watch
 
 ## API
 
-
 ## Features
+
+## Wishlist
 - [ ] Dark mode toevoegen
 - [x] Regex schrijven voor de postcode bij stap 5 
 - [ ] Errors op een leukere manier laten zien
