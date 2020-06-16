@@ -25,9 +25,14 @@
 
     for (let i = 0; i < inputs.length; i++) {
       inputs[i].addEventListener("change", () => checkForm(i));
+      inputs[i].addEventListener("change", () => scrollIntoNext(inputs[i]));
       window.addEventListener("load", () => checkForm(i));
     }
-
+    function scrollIntoNext(element){
+      const fieldset = element.closest('fieldset').nextElementSibling
+      console.log(fieldset)
+      fieldset.scrollIntoView({behavior: "smooth"})
+    }
     async function checkForm(i) {
       if(outputDate){
         outputDate.parentElement.remove()
@@ -119,6 +124,7 @@
           option.textContent = month;
           option.value = month;
           selectMonth.appendChild(option);
+          
         });
         datePicker();
       }
@@ -134,6 +140,7 @@
     }
 
     select.addEventListener("change", datePicker);
+    select.addEventListener("change", () => scrollIntoNext(select))
 
     async function getExpoPeriod(expoID, totalTickets) {
       let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`);
@@ -241,6 +248,7 @@
       checkboxes = document.querySelectorAll(".inputDay");
       let filteredDays = [];
       Array.from(checkboxes).map((checkbox) => {
+        checkbox.addEventListener("change", () => scrollIntoNext(checkbox))
         checkbox.addEventListener("change", async function () {
           const dayContainer = document.querySelector(".chooseDay");
 
@@ -345,6 +353,7 @@
           });
 
           Array.from(availableDaysRadioButtons).map((radioBtn) => {
+            radioBtn.addEventListener("change", () => scrollIntoNext(radioBtn))
             radioBtn.addEventListener("change", function () {
               const middayContainer = document.querySelector(
                 ".midday-container"
@@ -406,6 +415,7 @@
                   span.appendChild(label);
                   dayPeriodContainer.appendChild(span);
 
+                  checkBoxDayPeriod.addEventListener("change", () => scrollIntoNext(checkBoxDayPeriod))
                   checkBoxDayPeriod.addEventListener("change", function () {
                     if (checkBoxDayPeriod.checked) {
                       showAvailableStartTime(startMorning, morningContainer);
