@@ -61,9 +61,14 @@
 
     for (let i = 0; i < inputs.length; i++) {
       inputs[i].addEventListener("change", () => checkForm(i));
+      inputs[i].addEventListener("change", () => scrollIntoNext(inputs[i]));
       window.addEventListener("load", () => checkForm(i));
     }
-
+    function scrollIntoNext(element){
+      const fieldset = element.closest('fieldset').nextElementSibling
+      console.log(fieldset)
+      fieldset.scrollIntoView({behavior: "smooth"})
+    }
     async function checkForm(i) {
       if(outputDate){
         outputDate.parentElement.remove()
@@ -155,6 +160,7 @@
           option.textContent = month;
           option.value = month;
           selectMonth.appendChild(option);
+          
         });
         datePicker();
       }
@@ -170,6 +176,7 @@
     }
 
     select.addEventListener("change", datePicker);
+    select.addEventListener("change", () => scrollIntoNext(select))
 
     async function getExpoPeriod(expoID, totalTickets) {
       let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`);
@@ -277,6 +284,7 @@
       checkboxes = document.querySelectorAll(".inputDay");
       let filteredDays = [];
       Array.from(checkboxes).map((checkbox) => {
+        checkbox.addEventListener("change", () => scrollIntoNext(checkbox))
         checkbox.addEventListener("change", async function () {
           const dayContainer = document.querySelector(".chooseDay");
 
@@ -381,6 +389,7 @@
           });
 
           Array.from(availableDaysRadioButtons).map((radioBtn) => {
+            radioBtn.addEventListener("change", () => scrollIntoNext(radioBtn))
             radioBtn.addEventListener("change", function () {
               const middayContainer = document.querySelector(
                 ".midday-container"
@@ -442,6 +451,7 @@
                   span.appendChild(label);
                   dayPeriodContainer.appendChild(span);
 
+                  checkBoxDayPeriod.addEventListener("change", () => scrollIntoNext(checkBoxDayPeriod))
                   checkBoxDayPeriod.addEventListener("change", function () {
                     if (checkBoxDayPeriod.checked) {
                       showAvailableStartTime(startMorning, morningContainer);
@@ -733,117 +743,114 @@
   }
 
   if (localStorageTest() === true) {
-    const form = document.querySelector("form")
-    const formName = form.dataset.formname
-    // Check if formData is populated and push it to the form
-    let storedForm = localStorage.getItem("formData")
+    const form = document.querySelector("form");
+    if (form) {
+      const formName = form.dataset.formname;
+      // Check if formData is populated and push it to the form
+      let storedForm = localStorage.getItem("formData");
 
-    storedForm = storedForm ? JSON.parse(storedForm) : {}
-    if (storedForm[formName]){
-        const arrayValues = Object.values(storedForm[formName])
-        const formObject = Object.entries(storedForm[formName])
+      storedForm = storedForm ? JSON.parse(storedForm) : {};
+      if (storedForm[formName]) {
+        const arrayValues = Object.values(storedForm[formName]);
+        const formObject = Object.entries(storedForm[formName]);
 
-        const formInputs = form.querySelectorAll('input')
-        const formSelects = form.querySelectorAll('select')
-        console.log(formObject)
+        const formInputs = form.querySelectorAll("input");
+        const formSelects = form.querySelectorAll("select");
+        console.log(formObject);
         // formObject.forEach(object =>{
         //   console.log(object)
         // })
-        formObject.forEach(object => {
+        formObject.forEach((object) => {
+          if (formInputs) {
+            Array.from(formInputs).map((input) => {
+              if (
+                (input.type == "radio" || input.type == "checkbox") &&
+                input.value == object[1]
+              ) {
+                input.checked = true;
+              }
+              if (
+                (input.type == "text" || input.type == "email") &&
+                input.name == object[0]
+              ) {
+                console.log(object[0]);
+                console.log(object[1]);
+                input.value = object[1];
+              }
+            });
+          }
 
-            if(formInputs){
-              
-              Array.from(formInputs).map(input =>{
-                if ((input.type == "radio" || input.type == "checkbox") && input.value == object[1]) {
-                  input.checked = true
+          if (formSelects) {
+            Array.from(formObject).map((object) => {
+              Array.from(formSelects).map((select) => {
+                if (select.name == object[0]) {
+                  Array.from(select.children).map((option) => {
+                    if (
+                      option.value == object[1] ||
+                      option.value.split(",")[0] == object[1]
+                    ) {
+                      option.selected = true;
+                    }
+                  });
                 }
-                if ((input.type == "text" || input.type == "email") && input.name == object[0]){
-                  console.log(object[0])
-                  console.log(object[1])
-                  input.value = object[1]
-                }
-              })
-            }
+              });
+            });
+          }
+        });
+      }
 
-            if(formSelects){
-              
-              Array.from(formObject).map(object =>{
-               
-                Array.from(formSelects).map(select =>{
-                  
-                  if (select.name == object[0]){
-                    Array.from(select.children).map(option =>{
-                      if(option.value == object[1] || option.value.split(',')[0] == object[1] ){
-                        
-                        option.selected = true
-                      }
-                    })
-                    
-                  }
-                })
-              })
-            }
-        })
-    }
+      function setLocalStorage() {
+        let formData = new FormData(form);
 
-    function setLocalStorage(){
-      let formData = new FormData(form);
-      
-      
-      let dataObject = {}
-      formData.forEach((value, key) => {
-        if (key == 'Multimediatour'){
-          
-          dataObject[key] = value.split(',')[0]
-        }
-        else {
-          dataObject[key] = value
-        }
+        let dataObject = {};
+        formData.forEach((value, key) => {
+          if (key == "Multimediatour") {
+            dataObject[key] = value.split(",")[0];
+          } else {
+            dataObject[key] = value;
+          }
+        });
+        let formDataJSON = JSON.stringify(dataObject);
+
+        /// https://gomakethings.com/how-to-update-localstorage-with-vanilla-javascript/
+        let existing = localStorage.getItem("formData");
+
+        // If no existing data, create an array
+        // Otherwise, convert the localStorage string to an array
+        existing = existing ? JSON.parse(existing) : {};
+
+        // Add new data to localStorage Array
+        existing[form.dataset.formname] = dataObject;
+
+        // Save back to localStorage
+        localStorage.setItem("formData", JSON.stringify(existing));
+      }
+
+      const addExtra = document.querySelectorAll(".add-ticket");
+      const removeExtra = document.querySelectorAll(".remove-ticket");
+      if (addExtra) {
+        Array.from(addExtra).forEach((button) => {
+          button.addEventListener("click", function () {
+            console.log("click");
+            setTimeout(() => {
+              setLocalStorage();
+            }, 500);
+          });
+        });
+        Array.from(removeExtra).forEach((button) => {
+          button.addEventListener("click", function () {
+            console.log("click");
+            setTimeout(() => {
+              setLocalStorage();
+            }, 500);
+          });
+        });
+      }
+      // Put formData in localStorage
+      form.addEventListener("change", function () {
+        setLocalStorage();
       });
-      let formDataJSON = JSON.stringify(dataObject)
-      
-      /// https://gomakethings.com/how-to-update-localstorage-with-vanilla-javascript/ 
-      let existing = localStorage.getItem("formData")
-
-      // If no existing data, create an array
-      // Otherwise, convert the localStorage string to an array
-      existing = existing ? JSON.parse(existing) : {}
-      
-      // Add new data to localStorage Array
-      existing[form.dataset.formname] = dataObject
-
-      // Save back to localStorage
-      localStorage.setItem("formData", JSON.stringify(existing))
     }
-
-    const addExtra = document.querySelectorAll('.add-ticket')
-    const removeExtra = document.querySelectorAll('.remove-ticket')
-    if(addExtra){
-      Array.from(addExtra).forEach(button =>{
-        button.addEventListener('click', function(){
-          console.log('click')
-          setTimeout(() => {
-            setLocalStorage()
-          }, 500);
-         
-        })
-      })
-      Array.from(removeExtra).forEach(button =>{
-        button.addEventListener('click', function(){
-          console.log('click')
-          setTimeout(() => {
-            setLocalStorage()
-          }, 500);
-         
-        })
-      })
-    }
-    // Put formData in localStorage
-    form.addEventListener("change", function () {
-      setLocalStorage()
-
-    })
-
   } else {
     console.log("Local Storage is unavailable");
   }
@@ -861,6 +868,11 @@
         linkOnly.href = "/tweede-stap?groupChoice=only&javascript=1";
 
     }
+
+    const currentPage = document.querySelector('[aria-current="page"]')
+
+    currentPage.scrollIntoView()
+
 })();
 (function () {
     const forthForm = document.querySelector(".step-two")

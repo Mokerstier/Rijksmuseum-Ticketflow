@@ -38,6 +38,14 @@ function checkDefault() {
 }
 
 function getFirstStep(req, res) {
+    firstName = ''
+    lastName = ''
+    tussenName = ''
+    email = ''
+    zipCode = ''
+    acceptTerms = "off"
+    country = ''
+
     ticketChoice = null
     res.render('pages/firstStep.ejs', {
         title: 'Kies je groep',

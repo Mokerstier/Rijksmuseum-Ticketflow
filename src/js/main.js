@@ -10,4 +10,9 @@
         linkOnly.href = "/tweede-stap?groupChoice=only&javascript=1";
 
     }
+
+    const currentPage = document.querySelector('[aria-current="page"]')
+
+    currentPage.scrollIntoView()
+
 })();
