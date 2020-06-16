@@ -106,12 +106,17 @@ $ npm run watch
 - [ ] Dark mode toevoegen
 - [x] Regex schrijven voor de postcode bij stap 5 
 - [ ] Errors op een leukere manier laten zien
-- [ ] BUg fix dat de date picker niet werkt op safari en IE 
+- [ ] Bug fix dat de date picker niet werkt op safari en IE 
 - [ ] Zodra de gebruiker op stap 5 komt de timer laten aflopen
+
+## Bronnen 
+- Het testen met [Hannes](https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Testen-met-Hannes), [Roger](https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Testen-met-Roger) en [Jesse]()
+- [Aria labels](https://www.w3.org/TR/html-aria/#:~:text=ARIA%20in%20HTML%20is%20a,subject%20to%20change%20without%20notice)
 
 ## Credits 
 - [Mohamad Al Ghorani](https://github.com/MohamadAlGhorani)
 - [Wouter van der Heijde](https://github.com/Mokerstier)
 - [Manouk Kappé](https://github.com/ManoukK)
 - De Minor WebDev docenten voor hulp, feedback en ondersteuning
+- Bedankt Hannes, Roges en Jesse voor het testen van ons prototype!
 
