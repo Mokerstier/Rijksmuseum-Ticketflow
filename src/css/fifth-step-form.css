@@ -57,21 +57,7 @@ form[action="/zesde-stap"] #country:invalid {
   background-color: #feedec;
   border: 2px solid #da4453;
 }
-@media screen and (max-width: 46em) {
-  form[action="/zesde-stap"] section > fieldset > input,
-  form[action="/zesde-stap"] #tussenName,
-  form[action="/zesde-stap"] #lastName,
-  form[action="/zesde-stap"] #emailAddress,
-  form[action="/zesde-stap"] #zipCode,
-  form[action="/zesde-stap"] #country {
-    display: block;
-    width: 100%;
-  }
-  form[action="/zesde-stap"] section:nth-of-type(3) fieldset {
-    display: block;
-    width: 100%;
-  }
-  form[action="/zesde-stap"] section:nth-of-type(2) > fieldset:first-of-type > input:last-of-type {
-    margin-bottom: 1.5em;
-  }
+form[action="/zesde-stap"] section > fieldset > input:placeholder-shown {
+  background-color: white;
+  border: 2px solid #718875;
 }
