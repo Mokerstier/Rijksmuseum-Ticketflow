@@ -44,7 +44,8 @@
                   
                   if (select.name == object[0]){
                     Array.from(select.children).map(option =>{
-                      if(option.value == object[1]){
+                      if(option.value == object[1] || option.value.split(',')[0] == object[1] ){
+                        
                         option.selected = true
                       }
                     })
@@ -56,15 +57,19 @@
         })
     }
 
-    // Put formData in localStorage
-    form.addEventListener("change", function () {
-      
+    function setLocalStorage(){
       let formData = new FormData(form);
       
       
       let dataObject = {}
       formData.forEach((value, key) => {
-        dataObject[key] = value
+        if (key == 'Multimediatour'){
+          
+          dataObject[key] = value.split(',')[0]
+        }
+        else {
+          dataObject[key] = value
+        }
       });
       let formDataJSON = JSON.stringify(dataObject)
       
@@ -80,6 +85,29 @@
 
       // Save back to localStorage
       localStorage.setItem("formData", JSON.stringify(existing))
+    }
+    const addExtra = document.querySelector('.add-ticket')
+    const removeExtra = document.querySelector('.remove-ticket')
+    if(addExtra){
+      addExtra.addEventListener('click', function(){
+        console.log('click')
+        setTimeout(() => {
+          setLocalStorage()
+        }, 1000);
+       
+      })
+      removeExtra.addEventListener('click', function(){
+        console.log('click')
+        setTimeout(() => {
+          setLocalStorage()
+        }, 1000);
+      })
+    }
+    
+    // Put formData in localStorage
+    form.addEventListener("change", function () {
+      setLocalStorage()
+
     })
 
   } else {

@@ -37,16 +37,16 @@
                   <p class="expo-validation-error">
                     Deze rondleiding is niet beschikbaar voor uw groepsgrootte.
                   </p>
-                  <input required disabled id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
-                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
+                  <input aria-controls="ticketInfo" required disabled id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>,<%= expositionContents[a].PriceCent%>,<%= expositionContents[a].PriceType%>" aria-describedby="item[<%=a%>]" data-price-cent="<%= expositionContents[a].PriceCent %>" data-price-type="<%= expositionContents[a].PriceType %>"/>
                 <% } else { %>
                   <% if(expoChoice == expositionContents[a].name){ %>
-                    <input required checked="checked" id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
-                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
+                    <input aria-controls="ticketInfo" required checked="checked" id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>,<%= expositionContents[a].PriceCent%>,<%= expositionContents[a].PriceType%>" aria-describedby="item[<%=a%>]" data-price-cent="<%= expositionContents[a].PriceCent %>" data-price-type="<%= expositionContents[a].PriceType %>"/>
                     
                   <% } else { %>
-                      <input required checked="checked" id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
-                      value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
+                      <input aria-controls="ticketInfo" required checked="checked" id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                      value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>,<%= expositionContents[a].PriceCent%>,<%= expositionContents[a].PriceType%>" aria-describedby="item[<%=a%>]" data-price-cent="<%= expositionContents[a].PriceCent %>" data-price-type="<%= expositionContents[a].PriceType %>"/>
                   <% } %>
                 <% } %>
               <% } else { %>
@@ -54,27 +54,38 @@
                   <p class="expo-validation-error">
                     Deze rondleiding is niet beschikbaar voor uw groepsgrootte.
                   </p>
-                  <input required disabled id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
-                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
+                  <input aria-controls="ticketInfo" required disabled id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>,<%= expositionContents[a].PriceCent%>,<%= expositionContents[a].PriceType%>" aria-describedby="item[<%=a%>]" data-price-cent="<%= expositionContents[a].PriceCent %>" data-price-type="<%= expositionContents[a].PriceType %>"/>
                 <% } else { %>
                   <% if(expoChoice == expositionContents[a].name){ %>
-                    <input required checked="checked" id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
-                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
+                    <input aria-controls="ticketInfo" required checked="checked" id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                    value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>,<%= expositionContents[a].PriceCent%>,<%= expositionContents[a].PriceType%>" aria-describedby="item[<%=a%>]" data-price-cent="<%= expositionContents[a].PriceCent %>" data-price-type="<%= expositionContents[a].PriceType %>"/>
                     
                   <% } else { %>
-                      <input required id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
-                      value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>" aria-describedby="item[<%=a%>]"/>
+                      <input aria-controls="ticketInfo" required id="<%= expositionContents[a].expositionId %>" data-id="<%= expositionContents[a].expositionId %>" type="radio" name="ticketOption"
+                      value="<%= expositionContents[a].name%>,<%= expositionContents[a].expositionId %>,<%= expositionContents[a].PriceCent%>,<%= expositionContents[a].PriceType%>" aria-describedby="item[<%=a%>]" data-price-cent="<%= expositionContents[a].PriceCent %>" data-price-type="<%= expositionContents[a].PriceType %>"/>
                   <% } %>
                 <% } %>
               <% } %>
 
-
-            <label aria-label="<%= expositionContents[a].name %>. <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>" for="<%= expositionContents[a].expositionId %>">
+              <% if(expositionContents[a].PriceType == "fixed"){ %>
+              <label aria-label="<%= expositionContents[a].name %>.De prijs is €<%= (expositionContents[a].PriceCent / 100).toFixed(2)  %> per groep. <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>" for="<%= expositionContents[a].expositionId %>">
               <img src="<%= expositionContents[a].expoImage %>" alt="Een foto van een tour in het Rijksmuseum" />
               <%= expositionContents[a].name %>
               <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>
-  
-            </label>
+              
+                <span class="tour-price-container">€<%= (expositionContents[a].PriceCent / 100).toFixed(2)  %> per groep </span>
+              </label>
+              <% } else { %>
+                <label aria-label="<%= expositionContents[a].name %>.De prijs is €<%= (expositionContents[a].PriceCent / 100).toFixed(2)  %> <%= expositionContents[a].PriceType %>. <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>" for="<%= expositionContents[a].expositionId %>">
+                  <img src="<%= expositionContents[a].expoImage %>" alt="Een foto van een tour in het Rijksmuseum" />
+                  <%= expositionContents[a].name %>
+                  <%= ticketShop.expositionSelectionContent.expositionWithoutTimeslotDescription %>
+                <span class="tour-price-container">€<%= (expositionContents[a].PriceCent / 100).toFixed(2)  %> <%= expositionContents[a].PriceType %> </span>
+              </label>
+              <% } %>
+              
+            
           </div>
           
         <% } %>
@@ -107,8 +118,8 @@
     </section>
     <section class="ticketOrder">
       <div>
-        <p>Bestellingslijst...</p>
         <% if(javascript == 1){ %>
+          <%- include('../partials/prijslijst.ejs') %>
           <input class="backAndNextButton" type="submit" value="Naar extra opties" aria-label="Klik hier om door te gaan naar stap 4, extra opties"/>
         <% } else { %>
           <input class="backAndNextButton" type="submit" value="Kies datum" />
@@ -117,6 +128,7 @@
     </section>
 
     <input required type="hidden" class="totalTickets" name="totalTickets" value="<%= ticketCount %>">
+
 
   </form>
 </main>

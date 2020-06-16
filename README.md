@@ -43,13 +43,23 @@ Om het toegankelijk te maken zorgen wij ervoor dat we gebruik maken van semantis
 
 ## De oplossingen
 ### Toegankelijkheid toetsenbord
-AANVULLEN + FOTOS
+#### Alles met de tab bereikbaar maken
+Tijdens het testen met zowel Hannes als Roger kwamen we erachter dat ze allebei bepaalde toetsenbord triggers verwachtte die er niet waren. Zo wilde ze met de tab alles kunnen bereiken. Ook in een fieldset met radio buttons. Zij wisten niet dat je daarin moet navigeren met de pijltjes en raakte daar dan ook verdwaald. Wij wilden dit oplossen alleen is dit helaas niet mogelijk. Het is de standaardregel dat je navigeert met pijltjes over radio buttons heen en je kan het nooit met de tab bereiken. Daarom hebben wij gekozen voor een andere oplossing. Door in de legend een aria-label te plaatsen met onder andere instructies hoe je verder moet navigeren, willen wij ervoor zorgen dat dit nu voor de meeste mensen duidelijk wordt. Zodra je voor het eerst op een groep radio buttons komt hoor je dankzij de aria-labels op de legends dit: “Op welke datum wil je komen? Kies uit 6 beschikbare opties met de pijltjes toetsen.” Hiermee willen wij instructies geven aan de gebruiker zodat hij door kan gaan met iets selecteren zonder dat hij verdwaald raakt. De gebruiker hoort ook gelijk hoeveel beschikbare opties er zijn zodat hij weet wat hij kan verwachten. 
+
+#### Selecteren met enter
+De “regel” op het web is dat je checkboxes en radio buttons selecteert met een spatie. Toch kregen wij uit meerdere tests feedback dat er behoefte is om een selectie te maken met enter. Dit hebben wij geïmplementeerd met een event listener in javascript die luistert naar de “enter” key. Als gebruikers toch wel gewend zijn spatie te gebruiken hebben zij ook altijd nog de mogelijkheid dat te doen. CODECODECODECODE!!! 
 
 ### Toegankelijkheid screenreader
-AANVULLEN + FOTOS
+#### De gebruiker up to date houden
+Tijdens het bestellen van een ticket is het belangrijk om de gebruiker op de hoogte te houden van zijn keuzes en de prijzen. Visueel is dit goed te doen maar voor iemand die gebruik maakt van een screen reader en mogelijk ook niet tot nauwelijks ziet is dit lastig voor hem. Om dat op te lossen hebben wij gebruik gemaakt van aria-live polite. Hiermee stellen we de gebruiker op de hoogte zodra hij een verandering maakt in zijn bestelling. Een verandering kan bijvoorbeeld zijn dat hij een ticket weg haalt of erbij doet. Als de gebruiker dit doet vertelt de screen reader uitgebreid wat de huidige bestelling is. Dit wordt dan op een rustige manier, dankzij polite, verteld door de screen reader: “Entree volwassene ticket, aantal 3. Entree t/m 18 jaar ticket, aantal 2. Totaal aantal tickets: 5. Totale prijs: €57.00.” De eerste twee zinnen zijn onzichtbaar voor gebruikers met zicht. Zij kunnen het al uit de interface aflezen.
+
+#### Buttons omzetten naar div’s
+Zodra je een ticket wilt bestellen kom je al snel de plus en min buttons tegen waarmee je tickets kan selecteren. Ook heb je de mogelijkheid om dit te doen in de dropdown, die tussen de twee buttons staat. 
+
+Deze buttons leverde bij het testen met mensen die blind zijn al snel verwarring op. Ook heel begrijpelijk als je er niks aan hebt. Om een button weg te stoppen voor de screen reader moet je nog best veel moeite voor doen. Daarnaast is dat eigenlijk ook helemaal niet gewenst. Onze oplossing hiervoor was om div’s te gebruiken in plaats van buttons. Deze div’s zijn met de screen reader niet te bereiken maar lijken en doen nog wel alsof ze buttons zijn. Bij de tweede test bleek dit een succes. De gebruiker had een veel beter (en “schoner”) overzicht van de pagina en kon veel makkelijker zonder afleiding tickets selecteren. Omdat er gebruik werd gemaakt van een dropdown werden deze twee buttons niet gemist. 
 
 ### De date picker
-De datepicker hebben wij toegankelijk gemaakt door deze helemaal uit elkaar te halen en in stapjes te tonen. De stapjes hebben we gemaakt aan de hand van select options, radio buttons en checkboxes. Uit eerdere onderzoeken (Web Design) bleken deze inputs goed toegankelijk te zijn voor toetsenborden en screenreaders. 
+De datepicker hebben wij toegankelijk gemaakt door deze helemaal uit elkaar te halen en in stapjes te tonen. De stapjes hebben we gemaakt aan de hand van select options, radio buttons en checkboxes. Uit eerdere onderzoeken (Web Design) bleken deze inputs goed toegankelijk te zijn voor toetsenborden en screenreaders. Ook tijdens verschillende tests bleek dit een goede oplossing te zijn.
 
 Niet alleen voor screenreaders en toetsenborden is de datepicker fijn maar ook voor mensen die wel met de muis navigeren. De opties en keuzes worden in een vraagvorm gesteld zodat dit later ook voice-proof is. 
 
@@ -92,4 +102,13 @@ Een van de dingen die we hebben veranderd is dat we nu aan het begin de gebruike
 Wat we ook hebben veranderd is de tweede stap van de ticketflow. Deze bestond uit veel componenten en niet alle componenten paste bij elkaar. Deze stap heet bij het Rijksmuseum “extra opties”. Hier vallen rondleidingen, datepicker, donaties en multimedia items bij. Deze vier hebben wij nu in tweeën gesplitst. Bij ons is de derde stap “plan je bezoek” hier vallen de rondleidingen en datepicker onder. De vierde stap is nu bij ons “extra opties”, waar de multimedia items en dotaties onder vallen. Nu staan de logische componenten bij elkaar en onder de logische pagina’s. Voor het Rijksmuseum is er nu ook nog ruimte componenten toe te voegen zonder dat het te druk wordt. Zo kan de shop component onder “extra opties” als ze dat zouden willen. 
 
 Onze ticketflow heeft wel meer stappen maar is per stap rustiger en overzichtelijker.
+
+### Tickets bestellen zonder javascript
+Een van de dingen die wij opmerkte in het proces was dat je geen tickets kan bestellen zonder javascript. Dit vonden wij wel belangrijk, je maakt tenslotte een ticketflow voor iedereen. Ook voor mensen met een slechte verbinding. 
+
+Dit hebben wij opgelost door alle data van de bestelling op te slaan op de server. Hierdoor moesten we ook een andere date picker flow creëren die niet zo toegankelijk is voor de screen reader maar omdat de screen reader niet werkt zonder javascript is dit geen probleem. 
+
+Nu moet de gebruiker een paar “extra” stappen doorlopen die je normaal gesproken op 1 pagina hebt staan. Ook de stappen zelf zijn iets anders. Je geeft eerst aan in welke maand je wilt komen. Vervolgens kies je een dag. Dit zijn alle beschikbare dagen in de maand. Dit kan wat overweldigend overkomen. Als laatste kies je een tijd. Ook dit is een lange lijst met keuzes. De informatie blijft wel te overzien en behapbaar maar het is wel een mooie enhancement als je wel javascript aan hebt staan. 
+CODE!!! EN FOTOS!!!!
+
 

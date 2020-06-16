@@ -1,3 +1,21 @@
-<section id="totalPriceContainer">
-    
+<section id="ticketInfo">
+    <p> 
+        <% if(ticketCount){ %>
+            <output id="aantal-first-step" class="block-right" role="status" aria-live="polite"> <span></span> Totaal aantal tickets: <%= ticketCount %></output>
+        <% } else { %>
+            <output id="aantal-first-step" class="block-right" role="status" aria-live="polite"> <span></span></output>
+        <% } %>
+        </p>  
+        <p>
+            <% if(totalPrice){ %>
+            <output id="total-first-step" class="block-right" role="status" aria-live="polite" data-price-raw="<%=totalPriceRaw%>"> <span>en</span> Totale prijs: <%= totalPrice %></output>
+            <% } else { %>
+                <output id="total-first-step" class="block-right" role="status" aria-live="polite"> <span>en</span> Totale prijs: €38.00</output>
+            <% } %>
+        </p>
+        <% if(startTimeChoice !== null){ %>
+        <p>
+            <output id="start-time-choice" class="block-right" role="status" aria-live="polite"> <span>gereserveerde</span>Datum: <date><%= new Date(startTimeChoice).toLocaleString() %></date></output>
+        </p>
+        <% } %> 
 </section>
