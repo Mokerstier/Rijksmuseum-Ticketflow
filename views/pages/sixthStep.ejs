@@ -13,6 +13,27 @@
 </nav>
 
 <main id="main">
-    <h2 aria-label="Stap 6 van de 6, Je bent klaar!">Zesde stap</h2>
+    <section>
+        <h2 aria-label="Stap 6 van de 6, Je bent klaar controlieer je gegevens en regel je betaling!">Overzicht en betaling</h2>
+        <p> Name: <%= firstName %> <%= tussenName %> <%= lastName %></p>
+        <p>Email: <%= email %></p>
+        <p>Postcode: <%= zipCode.toUpperCase() %></p>
+        <p>Land: <%= country %></p>
+        <% ticketSelectedArrayIdAndNumber.forEach(object => { %>
+            <% articlesData.forEach(article => {%>
+                <% if(object.id == article.Code){%>
+                    <p><span><%= article.Name%></span> <span><%= object.number%></span> <span>€<%= (article.PriceCent * Number(object.number) /100).toFixed(2) %></span></p>
+                <%}%>
+            <%})%>  
+        <% }) %>
+        <p><%= expoChoice%> <span> €<%= ((Number(totalPriceRawFive) - ( Number(totalPriceRawThree) + (Number(multiMediaChoice) * 500) + Number(donationChoice) )) / 100).toFixed(2) %></span></p>
+        <p><date><%= new Date(startTimeChoice).toLocaleString() %></date></p>
+        <% if(multiMediaChoice > 0) { %>
+        <p><span>Multimediatour met leentoestel:</span> <span><%= multiMediaChoice%></span> <span>€<%= ((Number(multiMediaChoice) * 500) /100).toFixed(2) %></span></p>
+        <% } %>
+        <p>Doneer Keuze: €<%= (donationChoice / 100 ).toFixed(2)%></p>
+        <p>Total tickets: <%=ticketCount%></p>
+        <p>Total prijs: €<%= (totalPriceRawFive / 100).toFixed(2) %></p>
+    </section>
 </main>
-<%- include ("../partials/footer.ejs") %>
+<%- include ("../partials/footer.ejs") %> 
