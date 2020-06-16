@@ -33,7 +33,7 @@
     <section>
         <fieldset>
             <label for="zipCode">Postcode *</label>
-            <input required id="zipCode" name="postcode" placeholder="1234AB" type="text" value="<%= zipCode %>">
+            <input required pattern="[0-9]{4}[A-Za-z]{2}" id="zipCode" name="postcode" placeholder="1234AB" type="text" value="<%= zipCode %>">
         </fieldset>
         <fieldset>
             <label for="country">Land *</label>
