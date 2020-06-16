@@ -15,18 +15,18 @@
   form[action="/zesde-stap"] section:nth-of-type(2) > fieldset:first-of-type > input:last-of-type {
     margin-bottom: 1.5em;
   }
-}
-@media (max-width: 30em) {
   .informationToursMuseum {
     width: 100%;
   }
+  section {
+    width: 90%;
+  }
+}
+@media (max-width: 30em) {
   .ticketOrder div > input {
     position: static;
     margin-top: 0.5em;
     right: none;
     top: none;
-  }
-  section {
-    width: 90%;
   }
 }
