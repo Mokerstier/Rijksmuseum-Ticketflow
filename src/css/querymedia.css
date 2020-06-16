@@ -1,0 +1,32 @@
+@media (max-width: 48em) {
+  form[action="/zesde-stap"] section > fieldset > input,
+  form[action="/zesde-stap"] #tussenName,
+  form[action="/zesde-stap"] #lastName,
+  form[action="/zesde-stap"] #emailAddress,
+  form[action="/zesde-stap"] #zipCode,
+  form[action="/zesde-stap"] #country {
+    display: block;
+    width: 100%;
+  }
+  form[action="/zesde-stap"] section:nth-of-type(3) fieldset {
+    display: block;
+    width: 100%;
+  }
+  form[action="/zesde-stap"] section:nth-of-type(2) > fieldset:first-of-type > input:last-of-type {
+    margin-bottom: 1.5em;
+  }
+}
+@media (max-width: 30em) {
+  .informationToursMuseum {
+    width: 100%;
+  }
+  .ticketOrder div > input {
+    position: static;
+    margin-top: 0.5em;
+    right: none;
+    top: none;
+  }
+  section {
+    width: 90%;
+  }
+}
