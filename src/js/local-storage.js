@@ -1,4 +1,3 @@
-
 (function () {
   function localStorageTest() {
     const test = "test";
@@ -24,14 +23,22 @@
 
         const formInputs = form.querySelectorAll('input')
         const formSelects = form.querySelectorAll('select')
-
-        arrayValues.forEach(value => {
+        console.log(formObject)
+        // formObject.forEach(object =>{
+        //   console.log(object)
+        // })
+        formObject.forEach(object => {
 
             if(formInputs){
               
               Array.from(formInputs).map(input =>{
-                if ((input.type == "radio" || input.type == "checkbox") && input.value == value) {
+                if ((input.type == "radio" || input.type == "checkbox") && input.value == object[1]) {
                   input.checked = true
+                }
+                if ((input.type == "text" || input.type == "email") && input.name == object[0]){
+                  console.log(object[0])
+                  console.log(object[1])
+                  input.value = object[1]
                 }
               })
             }
@@ -73,7 +80,7 @@
       });
       let formDataJSON = JSON.stringify(dataObject)
       
-
+      /// https://gomakethings.com/how-to-update-localstorage-with-vanilla-javascript/ 
       let existing = localStorage.getItem("formData")
 
       // If no existing data, create an array
@@ -86,24 +93,29 @@
       // Save back to localStorage
       localStorage.setItem("formData", JSON.stringify(existing))
     }
-    const addExtra = document.querySelector('.add-ticket')
-    const removeExtra = document.querySelector('.remove-ticket')
+
+    const addExtra = document.querySelectorAll('.add-ticket')
+    const removeExtra = document.querySelectorAll('.remove-ticket')
     if(addExtra){
-      addExtra.addEventListener('click', function(){
-        console.log('click')
-        setTimeout(() => {
-          setLocalStorage()
-        }, 1000);
-       
+      Array.from(addExtra).forEach(button =>{
+        button.addEventListener('click', function(){
+          console.log('click')
+          setTimeout(() => {
+            setLocalStorage()
+          }, 500);
+         
+        })
       })
-      removeExtra.addEventListener('click', function(){
-        console.log('click')
-        setTimeout(() => {
-          setLocalStorage()
-        }, 1000);
+      Array.from(removeExtra).forEach(button =>{
+        button.addEventListener('click', function(){
+          console.log('click')
+          setTimeout(() => {
+            setLocalStorage()
+          }, 500);
+         
+        })
       })
     }
-    
     // Put formData in localStorage
     form.addEventListener("change", function () {
       setLocalStorage()
