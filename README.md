@@ -12,6 +12,9 @@ Redesign de ticketflow van Rijksmuseum en zorg dat deze eenvoudig en voor iedere
    * [De date picker](#De-date-picker)
    * [Groepssamenstelling](#Groepssamenstelling)
    * [De flow van de ticketstraat](#De-flow-van-de-ticketstraat)
+   * [Tickets bestellen zonder javascript](#Tickets-bestellen-zonder-javascript)
+* [Features](#Features)
+* [Credits](#Credits)
 
 ## Het team
 - [Manouk Kappé](https://github.com/ManoukK)
@@ -24,6 +27,8 @@ Onze opdrachtgever is Q42 samen met het Rijksmuseum.
 De opdracht is om de ticketflow van het Rijksmuseum te verbeteren op gebied van toegankelijkheid. Het is nog lastig voor een aantal mensen om een ticket te kopen en aan ons de taak dit te verbeteren. De punten waar het nog niet goed gaan zijn de groepssamenstelling en het kiezen van een datum en tijd. Dit zijn voor ons dan ook een van de belangrijkere punten. Het uiteindelijke doel is dat iedereen een ticket kan kopen op de website van het Rijksmusem. 
 
 Ook mag de algemene volgorde anders. Eigenlijk komt het er op neer dat we helemaal los mogen gaan. Wel moeten we met sommige punten rekening houden zoals dat het Rijksmuseum een shop-component wilt toevoegen. Dit soort wensen moeten we wel in ons achterhoofd houden. 
+
+De debriefing die wij hebben gemaakt voor deze opdracht kan je hier vinden: https://docs.google.com/presentation/d/1rhxgCs-4tJe0IvmQbdUTolULDeQaAlo0ushD4pV00qE/edit?usp=sharing
 
 ## Het probleem 
 Er zijn een aantal problemen bij de huidige ticketflow. Sommige componenten zijn heel lastig te begrijpen met de screenreader en sommige componenten zijn ook lastig als je geen gebruik maakt van een screenreader. 
@@ -47,7 +52,26 @@ Om het toegankelijk te maken zorgen wij ervoor dat we gebruik maken van semantis
 Tijdens het testen met zowel Hannes als Roger kwamen we erachter dat ze allebei bepaalde toetsenbord triggers verwachtte die er niet waren. Zo wilde ze met de tab alles kunnen bereiken. Ook in een fieldset met radio buttons. Zij wisten niet dat je daarin moet navigeren met de pijltjes en raakte daar dan ook verdwaald. Wij wilden dit oplossen alleen is dit helaas niet mogelijk. Het is de standaardregel dat je navigeert met pijltjes over radio buttons heen en je kan het nooit met de tab bereiken. Daarom hebben wij gekozen voor een andere oplossing. Door in de legend een aria-label te plaatsen met onder andere instructies hoe je verder moet navigeren, willen wij ervoor zorgen dat dit nu voor de meeste mensen duidelijk wordt. Zodra je voor het eerst op een groep radio buttons komt hoor je dankzij de aria-labels op de legends dit: “Op welke datum wil je komen? Kies uit 6 beschikbare opties met de pijltjes toetsen.” Hiermee willen wij instructies geven aan de gebruiker zodat hij door kan gaan met iets selecteren zonder dat hij verdwaald raakt. De gebruiker hoort ook gelijk hoeveel beschikbare opties er zijn zodat hij weet wat hij kan verwachten. 
 
 #### Selecteren met enter
-De “regel” op het web is dat je checkboxes en radio buttons selecteert met een spatie. Toch kregen wij uit meerdere tests feedback dat er behoefte is om een selectie te maken met enter. Dit hebben wij geïmplementeerd met een event listener in javascript die luistert naar de “enter” key. Als gebruikers toch wel gewend zijn spatie te gebruiken hebben zij ook altijd nog de mogelijkheid dat te doen. CODECODECODECODE!!! 
+De “regel” op het web is dat je checkboxes en radio buttons selecteert met een spatie. Toch kregen wij uit meerdere tests feedback dat er behoefte is om een selectie te maken met enter. Dit hebben wij geïmplementeerd met een event listener in javascript die luistert naar de “enter” key. Als gebruikers toch wel gewend zijn spatie te gebruiken hebben zij ook altijd nog de mogelijkheid dat te doen. 
+```
+(function(){
+    window.addEventListener("keypress", function(e){
+        enter(e)
+    })
+
+    function enter(e){
+        if(e.key == "Enter"){
+            let focus = document.activeElement
+            if(focus.attributes.type.nodeValue == "checkbox" || "radio"){
+                e.preventDefault()
+                focus.click()
+            }
+        }
+    }
+
+})();
+```
+Dankzij deze function kan je selecteren met enter. We kwamen er al snel achter dat als je dit gebruikt op checkboxes en radio buttons je gelijk door gaat naar de volgende pagina. Om dit te vorkomen hebben wij hier nog een if statement voor gemaakt waarin je een prefentDefault inzetten voor als de gebruiker een enter gebruikt op een checkbox of button. 
 
 ### Toegankelijkheid screenreader
 #### De gebruiker up to date houden
@@ -64,10 +88,13 @@ De datepicker hebben wij toegankelijk gemaakt door deze helemaal uit elkaar te h
 Niet alleen voor screenreaders en toetsenborden is de datepicker fijn maar ook voor mensen die wel met de muis navigeren. De opties en keuzes worden in een vraagvorm gesteld zodat dit later ook voice-proof is. 
 
 De datepicker is helemaal gelinkt met de api en zo over te nemen als het Rijksmuseum hier behoefte aan heeft. 
+
+![Schermafbeelding 2020-06-16 om 11 51 59](https://user-images.githubusercontent.com/45541885/84760267-13479600-afc8-11ea-9e90-f3f5803fdb63.png)
+
 AANVULLEN + FOTOS
 
 ### Groepssamenstelling
-De groepssamenstelling van het Rijksmuseum was niet zo handig opgesteld. Zoals bij het probleem al vermeld moest deze component toegankelijker en duidelijker niet alleen voor mensen die werken met een screenreader maar voor iedereen. 
+De groepssamenstelling van het Rijksmuseum was niet zo handig opgesteld. Zoals bij het probleem al vermeld moest dit component toegankelijker en duidelijker worden. Niet alleen voor mensen die werken met een screenreader maar voor iedereen. 
 
 Het overzicht met alle tickets, prijzen, informatie, subtotalen en aantallen waren allemaal verwerkt in een tabel en dit was lastig te begrijpen voor de screenreaders. Ook de knoppen en de verdeling was niet zo overzichtelijk. 
 
@@ -75,8 +102,13 @@ Deze problemen hebben we opgelost door articles te gebruiken in plaats van een t
 
 Niet alleen de layout hebben we veranderd maar ook de knoppen. Het Rijksmuseum maakte gebruik van knoppen die erg op 1 geheel lijken. Hierdoor voelt het minder als een knop waardoor je in de war kan raken als je deze ziet. Wij wilde duidelijke knoppen maken die ook meer voelen als knoppen. Hiervoor hebben we gekozen om de plus en min knoppen los te trekken van het getal. Ook hebben we voor ronde knoppen gekozen. Meestal zijn in apps of op website zult soort knoppen rond en omdat dit een “gewoonte” is kunnen we beter deze gewoonte meenemen in ons ontwerp. 
 
-De subtotalen hebben we weggelaten. Dit zorgde voor veel verwarring met de screenreader en het was gaf volgens ons overbodige informatie. Daarentegen hebben we het totaal aantal tickets toegevoegd zodat mensen altijd kunnen checken of ze genoeg tickets hebben geselecteerd. De totaalprijs hebben we gehouden want dit is wel belangrijke informatie die gebruikers willen weten. 
-AANVULLING + FOTOS
+De subtotalen hebben we weggelaten. Dit zorgde voor veel verwarring met de screenreader en het gaf volgens ons overbodige informatie. Daarentegen hebben we het totaal aantal tickets toegevoegd zodat mensen altijd kunnen checken of ze genoeg tickets hebben geselecteerd. De totaalprijs hebben we gehouden want dit is wel belangrijke informatie die gebruikers willen weten. 
+
+Een leuke toevoeging is dat als je meer tickets besteld van een soort, de achtergrond ervan verandert. Ook is de bestellingslijst onder aan de pagina verbonden met de keuzes die je maakt bij het bestellen. 
+![Schermafbeelding 2020-06-16 om 11 32 40](https://user-images.githubusercontent.com/45541885/84758010-2c027c80-afc5-11ea-818f-a93c0b5703f9.png)
+
+![Schermafbeelding 2020-06-16 om 11 43 07](https://user-images.githubusercontent.com/45541885/84759230-bb5c5f80-afc6-11ea-9a39-7753d7249385.png)
+
 
 ### De flow van de ticketstraat
 #### De huidige ticketflow stappen van het Rijksmuseum:
@@ -111,4 +143,18 @@ Dit hebben wij opgelost door alle data van de bestelling op te slaan op de serve
 Nu moet de gebruiker een paar “extra” stappen doorlopen die je normaal gesproken op 1 pagina hebt staan. Ook de stappen zelf zijn iets anders. Je geeft eerst aan in welke maand je wilt komen. Vervolgens kies je een dag. Dit zijn alle beschikbare dagen in de maand. Dit kan wat overweldigend overkomen. Als laatste kies je een tijd. Ook dit is een lange lijst met keuzes. De informatie blijft wel te overzien en behapbaar maar het is wel een mooie enhancement als je wel javascript aan hebt staan. 
 CODE!!! EN FOTOS!!!!
 
+Keuzes die je eeder hebt gemaakt komen in een lijstje te staan zodat je altijd kan zien wat je hebt gekozen.
+
+![Schermafbeelding 2020-06-16 om 11 48 16](https://user-images.githubusercontent.com/45541885/84759735-6b31cd00-afc7-11ea-8725-512ce39f5803.png)
+
+## Features
+- [ ] Dark mode toevoegen
+- [ ] Regex schrijven voor de postcode bij stap 5 
+- [ ] Errors op een leukere manier laten zien
+
+## Credits 
+- [Mohamad Al Ghorani](https://github.com/MohamadAlGhorani)
+- [Wouter van der Heijde](https://github.com/Mokerstier)
+- [Manouk Kappé](https://github.com/ManoukK)
+- De Minor WebDev docenten voor hulp, feedback en ondersteuning
 
