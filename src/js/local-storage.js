@@ -24,10 +24,7 @@
 
         const formInputs = form.querySelectorAll("input");
         const formSelects = form.querySelectorAll("select");
-        console.log(formObject);
-        // formObject.forEach(object =>{
-        //   console.log(object)
-        // })
+
         formObject.forEach((object) => {
           if (formInputs) {
             Array.from(formInputs).map((input) => {
@@ -41,8 +38,6 @@
                 (input.type == "text" || input.type == "email") &&
                 input.name == object[0]
               ) {
-                console.log(object[0]);
-                console.log(object[1]);
                 input.value = object[1];
               }
             });
@@ -99,7 +94,7 @@
       if (addExtra) {
         Array.from(addExtra).forEach((button) => {
           button.addEventListener("click", function () {
-            console.log("click");
+
             setTimeout(() => {
               setLocalStorage();
             }, 500);
@@ -107,7 +102,7 @@
         });
         Array.from(removeExtra).forEach((button) => {
           button.addEventListener("click", function () {
-            console.log("click");
+
             setTimeout(() => {
               setLocalStorage();
             }, 500);

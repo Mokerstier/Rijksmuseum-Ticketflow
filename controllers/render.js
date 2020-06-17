@@ -238,7 +238,7 @@ function getFourthStep(req, res) {
         startTimeChoice = expoPeriodIDChoice[0]
         expoPeriodIDChoice = expoPeriodIDChoice[1]
     }
-    console.log('MEDIA CHOICE: ', multiMediaChoice)
+    
     res.render('pages/fourthStep.ejs', {
         title: 'Extra opties',
         expositionContents: expositionContents,
@@ -310,7 +310,7 @@ function getSixthStep(req, res) {
             ticketSelectedArrayIdAndNumber.push(ticketObject)
         }
     }
-    console.log(startTimeChoice)
+    
     // const ticktsChoiceWithNames = ;
     res.render('pages/sixthStep.ejs', {
         title: 'Overzicht en betalen',

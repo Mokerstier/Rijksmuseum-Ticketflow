@@ -30,7 +30,7 @@
     }
     function scrollIntoNext(element){
       const fieldset = element.closest('fieldset').nextElementSibling
-      console.log(fieldset)
+      
       fieldset.scrollIntoView({behavior: "smooth"})
     }
     async function checkForm(i) {
@@ -50,15 +50,15 @@
         let totalTickets = Number(ticketCount);
         let expoPrice = inputs[i].dataset.priceCent
         const expoPriceType = inputs[i].dataset.priceType
-        console.log(expoPrice)
+        
         
         if(expoPriceType == "per ticket"){
           expoPrice = expoPrice * totalTickets
-          console.log(expoPrice)
+          
         }
         let totalPrice = Number(totalPriceContainer.dataset.priceRaw)
         totalPrice = totalPrice + Number(expoPrice)
-        console.log(totalPrice);
+        
         
         totalPriceContainer.value = `Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`
         
@@ -313,6 +313,7 @@
               dataToCheck.push(dayDate);
               daysArray.push(day);
             }
+
             const legend = document.querySelector(".legend-date");
             if (daysArray.length == 1) {
               legend.setAttribute(
@@ -326,6 +327,16 @@
               );
             }
             removeChilds(".chooseDay");
+            function compare(a,b){
+              let comparison = 0;
+              if (a.date > b.date) {
+                comparison = 1;
+              } else if (a.date < b.date) {
+                comparison = -1;
+              }
+              return comparison;
+            }
+            daysArray.sort(compare)
 
             daysArray.map((day) => {
               const radiobutton = document.createElement("input");

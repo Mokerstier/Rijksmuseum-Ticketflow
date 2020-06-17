@@ -3,7 +3,7 @@
     if (forthForm) {
         const countModule = document.querySelectorAll('.ticket-amount-container')
         let totalPrice = document.querySelector('#total-first-step')
-        console.log(countModule)
+
         Array.from(countModule).map(module => {
             const removeButton = module.querySelector('.remove-ticket')
             const addButton = module.querySelector('.add-ticket')
@@ -13,7 +13,6 @@
                 getSelected(ticketSelect)
             })
 
-            console.log(ticketSelect.selectedIndex)
             removeButton.addEventListener('click', function () {
                 if (ticketSelect.selectedIndex === 0) {
                     ticketSelect.selectedIndex = 0
@@ -35,7 +34,6 @@
         async function getSelected(select){
             let selectPrice = select.dataset.price
             let ticketsTotal = select.selectedIndex
-            console.log(ticketsTotal, selectPrice);
             return calcTotalPriceExtra(selectPrice, ticketsTotal)
         }
         const ticketSelects = document.querySelectorAll('select')
@@ -47,7 +45,6 @@
 
         async function calcTotalPriceExtra(a, b){
             let totalPriceExtra = Number(a) * Number(b)
-            console.log(totalPriceExtra);
             let totalPriceCalculated = Number(totalPrice.dataset.priceRaw) + Number(totalPriceExtra)
             totalPrice.dataset.priceRawExtra = Number(totalPriceCalculated)
             totalPrice.value = `Totale prijs: €${parseFloat(totalPriceCalculated / 100).toFixed(2)}`
@@ -56,9 +53,9 @@
         }
         const donationInputs = document.querySelectorAll('input[name="Doneer"]')
         Array.from(donationInputs).map(function(input){
-            console.log('Array: ',input.value)
+
             input.addEventListener('change', function(){
-                console.log(input.value)
+
                 if (input.checked){
                     let value = input.value
                     calcDonation(value)
@@ -77,7 +74,7 @@
             Array.from(ticketSelects).map(async function(select){
                 totalPriceCalculated = await getSelected(select) + Number(a)
                 totalPrice.value = `Totale prijs: €${parseFloat(totalPriceCalculated / 100).toFixed(2)}`
-                console.log('total price: ', totalPriceCalculated);
+
             })
   
         }
