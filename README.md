@@ -32,7 +32,7 @@ Ons plan is om de ticketflow in kleinere stapjes op te delen. Zo willen we het r
 
 Ook willen wij de website maken als een lopend verhaal. Dit willen wij doen omdat wij of Q42 later altijd nog voice kunnen implementeren. Niet alleen is een lopend verhaal fijn voor voice maar het is fijn voor iedereen. Door te vragen weten mensen beter wat ze moeten verwachten en kunnen zij sneller denken aan een antwoord. Het is ook fijner lezen dan een opdracht. 
 
-Om het toegankelijk te maken zorgen wij ervoor dat we gebruik maken van semantische html. Dit geldt niet voor alles. Een table of een input type date zijn ideale elementen alleen niet te doen met de screenreader. Voor dat soort elementen gebruiken we juist niet de standaard maar een andere oplossing zodat het voor iedereen, dus ook met de screenreader, het fijn is om te gebruiken. Ook gaan wij gebruik maken van arai in html. Op deze manier willen wij ervoor zorgen dat sommige elementen die nog vaag kunnen zijn voor de screenreader duidelijk worden.
+Om het toegankelijk te maken zorgen wij ervoor dat we gebruik maken van semantische html. Dit geldt niet voor alles. Een table of een input type date zijn ideale elementen alleen niet te doen met de screenreader. Voor dat soort elementen gebruiken we juist niet de standaard maar een andere oplossing zodat het voor iedereen, dus ook met de screenreader, het fijn is om te gebruiken. Ook gaan wij gebruik maken van aria in html. Op deze manier willen wij ervoor zorgen dat sommige elementen die nog vaag kunnen zijn voor de screenreader duidelijk worden.
 
 ## Installatie
 Als je dit project wilt installeren kan je dat doen via de groene knop rechtboven in. Hier kan je het project clonen of downloaden. Je kan het ook in de terminal installeren via git. 
@@ -103,8 +103,13 @@ $ npm run watch
 ## API
 
 ## Features
+- Tickets kunnen kopen zonder javascript
+- Tickets kunnen kopen op een toegankelijke, vriendelijke manier
+- Custom datepicker
+- (Semi) gepersonaliseerde ticketflow
 
 ## Wishlist
+- [ ] Voice implementeren
 - [ ] Dark mode toevoegen
 - [x] Regex schrijven voor de postcode bij stap 5 
 - [ ] Errors op een leukere manier laten zien
@@ -112,7 +117,7 @@ $ npm run watch
 - [ ] Zodra de gebruiker op stap 5 komt de timer laten aflopen
 
 ## Bronnen 
-- Het testen met [Hannes](https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Testen-met-Hannes), [Roger](https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Testen-met-Roger) en [Jesse]()
+- Het testen met [Hannes](https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Testen-met-Hannes), [Roger](https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Testen-met-Roger) en [Jesse](https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Testen-met-Jesse)
 - [Aria labels](https://www.w3.org/TR/html-aria/#:~:text=ARIA%20in%20HTML%20is%20a,subject%20to%20change%20without%20notice)
 
 ## Credits 
