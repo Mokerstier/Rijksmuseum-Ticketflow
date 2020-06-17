@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-website-2020",
+  "name": "rijksmuseum-ticketstraat",
   "version": "1.0.0",
   "description": "Redesign de ticketflow van Rijksmuseum en zorg dat deze eenvoudig en voor iedereen toegankelijk is.",
   "main": "server.js",
