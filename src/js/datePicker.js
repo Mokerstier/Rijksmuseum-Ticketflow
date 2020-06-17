@@ -7,12 +7,12 @@
   }
 
   let checkboxes;
-  let AvailableDaysRadioButtons;
+  let availableDaysRadioButtons;
   let ChosenMonth;
 
   if (formThirdStep) {
-    const outputDate = document.querySelector('#start-time-choice')
-    const totalPriceContainer = document.querySelector('#total-first-step')
+    const outputDate = document.querySelector("#start-time-choice");
+    const totalPriceContainer = document.querySelector("#total-first-step");
     const submit = formThirdStep.querySelector('input[type="submit"]');
     const validationError = document.querySelector(".field-validation-error");
     const dayPeriodContainer = document.querySelector(".choose-day-period");
@@ -28,16 +28,13 @@
       inputs[i].addEventListener("change", () => scrollIntoNext(inputs[i]));
       window.addEventListener("load", () => checkForm(i));
     }
-    function scrollIntoNext(element){
-      const fieldset = element.closest('fieldset').nextElementSibling
-      
-      fieldset.scrollIntoView({behavior: "smooth"})
+    function scrollIntoNext(element) {
+      const fieldset = element.closest("fieldset").nextElementSibling;
+
+      fieldset.scrollIntoView({ behavior: "smooth" });
     }
-    async function checkForm(i) {
-      if(outputDate){
-        outputDate.parentElement.remove()
-      }
-      
+
+    function checkForm(i) {
       removeChilds(".checkboxDay");
       removeChilds(".chooseDay");
       removeChilds(".monthDatePicker");
@@ -48,85 +45,100 @@
       if (inputs[i].checked) {
         const expoID = inputs[i].dataset.id;
         let totalTickets = Number(ticketCount);
-        let expoPrice = inputs[i].dataset.priceCent
-        const expoPriceType = inputs[i].dataset.priceType
-        
-        
-        if(expoPriceType == "per ticket"){
-          expoPrice = expoPrice * totalTickets
-          
-        }
-        let totalPrice = Number(totalPriceContainer.dataset.priceRaw)
-        totalPrice = totalPrice + Number(expoPrice)
-        
-        
-        totalPriceContainer.value = `Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`
-        
-        const dataToPush = await getExpoPeriod(expoID, totalTickets);
-        data = [];
-        data.push(dataToPush);
 
-        const monthData = data[0].map((expo) => {
-          const date = new Date(expo.PeriodStart);
-          const month = date.getMonth();
-          return month;
-        });
-
-        const uniqueMonthArray = getUnique(monthData);
-
-        uniqueMonthArray.sort((a, b) => {
-          return a - b;
-        });
-
-        const monthNames = {
-          "0": "Januari",
-          "1": "Februari",
-          "2": "Maart",
-          "3": "April",
-          "4": "Mei",
-          "5": "Juni",
-          "6": "Juli",
-          "7": "Augustus",
-          "8": "September",
-          "9": "Oktober",
-          "10": "November",
-          "11": "December",
-        };
-
-        const getMonthNames = uniqueMonthArray.map((month) => {
-          return monthNames[month];
-        });
-
-        const legend = document.querySelector(".legend-month");
-        if (getMonthNames.length == 1) {
-          legend.setAttribute(
-            "aria-label",
-            `In welke maand wil je gaan? Er is ${getMonthNames.length} optie beschikbaar`
-          );
-        } else {
-          legend.setAttribute(
-            "aria-label",
-            `In welke maand wil je gaan? Er zijn ${getMonthNames.length} opties beschikbaar`
-          );
+        if (outputDate) {
+          outputDate.parentElement.remove();
         }
 
-        getMonthNames.map((month) => {
-          const option = document.createElement("option");
+        let expoPrice = inputs[i].dataset.priceCent;
+        const expoPriceType = inputs[i].dataset.priceType;
 
-          let monthNumber;
-          for (let [key, value] of Object.entries(monthNames)) {
-            if (value === month) {
-              monthNumber = key;
+        if (expoPriceType == "per ticket") {
+          expoPrice = expoPrice * totalTickets;
+        }
+        let totalPrice = Number(totalPriceContainer.dataset.priceRaw);
+        totalPrice = totalPrice + Number(expoPrice);
+
+        totalPriceContainer.value = `Totale prijs: €${parseFloat(
+          totalPrice / 100
+        ).toFixed(2)}`;
+
+        fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
+          .then((response) => response.json())
+          .then((expoData) => {
+            if (expoData.length == 0) {
+              expoError();
+            } else {
+              removeError();
             }
-          }
-          option.classList.add("optionMonth");
-          option.dataset.monthNumber = monthNumber;
-          option.textContent = month;
-          option.value = month;
-          selectMonth.appendChild(option);
-          
-        });
-        datePicker();
+            return expoData;
+          })
+          .then((dataToPush) => {
+
+            data = [];
+            data.push(dataToPush);
+
+            const monthData = data[0].map((expo) => {
+              const date = new Date(expo.PeriodStart);
+              const month = date.getMonth();
+              return month;
+            });
+
+            const uniqueMonthArray = getUnique(monthData);
+
+            uniqueMonthArray.sort((a, b) => {
+              return a - b;
+            });
+
+            const monthNames = {
+              "0": "Januari",
+              "1": "Februari",
+              "2": "Maart",
+              "3": "April",
+              "4": "Mei",
+              "5": "Juni",
+              "6": "Juli",
+              "7": "Augustus",
+              "8": "September",
+              "9": "Oktober",
+              "10": "November",
+              "11": "December",
+            };
+
+            const getMonthNames = uniqueMonthArray.map((month) => {
+              return monthNames[month];
+            });
+
+            const legend = document.querySelector(".legend-month");
+            if (getMonthNames.length == 1) {
+              legend.setAttribute(
+                "aria-label",
+                `In welke maand wil je gaan? Er is ${getMonthNames.length} optie beschikbaar`
+              );
+            } else {
+              legend.setAttribute(
+                "aria-label",
+                `In welke maand wil je gaan? Er zijn ${getMonthNames.length} opties beschikbaar`
+              );
+            }
+
+            getMonthNames.map((month) => {
+              const option = document.createElement("option");
+
+              let monthNumber;
+              for (let [key, value] of Object.entries(monthNames)) {
+                if (value === month) {
+                  monthNumber = key;
+                }
+              }
+              option.classList.add("optionMonth");
+              option.dataset.monthNumber = monthNumber;
+              option.textContent = month;
+              option.value = month;
+              selectMonth.appendChild(option);
+            });
+            datePicker();
+          });
       }
     }
     function expoError() {
@@ -140,18 +152,20 @@
     }
 
     select.addEventListener("change", datePicker);
-    select.addEventListener("change", () => scrollIntoNext(select))
+    select.addEventListener("change", () => scrollIntoNext(select));
 
-    async function getExpoPeriod(expoID, totalTickets) {
-      let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`);
-      let expoData = await response.json();
-      if (expoData.length == 0) {
-        expoError();
-      } else {
-        removeError();
-      }
-      return expoData;
-    }
+    // function getExpoPeriod(expoID, totalTickets) {
+    //   fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
+    //     .then((response) => response.json())
+    //     .then((expoData) => {
+    //       if (expoData.length == 0) {
+    //         expoError();
+    //       } else {
+    //         removeError();
+    //       }
+    //       return expoData;
+    //     });
+    // }
 
     function datePicker() {
       const options = document.querySelectorAll(".optionMonth");
@@ -248,8 +262,8 @@
       checkboxes = document.querySelectorAll(".inputDay");
       let filteredDays = [];
       Array.from(checkboxes).map((checkbox) => {
-        checkbox.addEventListener("change", () => scrollIntoNext(checkbox))
-        checkbox.addEventListener("change", async function () {
+        checkbox.addEventListener("change", () => scrollIntoNext(checkbox));
+        checkbox.addEventListener("change", function () {
           const dayContainer = document.querySelector(".chooseDay");
 
           removeChilds(".choose-day-period");
@@ -327,7 +341,7 @@
               );
             }
             removeChilds(".chooseDay");
-            function compare(a,b){
+            function compare(a, b) {
               let comparison = 0;
               if (a.date > b.date) {
                 comparison = 1;
@@ -336,7 +350,7 @@
               }
               return comparison;
             }
-            daysArray.sort(compare)
+            daysArray.sort(compare);
 
             daysArray.map((day) => {
               const radiobutton = document.createElement("input");
@@ -364,7 +378,7 @@
           });
 
           Array.from(availableDaysRadioButtons).map((radioBtn) => {
-            radioBtn.addEventListener("change", () => scrollIntoNext(radioBtn))
+            radioBtn.addEventListener("change", () => scrollIntoNext(radioBtn));
             radioBtn.addEventListener("change", function () {
               const middayContainer = document.querySelector(
                 ".midday-container"
@@ -426,7 +440,9 @@
                   span.appendChild(label);
                   dayPeriodContainer.appendChild(span);
 
-                  checkBoxDayPeriod.addEventListener("change", () => scrollIntoNext(checkBoxDayPeriod))
+                  checkBoxDayPeriod.addEventListener("change", () =>
+                    scrollIntoNext(checkBoxDayPeriod)
+                  );
                   checkBoxDayPeriod.addEventListener("change", function () {
                     if (checkBoxDayPeriod.checked) {
                       showAvailableStartTime(startMorning, morningContainer);
