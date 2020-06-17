@@ -8,6 +8,16 @@
     display: block;
     width: 100%;
   }
+  .overview-container div.personal-info p {
+    max-width: 100% !important;
+  }
+  .overview-container div.personal-info p strong {
+    width: 30% !important;
+  }
+  .overview-container div.personal-info p span {
+    width: 70% !important;
+    text-align: right !important;
+  }
   form[action="/zesde-stap"] section:nth-of-type(3) fieldset {
     display: block;
     width: 100%;
