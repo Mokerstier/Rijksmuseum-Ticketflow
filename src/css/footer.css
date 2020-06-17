@@ -3,7 +3,14 @@ footer {
   padding: 1em 2em;
   color: white;
   font-size: 1em;
+  display: flex;
+  justify-content: center;
 }
 footer p {
-  display: inline;
+  font-size: 0.9em;
+  display: inline-block;
+  margin-top: 0em;
+  margin-right: 2em;
+  color: white;
+  text-decoration: underline;
 }

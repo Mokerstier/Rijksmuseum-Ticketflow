@@ -21,6 +21,9 @@
   section {
     width: 90%;
   }
+  footer {
+    display: block;
+  }
 }
 @media (max-width: 30em) {
   .ticketOrder div > input {
