@@ -1,5 +1,6 @@
-@media (max-width: 48em){
-    form[action="/zesde-stap"] section > fieldset > input,
+@media (max-width: 48em) {
+
+    form[action="/zesde-stap"] section>fieldset>input,
     form[action="/zesde-stap"] #tussenName,
     form[action="/zesde-stap"] #lastName,
     form[action="/zesde-stap"] #emailAddress,
@@ -9,12 +10,29 @@
         width: 100%;
     }
 
-    form[action="/zesde-stap"] section:nth-of-type(3) fieldset{
+    .overview-container {
+        div.personal-info {
+            p {
+                max-width: 100% !important;
+
+                strong {
+                    width: 30% !important;
+                }
+
+                span {
+                    width: 70% !important;
+                    text-align: right !important;
+                }
+            }
+        }
+    }
+
+    form[action="/zesde-stap"] section:nth-of-type(3) fieldset {
         display: block;
         width: 100%;
     }
 
-    form[action="/zesde-stap"] section:nth-of-type(2) > fieldset:first-of-type > input:last-of-type {
+    form[action="/zesde-stap"] section:nth-of-type(2)>fieldset:first-of-type>input:last-of-type {
         margin-bottom: 1.5em;
     }
 
@@ -32,8 +50,8 @@
 }
 
 
-@media (max-width: 30em){
-    .ticketOrder div > input {
+@media (max-width: 30em) {
+    .ticketOrder div>input {
         position: static;
         margin-top: .5em;
         right: none;

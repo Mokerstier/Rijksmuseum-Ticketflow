@@ -1,0 +1,48 @@
+.overview-container h2 {
+  margin-bottom: 0;
+  text-align: left;
+  padding-left: 1rem;
+}
+.overview-container div {
+  padding: 1rem;
+}
+.overview-container div.personal-info p {
+  max-width: 50%;
+}
+.overview-container div.personal-info p strong {
+  width: 50%;
+}
+.overview-container div.personal-info p span {
+  text-align: left;
+  width: 50%;
+}
+.overview-container p.ticket-heading {
+  font-weight: bold;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+}
+.overview-container p {
+  display: flex;
+  justify-content: space-between;
+}
+.overview-container p .span {
+  width: 35%;
+  text-align: center;
+}
+.overview-container p span.right {
+  text-align: right;
+}
+.overview-container p span.left {
+  text-align: left;
+}
+.overview-container .results p {
+  font-weight: bold;
+}
+.overview-container .results p:nth-of-type(1) {
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+}
