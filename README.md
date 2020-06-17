@@ -105,8 +105,11 @@ $ npm run watch
 ## Features
 - Tickets kunnen kopen zonder javascript
 - Tickets kunnen kopen op een toegankelijke, vriendelijke manier
-- Custom datepicker
+- Custom, accessible datepicker
 - (Semi) gepersonaliseerde ticketflow
+- Keuzes worden opgeslagen in de localStorage 
+- Reduce motion
+- Responsive 
 
 ## Wishlist
 - [ ] Voice implementeren
