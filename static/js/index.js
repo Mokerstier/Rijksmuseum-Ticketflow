@@ -71,18 +71,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         fieldset.scrollIntoView({
           behavior: "smooth"
         });
-      }; // hier zijn we
-
+      };
 
       var checkForm = function checkForm(i) {
-        // getExpoPeriod(expoID, totalTickets)
-        //   .then((data) => {
-        //     const dataToPush = data;
-        //   })
-        //   .then((dataToPush) => {
-        //     if (outputDate) {
-        //       outputDate.parentElement.remove();
-        //     }
         removeChilds(".checkboxDay");
         removeChilds(".chooseDay");
         removeChilds(".monthDatePicker");
@@ -107,8 +98,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
           var totalPrice = Number(totalPriceContainer.dataset.priceRaw);
           totalPrice = totalPrice + Number(expoPrice);
-          totalPriceContainer.value = "Totale prijs: \u20AC".concat(parseFloat(totalPrice / 100).toFixed(2)); // const dataToPush = getExpoPeriod(expoID, totalTickets);
-
+          totalPriceContainer.value = "Totale prijs: \u20AC".concat(parseFloat(totalPrice / 100).toFixed(2));
           fetch("/getExpoPeriod/".concat(expoID, "/").concat(totalTickets)).then(function (response) {
             return response.json();
           }).then(function (expoData) {
@@ -191,23 +181,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         validationError.classList.add("hidden");
       };
 
-      var getExpoPeriod = function getExpoPeriod(expoID, totalTickets) {
-        fetch("/getExpoPeriod/".concat(expoID, "/").concat(totalTickets)).then(function (response) {
-          return response.json();
-        }).then(function (expoData) {
-          if (expoData.length == 0) {
-            expoError();
-          } else {
-            removeError();
-          }
-
-          return expoData;
-        });
-      }; // let response = fetch(`/getExpoPeriod/${expoID}/${totalTickets}`);
-      // let expoData = await response.json();
-      // ;
-
-
+      // function getExpoPeriod(expoID, totalTickets) {
+      //   fetch(`/getExpoPeriod/${expoID}/${totalTickets}`)
+      //     .then((response) => response.json())
+      //     .then((expoData) => {
+      //       if (expoData.length == 0) {
+      //         expoError();
+      //       } else {
+      //         removeError();
+      //       }
+      //       return expoData;
+      //     });
+      // }
       var datePicker = function datePicker() {
         var options = document.querySelectorAll(".optionMonth");
         var checkboxContainer = document.querySelector(".checkboxDay");
