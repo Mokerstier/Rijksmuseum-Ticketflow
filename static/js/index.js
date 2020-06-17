@@ -61,9 +61,14 @@
 
     for (let i = 0; i < inputs.length; i++) {
       inputs[i].addEventListener("change", () => checkForm(i));
+      inputs[i].addEventListener("change", () => scrollIntoNext(inputs[i]));
       window.addEventListener("load", () => checkForm(i));
     }
-
+    function scrollIntoNext(element){
+      const fieldset = element.closest('fieldset').nextElementSibling
+      
+      fieldset.scrollIntoView({behavior: "smooth"})
+    }
     async function checkForm(i) {
       if(outputDate){
         outputDate.parentElement.remove()
@@ -81,15 +86,15 @@
         let totalTickets = Number(ticketCount);
         let expoPrice = inputs[i].dataset.priceCent
         const expoPriceType = inputs[i].dataset.priceType
-        console.log(expoPrice)
+        
         
         if(expoPriceType == "per ticket"){
           expoPrice = expoPrice * totalTickets
-          console.log(expoPrice)
+          
         }
         let totalPrice = Number(totalPriceContainer.dataset.priceRaw)
         totalPrice = totalPrice + Number(expoPrice)
-        console.log(totalPrice);
+        
         
         totalPriceContainer.value = `Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`
         
@@ -155,6 +160,7 @@
           option.textContent = month;
           option.value = month;
           selectMonth.appendChild(option);
+          
         });
         datePicker();
       }
@@ -170,6 +176,7 @@
     }
 
     select.addEventListener("change", datePicker);
+    select.addEventListener("change", () => scrollIntoNext(select))
 
     async function getExpoPeriod(expoID, totalTickets) {
       let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`);
@@ -277,6 +284,7 @@
       checkboxes = document.querySelectorAll(".inputDay");
       let filteredDays = [];
       Array.from(checkboxes).map((checkbox) => {
+        checkbox.addEventListener("change", () => scrollIntoNext(checkbox))
         checkbox.addEventListener("change", async function () {
           const dayContainer = document.querySelector(".chooseDay");
 
@@ -341,6 +349,7 @@
               dataToCheck.push(dayDate);
               daysArray.push(day);
             }
+
             const legend = document.querySelector(".legend-date");
             if (daysArray.length == 1) {
               legend.setAttribute(
@@ -354,6 +363,16 @@
               );
             }
             removeChilds(".chooseDay");
+            function compare(a,b){
+              let comparison = 0;
+              if (a.date > b.date) {
+                comparison = 1;
+              } else if (a.date < b.date) {
+                comparison = -1;
+              }
+              return comparison;
+            }
+            daysArray.sort(compare)
 
             daysArray.map((day) => {
               const radiobutton = document.createElement("input");
@@ -381,6 +400,7 @@
           });
 
           Array.from(availableDaysRadioButtons).map((radioBtn) => {
+            radioBtn.addEventListener("change", () => scrollIntoNext(radioBtn))
             radioBtn.addEventListener("change", function () {
               const middayContainer = document.querySelector(
                 ".midday-container"
@@ -442,6 +462,7 @@
                   span.appendChild(label);
                   dayPeriodContainer.appendChild(span);
 
+                  checkBoxDayPeriod.addEventListener("change", () => scrollIntoNext(checkBoxDayPeriod))
                   checkBoxDayPeriod.addEventListener("change", function () {
                     if (checkBoxDayPeriod.checked) {
                       showAvailableStartTime(startMorning, morningContainer);
@@ -720,123 +741,6 @@
     }
 })();
 
-
-(function () {
-  function localStorageTest() {
-    const test = "test";
-    try {
-      localStorage.setItem(test, test);
-      localStorage.removeItem(test);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  if (localStorageTest() === true) {
-    const form = document.querySelector("form")
-    const formName = form.dataset.formname
-    // Check if formData is populated and push it to the form
-    let storedForm = localStorage.getItem("formData")
-
-    storedForm = storedForm ? JSON.parse(storedForm) : {}
-    if (storedForm[formName]){
-        const arrayValues = Object.values(storedForm[formName])
-        const formObject = Object.entries(storedForm[formName])
-
-        const formInputs = form.querySelectorAll('input')
-        const formSelects = form.querySelectorAll('select')
-
-        arrayValues.forEach(value => {
-
-            if(formInputs){
-              
-              Array.from(formInputs).map(input =>{
-                if ((input.type == "radio" || input.type == "checkbox") && input.value == value) {
-                  input.checked = true
-                }
-              })
-            }
-
-            if(formSelects){
-              
-              Array.from(formObject).map(object =>{
-               
-                Array.from(formSelects).map(select =>{
-                  
-                  if (select.name == object[0]){
-                    Array.from(select.children).map(option =>{
-                      if(option.value == object[1] || option.value.split(',')[0] == object[1] ){
-                        
-                        option.selected = true
-                      }
-                    })
-                    
-                  }
-                })
-              })
-            }
-        })
-    }
-
-    function setLocalStorage(){
-      let formData = new FormData(form);
-      
-      
-      let dataObject = {}
-      formData.forEach((value, key) => {
-        if (key == 'Multimediatour'){
-          
-          dataObject[key] = value.split(',')[0]
-        }
-        else {
-          dataObject[key] = value
-        }
-      });
-      let formDataJSON = JSON.stringify(dataObject)
-      
-
-      let existing = localStorage.getItem("formData")
-
-      // If no existing data, create an array
-      // Otherwise, convert the localStorage string to an array
-      existing = existing ? JSON.parse(existing) : {}
-      
-      // Add new data to localStorage Array
-      existing[form.dataset.formname] = dataObject
-
-      // Save back to localStorage
-      localStorage.setItem("formData", JSON.stringify(existing))
-    }
-    const addExtra = document.querySelector('.add-ticket')
-    const removeExtra = document.querySelector('.remove-ticket')
-    if(addExtra){
-      addExtra.addEventListener('click', function(){
-        console.log('click')
-        setTimeout(() => {
-          setLocalStorage()
-        }, 1000);
-       
-      })
-      removeExtra.addEventListener('click', function(){
-        console.log('click')
-        setTimeout(() => {
-          setLocalStorage()
-        }, 1000);
-      })
-    }
-    
-    // Put formData in localStorage
-    form.addEventListener("change", function () {
-      setLocalStorage()
-
-    })
-
-  } else {
-    console.log("Local Storage is unavailable");
-  }
-})();
-
 (function () {
     const linkFamily = document.querySelector(".family-flow-link")
     const linkDate = document.querySelector(".date-flow-link")
@@ -849,13 +753,18 @@
         linkOnly.href = "/tweede-stap?groupChoice=only&javascript=1";
 
     }
+
+    const currentPage = document.querySelector('[aria-current="page"]')
+
+    currentPage.scrollIntoView()
+
 })();
 (function () {
     const forthForm = document.querySelector(".step-two")
     if (forthForm) {
         const countModule = document.querySelectorAll('.ticket-amount-container')
         let totalPrice = document.querySelector('#total-first-step')
-        console.log(countModule)
+
         Array.from(countModule).map(module => {
             const removeButton = module.querySelector('.remove-ticket')
             const addButton = module.querySelector('.add-ticket')
@@ -865,7 +774,6 @@
                 getSelected(ticketSelect)
             })
 
-            console.log(ticketSelect.selectedIndex)
             removeButton.addEventListener('click', function () {
                 if (ticketSelect.selectedIndex === 0) {
                     ticketSelect.selectedIndex = 0
@@ -887,7 +795,6 @@
         async function getSelected(select){
             let selectPrice = select.dataset.price
             let ticketsTotal = select.selectedIndex
-            console.log(ticketsTotal, selectPrice);
             return calcTotalPriceExtra(selectPrice, ticketsTotal)
         }
         const ticketSelects = document.querySelectorAll('select')
@@ -899,7 +806,6 @@
 
         async function calcTotalPriceExtra(a, b){
             let totalPriceExtra = Number(a) * Number(b)
-            console.log(totalPriceExtra);
             let totalPriceCalculated = Number(totalPrice.dataset.priceRaw) + Number(totalPriceExtra)
             totalPrice.dataset.priceRawExtra = Number(totalPriceCalculated)
             totalPrice.value = `Totale prijs: €${parseFloat(totalPriceCalculated / 100).toFixed(2)}`
@@ -908,9 +814,9 @@
         }
         const donationInputs = document.querySelectorAll('input[name="Doneer"]')
         Array.from(donationInputs).map(function(input){
-            console.log('Array: ',input.value)
+
             input.addEventListener('change', function(){
-                console.log(input.value)
+
                 if (input.checked){
                     let value = input.value
                     calcDonation(value)
@@ -929,7 +835,7 @@
             Array.from(ticketSelects).map(async function(select){
                 totalPriceCalculated = await getSelected(select) + Number(a)
                 totalPrice.value = `Totale prijs: €${parseFloat(totalPriceCalculated / 100).toFixed(2)}`
-                console.log('total price: ', totalPriceCalculated);
+
             })
   
         }

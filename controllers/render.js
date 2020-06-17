@@ -1,12 +1,13 @@
 const getter = require('./getter.js')
 const ticketShopJSON = require('../data/ticketshop-configuration.json')
+const articlesData = require('../data/articles.json')
 let ticketChoice = null
 let ticketDefault = []
 let groupChoice = ""
 let expoChoice
 let monthChoice
 let dayChoice
-let totalPrice
+let totalPrice = ''
 let totalPriceRawThree
 let startTimeChoice = null
 let ticketCount
@@ -37,6 +38,14 @@ function checkDefault() {
 }
 
 function getFirstStep(req, res) {
+    firstName = ''
+    lastName = ''
+    tussenName = ''
+    email = ''
+    zipCode = ''
+    acceptTerms = "off"
+    country = ''
+
     ticketChoice = null
     res.render('pages/firstStep.ejs', {
         title: 'Kies je groep',
@@ -71,28 +80,50 @@ function getThirdStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
     const articlesDonation = getter.getDonation()
     const articlesAdditional = getter.getAdditional()
-    
 
-    javascript = req.query.javascript
-    if(req.query.totalPrice){
-        totalPrice = req.query.totalPrice
-        totalPriceRawThree = totalPrice.split('€').join('').split('.').join('')
-        
-    }
-    
+
     if (req.query.ticketType) {
         ticketCount = getter.getTicketCount(req, res)
         ticketChoice = req.query.ticketType
-        
-        
     }
     if (req.query.ticketChoice) {
         ticketChoice = req.query.ticketChoice
     }
+    javascript = req.query.javascript
+    if (req.query.totalPrice) {
+        totalPrice = req.query.totalPrice
+        totalPriceRawThree = totalPrice.split('€').join('').split('.').join('')
+    } else {
+        const ticketIDThree = ticketShopJSON.articleConfiguration[0].articleWhitelist
+        let ticketSelectedArrayIdAndNumberThree = []
+        for (let i = 0; i < ticketIDThree.length; i++) {
+            let ticketObjectThree = {}
+            if (Number(ticketChoice[i]) > 0) {
+                ticketObjectThree["id"] = ticketIDThree[i]
+                ticketObjectThree["number"] = Number(ticketChoice[i])
+                ticketSelectedArrayIdAndNumberThree.push(ticketObjectThree)
+            }
+        }
+        let newArray = []
+        ticketSelectedArrayIdAndNumberThree.map(object => {
+            articlesData.map(article => {
+                if (article.Code == object.id) {
+                    newArray.push((Number(article.PriceCent) * Number(object.number)))
+                }
+            })
+        })
+        totalPriceRawThree = newArray.reduce((a, b) => {
+            return a = a + b
+        })
+        totalPrice = `€${(totalPriceRawThree / 100).toFixed(2)}`
+    }
+
+
+
 
     const availableExpoId = getter.getAllUnavailableExpoId(ticketCount)
 
- 
+
     res.render('pages/thirdStep.ejs', {
         title: 'Plan je bezoek',
         expositionContents: expositionContents,
@@ -118,6 +149,20 @@ function getThirdStepDate(req, res) {
         expoChoice = expoName
         expoID = getter.getExpoId(req, res)
         months = getter.getExpoMonth(ticketCount, expoID)
+    }
+
+    if (req.query.ticketOption) {
+        expo = req.query.ticketOption.split(',')
+        expoChoice = expo[0]
+
+        if (expo[3] == "fixed") {
+            totalPriceRawFour = Number(expo[2]) + Number(totalPriceRawThree)
+
+        } else {
+            totalPriceRawFour = (Number(expo[2]) * Number(ticketCount)) + Number(totalPriceRawThree)
+
+        }
+        totalPriceFour = `€${parseFloat(totalPriceRawFour / 100).toFixed(2)}`
     }
 
     res.render('pages/monthStep.ejs', {
@@ -195,7 +240,7 @@ function getThirdStepTime(req, res) {
         expoPeriodIDChoice: expoPeriodIDChoice,
         javascript: javascript,
         startTimeChoice: startTimeChoice
-        
+
     })
 }
 
@@ -212,23 +257,24 @@ function getFourthStep(req, res) {
     // 3 = expoPriceType
     if (req.query.ticketOption) {
         expo = req.query.ticketOption.split(',')
+        expoChoice = expo[0]
 
-        if(expo[3]== "fixed"){
+        if (expo[3] == "fixed") {
             totalPriceRawFour = Number(expo[2]) + Number(totalPriceRawThree)
 
         } else {
-            totalPriceRawFour = (Number(expo[2]) * Number(ticketCount)) +  Number(totalPriceRawThree)
+            totalPriceRawFour = (Number(expo[2]) * Number(ticketCount)) + Number(totalPriceRawThree)
 
         }
         totalPriceFour = `€${parseFloat(totalPriceRawFour / 100).toFixed(2)}`
     }
-    
+
     if (req.query.startTimeChoice) {
         expoPeriodIDChoice = req.query.startTimeChoice.split(',')
         startTimeChoice = expoPeriodIDChoice[0]
         expoPeriodIDChoice = expoPeriodIDChoice[1]
     }
-    console.log('MEDIA CHOICE: ',multiMediaChoice)
+
     res.render('pages/fourthStep.ejs', {
         title: 'Extra opties',
         expositionContents: expositionContents,
@@ -241,7 +287,7 @@ function getFourthStep(req, res) {
         multiMediaChoice: Number(multiMediaChoice),
         donationChoice: donationChoice,
         javascript: javascript,
-        totalPrice: totalPriceFour, 
+        totalPrice: totalPriceFour,
         totalPriceRaw: totalPriceRawFour,
         startTimeChoice: startTimeChoice
     })
@@ -250,9 +296,9 @@ function getFourthStep(req, res) {
 function getFifthStep(req, res) {
     const ticketConfiguration = ticketShopJSON.variantContent[0]
 
-    multiMediaChoice = req.query.Multimediatour.split(',')[0]
-    donationChoice = req.query.Doneer
-    if(req.query.Multimediatour){
+    if (req.query.Multimediatour) {
+        multiMediaChoice = req.query.Multimediatour.split(',')[0]
+        donationChoice = req.query.Doneer
         const extras = req.query.Multimediatour.split(',')
         const donate = req.query.Doneer
 
@@ -290,13 +336,39 @@ function getSixthStep(req, res) {
     zipCode = req.query.postcode
     acceptTerms = req.query.acceptterms
     country = req.query.land
+    const ticketID = ticketShopJSON.articleConfiguration[0].articleWhitelist
+    let ticketSelectedArrayIdAndNumber = []
+    for (let i = 0; i < ticketID.length; i++) {
+        let ticketObject = {}
+        if (Number(ticketChoice[i]) > 0) {
+            ticketObject["id"] = ticketID[i]
+            ticketObject["number"] = Number(ticketChoice[i])
+            ticketSelectedArrayIdAndNumber.push(ticketObject)
+        }
+    }
+    // const ticktsChoiceWithNames = ;
     res.render('pages/sixthStep.ejs', {
         title: 'Overzicht en betalen',
         ticketShop: ticketConfiguration,
         groupChoice: groupChoice,
         ticketCount: ticketCount,
         formName: "dateTicketChoice",
-        javascript: javascript
+        javascript: javascript,
+        firstName: firstName,
+        lastName: lastName,
+        tussenName: tussenName,
+        email: email,
+        zipCode: zipCode,
+        country: country,
+        totalPriceRawFive: totalPriceRawFive,
+        donationChoice: donationChoice,
+        multiMediaChoice: multiMediaChoice,
+        startTimeChoice: startTimeChoice,
+        expoChoice: expoChoice,
+        ticketSelectedArrayIdAndNumber: ticketSelectedArrayIdAndNumber,
+        ticketShopJSON: ticketShopJSON,
+        articlesData: articlesData,
+        totalPriceRawThree: totalPriceRawThree
     })
 }
 

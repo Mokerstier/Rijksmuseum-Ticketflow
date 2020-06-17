@@ -25,9 +25,14 @@
 
     for (let i = 0; i < inputs.length; i++) {
       inputs[i].addEventListener("change", () => checkForm(i));
+      inputs[i].addEventListener("change", () => scrollIntoNext(inputs[i]));
       window.addEventListener("load", () => checkForm(i));
     }
-
+    function scrollIntoNext(element){
+      const fieldset = element.closest('fieldset').nextElementSibling
+      
+      fieldset.scrollIntoView({behavior: "smooth"})
+    }
     async function checkForm(i) {
       if(outputDate){
         outputDate.parentElement.remove()
@@ -45,15 +50,15 @@
         let totalTickets = Number(ticketCount);
         let expoPrice = inputs[i].dataset.priceCent
         const expoPriceType = inputs[i].dataset.priceType
-        console.log(expoPrice)
+        
         
         if(expoPriceType == "per ticket"){
           expoPrice = expoPrice * totalTickets
-          console.log(expoPrice)
+          
         }
         let totalPrice = Number(totalPriceContainer.dataset.priceRaw)
         totalPrice = totalPrice + Number(expoPrice)
-        console.log(totalPrice);
+        
         
         totalPriceContainer.value = `Totale prijs: €${parseFloat(totalPrice / 100).toFixed(2)}`
         
@@ -119,6 +124,7 @@
           option.textContent = month;
           option.value = month;
           selectMonth.appendChild(option);
+          
         });
         datePicker();
       }
@@ -134,6 +140,7 @@
     }
 
     select.addEventListener("change", datePicker);
+    select.addEventListener("change", () => scrollIntoNext(select))
 
     async function getExpoPeriod(expoID, totalTickets) {
       let response = await fetch(`/getExpoPeriod/${expoID}/${totalTickets}`);
@@ -241,6 +248,7 @@
       checkboxes = document.querySelectorAll(".inputDay");
       let filteredDays = [];
       Array.from(checkboxes).map((checkbox) => {
+        checkbox.addEventListener("change", () => scrollIntoNext(checkbox))
         checkbox.addEventListener("change", async function () {
           const dayContainer = document.querySelector(".chooseDay");
 
@@ -305,6 +313,7 @@
               dataToCheck.push(dayDate);
               daysArray.push(day);
             }
+
             const legend = document.querySelector(".legend-date");
             if (daysArray.length == 1) {
               legend.setAttribute(
@@ -318,6 +327,16 @@
               );
             }
             removeChilds(".chooseDay");
+            function compare(a,b){
+              let comparison = 0;
+              if (a.date > b.date) {
+                comparison = 1;
+              } else if (a.date < b.date) {
+                comparison = -1;
+              }
+              return comparison;
+            }
+            daysArray.sort(compare)
 
             daysArray.map((day) => {
               const radiobutton = document.createElement("input");
@@ -345,6 +364,7 @@
           });
 
           Array.from(availableDaysRadioButtons).map((radioBtn) => {
+            radioBtn.addEventListener("change", () => scrollIntoNext(radioBtn))
             radioBtn.addEventListener("change", function () {
               const middayContainer = document.querySelector(
                 ".midday-container"
@@ -406,6 +426,7 @@
                   span.appendChild(label);
                   dayPeriodContainer.appendChild(span);
 
+                  checkBoxDayPeriod.addEventListener("change", () => scrollIntoNext(checkBoxDayPeriod))
                   checkBoxDayPeriod.addEventListener("change", function () {
                     if (checkBoxDayPeriod.checked) {
                       showAvailableStartTime(startMorning, morningContainer);

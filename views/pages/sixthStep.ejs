@@ -13,6 +13,37 @@
 </nav>
 
 <main id="main">
-    <h2 aria-label="Stap 6 van de 6, Je bent klaar!">Zesde stap</h2>
+    <section class="overview-container">
+        <h2 aria-label="Stap 6 van de 6, Je bent klaar controlieer je gegevens en regel je betaling!">Overzicht en betaling</h2>
+        <div class="personal-info">
+            <p><strong>Name:</strong> <span><%= firstName %> <%= tussenName %> <%= lastName %></span></p>
+            <p><strong>Email:</strong> <span><%= email %></span></p>
+            <p><strong>Postcode:</strong> <span><%= zipCode.toUpperCase() %></span></p>
+            <p><strong>Land:</strong> <span><%= country %></span></p>
+        </div>
+        <div class="ticket-info">
+            <p>Datum van je bezoek: <date><%= new Date(startTimeChoice).toLocaleString() %></date></p>
+            <p aria-hidden="true" class="ticket-heading"><span class="span left">Type</span><span class="span center">Aantal</span><span class="span right">Prijs</span></p>
+            <% ticketSelectedArrayIdAndNumber.forEach(object => { %>
+                <% articlesData.forEach(article => {%>
+                    <% if(object.id == article.Code){%>
+                        <p><span class="span left"><%= article.Name%></span> <span aria-label="Aantal <%= object.number%>." class="span center"><%= object.number%></span> <span aria-label="Prijs €<%= (article.PriceCent * Number(object.number) /100).toFixed(2) %>." class="span right">€<%= (article.PriceCent * Number(object.number) /100).toFixed(2) %></span></p>
+                    <%}%>
+                <%})%>  
+            <% }) %>
+            <p><span class="span left"><%= expoChoice%></span><span class="span center"></span><span aria-label="Prijs €<%= ((Number(totalPriceRawFive) - ( Number(totalPriceRawThree) + (Number(multiMediaChoice) * 500) + Number(donationChoice) )) / 100).toFixed(2) %>." class="span right"> €<%= ((Number(totalPriceRawFive) - ( Number(totalPriceRawThree) + (Number(multiMediaChoice) * 500) + Number(donationChoice) )) / 100).toFixed(2) %></span></p>
+            <% if(multiMediaChoice > 0) { %>
+            <p><span class="span left">Multimediatour met leentoestel:</span> <span aria-label="Aantal <%= multiMediaChoice%>." class="span center"><%= multiMediaChoice%></span> <span aria-label="Prijs €<%= ((Number(multiMediaChoice) * 500) /100).toFixed(2) %>." class="span right">€<%= ((Number(multiMediaChoice) * 500) /100).toFixed(2) %></span></p>
+            <% } %>
+            <p><span class="span left">Doneer Keuze:</span> <span class="span center"></span> <span aria-label="Prijs €<%= (donationChoice / 100 ).toFixed(2)%>." class="span right">€<%= (donationChoice / 100 ).toFixed(2)%></span></p>
+        </div>
+        <div class="results">
+            <p><span class="span left">Totaal tickets:</span> <span class="span center"> <%=ticketCount%></span> <span class="span right"></span></p>
+            <p><span>Totaal prijs:</span> <span class="span center"></span> <span class="span right">€<%= (totalPriceRawFive / 100).toFixed(2) %></span></p>
+        </div>
+    </section>
+    <section class="backButtonContainer">
+        <a href="/vijfde-stap" class="backButton" aria-label="Klik hier om terug te gaan naar stap 5, Persoonsgegevens"> < Terug naar Persoonsgegevens</a>
+    </section>  
 </main>
-<%- include ("../partials/footer.ejs") %>
+<%- include ("../partials/footer.ejs") %> 
