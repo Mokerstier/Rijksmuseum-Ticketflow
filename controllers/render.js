@@ -7,7 +7,7 @@ let groupChoice = ""
 let expoChoice
 let monthChoice
 let dayChoice
-let totalPrice
+let totalPrice = ''
 let totalPriceRawThree
 let startTimeChoice = null
 let ticketCount
@@ -82,22 +82,44 @@ function getThirdStep(req, res) {
     const articlesAdditional = getter.getAdditional()
 
 
-    javascript = req.query.javascript
-    if (req.query.totalPrice) {
-        totalPrice = req.query.totalPrice
-        totalPriceRawThree = totalPrice.split('€').join('').split('.').join('')
-
-    }
-
     if (req.query.ticketType) {
         ticketCount = getter.getTicketCount(req, res)
         ticketChoice = req.query.ticketType
-
-
     }
     if (req.query.ticketChoice) {
         ticketChoice = req.query.ticketChoice
     }
+    javascript = req.query.javascript
+    if (req.query.totalPrice) {
+        totalPrice = req.query.totalPrice
+        totalPriceRawThree = totalPrice.split('€').join('').split('.').join('')
+    } else {
+        const ticketIDThree = ticketShopJSON.articleConfiguration[0].articleWhitelist
+        let ticketSelectedArrayIdAndNumberThree = []
+        for (let i = 0; i < ticketIDThree.length; i++) {
+            let ticketObjectThree = {}
+            if (Number(ticketChoice[i]) > 0) {
+                ticketObjectThree["id"] = ticketIDThree[i]
+                ticketObjectThree["number"] = Number(ticketChoice[i])
+                ticketSelectedArrayIdAndNumberThree.push(ticketObjectThree)
+            }
+        }
+        let newArray = []
+        ticketSelectedArrayIdAndNumberThree.map(object => {
+            articlesData.map(article => {
+                if (article.Code == object.id) {
+                    newArray.push((Number(article.PriceCent) * Number(object.number)))
+                }
+            })
+        })
+        totalPriceRawThree = newArray.reduce((a, b) => {
+            return a = a + b
+        })
+        totalPrice = `€${(totalPriceRawThree / 100).toFixed(2)}`
+    }
+
+
+
 
     const availableExpoId = getter.getAllUnavailableExpoId(ticketCount)
 
@@ -127,6 +149,20 @@ function getThirdStepDate(req, res) {
         expoChoice = expoName
         expoID = getter.getExpoId(req, res)
         months = getter.getExpoMonth(ticketCount, expoID)
+    }
+
+    if (req.query.ticketOption) {
+        expo = req.query.ticketOption.split(',')
+        expoChoice = expo[0]
+
+        if (expo[3] == "fixed") {
+            totalPriceRawFour = Number(expo[2]) + Number(totalPriceRawThree)
+
+        } else {
+            totalPriceRawFour = (Number(expo[2]) * Number(ticketCount)) + Number(totalPriceRawThree)
+
+        }
+        totalPriceFour = `€${parseFloat(totalPriceRawFour / 100).toFixed(2)}`
     }
 
     res.render('pages/monthStep.ejs', {
@@ -238,7 +274,7 @@ function getFourthStep(req, res) {
         startTimeChoice = expoPeriodIDChoice[0]
         expoPeriodIDChoice = expoPeriodIDChoice[1]
     }
-    
+
     res.render('pages/fourthStep.ejs', {
         title: 'Extra opties',
         expositionContents: expositionContents,
@@ -310,7 +346,6 @@ function getSixthStep(req, res) {
             ticketSelectedArrayIdAndNumber.push(ticketObject)
         }
     }
-    
     // const ticktsChoiceWithNames = ;
     res.render('pages/sixthStep.ejs', {
         title: 'Overzicht en betalen',
