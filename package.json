@@ -37,12 +37,13 @@
   },
   "homepage": "https://github.com/Mokerstier/Rijksmuseum-Ticketflow#readme",
   "devDependencies": {
-    "@babel/cli": "^7.10.1",
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
+    
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "@babel/polyfill": "^7.10.1",
     "chokidar-cli": "^2.1.0",
     "csv-parser": "^2.3.2",
