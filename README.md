@@ -106,7 +106,7 @@ $ npm run watch
 
 De dataset die we hebben gekregen van de opdrachtgever (Q42) bevat alle teksten, ticketinformatie en beschikbaarheid van de rondleidingen. We kregen de bestanden aangeleverd als `.csv` maar hebben deze zelf omgezet naar werkbaar `.json`.
 
-Meer informatie over datamanagement is te vinden in onze (https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki)[wiki] volg (https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Plan-van-aanpak#data-management)[deze link.]
+Meer informatie over datamanagement is te vinden in onze [wiki](https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki) volg [deze link.](https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Plan-van-aanpak#data-management)
 
 ## Features
 - Tickets kunnen kopen zonder javascript
