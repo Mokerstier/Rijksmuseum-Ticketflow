@@ -104,9 +104,9 @@ $ npm run watch
 
 ## Data
 
-We hebben de dataset gerkregen van de opdrachtgever (Q42) deze data bevat alle copy text van de flow, alle tecket en exposities(rondleidingen) informatie en alle beschickbare datums en dagen die afhankkelijk zijn van de groepsgroote en de gekozen rondleiding. De data is csv bestanden die we zelf naar json bestanden hebben omgezet.
+De dataset die we hebben gekregen van de opdrachtgever (Q42) bevat alle teksten, ticketinformatie en beschikbaarheid van de rondleidingen. We kregen de bestanden aangeleverd als `.csv` maar hebben deze zelf omgezet naar werkbaar `.json`.
 
-Meer informatie over datamanagement is te vinden in onze (wiki)[https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki] volg (deze link.)[https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Plan-van-aanpak#data-management]
+Meer informatie over datamanagement is te vinden in onze (https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki)[wiki] volg (https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Plan-van-aanpak#data-management)[deze link.]
 
 ## Features
 - Tickets kunnen kopen zonder javascript
