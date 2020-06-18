@@ -102,7 +102,9 @@ $ npm run watch
   }
 ```
 
-## API
+## Data
+
+We hebben de dataset gerkregen van de opdrachtgever (Q42) deze data bevat alle copy text van de flow, alle tecket en exposities(rondleidingen) informatie en alle beschickbare datums en dagen die afhankkelijk zijn van de groepsgroote en de gekozen rondleiding. De data is csv bestanden die we zelf naar json bestanden hebben omgezet.
 
 ## Features
 - Tickets kunnen kopen zonder javascript
@@ -116,9 +118,9 @@ $ npm run watch
 ## Wishlist
 - [ ] Voice implementeren
 - [ ] Dark mode toevoegen
-- [x] Regex schrijven voor de postcode bij stap 5 
+- [x] Regex schrijven voor de postcode bij stap 5
 - [ ] Errors op een leukere manier laten zien
-- [ ] Bug fix dat de date picker niet werkt op safari en IE 
+- [ ] Babel js implementeren zodat de meest enhancement versie ook op safari en IE11 werkt 
 - [ ] Zodra de gebruiker op stap 5 komt de timer laten aflopen
 
 ## Bronnen 
