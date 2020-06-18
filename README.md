@@ -1,6 +1,8 @@
 # Rijksmuseum-Ticketflow
 > Lees voor gebruik van dit project de design rationale goed door. Hierin staan de belangrijkste keuzes beschreven. Dit is belangrijk om het project en de code ervan goed te begrijpen. [Lees hier de design rationale](https://github.com/Mokerstier/Rijksmuseum-Ticketflow/wiki/Design-rationale).
 
+![Happy Flow van de ticketstraat](https://user-images.githubusercontent.com/33430655/84995585-79f5bc80-b14c-11ea-849b-a1d1b169dc70.gif)
+
 ## Inhoudsopgave
 * [Het team](#Het-team)
 * [De opdracht](#De-opdracht)
