@@ -120,7 +120,7 @@ Meer informatie over datamanagement is te vinden in onze [wiki](https://github.c
 ## Wishlist
 - [ ] Voice implementeren
 - [ ] Dark mode toevoegen
-- [x] Regex schrijven voor de postcode bij stap 5
+- [x] ~~Regex schrijven voor de postcode bij stap 5~~
 - [ ] Errors op een leukere manier laten zien
 - [ ] Babel js implementeren zodat de meest enhancement versie ook op safari en IE11 werkt 
 - [ ] Zodra de gebruiker op stap 5 komt de timer laten aflopen
@@ -135,4 +135,7 @@ Meer informatie over datamanagement is te vinden in onze [wiki](https://github.c
 - [Manouk Kappé](https://github.com/ManoukK)
 - De Minor WebDev docenten voor hulp, feedback en ondersteuning
 - Bedankt Hannes, Roges en Jesse voor het testen van ons prototype!
+Onze speciale dank gaat uit naar:
+- Q42 als opdrachtgever
+- Rijksmuseum, voor het beschikbaar stellen van de data en de intresse in de minor web-development (HVA)
 
